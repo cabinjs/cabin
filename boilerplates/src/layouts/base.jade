@@ -1,0 +1,20 @@
+doctype 5
+html
+  head
+    title= "My Blog"
+    meta(charset="utf8")
+    meta(name="viewport", content="width=device-width")
+    link(href="/styles/main.css", rel="stylesheet")
+    link(href="/styles/tomorrow-night-bright.css", rel="stylesheet")
+    block title
+  body
+    block header
+      ul
+        li
+          a(href="/blog") Blog
+        li
+          a(href="/") Home
+    block content
+    block footer
+    //- this needs to be conditionally included based on envirnoment
+    script(src="http://localhost:35729/livereload.js")

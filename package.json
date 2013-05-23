@@ -1,0 +1,30 @@
+{
+  "name": "jsblog",
+  "version": "0.0.0",
+  "description": "globaljsblog",
+  "main": "index.js",
+  "bin": "./bin/jsblog",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChrisWren/globaljsblog.git"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha --ui bdd --reporter nyan --recursive -b -R nyan -t 3000 $(find ./test -name *.test.*)"
+  },
+  "author": "Colin Wren",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "04ace5c5db0e15479065cfd506b8d8cc63628797",
+  "dependencies": {
+    "commander": "~1.1.1",
+    "colors": "~0.6.0-1",
+    "lodash": "~1.2.1",
+    "wrench": "~1.5.1",
+    "async": "~0.2.8"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "~1.2.2",
+    "github-download": "~0.2.0"
+  }
+}
