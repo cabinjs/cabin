@@ -1,9 +1,9 @@
 {
-  "name": "jsblog",
+  "name": "cabin",
   "version": "0.0.0",
-  "description": "globaljsblog",
+  "description": "",
   "main": "index.js",
-  "bin": "./bin/jsblog",
+  "bin": "./bin/cabin",
   "repository": {
     "type": "git",
     "url": "https://github.com/ChrisWren/globaljsblog.git"
@@ -25,6 +25,7 @@
   "devDependencies": {
     "mocha": "*",
     "should": "~1.2.2",
-    "github-download": "~0.2.0"
+    "adm-zip": "~0.4.3",
+    "request": "~2.21.0"
   }
 }

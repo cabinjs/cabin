@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-blog": "git+https://colinwren@github.com/ChrisWren/jsblog.git",
+    "grunt-blog": "git+https://colinwren@github.com/ChrisWren/grunt-blog.git",
     "grunt-contrib-copy": "~0.4.1",<% if (coffee) { %>
     "grunt-contrib-coffee": "~0.6.5",<% } %><% if (preprocesser = 'compass') { %>
     "grunt-contrib-compass": "~0.2.0",
