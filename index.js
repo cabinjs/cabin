@@ -23,7 +23,7 @@ module.exports = function(argv) {
 
       async.series([
         function(callback) {
-          utils.safePrompt('Which CSS preprocesser will you use?', [
+          utils.safePrompt('Which CSS preprocessor will you use?', [
             { 'Sass':   'compass' },
             { 'Stylus': 'stylus'  },
             { 'Less':   'less'    },
