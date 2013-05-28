@@ -16,20 +16,17 @@ module.exports = function (grunt) {
     cabin: cabinConfig,
     watch: {
       options: {
-        livereload: true
-      },
-      scripts: {
-        files: ['<%%= cabin.src %>/scripts/{,*/}*']
+	livereload: true
       },<% if (preprocessor) { %>
       <%= preprocessor %>: {
-        files: ['<%%= cabin.src %>/styles/{,*/}*'],
+	files: ['<%%= cabin.src %>/styles/{,*/}*'],
 	tasks: ['<%= preprocessor %>:server']
       },<% } else { %>
       css: {
-        files: ['<%%= cabin.src %>/styles/{,*/}*']
-      <% } %>blog: {
-        files: ['src/pages/**/*', 'posts/{,*/}*', 'src/layouts/{,*/}*'],
-        tasks: ['blog']
+	files: ['<%%= cabin.src %>/styles/{,*/}*']<% } %>
+      blog: {
+	files: ['src/pages/**/*', 'posts/{,*/}*', 'src/layouts/{,*/}*'],
+	tasks: ['blog']
       }
     },
     blog: {
@@ -49,7 +46,6 @@ module.exports = function (grunt) {
         port: 9000,
         hostname: 'localhost'
       },
-
       livereload: {
         options: {
           middleware: function (connect) {
@@ -65,6 +61,7 @@ module.exports = function (grunt) {
         options: {
           middleware: function (connect) {
             return [
+	      // Cant use cabinConfig variables here
               mountFolder(connect, 'dist')
             ];
           }
@@ -95,7 +92,6 @@ module.exports = function (grunt) {
         sassDir: '<%%= cabin.src %>/styles',
         cssDir: '<%%= cabin.dev %>/styles',
         imagesDir: '<%%= cabin.src %>/images',
-        javascriptsDir: '<%%= cabin.src %>/scripts',
         relativeAssets: true
       },
       dist: {},

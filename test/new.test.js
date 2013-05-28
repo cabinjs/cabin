@@ -43,7 +43,6 @@ function testOptions (options, callback) {
   options = _.defaults(options, {
     siteName: siteName,
     templateLang: 'jade',
-    coffee: false,
     preprocessor: 'compass',
     noInstall: true
   });
@@ -59,12 +58,6 @@ function checkGeneratedFiles(options) {
     options.preprocessor = 'scss';
   }
 
-  if (options.coffee) {
-    options.script = 'coffee';
-  } else {
-    options.script = 'js';
-  }
-
   var expectedFiles = [
     'Gruntfile.js',
     'README.md',
@@ -75,14 +68,12 @@ function checkGeneratedFiles(options) {
     'posts/post2.md',
     'src/layouts',
     'src/pages',
-    'src/scripts',
     'src/styles',
     'src/layouts/base.' + options.templateLang,
     'src/layouts/post.' + options.templateLang,
     'src/pages/blog',
     'src/pages/index.' + options.templateLang,
     'src/pages/blog/index.' + options.templateLang,
-    'src/scripts/main.' + options.script,
     'src/styles/main.' + options.preprocessor,
     'src/styles/tomorrow-night-bright.css'
   ];

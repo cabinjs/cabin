@@ -42,15 +42,6 @@ module.exports = function(argv) {
             options.templateLang = choice;
             callback();
           });
-        },
-        function(callback) {
-          utils.safePrompt('Do you want to use CoffeeScript?', [
-            { 'No': false },
-            { 'Yes': true }
-          ], function(choice) {
-            options.coffee = choice;
-            callback();
-          });
         }
       ], function(err) {
         // Not sure if this err is neccesary
