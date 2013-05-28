@@ -17,17 +17,13 @@ module.exports = function (grunt) {
     watch: {
       options: {
         livereload: true
-      },<% if (coffee) { %>
-      coffee: {
-        files: ['<%%= cabin.src %>/scripts/{,*/}*.coffee'],
-        tasks: ['coffee:dist']
-      },<% } else { %>
+      },
       scripts: {
         files: ['<%%= cabin.src %>/scripts/{,*/}*']
-      },<% } %> <% if (preprocesser) { %>
-      <%= preprocesser %>: {
+      },<% if (preprocessor) { %>
+      <%= preprocessor %>: {
         files: ['<%%= cabin.src %>/styles/{,*/}*'],
-        tasks: ['<%= preprocesser %>:server']
+	tasks: ['<%= preprocessor %>:server']
       },<% } else { %>
       css: {
         files: ['<%%= cabin.src %>/styles/{,*/}*']
@@ -93,18 +89,7 @@ module.exports = function (grunt) {
         }]
       },
       server: '<%%= cabin.dev %>'
-    },<% if (coffee) { %>
-      coffee: {
-        dist: {
-          files: [{
-            expand: true,
-            cwd: '<%%= cabin.src %>/scripts',
-            src: '{,*/}*.coffee',
-            dest: '<%%= cabin.dev %>/scripts',
-            ext: '.js'
-          }]
-        }
-      },<% } %><% if (preprocesser === 'compass') { %>
+    },<% } %><% if (preprocessor === 'compass') { %>
     compass: {
       options: {
         sassDir: '<%%= cabin.src %>/styles',
@@ -119,7 +104,7 @@ module.exports = function (grunt) {
           debugInfo: true
         }
       }
-    },<% } %><% if (preprocesser === 'stylus') { %>
+    },<% } %><% if (preprocessor === 'stylus') { %>
     stylus: {
       compile: {
         files: {
@@ -127,7 +112,7 @@ module.exports = function (grunt) {
           'path/to/another.css': ['path/to/sources/*.styl', 'path/to/more/*.styl'] // compile and concat into single file
         }
       }
-    },<% } %><% if (preprocesser === 'less') { %>
+    },<% } %><% if (preprocessor === 'less') { %>
     less: {
       development: {
         options: {
@@ -147,18 +132,6 @@ module.exports = function (grunt) {
         }
       }
     },<% } %>
-    rev: {
-      dist: {
-        files: {
-          src: [
-            '<%%= cabin.dist %>/scripts/{,*/}*.js',
-            '<%%= cabin.dist %>/styles/{,*/}*.css',
-            '<%%= cabin.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
-            '<%%= cabin.dist %>/styles/fonts/*'
-          ]
-        }
-      }
-    },
     usemin: {
       html: ['<%%= cabin.dist %>/{,*/}*.html'],
       css: ['<%%= cabin.dist %>/styles/{,*/}*.css'],
@@ -202,17 +175,6 @@ module.exports = function (grunt) {
           ]
         }]
       }
-    },
-    concurrent: {
-      server: [<% if (coffee) { %>
-        'coffee:dist',<% } %><% if (preprocesser) { %>
-        '<%= preprocesser %>:server'<% } %>
-      ],
-      dist: [<% if (coffee) { %>
-        'coffee',<% } %><% if (preprocesser) { %>
-        '<%= preprocesser %>:dist',
-        <% } %>'htmlmin'
-      ]
     }
   });
 
@@ -223,7 +185,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'concurrent:server',
+      <% if (preprocessor) %> '<%= preprocessor %>:server',
       'blog',
       'connect:livereload',
       'open',
@@ -234,11 +196,10 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'useminPrepare',
-    'concurrent:dist',
+    <% if (preprocessor) %> '<%= preprocessor %>:dist',
     'blog',
     'cssmin',
     'copy',
-    'rev',
     'usemin'
   ]);
 

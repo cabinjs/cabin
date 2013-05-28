@@ -3,22 +3,19 @@
   "version": "0.0.0",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-blog": "git+https://colinwren@github.com/ChrisWren/grunt-blog.git",
-    "grunt-contrib-copy": "~0.4.1",<% if (coffee) { %>
-    "grunt-contrib-coffee": "~0.6.5",<% } %><% if (preprocesser = 'compass') { %>
+    "grunt-pages": "git+https://colinwren@github.com/ChrisWren/grunt-pages.git",
+    "grunt-contrib-copy": "~0.4.1",<% if (preprocessor = 'compass') { %>
     "grunt-contrib-compass": "~0.2.0",
-    <% } else if (preprocesser = 'stylus') { %>
+    <% } else if (preprocessor = 'stylus') { %>
     "grunt-contrib-stylus": "~0.5.0",
-    <% } else if (preprocesser = 'less') { %>
+    <% } else if (preprocessor = 'less') { %>
     "grunt-contrib-less": "~0.5.1",
     <% } %>"grunt-contrib-cssmin": "~0.6.0",
     "grunt-contrib-connect": "~0.2.0",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-htmlmin": "~0.1.3",
-    "grunt-rev": "~0.1.0",
     "grunt-usemin": "~0.1.10",
     "grunt-open": "~0.2.0",
-    "grunt-concurrent": "~0.1.0",
     "grunt-contrib-watch": "~0.4.3",
     "matchdep": "~0.1.1"
   },
