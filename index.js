@@ -10,6 +10,7 @@ module.exports = function(argv) {
     .command('new')
     .description('Scaffold out a static site generator')
     .option('-t, --theme [user/repo]', 'use theme at [user/repo]')
+    .option('-ni, --noInstall', 'don\'t install npm packages')
     .action(function() {
       var options = {
         siteName: argv[3]
@@ -29,7 +30,7 @@ module.exports = function(argv) {
             { 'Less':   'less'    },
             { 'None':   false     }
           ], function(choice) {
-            options.preprocesser = choice;
+	    options.preprocessor = choice;
             callback();
           });
         },

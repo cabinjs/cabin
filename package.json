@@ -9,7 +9,7 @@
     "url": "https://github.com/ChrisWren/globaljsblog.git"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --ui bdd --reporter nyan --recursive -b -R nyan -t 3000 $(find ./test -name *.test.*)"
+    "test": "./node_modules/mocha/bin/mocha --ui bdd --reporter nyan --recursive -b -R nyan -t 20000 $(find ./test -name *.test.*)"
   },
   "author": "Colin Wren",
   "license": "MIT",
