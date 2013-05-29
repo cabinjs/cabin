@@ -16,27 +16,27 @@ module.exports = function (grunt) {
     cabin: cabinConfig,
     watch: {
       options: {
-	livereload: true
+        livereload: true
       },<% if (preprocessor) { %>
       <%= preprocessor %>: {
-	files: ['<%%= cabin.src %>/styles/{,*/}*'],
-	tasks: ['<%= preprocessor %>:server']
+        files: ['<%%= cabin.src %>/styles/{,*/}*'],
+        tasks: ['<%= preprocessor %>:server']
       },<% } else { %>
       css: {
-	files: ['<%%= cabin.src %>/styles/{,*/}*']<% } %>
-      blog: {
-	files: ['src/pages/**/*', 'posts/{,*/}*', 'src/layouts/{,*/}*'],
-	tasks: ['blog']
+        files: ['<%%= cabin.src %>/styles/{,*/}*']
+      },<% } %>
+      pages: {
+        files: ['src/pages/**/*', 'posts/{,*/}*', 'src/layouts/{,*/}*'],
+        tasks: ['pages']
       }
     },
-    blog: {
+    pages: {
       options: {
-        pageSrc: 'src/pages',
-        devFolder: '<%%= cabin.dev %>',
-        distFolder: '<%%= cabin.dist %>'
+        pageSrc: 'src/pages'
       },
       posts: {
         src: 'posts',
+        dest: '<%%= cabin.dev %>',
         layout: '<%%= cabin.src%>/layouts/post.<%= templateLang %>',
         url: 'blog/posts/:title'
       }
@@ -61,7 +61,7 @@ module.exports = function (grunt) {
         options: {
           middleware: function (connect) {
             return [
-	      // Cant use cabinConfig variables here
+              // Cant use cabinConfig variables here
               mountFolder(connect, 'dist')
             ];
           }
@@ -86,7 +86,7 @@ module.exports = function (grunt) {
         }]
       },
       server: '<%%= cabin.dev %>'
-    },<% } %><% if (preprocessor === 'compass') { %>
+    },<% if (preprocessor === 'compass') { %>
     compass: {
       options: {
         sassDir: '<%%= cabin.src %>/styles',
@@ -182,7 +182,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       <% if (preprocessor) %> '<%= preprocessor %>:server',
-      'blog',
+      'pages',
       'connect:livereload',
       'open',
       'watch'
@@ -193,7 +193,7 @@ module.exports = function (grunt) {
     'clean:dist',
     'useminPrepare',
     <% if (preprocessor) %> '<%= preprocessor %>:dist',
-    'blog',
+    'pages',
     'cssmin',
     'copy',
     'usemin'

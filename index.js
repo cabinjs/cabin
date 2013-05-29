@@ -30,7 +30,7 @@ module.exports = function(argv) {
             { 'Less':   'less'    },
             { 'None':   false     }
           ], function(choice) {
-	    options.preprocessor = choice;
+            options.preprocessor = choice;
             callback();
           });
         },
