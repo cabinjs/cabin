@@ -1,3 +1,5 @@
+'use strict';
+
 var program = require('commander');
 var async = require('async');
 var utils = require('./lib/utils.js');
