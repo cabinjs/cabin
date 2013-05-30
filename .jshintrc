@@ -1,0 +1,26 @@
+{
+  "node": true,
+  "esnext": true,
+  "camelcase": true,
+  "eqeqeq": true,
+  "eqnull": true,
+  "immed": true,
+  "newcap": true,
+  "noarg": true,
+  "undef": true,
+  "unused": true,
+  "strict": true,
+  "trailing": true,
+  "smarttabs": true,
+  "white": true,
+  "indent": 2,
+  "quotmark": "single",
+  "globals" : {
+    "it": true,
+    "describe": true,
+    "beforeEach": true,
+    "afterEach": true,
+    "before": true,
+    "after": true
+  }
+}
