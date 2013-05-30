@@ -9,20 +9,14 @@ module.exports = function(argv) {
     .version('0.0.0');
 
   program
-    .command('new <name> [user/repo]')
+    .command('new <siteName> [user/repo]')
     .description('Scaffold out a static site generator')
     .option('-ni, --noInstall', 'don\'t install npm packages')
     .action(function() {
       var options = {
-        siteName: argv[3],
-        theme: argv[4] || 'colinwren/testTheme'
+        siteName: program.siteName,
+        theme: program.args[1] || 'colinwren/testTheme'
       };
-
-      if (!options.siteName) {
-        console.log('Invalid options');
-        program.help();
-        return;
-      }
 
       async.series([
         function(callback) {
@@ -45,9 +39,7 @@ module.exports = function(argv) {
             callback();
           });
         }
-      ], function(err) {
-        // Not sure if this err is neccesary
-        if (err) throw err;
+      ], function() {
 
         require('./lib/new.js')(options);
       });
@@ -62,4 +54,6 @@ module.exports = function(argv) {
 
   program
     .parse(argv);
+
+  if (!program.args.length) program.help();
 };
