@@ -1,38 +1,34 @@
+'use strict';
 var should = require('should');
 var _ = require('lodash');
 var fs = require('fs');
 var wrench = require('wrench');
-var siteName = 'testSite';
 var cabinNew = require('../lib/new.js');
+var siteName = 'testSite';
 
 describe('New site generator', function() {
 
-  beforeEach(function(done) {
-    fs.exists(siteName, function(exists) {
-      if (exists) {
-	wrench.rmdirSyncRecursive(siteName);
-      }
-      done();
-    });
+  beforeEach(function() {
+    if (fs.existsSync(siteName)) {
+      wrench.rmdirSyncRecursive(siteName);
+    }
   });
 
-  afterEach(function(done) {
-    fs.exists(siteName, function(exists) {
-      if (exists) {
-	wrench.rmdirSyncRecursive(siteName);
-      }
-      done();
-    });
+  afterEach(function() {
+    process.chdir('../');
+    if (fs.existsSync(siteName)) {
+      wrench.rmdirSyncRecursive(siteName);
+    }
   });
 
-  describe('cabin new <siteName>', function(done) {
+  describe('cabin new <siteName>', function() {
 
     it('should create new site in new folder', function(done) {
 
       testOptions ({}, function(result) {
 
-	assert(result, 'generated files don\'t match expected files');
-	done();
+        should.ok(result);
+        done();
       });
     });
   });
@@ -42,6 +38,7 @@ function testOptions (options, callback) {
 
   options = _.defaults(options, {
     siteName: siteName,
+    theme: 'colinwren/testTheme',
     templateLang: 'jade',
     preprocessor: 'compass',
     noInstall: true
@@ -73,9 +70,12 @@ function checkGeneratedFiles(options) {
     'src/layouts/post.' + options.templateLang,
     'src/pages/blog',
     'src/pages/index.' + options.templateLang,
-    'src/pages/blog/index.' + options.templateLang,
+    'src/pages/archives.' + options.templateLang,
     'src/styles/main.' + options.preprocessor,
-    'src/styles/tomorrow-night-bright.css'
+    'src/styles/_base.' + options.preprocessor,
+    'src/styles/_nav.' + options.preprocessor,
+    'src/styles/_post.' + options.preprocessor,
+    'src/styles/solarized-dark.syntax.css'
   ];
 
   var files = _.filter(wrench.readdirSyncRecursive('./'), function(filePath) {
