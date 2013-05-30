@@ -9,13 +9,13 @@ module.exports = function(argv) {
     .version('0.0.0');
 
   program
-    .command('new')
+    .command('new <name> [user/repo]')
     .description('Scaffold out a static site generator')
-    .option('-t, --theme [user/repo]', 'use theme at [user/repo]')
     .option('-ni, --noInstall', 'don\'t install npm packages')
     .action(function() {
       var options = {
-        siteName: argv[3]
+        siteName: argv[3],
+        theme: argv[4] || 'colinwren/testTheme'
       };
 
       if (!options.siteName) {
