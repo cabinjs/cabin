@@ -6,26 +6,26 @@ var wrench = require('wrench');
 var cabinNew = require('../lib/new.js');
 var siteName = 'testSite';
 
-describe('New site generator', function() {
+describe('New site generator', function () {
 
-  beforeEach(function() {
+  beforeEach(function () {
     if (fs.existsSync(siteName)) {
       wrench.rmdirSyncRecursive(siteName);
     }
   });
 
-  afterEach(function() {
+  afterEach(function () {
     process.chdir('../');
     if (fs.existsSync(siteName)) {
       wrench.rmdirSyncRecursive(siteName);
     }
   });
 
-  describe('cabin new <siteName>', function() {
+  describe('cabin new <siteName>', function () {
 
-    it('should create new site in new folder', function(done) {
+    it('should create new site in new folder', function (done) {
 
-      testOptions ({}, function(result) {
+      testOptions({}, function (result) {
 
         should.ok(result);
         done();
@@ -34,7 +34,7 @@ describe('New site generator', function() {
   });
 });
 
-function testOptions (options, callback) {
+function testOptions(options, callback) {
 
   options = _.defaults(options, {
     siteName: siteName,
@@ -44,7 +44,7 @@ function testOptions (options, callback) {
     noInstall: true
   });
 
-  cabinNew(options, function() {
+  cabinNew(options, function () {
     callback(checkGeneratedFiles(options));
   });
 }
@@ -78,7 +78,7 @@ function checkGeneratedFiles(options) {
     'src/styles/solarized-dark.syntax.css'
   ];
 
-  var files = _.filter(wrench.readdirSyncRecursive('./'), function(filePath) {
+  var files = _.filter(wrench.readdirSyncRecursive('./'), function (filePath) {
     return filePath.indexOf('node_modules') === -1;
   });
 
