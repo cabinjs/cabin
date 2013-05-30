@@ -6,7 +6,7 @@
   "bin": "./bin/cabin",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ChrisWren/globaljsblog.git"
+    "url": "https://github.com/colinwren/cabin.git"
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --ui bdd --reporter nyan --recursive -b -R nyan -t 20000 $(find ./test -name *.test.*)"
@@ -20,12 +20,12 @@
     "colors": "~0.6.0-1",
     "lodash": "~1.2.1",
     "wrench": "~1.5.1",
+    "adm-zip": "~0.4.3",
+    "request": "~2.21.0",
     "async": "~0.2.8"
   },
   "devDependencies": {
     "mocha": "*",
-    "should": "~1.2.2",
-    "adm-zip": "~0.4.3",
-    "request": "~2.21.0"
+    "should": "*"
   }
 }
