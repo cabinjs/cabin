@@ -128,33 +128,6 @@ module.exports = function (grunt) {
         }
       }
     },<% } %>
-    usemin: {
-      html: ['<%%= cabin.dist %>/{,*/}*.html'],
-      css: ['<%%= cabin.dist %>/styles/{,*/}*.css'],
-      options: {
-        dirs: ['<%%= cabin.dist %>']
-      }
-    },
-    cssmin: {
-      dist: {
-        files: {
-          '<%%= cabin.dist %>/styles/main.css': [
-            '<%%= cabin.dev %>/styles/{,*/}*.css',
-            '<%%= cabin.src %>/styles/{,*/}*.css'
-          ]
-        }
-      }
-    },
-    htmlmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%%= cabin.src %>',
-          src: '*.html',
-          dest: '<%%= cabin.dist %>'
-        }]
-      }
-    },
     // Put files not handled in other tasks here
     copy: {
       dist: {
@@ -181,7 +154,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      <% if (preprocessor) %> '<%= preprocessor %>:server',
+      <% if (preprocessor) %>'<%= preprocessor %>:server',
       'pages',
       'connect:livereload',
       'open',
@@ -192,11 +165,9 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'useminPrepare',
-    <% if (preprocessor) %> '<%= preprocessor %>:dist',
+    <% if (preprocessor) %>'<%= preprocessor %>:dist',
     'pages',
-    'cssmin',
-    'copy',
-    'usemin'
+    'copy'
   ]);
 
   grunt.registerTask('default', [
