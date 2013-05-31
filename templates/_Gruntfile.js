@@ -38,7 +38,13 @@ module.exports = function (grunt) {
         src: 'posts',
         dest: '<%%= cabin.dev %>',
         layout: '<%%= cabin.src%>/layouts/post.<%= templateLang %>',
-        url: 'blog/posts/:title'
+        url: 'blog/posts/:title',
+        options: {
+          pagination: {
+            postsPerPage: 3,
+            listPage: 'src/pages/index.<%= templateLang %>'
+          }
+        }
       }
     },
     connect: {
