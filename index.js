@@ -14,7 +14,7 @@ module.exports = function (argv) {
     .option('-ni, --noInstall', 'don\'t install npm packages')
     .action(function () {
       var options = {
-        siteName: program.siteName,
+        siteName: program.args[0],
         theme: program.args[1] || 'colinwren/testTheme'
       };
 
