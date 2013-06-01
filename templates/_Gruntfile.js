@@ -170,7 +170,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'useminPrepare',
     <% if (preprocessor) %>'<%= preprocessor %>:dist',
     'pages',
     'copy'
