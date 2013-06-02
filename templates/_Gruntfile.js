@@ -1,7 +1,6 @@
 var cabinConfig = {
   src: 'src',
-  dev: '.tmp',
-  dist: 'dist'
+  dev: '.tmp'
 };
 
 var mountFolder = function (connect, dir) {
@@ -20,7 +19,7 @@ module.exports = function (grunt) {
       },<% if (preprocessor) { %>
       <%= preprocessor %>: {
         files: ['<%%= cabin.src %>/styles/{,*/}*'],
-        tasks: ['<%= preprocessor %>:server']
+        tasks: ['<%= preprocessor %>']
       },<% } else { %>
       css: {
         files: ['<%%= cabin.src %>/styles/{,*/}*']
@@ -62,16 +61,6 @@ module.exports = function (grunt) {
             ];
           }
         }
-      },
-      dist: {
-        options: {
-          middleware: function (connect) {
-            return [
-              // Cant use cabinConfig variables here
-              mountFolder(connect, 'dist')
-            ];
-          }
-        }
       }
     },
     open: {
@@ -80,17 +69,6 @@ module.exports = function (grunt) {
       }
     },
     clean: {
-      dist: {
-        files: [{
-          dot: true,
-          src: [
-            '<%%= cabin.dev %>',
-            '<%%= cabin.dist %>/*',
-            // This is for making a subtree repo don't delete
-            '!<%%= cabin.dist %>/.git*'
-          ]
-        }]
-      },
       server: '<%%= cabin.dev %>'
     },<% if (preprocessor === 'compass') { %>
     compass: {
@@ -100,12 +78,7 @@ module.exports = function (grunt) {
         imagesDir: '<%%= cabin.src %>/images',
         relativeAssets: true
       },
-      dist: {},
-      server: {
-        options: {
-          debugInfo: true
-        }
-      }
+      server: {}
     },<% } %><% if (preprocessor === 'stylus') { %>
     stylus: {
       compile: {
@@ -141,7 +114,7 @@ module.exports = function (grunt) {
           expand: true,
           dot: true,
           cwd: '<%%= cabin.src %>',
-          dest: '<%%= cabin.dist %>',
+          dest: '<%%= cabin.dev %>',
           src: [
             '*.{ico,txt}',
             '.htaccess',
@@ -154,13 +127,10 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('server', function (target) {
-    if (target === 'dist') {
-      return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
-    }
 
     grunt.task.run([
       'clean:server',
-      <% if (preprocessor) %>'<%= preprocessor %>:server',
+      <% if (preprocessor) %>'<%= preprocessor %>',
       'pages',
       'connect:livereload',
       'open',
@@ -169,9 +139,8 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('build', [
-    'clean:dist',
-    'useminPrepare',
-    <% if (preprocessor) %>'<%= preprocessor %>:dist',
+    'clean:server',
+    <% if (preprocessor) %>'<%= preprocessor %>',
     'pages',
     'copy'
   ]);
