@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "mocha": "*",
-    "should": "*"
+    "should": "*",
+    "open": "0.0.3"
   }
 }

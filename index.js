@@ -18,30 +18,26 @@ module.exports = function (argv) {
         theme: program.args[1] || 'colinwren/testTheme'
       };
 
-      async.series([
-        function (callback) {
-          utils.safePrompt('Which CSS preprocessor will you use?', [
-            { 'Sass':   'compass' },
-            { 'Stylus': 'stylus'  },
-            { 'Less':   'less'    },
-            { 'None':   false     }
-          ], function (choice) {
-            options.preprocessor = choice;
-            callback();
-          });
-        },
-        function (callback) {
-          utils.safePrompt('Which template language will you use?', [
-            { 'Jade': 'jade' },
-            { 'EJS':  'ejs'  }
-          ], function (choice) {
-            options.templateLang = choice;
-            callback();
-          });
-        }
-      ], function () {
+      utils.getThemeOptions(options.theme, function(err, theme) {
+	if (err) throw err;
 
-        require('./lib/new.js')(options);
+	async.series([
+	  function (callback) {
+	    utils.safePrompt('Which CSS preprocessor will you use?', theme.style, function (choice) {
+	      options.preprocessor = choice;
+	      callback();
+	    });
+	  },
+	  function (callback) {
+	    utils.safePrompt('Which template language will you use?', theme.template, function (choice) {
+	      options.templateLang = choice;
+	      callback();
+	    });
+	  }
+	], function () {
+
+	  require('./lib/new.js')(options);
+	});
       });
     });
 
