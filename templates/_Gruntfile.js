@@ -23,23 +23,7 @@ module.exports = function (grunt) {
         tasks: ['pages']
       }
     },
-    pages: {
-      options: {
-        pageSrc: 'src/pages'
-      },
-      posts: {
-        src: 'posts',
-        dest: 'site',
-        layout: 'src/layouts/post.<%= templateLang %>',
-        url: 'blog/posts/:title',
-        options: {
-          pagination: {
-            postsPerPage: 3,
-            listPage: 'src/pages/index.<%= templateLang %>'
-          }
-        }
-      }
-    },
+    pages: <%= gruntPages %>,
     connect: {
       options: {
         port: 9000,

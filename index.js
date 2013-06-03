@@ -18,18 +18,20 @@ module.exports = function (argv) {
         theme: program.args[1] || 'colinwren/testTheme'
       };
 
-      utils.getThemeOptions(options.theme, function(err, theme) {
+      utils.getThemeOptions(options.theme, function(err, themeData) {
         if (err) throw err;
+
+        options.gruntPages = themeData.gruntPages;
 
         async.series([
           function (callback) {
-            utils.safePrompt('Which CSS preprocessor will you use?', theme.style, function (choice) {
+            utils.safePrompt('Which CSS preprocessor will you use?', themeData.style, function (choice) {
               options.preprocessor = choice;
               callback();
             });
           },
           function (callback) {
-            utils.safePrompt('Which template language will you use?', theme.template, function (choice) {
+            utils.safePrompt('Which template language will you use?', themeData.template, function (choice) {
               options.templateLang = choice;
               callback();
             });
