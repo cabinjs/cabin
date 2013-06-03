@@ -1,8 +1,3 @@
-var cabinConfig = {
-  src: 'src',
-  dev: '.tmp'
-};
-
 var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
@@ -12,17 +7,16 @@ module.exports = function (grunt) {
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
   grunt.initConfig({
-    cabin: cabinConfig,
     watch: {
       options: {
         livereload: true
       },<% if (preprocessor) { %>
       <%= preprocessor %>: {
-        files: ['<%%= cabin.src %>/styles/{,*/}*'],
+        files: ['src/styles/{,*/}*'],
         tasks: ['<%= preprocessor %>']
       },<% } else { %>
       css: {
-        files: ['<%%= cabin.src %>/styles/{,*/}*']
+        files: ['src/styles/{,*/}*']
       },<% } %>
       pages: {
         files: ['src/pages/**/*', 'posts/{,*/}*', 'src/layouts/{,*/}*'],
@@ -35,8 +29,8 @@ module.exports = function (grunt) {
       },
       posts: {
         src: 'posts',
-        dest: '<%%= cabin.dev %>',
-        layout: '<%%= cabin.src%>/layouts/post.<%= templateLang %>',
+        dest: 'site',
+        layout: 'src/layouts/post.<%= templateLang %>',
         url: 'blog/posts/:title',
         options: {
           pagination: {
@@ -56,7 +50,7 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             return [
               // These dir names have to be hardcoded
-              mountFolder(connect, '.tmp'),
+              mountFolder(connect, 'site'),
               mountFolder(connect, 'src')
             ];
           }
@@ -69,13 +63,13 @@ module.exports = function (grunt) {
       }
     },
     clean: {
-      server: '<%%= cabin.dev %>'
+      server: 'site'
     },<% if (preprocessor === 'compass') { %>
     compass: {
       options: {
-        sassDir: '<%%= cabin.src %>/styles',
-        cssDir: '<%%= cabin.dev %>/styles',
-        imagesDir: '<%%= cabin.src %>/images',
+        sassDir: 'src/styles',
+        cssDir: 'site/styles',
+        imagesDir: 'src/images',
         relativeAssets: true
       },
       server: {}
@@ -113,8 +107,8 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           dot: true,
-          cwd: '<%%= cabin.src %>',
-          dest: '<%%= cabin.dev %>',
+          cwd: 'src',
+          dest: 'site',
           src: [
             '*.{ico,txt}',
             '.htaccess',
