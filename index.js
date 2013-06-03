@@ -19,25 +19,25 @@ module.exports = function (argv) {
       };
 
       utils.getThemeOptions(options.theme, function(err, theme) {
-	if (err) throw err;
+        if (err) throw err;
 
-	async.series([
-	  function (callback) {
-	    utils.safePrompt('Which CSS preprocessor will you use?', theme.style, function (choice) {
-	      options.preprocessor = choice;
-	      callback();
-	    });
-	  },
-	  function (callback) {
-	    utils.safePrompt('Which template language will you use?', theme.template, function (choice) {
-	      options.templateLang = choice;
-	      callback();
-	    });
-	  }
-	], function () {
+        async.series([
+          function (callback) {
+            utils.safePrompt('Which CSS preprocessor will you use?', theme.style, function (choice) {
+              options.preprocessor = choice;
+              callback();
+            });
+          },
+          function (callback) {
+            utils.safePrompt('Which template language will you use?', theme.template, function (choice) {
+              options.templateLang = choice;
+              callback();
+            });
+          }
+        ], function () {
 
-	  require('./lib/new.js')(options);
-	});
+          require('./lib/new.js')(options);
+        });
       });
     });
 
