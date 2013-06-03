@@ -12,7 +12,7 @@ npm install -g cabin
 
 You can then scaffold a static generator with the following command:
 ```shell
-cabin new {{folder}} {{GitHub user}}/{{GitHub repo}}
+cabin new <folder> [GitHub user/GitHub repo]
 ```
 
 The first parameter is the name of the `folder` where the scaffold is generated, and the second is the location of a `theme` to use for the site. If the `theme` parameter is left blank the [default theme](https://github.com/ChrisWren) will be used.
