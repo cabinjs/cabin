@@ -19,7 +19,7 @@ module.exports = function (grunt) {
         files: ['src/styles/{,*/}*']
       },<% } %>
       pages: {
-        files: ['src/pages/**/*', 'posts/{,*/}*', 'src/layouts/{,*/}*'],
+        files: ['src/pages/{,*/}*', 'posts/{,*/}*', 'src/layouts/{,*/}*'],
         tasks: ['pages']
       }
     },
@@ -33,7 +33,6 @@ module.exports = function (grunt) {
         options: {
           middleware: function (connect) {
             return [
-              // These dir names have to be hardcoded
               mountFolder(connect, 'site'),
               mountFolder(connect, 'src')
             ];
@@ -85,7 +84,7 @@ module.exports = function (grunt) {
         }
       }
     },<% } %>
-    // Put files not handled in other tasks here
+    // Move files not handled by other tasks
     copy: {
       dist: {
         files: [{
@@ -96,24 +95,11 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,txt}',
             '.htaccess',
-            'images/{,*/}*.{webp,gif}',
-            'styles/fonts/*'
+            'images/{,*/}*'
           ]
         }]
       }
     }
-  });
-
-  grunt.registerTask('server', function (target) {
-
-    grunt.task.run([
-      'clean:server',
-      <% if (preprocessor) %>'<%= preprocessor %>',
-      'pages',
-      'connect:livereload',
-      'open',
-      'watch'
-    ]);
   });
 
   grunt.registerTask('build', [
@@ -123,7 +109,12 @@ module.exports = function (grunt) {
     'copy'
   ]);
 
-  grunt.registerTask('default', [
-    'build'
+  grunt.registerTask('server', [
+    'build',
+    'connect:livereload',
+    'open',
+    'watch'
   ]);
+
+  grunt.registerTask('default', 'build');
 };
