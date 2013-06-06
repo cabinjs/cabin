@@ -23,12 +23,27 @@ describe('New site generator', function () {
 
   describe('cabin new <siteName>', function () {
 
-    it('should create new site in new folder', function (done) {
+    describe('with jade templates', function () {
 
-      testOptions({}, function (result) {
+      it('should create new site in new folder', function (done) {
 
-        should.ok(result);
-        done();
+        testOptions({ templateLang: 'jade' }, function (result) {
+
+          should.ok(result);
+          done();
+        });
+      });
+    });
+
+    describe('with ejs templates', function () {
+
+      it('should create new site in new folder', function (done) {
+
+        testOptions({ templateLang: 'ejs' }, function (result) {
+
+          should.ok(result);
+          done();
+        });
       });
     });
   });
@@ -66,8 +81,6 @@ function checkGeneratedFiles(options) {
     'src/layouts',
     'src/pages',
     'src/styles',
-    'src/layouts/base.' + options.templateLang,
-    'src/layouts/post.' + options.templateLang,
     'src/pages/blog',
     'src/pages/index.' + options.templateLang,
     'src/pages/archives.' + options.templateLang,
@@ -77,6 +90,22 @@ function checkGeneratedFiles(options) {
     'src/styles/_post.' + options.preprocessor,
     'src/styles/solarized-dark.syntax.css'
   ];
+
+  if (options.templateLang === 'jade') {
+    expectedFiles = expectedFiles.concat([
+      'src/layouts/base.jade',
+      'src/layouts/post.jade'
+    ]);
+  } else if (options.templateLang === 'ejs') {
+    expectedFiles = expectedFiles.concat([
+      'src/layouts/_head.ejs',
+      'src/layouts/_foot.ejs',
+      'src/layouts/_post.ejs',
+      'src/layouts/_postHead.ejs',
+      'src/layouts/post.jade'
+    ]);
+
+  }
 
   var files = _.filter(wrench.readdirSyncRecursive('./'), function (filePath) {
     return filePath.indexOf('node_modules') === -1;
