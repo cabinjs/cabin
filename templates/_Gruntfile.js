@@ -25,12 +25,10 @@ module.exports = function (grunt) {
     },
     pages: <%= gruntPages %>,
     connect: {
-      options: {
-        port: 9000,
-        hostname: 'localhost'
-      },
-      livereload: {
+      dist: {
         options: {
+        port: 9000,
+        hostname: 'localhost',
           middleware: function (connect) {
             return [
               mountFolder(connect, 'site'),
@@ -41,38 +39,27 @@ module.exports = function (grunt) {
       }
     },
     open: {
-      server: {
+      dist: {
         path: 'http://localhost:9000'
       }
     },
     clean: {
-      server: 'site'
+      dist: 'site'
     },<% if (preprocessor === 'compass') { %>
     compass: {
       options: {
         sassDir: 'src/styles',
-        cssDir: 'site/styles',
-        imagesDir: 'src/images',
-        relativeAssets: true
+        cssDir: 'site/styles'
       },
-      server: {}
+      dist: {}
     },<% } %><% if (preprocessor === 'less') { %>
     less: {
-      development: {
+      dist: {
         options: {
-          paths: ['assets/css']
+          paths: ['src/styles']
         },
         files: {
-          'path/to/result.css': 'path/to/source.less'
-        }
-      },
-      production: {
-        options: {
-          paths: ['assets/css'],
-          yuicompress: true
-        },
-        files: {
-          'path/to/result.css': 'path/to/source.less'
+          'site/styles/main.css': 'src/styles/main.less'
         }
       }
     },<% } %>
@@ -95,7 +82,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('build', [
-    'clean:server',
+    'clean',
     <% if (preprocessor) %>'<%= preprocessor %>',
     'pages',
     'copy'
@@ -103,7 +90,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('server', [
     'build',
-    'connect:livereload',
+    'connect',
     'open',
     'watch'
   ]);
