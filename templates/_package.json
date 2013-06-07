@@ -6,8 +6,6 @@
     "grunt-pages": "~0.0.0",
     "grunt-contrib-copy": "~0.4.1",<% if (preprocessor = 'compass') { %>
     "grunt-contrib-compass": "~0.2.0",
-    <% } else if (preprocessor = 'stylus') { %>
-    "grunt-contrib-stylus": "~0.5.0",
     <% } else if (preprocessor = 'less') { %>
     "grunt-contrib-less": "~0.5.1",
     <% } %>"grunt-contrib-connect": "~0.2.0",

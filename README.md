@@ -1,7 +1,7 @@
 # Cabin
 > Static site generator scaffolding for [grunt](http://gruntjs.com/)
 
-Cabin scaffolds out a static site generator by creating a Gruntfile and a theme made up of style and template files. Cabin can generate ejs or jade templates, and your choice of Sass, Stylus, LESS, or CSS.
+Cabin scaffolds out a static site generator by creating a Gruntfile and a theme made up of style and template files. Cabin can generate ejs or jade templates, and your choice of Sass, LESS, or CSS.
 
 # Usage
 

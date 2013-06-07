@@ -56,14 +56,6 @@ module.exports = function (grunt) {
         relativeAssets: true
       },
       server: {}
-    },<% } %><% if (preprocessor === 'stylus') { %>
-    stylus: {
-      compile: {
-        files: {
-          'path/to/result.css': 'path/to/source.styl', // 1:1 compile
-          'path/to/another.css': ['path/to/sources/*.styl', 'path/to/more/*.styl'] // compile and concat into single file
-        }
-      }
     },<% } %><% if (preprocessor === 'less') { %>
     less: {
       development: {
