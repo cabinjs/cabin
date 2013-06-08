@@ -21,6 +21,10 @@ module.exports = function (grunt) {
       pages: {
         files: ['src/pages/{,*/}*', 'posts/{,*/}*', 'src/layouts/{,*/}*'],
         tasks: ['pages']
+      },
+      images: {
+        files: ['*.ico', '.htacess', 'src/images/*'],
+        tasks: ['copy']
       }
     },
     pages: <%= gruntPages %>,
@@ -72,7 +76,7 @@ module.exports = function (grunt) {
           cwd: 'src',
           dest: 'dist',
           src: [
-            '*.{ico,txt}',
+            '*.ico',
             '.htaccess',
             'images/{,*/}*'
           ]
