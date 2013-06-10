@@ -1,5 +1,5 @@
 'use strict';
-var should = require('should');
+var assert = require('assert');
 var _ = require('lodash');
 var fs = require('fs');
 var wrench = require('wrench');
@@ -29,7 +29,7 @@ describe('New site generator', function () {
 
         testOptions({ templateLang: 'jade' }, function (result) {
 
-          should.ok(result);
+          assert(result);
           done();
         });
       });
@@ -41,7 +41,7 @@ describe('New site generator', function () {
 
         testOptions({ templateLang: 'ejs' }, function (result) {
 
-          should.ok(result);
+          assert(result);
           done();
         });
       });

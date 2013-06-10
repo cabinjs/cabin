@@ -22,11 +22,10 @@
     "adm-zip": "~0.4.3",
     "request": "~2.21.0",
     "async": "~0.2.8",
-    "open": "0.0.3"
+    "open": "~0.0.3"
   },
   "devDependencies": {
     "wrench": "~1.5.1",
-    "mocha": "*",
-    "should": "*"
+    "mocha": "*"
   }
 }
