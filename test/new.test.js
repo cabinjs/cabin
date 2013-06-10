@@ -80,15 +80,23 @@ function checkGeneratedFiles(options) {
     'posts/post2.md',
     'src/layouts',
     'src/pages',
-    'src/styles',
+    'src/images',
+    'src/images/cabin.png',
     'src/pages/blog',
     'src/pages/index.' + options.templateLang,
     'src/pages/archives.' + options.templateLang,
+    'src/styles',
     'src/styles/main.' + options.preprocessor,
     'src/styles/_base.' + options.preprocessor,
     'src/styles/_nav.' + options.preprocessor,
     'src/styles/_post.' + options.preprocessor,
-    'src/styles/solarized-dark.syntax.css'
+    'src/styles/solarized-dark.syntax.css',
+    'src/styles/fonts',
+    'src/styles/fonts/icomoon.dev.svg',
+    'src/styles/fonts/icomoon.eot',
+    'src/styles/fonts/icomoon.svg',
+    'src/styles/fonts/icomoon.ttf',
+    'src/styles/fonts/icomoon.woff'
   ];
 
   if (options.templateLang === 'jade') {
@@ -102,7 +110,7 @@ function checkGeneratedFiles(options) {
       'src/layouts/_foot.ejs',
       'src/layouts/_post.ejs',
       'src/layouts/_postHead.ejs',
-      'src/layouts/post.jade'
+      'src/layouts/post.ejs'
     ]);
 
   }
