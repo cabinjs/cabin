@@ -1,12 +1,10 @@
-# Cabin
+# Cabin Beta
 Cabin is a CLI tool that scaffolds out a [Grunt](http://gruntjs.com/) powered static site generator based on your choice of preprocessor, template language, and theme. Grunt's huge plugin ecosystem makes it easy to customize your generator extremely to suit the needs of your site.
 
 # Usage
 
-To use Cabin, install it globally with the following command:
-```shell
-npm install -g cabin
-```
+Cabin is not yet on npm, to install it you have to clone the repo and then use
+[npm link](https://npmjs.org/doc/link.html)
 
 You can then scaffold a static generator with the following command:
 ```shell
