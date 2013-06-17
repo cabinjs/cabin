@@ -1,8 +1,10 @@
 'use strict';
-var assert = require('assert');
-var _ = require('lodash');
 var fs = require('fs');
+var assert = require('assert');
+
+var _ = require('lodash');
 var wrench = require('wrench');
+
 var cabinNew = require('../lib/new.js');
 var siteName = 'testSite';
 
