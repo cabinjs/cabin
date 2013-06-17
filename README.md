@@ -1,5 +1,5 @@
 # Cabin Beta
-Cabin is a CLI tool that scaffolds out a [Grunt](http://gruntjs.com/) powered static site generator.
+### Cabin is a CLI tool that scaffolds out a [Grunt](http://gruntjs.com/) powered static site generator.
 
 # Getting Started
 
