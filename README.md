@@ -13,8 +13,10 @@ cabin new <destination folder> [user/repo]
 ```
 The first parameter is the name of the destination folder, and the second is the GitHub username and repository name of a `theme` to use for the site. If the `theme` parameter is left blank, the [default theme](https://github.com/colinwren/testTheme) will be used.
 
-After scaffolding a site generator, you can run it by entering `grunt server` in the destination folder.
-
+After scaffolding a site generator, you can run it by entering the following command in the destination folder:
+```bash
+grunt server
+```
 # Available Themes 
 
 ## [colinwren/testTheme](https://github.com/colinwren/testTheme)
