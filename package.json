@@ -14,7 +14,6 @@
   "author": "Colin Wren",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "gitHead": "04ace5c5db0e15479065cfd506b8d8cc63628797",
   "preferGlobal" : "true",
   "dependencies": {
     "commander": "~1.1.1",
