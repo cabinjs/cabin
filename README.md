@@ -1,7 +1,7 @@
 # Cabin Beta
 Cabin is a CLI tool that scaffolds out a [Grunt](http://gruntjs.com/) powered static site generator.
 
-# Usage
+# Getting Started
 
 First install cabin globally with the following command:
 ```bash
@@ -17,10 +17,14 @@ After scaffolding a site generator, you can run it by entering the following com
 ```bash
 grunt server
 ```
-# Available Themes 
+# Themes
+Cabin themes provide styling and structure for your static site project. They work great out of the box and as starting points for more customized sites.
 
-## [colinwren/testTheme](https://github.com/colinwren/testTheme)
+## Avaliable Themes
+
+### [colinwren/testTheme](https://github.com/colinwren/testTheme)
 > Slick blogging theme, great for use on personal sites
 
-## [ChrisWren/icoDoc](http://chriswren.github.io/icoDoc/)
+### [ChrisWren/icoDoc](http://chriswren.github.io/icoDoc/)
 > Minimalist project documentation theme using icons in the navigation
+
