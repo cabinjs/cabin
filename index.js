@@ -9,7 +9,6 @@ module.exports = function (argv) {
   program
     .command('new <siteName> [user/repo]')
     .description('Scaffold out a static site generator')
-    .option('-ni, --noInstall', 'don\'t install npm packages')
     .action(function () {
       require('./lib/new.js')({
         siteName: program.args[0],
