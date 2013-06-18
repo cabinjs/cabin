@@ -1,6 +1,6 @@
 {
   "name": "cabin",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Static site generator scaffolding for grunt",
   "main": "index.js",
   "bin": "./bin/cabin",
