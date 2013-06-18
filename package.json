@@ -21,10 +21,10 @@
     "lodash": "~1.2.1",
     "request": "~2.21.0",
     "async": "~0.2.8",
-    "open": "~0.0.3"
+    "open": "~0.0.3",
+    "wrench": "~1.5.1"
   },
   "devDependencies": {
-    "wrench": "~1.5.1",
     "mocha": "*"
   }
 }
