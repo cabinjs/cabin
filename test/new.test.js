@@ -30,8 +30,7 @@ describe('New site generator', function () {
       it('should create new site in new folder', function (done) {
 
         testOptions({ templateLang: 'jade' }, function (result) {
-
-          assert(result);
+          assert(result.length === 0, result.toString());
           done();
         });
       });
@@ -43,7 +42,7 @@ describe('New site generator', function () {
 
         testOptions({ templateLang: 'ejs' }, function (result) {
 
-          assert(result);
+          assert(result.length === 0, result.toString());
           done();
         });
       });
@@ -74,7 +73,6 @@ function checkGeneratedFiles(options) {
 
   var expectedFiles = [
     'Gruntfile.js',
-    'README.md',
     'package.json',
     'posts',
     'src',
@@ -87,9 +85,12 @@ function checkGeneratedFiles(options) {
     'src/pages/blog',
     'src/pages/index.' + options.templateLang,
     'src/pages/archives.' + options.templateLang,
+    'src/pages/about.' + options.templateLang,
+    'src/pages/projects.' + options.templateLang,
     'src/styles',
     'src/styles/main.' + options.preprocessor,
     'src/styles/_base.' + options.preprocessor,
+    'src/styles/_icons.' + options.preprocessor,
     'src/styles/_nav.' + options.preprocessor,
     'src/styles/_post.' + options.preprocessor,
     'src/styles/solarized-dark.syntax.css',
@@ -121,5 +122,5 @@ function checkGeneratedFiles(options) {
     return filePath.indexOf('node_modules') === -1;
   });
 
-  return _.intersection(files, expectedFiles).length === files.length;
+  return _.difference(files, expectedFiles);
 }
