@@ -110,8 +110,8 @@ function checkGeneratedFiles(options) {
     ]);
   } else if (options.templateLang === 'ejs') {
     expectedFiles = expectedFiles.concat([
-      'src/layouts/_head.ejs',
-      'src/layouts/_foot.ejs',
+      'src/layouts/_header.ejs',
+      'src/layouts/_footer.ejs',
       'src/layouts/_post.ejs',
       'src/layouts/_postHead.ejs',
       'src/layouts/post.ejs'
