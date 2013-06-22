@@ -99,5 +99,5 @@ module.exports = function (grunt) {
     'watch'
   ]);
 
-  grunt.registerTask('default', 'build');
+  grunt.registerTask('default', 'server');
 };
