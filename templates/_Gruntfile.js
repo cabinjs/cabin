@@ -14,16 +14,13 @@ module.exports = function (grunt) {
       <%= preprocessor %>: {
         files: ['src/styles/{,*/}*'],
         tasks: ['<%= preprocessor %>']
-      },<% } else { %>
-      css: {
-        files: ['src/styles/{,*/}*']
       },<% } %>
       pages: {
         files: ['src/pages/{,*/}*', 'posts/{,*/}*', 'src/layouts/{,*/}*'],
         tasks: ['pages']
       },
-      images: {
-        files: ['*.ico', '.htacess', 'src/images/*'],
+      copy: {
+        files: ['src/*.ico', 'src/.htaccess', 'src/images/{,*/}*', 'src/styles/**.css'],
         tasks: ['copy']
       }
     },
@@ -78,7 +75,8 @@ module.exports = function (grunt) {
           src: [
             '*.ico',
             '.htaccess',
-            'images/{,*/}*'
+            'images/{,*/}*',
+            'styles/**.css'
           ]
         }]
       }
