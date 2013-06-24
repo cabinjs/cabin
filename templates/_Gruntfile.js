@@ -28,7 +28,7 @@ module.exports = function (grunt) {
     connect: {
       dist: {
         options: {
-        port: 9000,
+        port: 5455,
         hostname: 'localhost',
           middleware: function (connect) {
             return [
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
     },
     open: {
       dist: {
-        path: 'http://localhost:9000'
+        path: 'http://localhost:5455'
       }
     },
     clean: {
