@@ -48,29 +48,30 @@ Here is an example `cabin.json` file which states that the project supports Sass
       "src": "posts",
       "dest": "dist",
       "layout": "src/layouts/post.jade",
-      "url": ":title"
+      "url": "blog/posts/:title"
     }
   }
 }
 ```
-
-Aside from this `cabin.json` configuration file, themes are composed of layout files, style files, and default posts.
+**Note: the configuration of the cabin.json must have `dist` as the destination folder and the theme files must match the folder structure described below.**
 
 ### Theme file locations
 
 #### Layouts
-Layout **must** be in the `src/layouts` folder
+Layout files **must** be in the `src/layouts` directory.
 
 #### Styles
 Style files **must** be in the `src/styles` directory.
 
 #### Posts
-All markdown posts **must** be in the `posts` directory.
+Markdown posts **must** be in the `posts` directory.
 
 The best way to learn about how to develop a theme is by referencing the [default theme](https://github.com/colinwren/Candy).
 
 # Changelog
 
 **0.0.2** - Use git clone instead of downloading theme zips from GitHub repos.
+
 **0.0.1** - Only copy specified file extensions from themes.
+
 **0.0.0** - Initial push.
