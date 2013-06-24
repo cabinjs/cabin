@@ -26,7 +26,7 @@ Cabin themes provide styling and structure for your static site project. They wo
 
 ## Avaliable Themes
 
-### [colinwren/Candy](https://github.com/colinwren/Candy)
+### [colinwren/Candy](http://colinwren.github.io/Candy/)
 > Slick blogging theme, great for use on personal sites
 
 ### [ChrisWren/icoDoc](http://chriswren.github.io/icoDoc/)
