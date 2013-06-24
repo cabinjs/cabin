@@ -66,7 +66,7 @@ Style files **must** be in the `src/styles` directory.
 #### Posts
 Markdown posts **must** be in the `posts` directory.
 
-The best way to learn about how to develop a theme is by referencing the [default theme](https://github.com/colinwren/Candy).
+The best way to learn about how to develop a theme is by referencing the [default theme](http://colinwren.github.io/Candy/).
 
 # Changelog
 
