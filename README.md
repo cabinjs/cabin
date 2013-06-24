@@ -70,6 +70,8 @@ The best way to learn about how to develop a theme is by referencing the [defaul
 
 # Changelog
 
+**0.1.0** - `grunt server` is now the default task. The Gruntfile template now copys images, vanilla css, and scripts and no longer copies .ico and .htaccess files.
+
 **0.0.2** - Use git clone instead of downloading theme zips from GitHub repos.
 
 **0.0.1** - Only copy specified file extensions from themes.

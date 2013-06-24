@@ -1,12 +1,12 @@
 {
   "name": "cabin",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Static site generator scaffolding for grunt",
   "main": "index.js",
   "bin": "./bin/cabin",
   "repository": {
     "type": "git",
-    "url": "https://github.com/colinwren/cabin.git"
+    "url": "https://github.com/colinwren/Cabin.git"
   },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --ui bdd --reporter nyan --recursive -b -R nyan -t 20000 $(find ./test -name *.test.*)"
