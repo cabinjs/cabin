@@ -12,15 +12,15 @@ module.exports = function (grunt) {
         livereload: true
       },<% if (preprocessor) { %>
       <%= preprocessor %>: {
-        files: ['src/styles/{,*/}*'],
+        files: ['src/styles/**'],
         tasks: ['<%= preprocessor %>']
       },<% } %>
       pages: {
-        files: ['src/pages/{,*/}*', 'posts/{,*/}*', 'src/layouts/{,*/}*'],
+        files: ['src/pages/**', 'posts/**', 'src/layouts/**'],
         tasks: ['pages']
       },
       copy: {
-        files: ['src/*.ico', 'src/.htaccess', 'src/images/{,*/}*', 'src/styles/**.css'],
+        files: ['src/*.ico', 'src/.htaccess', 'src/images/**', 'src/styles/**.css'],
         tasks: ['copy']
       }
     },
@@ -75,7 +75,7 @@ module.exports = function (grunt) {
           src: [
             '*.ico',
             '.htaccess',
-            'images/{,*/}*',
+            'images/**',
             'styles/**.css'
           ]
         }]
