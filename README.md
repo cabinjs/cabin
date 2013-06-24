@@ -19,7 +19,7 @@ The first parameter is the name of the destination folder, and the second is the
 
 After scaffolding a site generator, you can run it by entering the following command in the destination folder:
 ```bash
-grunt server
+grunt
 ```
 # Themes
 Cabin themes provide styling and structure for your static site project. They work great out of the box and as starting points for more customized sites.
