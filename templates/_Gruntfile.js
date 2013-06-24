@@ -20,7 +20,7 @@ module.exports = function (grunt) {
         tasks: ['pages']
       },
       copy: {
-        files: ['src/*.ico', 'src/.htaccess', 'src/images/**', 'src/styles/**.css'],
+        files: ['src/images/**', 'src/styles/**.css'],
         tasks: ['copy']
       }
     },
@@ -73,8 +73,6 @@ module.exports = function (grunt) {
           cwd: 'src',
           dest: 'dist',
           src: [
-            '*.ico',
-            '.htaccess',
             'images/**',
             'styles/**.css'
           ]
