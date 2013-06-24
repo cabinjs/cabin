@@ -46,7 +46,7 @@ Here is an example `cabin.json` file which states that the project supports Sass
   "gruntPages": {
     "posts": {
       "src": "posts",
-      "dest": "site",
+      "dest": "dist",
       "layout": "src/layouts/post.jade",
       "url": ":title"
     }
