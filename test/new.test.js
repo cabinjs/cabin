@@ -54,7 +54,7 @@ function testOptions(options, callback) {
 
   options = _.defaults(options, {
     siteName: siteName,
-    theme: 'colinwren/testTheme',
+    theme: 'colinwren/Candy',
     templateLang: 'jade',
     preprocessor: 'compass',
     noInstall: true

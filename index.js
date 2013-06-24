@@ -12,7 +12,7 @@ module.exports = function (argv) {
     .action(function () {
       require('./lib/new.js')({
         siteName: program.args[0],
-        theme: program.args[1] || 'colinwren/testTheme'
+        theme: program.args[1] || 'colinwren/Candy'
       });
     });
 
