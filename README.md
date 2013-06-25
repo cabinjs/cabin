@@ -1,5 +1,5 @@
 # Cabin Beta
-> Cabin is a CLI tool that scaffolds out a [Grunt](http://gruntjs.com/) powered static site generator.
+> Cabin is a [Grunt](http://gruntjs.com/) powered static site generator.
 
 [![NPM version](https://badge.fury.io/js/cabin.png)](http://badge.fury.io/js/cabin)  
 [![Dependency Status](https://gemnasium.com/ChrisWren/Cabin.png)](https://gemnasium.com/ChrisWren/Cabin)   
@@ -61,14 +61,24 @@ Here is an example `cabin.json` file which states that the project supports Sass
 
 ### Theme file locations
 
-#### Layouts
-Layout files **must** be in the `src/layouts` directory.
-
-#### Styles
-Style files **must** be in the `src/styles` directory.
-
-#### Posts
-Markdown posts **must** be in the `posts` directory.
+Your theme must conform to the following folder structure in order to work with the Gruntfile that Cabin generates.
+```
+├── README.md
+├── cabin.json
+├── posts
+│   └── Sample posts
+├── site
+│   └── Generated site files
+└── src
+    ├── images
+    │   └── Theme image files
+    ├── layouts
+    │   └── Theme layout templates
+    ├── pages
+    │   └── Theme page templates
+    └── styles
+        └── Theme stylesheets
+```
 
 The best way to learn about how to develop a theme is by referencing the [default theme](http://colinwren.github.io/Candy/).
 
