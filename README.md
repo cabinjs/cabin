@@ -1,5 +1,5 @@
 # Cabin Beta
-> Cabin is a [Grunt](http://gruntjs.com/) powered static site generator.
+> Cabin is a simple and extensible static site generator powered by [Grunt](http://gruntjs.com/).
 
 [![NPM version](https://badge.fury.io/js/cabin.png)](http://badge.fury.io/js/cabin)  
 [![Dependency Status](https://gemnasium.com/ChrisWren/Cabin.png)](https://gemnasium.com/ChrisWren/Cabin)   
@@ -21,6 +21,7 @@ After scaffolding a site generator, you can run it by entering the following com
 ```bash
 grunt
 ```
+This will build your site, start a static file server, open a browser tab with the site's homepage, and start a watch process to rebuild your site when your source files change. Try editing or creating a new markdown file in the `posts` folder (if you are using the default theme) and upon save your site will be automatically rebuilt. Refresh the page to see the changes, if you'd like Livereload functionality, you can use the Livereload [browser extensions](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-).
 # Themes
 Cabin themes provide styling and structure for your static site project. They work great out of the box and as starting points for more customized sites.
 
