@@ -32,6 +32,7 @@ module.exports = function (grunt) {
         hostname: 'localhost',
           middleware: function (connect) {
             return [
+              require('grunt-contrib-livereload/lib/utils').livereloadSnippet,
               mountFolder(connect, 'dist'),
               mountFolder(connect, 'src')
             ];
