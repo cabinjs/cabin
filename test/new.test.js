@@ -109,13 +109,15 @@ function checkGeneratedFiles(options) {
   if (options.templateLang === 'jade') {
     expectedFiles = expectedFiles.concat([
       'src/layouts/base.jade',
-      'src/layouts/post.jade'
+      'src/layouts/post.jade',
+      'src/layouts/_social.jade'
     ]);
   } else if (options.templateLang === 'ejs') {
     expectedFiles = expectedFiles.concat([
       'src/layouts/_header.ejs',
       'src/layouts/_footer.ejs',
       'src/layouts/_post.ejs',
+      'src/layouts/_social.ejs',
       'src/layouts/_postHead.ejs',
       'src/layouts/post.ejs'
     ]);
