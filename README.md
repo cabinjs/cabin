@@ -81,7 +81,7 @@ Your theme must conform to the following folder structure in order to work with 
         └── Theme stylesheets
 ```
 
-The best way to learn about how to develop a theme is by referencing the [default theme](http://colinwren.github.io/Candy/).
+The best way to learn about how to develop a theme is by referencing the [default theme](https://github.com/colinwren/Candy).
 
 # Changelog
 
