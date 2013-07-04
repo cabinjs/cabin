@@ -27,7 +27,7 @@ Cabin themes provide styling and structure for your static site project. They wo
 ## Avaliable Themes
 
 ### [colinwren/Candy](http://colinwren.github.io/Candy/)
-> Blogging theme with DisQus for comments
+> Blogging theme with Disqus for comments
 
 ### [colinwren/Blok](http://colinwren.github.io/Blok/)
 > Colorful blogging theme 
