@@ -8,9 +8,13 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     watch: {
-      options: {
-        livereload: true
-      },<% if (preprocessor) { %>
+      dist: {
+        files: ['dist/**'],
+        options: {
+          livereload: true
+        }
+      },
+      <% if (preprocessor) { %>
       <%= preprocessor %>: {
         files: ['src/styles/**'],
         tasks: ['<%= preprocessor %>']
