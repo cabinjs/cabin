@@ -87,7 +87,7 @@ The best way to learn about how to develop a theme is by referencing the [defaul
 
 # Changelog
 
-**0.1.2** - The Gruntfile now copies fonts from the src/styles/fonts folder.
+**0.1.2** - Built-in LiveReload functionality added.
 
 **0.1.1** - The Gruntfile now copies fonts from the src/styles/fonts folder.
 
