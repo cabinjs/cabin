@@ -4,7 +4,7 @@ var program = require('commander');
 
 module.exports = function (argv) {
   program
-    .version('0.1.1');
+    .version('0.1.2');
 
   program
     .command('new <siteName> [user/repo]')
