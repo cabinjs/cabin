@@ -20,7 +20,7 @@ After scaffolding a site generator, you can run it by entering the following com
 ```bash
 grunt
 ```
-This will build your site, start a static file server, open a browser tab with the site's homepage, and start a watch process to rebuild your site when your source files change. Try editing or creating a new markdown file in the `posts` folder (if you are using the default theme) and upon save your site will be automatically rebuilt. Refresh the page to see the changes, if you'd like Livereload functionality, you can use the Livereload [browser extensions](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-).
+This will build your site, start a static file server, open a browser tab with the site's homepage, and start a watch process to rebuild your site when your source files change. Try editing or creating a new markdown file in the `posts` folder (if you are using the default theme) and upon save your site will be automatically rebuilt. When your site has been rebuilt, your browser will automatically refresh with your updated site.
 # Themes
 Cabin themes provide styling and structure for your static site project. They work great out of the box and as starting points for more customized sites.
 
