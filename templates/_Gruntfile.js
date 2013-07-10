@@ -33,7 +33,7 @@ module.exports = function (grunt) {
       dist: {
         options: {
         port: 5455,
-        hostname: 'localhost',
+        hostname: '0.0.0.0',
           middleware: function (connect) {
             return [
               require('grunt-contrib-livereload/lib/utils').livereloadSnippet,
