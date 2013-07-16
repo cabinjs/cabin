@@ -24,13 +24,12 @@ This will build your site, start a static file server, open a browser tab with t
 # Themes
 Cabin themes provide styling and structure for your static site project. They work great out of the box and as starting points for more customized sites.
 
-## Avaliable Themes
+## Featured themes
 
 ### [colinwren/Candy](http://colinwren.github.io/Candy/)
-> Blogging theme with Disqus for comments
-
+![Candy theme](https://raw.github.com/colinwren/Cabin/gh-pages-src/src/images/Candy.png)
 ### [colinwren/Blok](http://colinwren.github.io/Blok/)
-> Colorful blogging theme 
+![Blok theme](https://raw.github.com/colinwren/Cabin/gh-pages-src/src/images/Blok.png)
 
 ## Creating Themes
 
