@@ -25,6 +25,8 @@
     "wrench": "~1.5.1"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "*",
+    "sinon": "~1.7.3",
+    "rewire": "~1.1.3"
   }
 }
