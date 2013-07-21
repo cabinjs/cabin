@@ -22,7 +22,8 @@
     "request": "~2.22.0",
     "async": "~0.2.8",
     "open": "~0.0.3",
-    "wrench": "~1.5.1"
+    "wrench": "~1.5.1",
+    "pretty-stringify": "~0.1.0"
   },
   "devDependencies": {
     "mocha": "*",
