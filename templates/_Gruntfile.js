@@ -13,8 +13,7 @@ module.exports = function (grunt) {
         options: {
           livereload: true
         }
-      },
-      <% if (preprocessor) { %>
+      },<% if (preprocessor) { %>
       <%= preprocessor %>: {
         files: ['src/styles/**'],
         tasks: ['<%= preprocessor %>']
