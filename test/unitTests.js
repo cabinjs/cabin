@@ -1,6 +1,7 @@
 'use strict';
 
-require('should');
+var assert = require('assert');
+
 var sinon = require('sinon');
 var rewire = require('rewire');
 
@@ -11,12 +12,10 @@ describe('cabin new', function () {
   describe('getExcludedExtensions', function () {
 
     it('should return the excluded file extensions based on the user\'s selected options', function () {
-      newCommand.__get__('getExcludedExtensions')({
+      assert.deepEqual(newCommand.__get__('getExcludedExtensions')({
         preprocessor: 'sass',
         templateLang: 'jade'
-      }).should.eql(['.less', '.ejs']);
+      }), ['.less', '.ejs']);
     });
-
   });
-
 });
