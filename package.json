@@ -9,7 +9,7 @@
     "url": "https://github.com/colinwren/Cabin.git"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --ui bdd --reporter nyan --recursive -b -R nyan -t 20000 $(find ./test -name *.test.*)"
+    "test": "./node_modules/mocha/bin/mocha --ui bdd --reporter spec --recursive -b -R spec -t 20000 test/*.js"
   },
   "author": "Colin Wren",
   "license": "MIT",
