@@ -13,8 +13,8 @@ describe('cabin new', function () {
 
     it('should return the excluded file extensions based on the user\'s selected options', function () {
       assert.deepEqual(newCommand.__get__('getExcludedExtensions')({
-        preprocessor: 'sass',
-        templateLang: 'jade'
+        preprocessorChoice: 'sass',
+        templateLangChoice: 'jade'
       }), ['.less', '.ejs']);
     });
   });
