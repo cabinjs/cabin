@@ -17,13 +17,6 @@ module.exports = function (argv) {
     });
 
   program
-    .command('generate')
-    .description('Create a markdown blogpost')
-    .action(function () {
-      require('./lib/generate.js')(argv);
-    });
-
-  program
     .parse(argv);
 
   if (!program.args.length) program.help();
