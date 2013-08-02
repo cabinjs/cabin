@@ -8,7 +8,7 @@ var wrench = require('wrench');
 var cabinNew = require('../lib/new.js');
 var siteName = 'testSite';
 
-describe('New site generator', function () {
+describe('cabin new <siteName>', function () {
 
   beforeEach(function () {
     if (fs.existsSync(siteName)) {
@@ -23,28 +23,49 @@ describe('New site generator', function () {
     }
   });
 
-  describe('cabin new <siteName>', function () {
 
-    describe('with jade templates', function () {
+  describe('with jade templates', function () {
 
-      it('should create new site in new folder', function (done) {
+    it('should create new site in new folder', function (done) {
 
-        testOptions({ templateLang: 'jade' }, function (result) {
-          assert(result.length === 0, result.toString());
-          done();
-        });
+      testOptions({ templateLang: 'jade' }, function (result) {
+        assert(result.length === 0, result.toString());
+        done();
       });
     });
+  });
 
-    describe('with ejs templates', function () {
+  describe('with ejs templates', function () {
 
-      it('should create new site in new folder', function (done) {
+    it('should create new site in new folder', function (done) {
 
-        testOptions({ templateLang: 'ejs' }, function (result) {
+      testOptions({ templateLang: 'ejs' }, function (result) {
 
-          assert(result.length === 0, result.toString());
-          done();
-        });
+        assert(result.length === 0, result.toString());
+        done();
+      });
+    });
+  });
+
+  describe('with no grunt pages version specified', function () {
+
+    it('should set the grunt pages version as `*`', function (done) {
+      testOptions({}, function (result) {
+        var actualVersion = JSON.parse(fs.readFileSync('./package.json', 'utf8')).devDependencies['grunt-pages'];
+        assert(actualVersion === '*', 'grunt-pages version is not `*`');
+        done();
+      });
+    });
+  });
+
+  describe('with grunt pages version specified', function () {
+    var gruntPagesVersion = '~4.0.1' ;
+
+    it('should set the grunt pages version to the version specified in the cabin.json', function (done) {
+      testOptions({ gruntPagesVersion: gruntPagesVersion}, function (result) {
+        var actualVersion = JSON.parse(fs.readFileSync('./package.json', 'utf8')).devDependencies['grunt-pages'];
+        assert(actualVersion === gruntPagesVersion, 'grunt-pages version is: ' + actualVersion);
+        done();
       });
     });
   });
