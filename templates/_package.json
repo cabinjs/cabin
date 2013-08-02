@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-pages": "~0.2.2",
+    "grunt-pages": "<%= gruntPagesVersion %>",
     "grunt-contrib-copy": "~0.4.1",<% if (preprocessor = 'compass') { %>
     "grunt-contrib-compass": "~0.2.0",
     <% } else if (preprocessor = 'less') { %>
