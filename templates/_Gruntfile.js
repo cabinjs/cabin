@@ -36,8 +36,7 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             return [
               require('grunt-contrib-livereload/lib/utils').livereloadSnippet,
-              mountFolder(connect, 'dist'),
-              mountFolder(connect, 'src')
+              mountFolder(connect, 'dist')
             ];
           }
         }
