@@ -23,34 +23,46 @@ describe('cabin new <siteName>', function () {
     }
   });
 
+  describe('when using a remote theme', function () {
 
-  describe('with jade templates', function () {
+    describe('with jade templates', function () {
 
-    it('should create new site in new folder', function (done) {
+      it('should create a new site in specified site folder', function (done) {
 
-      testOptions({ templateLang: 'jade' }, function (result) {
-        assert(result.length === 0, result.toString());
-        done();
+        testOptions({ templateLang: 'jade' }, function (result) {
+          assert(result.length === 0, result.toString());
+          done();
+        });
       });
     });
   });
 
-  describe('with ejs templates', function () {
+  describe('when using a local theme', function () {
 
-    it('should create new site in new folder', function (done) {
+    describe('with ejs templates', function () {
 
-      testOptions({ templateLang: 'ejs' }, function (result) {
+      it('should create new site in new folder', function (done) {
 
-        assert(result.length === 0, result.toString());
-        done();
+        testOptions({
+          templateLang: 'ejs',
+          theme: 'test/fixtures/candyTheme',
+          local: true
+        }, function (result) {
+          console.log(result);
+          assert(result.length === 0, result.toString());
+          done();
+        });
       });
     });
   });
 
-  describe('with no grunt pages version specified', function () {
+  describe('when run with no grunt pages version specified', function () {
 
     it('should set the grunt pages version as `*`', function (done) {
-      testOptions({}, function (result) {
+      testOptions({
+        theme: 'test/fixtures/candyTheme',
+        local: true
+      }, function (result) {
         var actualVersion = JSON.parse(fs.readFileSync('./package.json', 'utf8')).devDependencies['grunt-pages'];
         assert(actualVersion === '*', 'grunt-pages version is not `*`');
         done();
@@ -58,11 +70,15 @@ describe('cabin new <siteName>', function () {
     });
   });
 
-  describe('with grunt pages version specified', function () {
+  describe('when run with grunt pages version specified', function () {
     var gruntPagesVersion = '~4.0.1' ;
 
     it('should set the grunt pages version to the version specified in the cabin.json', function (done) {
-      testOptions({ gruntPagesVersion: gruntPagesVersion}, function (result) {
+      testOptions({
+        gruntPagesVersion: gruntPagesVersion,
+        theme: 'test/fixtures/candyTheme',
+        local: true
+      }, function (result) {
         var actualVersion = JSON.parse(fs.readFileSync('./package.json', 'utf8')).devDependencies['grunt-pages'];
         assert(actualVersion === gruntPagesVersion, 'grunt-pages version is: ' + actualVersion);
         done();
@@ -78,7 +94,8 @@ function testOptions(options, callback) {
     theme: 'colinwren/Candy',
     templateLang: 'jade',
     preprocessor: 'compass',
-    noInstall: true
+    noInstall: true,
+    local: false
   });
 
   cabinNew(options, function () {
@@ -119,6 +136,7 @@ function checkGeneratedFiles(options) {
     'src/styles/_post.' + options.preprocessor,
     'src/styles/solarized-dark.css',
     'src/styles/normalize.css',
+    'src/styles/CandyIcoMoonSession.json',
     'src/styles/fonts',
     'src/styles/fonts/icomoon.dev.svg',
     'src/styles/fonts/icomoon.eot',

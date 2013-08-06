@@ -1,0 +1,27 @@
+{
+  "style": [
+    "Sass"
+  ],
+  "template": [
+    "Jade",
+    "EJS"
+  ],
+  "gruntPages": {
+    "options": {
+      "pageSrc": "src/pages"
+    },
+    "posts": {
+      "src": "posts",
+      "dest": "dist",
+      "layout": "src/layouts/post.<%= templateLang %>",
+      "url": "blog/posts/:title",
+      "options": {
+        "templateEngine": "<%= templateLang %>",
+        "pagination": {
+          "postsPerPage": 3,
+          "listPage": "src/pages/index.<%= templateLang %>"
+        }
+      }
+    }
+  }
+}
