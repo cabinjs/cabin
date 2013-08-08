@@ -62,7 +62,7 @@ describe('cabin new <siteName>', function () {
       testOptions({
         theme: 'test/fixtures/candyTheme',
         local: true
-      }, function (result) {
+      }, function () {
         var actualVersion = JSON.parse(fs.readFileSync('./package.json', 'utf8')).devDependencies['grunt-pages'];
         assert(actualVersion === '*', 'grunt-pages version is not `*`');
         done();
@@ -71,14 +71,14 @@ describe('cabin new <siteName>', function () {
   });
 
   describe('when run with grunt pages version specified', function () {
-    var gruntPagesVersion = '~4.0.1' ;
+    var gruntPagesVersion = '~4.0.0';
 
     it('should set the grunt pages version to the version specified in the cabin.json', function (done) {
       testOptions({
         gruntPagesVersion: gruntPagesVersion,
         theme: 'test/fixtures/candyTheme',
         local: true
-      }, function (result) {
+      }, function () {
         var actualVersion = JSON.parse(fs.readFileSync('./package.json', 'utf8')).devDependencies['grunt-pages'];
         assert(actualVersion === gruntPagesVersion, 'grunt-pages version is: ' + actualVersion);
         done();

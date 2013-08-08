@@ -2,7 +2,6 @@
 
 var assert = require('assert');
 
-var sinon = require('sinon');
 var rewire = require('rewire');
 
 var newCommand = rewire('../lib/new.js');

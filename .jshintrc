@@ -1,7 +1,6 @@
 {
   "node": true,
   "esnext": true,
-  "camelcase": true,
   "eqeqeq": true,
   "eqnull": true,
   "immed": true,
