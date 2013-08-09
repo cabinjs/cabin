@@ -8,19 +8,19 @@
 
 # Getting Started
 
-First install cabin globally with the following command:
+First install Cabin and Grunt globally with the following command:
 ```bash
-npm install -g cabin
+npm install -g cabin grunt-cli
 ```
 You can then scaffold a static generator with the following command:
 ```bash
-cabin new <destination folder> [user/repo]
+cabin new myBlog colinwren/Candy
 ```
-The first parameter is the name of the destination folder, and the second is the GitHub username and repository name of a `theme` to use for the site. If the `theme` parameter is left blank, the [default theme](https://github.com/colinwren/testTheme) will be used.
+The first parameter is the name of the destination folder, and the second is the GitHub username and repository name of a `theme` to use for the site. If the `theme` parameter is left blank, the [default theme](http://colinwren.github.io/Candy/) will be used.
 
-After scaffolding a site generator, you can run it by entering the following command in the destination folder:
+After scaffolding a site generator, you can run it by entering the project directory and running `grunt` with this command:
 ```bash
-grunt
+cd myBlog && grunt
 ```
 This will build your site, start a static file server, open a browser tab with the site's homepage, and start a watch process to rebuild your site when your source files change. Try editing or creating a new markdown file in the `posts` folder (if you are using the default theme) and upon save your site will be automatically rebuilt. When your site has been rebuilt, your browser will automatically refresh with your updated site.
 # Themes
