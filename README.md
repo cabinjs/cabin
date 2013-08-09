@@ -1,9 +1,11 @@
 # Cabin Beta
 > Cabin is a simple and extensible static site generator powered by [Grunt](http://gruntjs.com/).
+<img align="right" height="150" src="https://raw.github.com/colinwren/Candy/master/src/images/cabin.png">
 
 [![NPM version](https://badge.fury.io/js/cabin.png)](http://badge.fury.io/js/cabin)  
 [![Dependency Status](https://gemnasium.com/colinwren/Cabin.png)](https://gemnasium.com/colinwren/Cabin)  
 [![Travis Status](https://travis-ci.org/colinwren/Cabin.png)](https://travis-ci.org/colinwren/Cabin)  
+
 # Getting Started
 
 First install cabin globally with the following command:
