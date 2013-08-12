@@ -48,7 +48,6 @@ describe('cabin new <siteName>', function () {
           theme: 'test/fixtures/candyTheme',
           local: true
         }, function (result) {
-          console.log(result);
           assert(result.length === 0, result.toString());
           done();
         });
