@@ -48,6 +48,7 @@ Here is an example `cabin.json` file which states that the project supports Sass
   "template": [
     "Jade"
   ],
+  "gruntPagesVersion": "~0.4.0",
   "gruntPages": {
     "posts": {
       "src": "posts",
@@ -84,6 +85,8 @@ Your theme must conform to the following folder structure in order to work with 
 The best way to learn about how to develop a theme is by referencing the [default theme](https://github.com/colinwren/Candy).
 
 # Changelog
+
+**0.1.3** - Use `0.0.0.0` as hostname for mobile debugging. Removed extra whitespace and connect folder from generated Gruntfile. Added `gruntPagesVersion` to cabin.json config.
 
 **0.1.2** - Built-in LiveReload functionality added.
 
