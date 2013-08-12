@@ -50,7 +50,6 @@ describe('the cabin new command', function () {
           templateLang: 'jade',
           local: true
         }, function () {
-          process.exit(1);
           fs.readFileSync('src/layouts/base.jade').should.be.ok;
           fs.readFileSync('src/layouts/_header.ejs').should.not.be.ok;
           done();
