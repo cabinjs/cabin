@@ -9,7 +9,7 @@
     "url": "https://github.com/colinwren/Cabin.git"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt"
   },
   "author": "Colin Wren",
   "license": "MIT",

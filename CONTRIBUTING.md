@@ -9,7 +9,7 @@ Cabin should be usable by everyone who knows how to edit markdown, templates, an
 We use the [mocha](http://visionmedia.github.io/mocha/) test framework to test Cabin. To run the test suite, enter the following command:
 
 ```bash
-grunt test
+grunt
 ```
 
 There are integration tests located in [this](https://github.com/colinwren/Cabin/blob/master/test/integrationTests.js) file which verify that the html files were created as expected, and unit tests in [this](https://github.com/colinwren/Cabin/blob/master/test/unitTests.js) file which verify the logic implemented in methods is working as expected.
