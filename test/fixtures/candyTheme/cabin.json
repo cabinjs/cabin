@@ -6,6 +6,7 @@
     "Jade",
     "EJS"
   ],
+  "gruntPagesVersion": "~0.2.0",
   "gruntPages": {
     "options": {
       "pageSrc": "src/pages"
