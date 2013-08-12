@@ -1,12 +1,44 @@
-var mountFolder = function (connect, dir) {
-  return connect.static(require('path').resolve(dir));
-};
-
 module.exports = function (grunt) {
 
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-
   grunt.initConfig({
+    pages: <%= gruntPages %>,
+    <% if (preprocessor === 'compass') { %>
+    compass: {
+      dist: {
+        options: {
+          sassDir: 'src/styles',
+          cssDir: 'dist/styles'
+        }
+      }
+    },<% } %><% if (preprocessor === 'less') { %>
+    less: {
+      dist: {
+        options: {
+          paths: ['src/styles']
+        },
+        files: {
+          'dist/styles/main.css': 'src/styles/main.less'
+        }
+      }
+    },<% } %>
+
+    // Move files not handled by other tasks
+    copy: {
+      dist: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: 'src',
+          dest: 'dist',
+          src: [
+            'images/**',
+            'scripts/**',
+            'styles/**.css',
+            'styles/fonts/**',
+          ]
+        }]
+      }
+    },
     watch: {
       dist: {
         files: ['dist/**'],
@@ -19,15 +51,23 @@ module.exports = function (grunt) {
         tasks: ['<%= preprocessor %>']
       },<% } %>
       pages: {
-        files: ['src/pages/**', 'posts/**', 'src/layouts/**'],
+        files: [
+          'posts/**',
+          'src/layouts/**',
+          'src/pages/**'
+        ],
         tasks: ['pages']
       },
       copy: {
-        files: ['src/images/**', 'src/styles/**.css', 'src/styles/fonts/**', 'src/scripts/**'],
+        files: [
+          'src/images/**',
+          'src/scripts/**',
+          'src/styles/**.css',
+          'src/styles/fonts/**'
+        ],
         tasks: ['copy']
       }
     },
-    pages: <%= gruntPages %>,
     connect: {
       dist: {
         options: {
@@ -36,7 +76,7 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             return [
               require('grunt-contrib-livereload/lib/utils').livereloadSnippet,
-              mountFolder(connect, 'dist')
+              connect.static(require('path').resolve('dist'))
             ];
           }
         }
@@ -49,56 +89,22 @@ module.exports = function (grunt) {
     },
     clean: {
       dist: 'dist'
-    },<% if (preprocessor === 'compass') { %>
-    compass: {
-      options: {
-        sassDir: 'src/styles',
-        cssDir: 'dist/styles'
-      },
-      dist: {}
-    },<% } %><% if (preprocessor === 'less') { %>
-    less: {
-      dist: {
-        options: {
-          paths: ['src/styles']
-        },
-        files: {
-          'dist/styles/main.css': 'src/styles/main.less'
-        }
-      }
-    },<% } %>
-    // Move files not handled by other tasks
-    copy: {
-      dist: {
-        files: [{
-          expand: true,
-          dot: true,
-          cwd: 'src',
-          dest: 'dist',
-          src: [
-            'images/**',
-            'styles/**.css',
-            'styles/fonts/**',
-            'scripts/**'
-          ]
-        }]
-      }
     }
   });
 
   grunt.registerTask('build', [
     'clean',
-    <% if (preprocessor) %>'<%= preprocessor %>',
     'pages',
+    <% if (preprocessor) %>'<%= preprocessor %>',
     'copy'
   ]);
 
-  grunt.registerTask('server', [
+  grunt.registerTask('default', [
     'build',
     'connect',
     'open',
     'watch'
   ]);
 
-  grunt.registerTask('default', 'server');
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 };
