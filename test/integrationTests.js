@@ -10,12 +10,6 @@ var siteName = 'testSite';
 
 describe('cabin new <siteName>', function () {
 
-  beforeEach(function () {
-    if (fs.existsSync(siteName)) {
-      wrench.rmdirSyncRecursive(siteName);
-    }
-  });
-
   afterEach(function () {
     process.chdir('../');
     if (fs.existsSync(siteName)) {
