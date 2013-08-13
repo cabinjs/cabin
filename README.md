@@ -95,7 +95,7 @@ To see an example theme repo, check out the [default theme](https://github.com/c
 
 # Changelog
 
-**0.1.4** - Added -l flag to test local themes during development.Slimmed down generated Gruntfile. 
+**0.1.4** - Added `-l` flag to test local themes during development. Slimmed down generated Gruntfile. 
 
 **0.1.3** - Use `0.0.0.0` as hostname for mobile debugging. Removed extra whitespace and connect folder from generated Gruntfile. Added `gruntPagesVersion` to cabin.json config.
 
