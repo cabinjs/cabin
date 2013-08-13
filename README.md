@@ -83,9 +83,19 @@ Your theme must conform to the following folder structure in order to work with 
         └── Theme stylesheets
 ```
 
-The best way to learn about how to develop a theme is by referencing the [default theme](https://github.com/colinwren/Candy).
+### Testing a theme
+
+To test your theme, run cabin with the `-l` flag. For example if I had a theme in a folder called `themeFolder` and I wanted to make sure it was working properly, I would run the following command:
+```bash
+cabin new site themeFolder -l
+```
+Then I could `cd site && grunt` to make sure my theme will work as expected for users when they install it with Cabin.
+
+To see an example theme repo, check out the [default theme](https://github.com/colinwren/Candy).
 
 # Changelog
+
+**0.1.4** - Added -l flag to test local themes during development.Slimmed down generated Gruntfile. 
 
 **0.1.3** - Use `0.0.0.0` as hostname for mobile debugging. Removed extra whitespace and connect folder from generated Gruntfile. Added `gruntPagesVersion` to cabin.json config.
 
