@@ -40,7 +40,7 @@ Cabin themes provide styling and structure for your static site project. They wo
 
 The only file explicitly required is a `cabin.json` configuration in the root of the repo. This file describes what CSS preprocessors and template languages that your theme supports as well as the configuration for [grunt-pages](https://github.com/ChrisWren/grunt-pages). We currently support EJS and Jade templates and the Sass and LESS style languages.
 
-Here is an example `cabin.json` file which states that the project supports Sass, Jade, and has the specified config for the grunt-pages task:
+Here is an example `cabin.json` file which states that the project supports Sass, Jade, and has the specified config for the `~0.4.0` version of the grunt-pages task:
 ```json
 {
   "style": [
