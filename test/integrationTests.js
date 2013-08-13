@@ -50,8 +50,8 @@ describe('the cabin new command', function () {
           templateLang: 'jade',
           local: true
         }, function () {
-          fs.readFileSync('src/layouts/base.jade').should.be.ok;
-          fs.readFileSync('src/layouts/_header.ejs').should.not.be.ok;
+          fs.readFileSync('src/pages/index.jade').should.be.ok;
+          fs.existsSync('src/pages/index.ejs').should.not.be.ok;
           done();
         });
       });
@@ -63,11 +63,12 @@ describe('the cabin new command', function () {
       it('should only copy that preprocessor language\'s theme files to the site folder', function (done) {
         testOptions({
           theme: 'test/fixtures/candyTheme',
-          preprocessor: 'compass',
+          preprocessor: 'sass',
           local: true
         }, function () {
+
           fs.readFileSync('src/styles/main.scss').should.be.ok;
-          fs.readFileSync('src/styles/main.less').should.not.be.ok;
+          fs.existsSync('src/styles/main.less').should.not.be.ok;
           done();
         });
       });
@@ -76,7 +77,7 @@ describe('the cabin new command', function () {
         testOptions({
           theme: 'test/fixtures/candyTheme',
           local: true,
-          preprocessor: 'Sass'
+          preprocessor: 'sass'
         }, function () {
           JSON.parse(fs.readFileSync('./package.json', 'utf8')).devDependencies['grunt-contrib-compass'].should.be.ok;
           done();
@@ -126,6 +127,11 @@ describe('the cabin new command', function () {
   });
 });
 
+/**
+ * Tests a set of options for the cabin cli
+ * @param  {Object}   options  Options that would be passed in as command line arguments
+ * @param  {Function} callback Callback to call once the site has been generated
+ */
 function testOptions(options, callback) {
 
   options = _.defaults(options, {
