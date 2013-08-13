@@ -30,9 +30,9 @@ Cabin themes provide styling and structure for your static site project. They wo
 ## Featured themes
 
 ### [colinwren/Candy](http://colinwren.github.io/Candy/)
-![Candy theme](https://raw.github.com/colinwren/Cabin/gh-pages-src/src/images/Candy.png)
+[![Candy theme](https://raw.github.com/colinwren/Cabin/gh-pages-src/src/images/Candy.png)](http://colinwren.github.io/Candy/)
 ### [colinwren/Blok](http://colinwren.github.io/Blok/)
-![Blok theme](https://raw.github.com/colinwren/Cabin/gh-pages-src/src/images/Blok.png)
+[![Blok theme](https://raw.github.com/colinwren/Cabin/gh-pages-src/src/images/Blok.png)](http://colinwren.github.io/Blok/)
 
 ## Creating Themes
 
