@@ -70,7 +70,7 @@ Your theme must conform to the following folder structure in order to work with 
 ├── cabin.json
 ├── posts
 │   └── Sample posts
-├── site
+├── dist
 │   └── Generated site files
 └── src
     ├── images
