@@ -55,7 +55,7 @@ Here is an example `cabin.json` file which states that the project supports Sass
       "src": "posts",
       "dest": "dist",
       "layout": "src/layouts/post.jade",
-      "url": "blog/posts/:title"
+      "url": "blog/posts/:title/"
     }
   }
 }
