@@ -1,8 +1,7 @@
 module.exports = function (grunt) {
 
   grunt.initConfig({
-    pages: <%= gruntPages %>,
-    <% if (preprocessor === 'compass') { %>
+    pages: <%= gruntPages %>,<% if (preprocessor === 'compass') { %>
     compass: {
       dist: {
         options: {
@@ -21,7 +20,6 @@ module.exports = function (grunt) {
         }
       }
     },<% } %>
-
     // Move files not handled by other tasks
     copy: {
       dist: {
