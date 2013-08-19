@@ -8,7 +8,9 @@
 
 # Getting Started
 
-First install Cabin and Grunt globally with the following command:
+To use Cabin you must have [Node.js](http://nodejs.org/), [Git](http://git-scm.com/), [Python](http://www.python.org/) (for [Pygments](http://pygments.org/)), [Ruby](http://www.ruby-lang.org/), and [Compass](http://compass-style.org/) installed.
+
+Get started by using npm to install Cabin and Grunt globally with the following command:
 ```bash
 npm install -g cabin grunt-cli
 ```
@@ -30,9 +32,9 @@ Cabin themes provide styling and structure for your static site project. They wo
 ## Featured themes
 
 ### [colinwren/Candy](http://colinwren.github.io/Candy/)
-[![Candy theme](https://raw.github.com/colinwren/Cabin/gh-pages-src/src/images/Candy.png)](http://colinwren.github.io/Candy/)
+[![Candy theme](https://raw.github.com/CabinJS/cabinjs.com/master/src/images/Candy.jpg)](http://colinwren.github.io/Candy/)
 ### [colinwren/Blok](http://colinwren.github.io/Blok/)
-[![Blok theme](https://raw.github.com/colinwren/Cabin/gh-pages-src/src/images/Blok.png)](http://colinwren.github.io/Blok/)
+[![Blok theme](https://raw.github.com/CabinJS/cabinjs.com/master/src/images/Blok.jpg)](http://colinwren.github.io/Blok/)
 
 ## Creating Themes
 
