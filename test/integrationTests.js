@@ -11,7 +11,6 @@ var siteName = 'testSite';
 describe('the cabin new command', function () {
 
   afterEach(function () {
-    process.chdir('../');
     if (fs.existsSync(siteName)) {
       wrench.rmdirSyncRecursive(siteName);
     }
@@ -50,8 +49,8 @@ describe('the cabin new command', function () {
           templateLang: 'jade',
           local: true
         }, function () {
-          fs.readFileSync('src/pages/index.jade').should.be.ok;
-          fs.existsSync('src/pages/index.ejs').should.not.be.ok;
+          fs.readFileSync(siteName + '/src/pages/index.jade').should.be.ok;
+          fs.existsSync(siteName + '/src/pages/index.ejs').should.not.be.ok;
           done();
         });
       });
@@ -67,8 +66,8 @@ describe('the cabin new command', function () {
           local: true
         }, function () {
 
-          fs.readFileSync('src/styles/main.scss').should.be.ok;
-          fs.existsSync('src/styles/main.less').should.not.be.ok;
+          fs.readFileSync(siteName + '/src/styles/main.scss').should.be.ok;
+          fs.existsSync(siteName + '/src/styles/main.less').should.not.be.ok;
           done();
         });
       });
@@ -79,7 +78,7 @@ describe('the cabin new command', function () {
           local: true,
           preprocessor: 'sass'
         }, function () {
-          JSON.parse(fs.readFileSync('./package.json', 'utf8')).devDependencies['grunt-contrib-compass'].should.be.ok;
+          JSON.parse(fs.readFileSync(siteName + '/package.json', 'utf8')).devDependencies['grunt-contrib-compass'].should.be.ok;
           done();
         });
       });
@@ -90,38 +89,22 @@ describe('the cabin new command', function () {
           local: true,
           preprocessor: 'compass'
         }, function () {
-          fs.readFileSync('./Gruntfile.js', 'utf8')
+          fs.readFileSync(siteName + '/Gruntfile.js', 'utf8')
             .should.include('compass');
           done();
         });
       });
     });
 
-    describe('when run with no grunt pages version specified', function () {
 
-      it('should set the grunt-pages version as `*`', function (done) {
-        testOptions({
-          theme: 'test/fixtures/themeWithNoGruntPagesVersion',
-          local: true
-        }, function () {
-          var actualVersion = JSON.parse(fs.readFileSync('./package.json', 'utf8')).devDependencies['grunt-pages'];
-          actualVersion.should.eql('*', 'grunt-pages version is not `*`');
-          done();
-        });
-      });
-    });
-
-    describe('when run with grunt-pages version specified in the theme', function () {
-
-      it('should set the grunt-pages version to the version in the cabin.json', function (done) {
-        testOptions({
-          theme: 'test/fixtures/candyTheme',
-          local: true
-        }, function () {
-          JSON.parse(fs.readFileSync('./package.json', 'utf8')).devDependencies['grunt-pages'].should.eql(
-          JSON.parse(fs.readFileSync('../test/fixtures/candyTheme/cabin.json', 'utf8')).gruntPagesVersion);
-          done();
-        });
+    it('should set the grunt-pages version to the version in the package.json', function (done) {
+      testOptions({
+        theme: 'test/fixtures/candyTheme',
+        local: true
+      }, function () {
+        JSON.parse(fs.readFileSync(siteName + '/package.json', 'utf8')).devDependencies['grunt-pages'].should.eql(
+        JSON.parse(fs.readFileSync('test/fixtures/candyTheme/package.json', 'utf8')).devDependencies['grunt-pages']);
+        done();
       });
     });
   });
@@ -208,7 +191,7 @@ function checkGeneratedFiles(options) {
 
   }
 
-  var files = _.filter(wrench.readdirSyncRecursive('./'), function (filePath) {
+  var files = _.filter(wrench.readdirSyncRecursive(siteName), function (filePath) {
     return filePath.indexOf('node_modules') === -1;
   });
 
