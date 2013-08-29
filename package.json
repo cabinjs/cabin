@@ -1,6 +1,6 @@
 {
   "name": "cabin",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Simple and extensible static site generator powered by Grunt",
   "main": "index.js",
   "bin": "./bin/cabin",
