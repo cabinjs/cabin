@@ -10,6 +10,12 @@ var siteName = 'testSite';
 
 describe('the cabin new command', function () {
 
+  beforeEach(function () {
+    if (fs.existsSync(siteName)) {
+      wrench.rmdirSyncRecursive(siteName);
+    }
+  });
+
   afterEach(function () {
     if (fs.existsSync(siteName)) {
       wrench.rmdirSyncRecursive(siteName);
@@ -87,7 +93,7 @@ describe('the cabin new command', function () {
         testOptions({
           theme: 'test/fixtures/candyTheme',
           local: true,
-          preprocessor: 'compass'
+          preprocessor: 'sass'
         }, function () {
           fs.readFileSync(siteName + '/Gruntfile.js', 'utf8')
             .should.include('compass');
@@ -121,7 +127,7 @@ function testOptions(options, callback) {
     siteName: siteName,
     theme: 'colinwren/Candy',
     templateLang: 'jade',
-    preprocessor: 'compass',
+    preprocessor: 'sass',
     noInstall: true,
     local: false
   });
@@ -133,7 +139,7 @@ function testOptions(options, callback) {
 
 function checkGeneratedFiles(options) {
 
-  if (options.preprocessor === 'compass') {
+  if (options.preprocessor === 'sass') {
     options.preprocessor = 'scss';
   }
 
@@ -162,8 +168,8 @@ function checkGeneratedFiles(options) {
     'src/styles/_icons.' + options.preprocessor,
     'src/styles/_nav.' + options.preprocessor,
     'src/styles/_post.' + options.preprocessor,
-    'src/styles/solarized-dark.css',
-    'src/styles/normalize.css',
+    'src/styles/solarized-dark.' + options.preprocessor,
+    'src/styles/normalize.' + options.preprocessor,
     'src/styles/CandyIcoMoonSession.json',
     'src/styles/fonts',
     'src/styles/fonts/icomoon.dev.svg',

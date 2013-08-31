@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
 
   grunt.initConfig({
-    pages: <%= gruntPages %>,<% if (preprocessor === 'compass') { %>
+    pages: <%= gruntPages %>,<% if (preprocessorTask === 'compass') { %>
     compass: {
       dist: {
         options: {
@@ -9,7 +9,7 @@ module.exports = function (grunt) {
           cssDir: 'dist/styles'
         }
       }
-    },<% } %><% if (preprocessor === 'less') { %>
+    },<% } else if (preprocessorTask === 'less') { %>
     less: {
       dist: {
         options: {
@@ -43,10 +43,10 @@ module.exports = function (grunt) {
         options: {
           livereload: true
         }
-      },<% if (preprocessor) { %>
-      <%= preprocessor %>: {
+      },<% if (preprocessorTask) { %>
+      <%= preprocessorTask %>: {
         files: ['src/styles/**'],
-        tasks: ['<%= preprocessor %>']
+        tasks: ['<%= preprocessorTask %>']
       },<% } %>
       pages: {
         files: [
@@ -93,7 +93,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean',
     'pages',
-    <% if (preprocessor) %>'<%= preprocessor %>',
+    <% if (preprocessorTask) %>'<%= preprocessorTask %>',
     'copy'
   ]);
 
