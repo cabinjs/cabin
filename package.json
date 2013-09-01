@@ -23,7 +23,8 @@
     "open": "~0.0.3",
     "wrench": "~1.5.1",
     "pretty-stringify": "~0.1.0",
-    "inquirer": "~0.3.0"
+    "inquirer": "~0.3.0",
+    "win-spawn": "~2.0.0"
   },
   "devDependencies": {
     "mocha": "*",
