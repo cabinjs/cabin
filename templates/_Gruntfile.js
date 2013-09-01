@@ -97,12 +97,14 @@ module.exports = function (grunt) {
     'copy'
   ]);
 
-  grunt.registerTask('default', [
+  grunt.registerTask('server', [
     'build',
     'connect',
     'open',
     'watch'
   ]);
+
+  grunt.registerTask('default', 'server');
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 };
