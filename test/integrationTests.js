@@ -16,15 +16,17 @@ describe('the cabin new command', function () {
     }
   });
 
-  describe('when using the default theme from its GitHub repo', function () {
+  if (process.env.NODE_ENV !== 'dev') {
+    describe('when using the default theme from its GitHub repo', function () {
 
-    it('should create a new site generator in the site folder', function (done) {
-      testOptions({}, function (result) {
-        result.length.should.eql(0, result.toString());
-        done();
+      it('should create a new site generator in the site folder', function (done) {
+        testOptions({}, function (result) {
+          result.length.should.eql(0, result.toString());
+          done();
+        });
       });
     });
-  });
+  }
 
   describe('when using a theme from the local filesystem', function () {
 
