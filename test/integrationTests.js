@@ -7,12 +7,17 @@ var wrench = require('wrench');
 
 var cabinNew = require('../lib/new.js');
 var siteName = 'testSite';
+var themeFolder = '.theme';
 
 describe('the cabin new command', function () {
 
   afterEach(function () {
     if (fs.existsSync(siteName)) {
       wrench.rmdirSyncRecursive(siteName);
+    }
+
+    if (fs.existsSync(themeFolder)) {
+      wrench.rmdirSyncRecursive(themeFolder);
     }
   });
 
