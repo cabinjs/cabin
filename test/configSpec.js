@@ -1,6 +1,7 @@
-var Config = require('../lib/config.js');
-///// Test setPreproccesor and setTemplateEngine with wrong inputs like stylus
+// TODO: Test setPreproccesor and setTemplateEngine with wrong inputs like stylus
 //and haml
+
+var Config = require('../lib/config.js');
 
 require('should');
 
