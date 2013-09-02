@@ -12,12 +12,6 @@ var cabinNew = rewire('../lib/new.js');
 var siteName = 'testSite';
 var themeFolder = '.theme';
 
-cabinNew.__set__({
-  console: {
-    log: function () {}
-  }
-});
-
 describe('the cabin new command', function () {
 
   afterEach(function () {
@@ -47,7 +41,7 @@ describe('the cabin new command', function () {
       it('should log an error that the theme doesn\'t exist', function (done) {
         var consoleSpy = sinon.stub(console, 'log');
         sinon.stub(process, 'exit', function () { processExitStub(); });
-        testOptions({ theme: 'bad/reponame32432423' });
+        testOptions({ theme: 'bad/reponame32432423', log: true });
 
         function processExitStub() {
           consoleSpy.lastCall.args[0].should.include('No theme found at https://github.com/');
@@ -157,8 +151,13 @@ function testOptions(options, callback) {
     noInstall: true,
     local: false
   });
-
+  if (!options.log) {
+    sinon.stub(console, 'log');
+  }
   cabinNew(options, function () {
+    if (!options.log) {
+      console.log.restore();
+    }
     callback(checkGeneratedFiles(options));
   });
 }
