@@ -37,7 +37,8 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('debug', ['nodemon']);
-  grunt.registerTask('default', ['jshint', 'simplemocha']);
+  grunt.registerTask('test', ['jshint', 'simplemocha']);
+  grunt.registerTask('default', ['test']);
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 };
