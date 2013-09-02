@@ -2,12 +2,19 @@
 var fs = require('fs');
 
 var _ = require('lodash');
+var rewire = require('rewire');
 require('should');
 var wrench = require('wrench');
 
-var cabinNew = require('../lib/new.js');
+var cabinNew = rewire('../lib/new.js');
 var siteName = 'testSite';
 var themeFolder = '.theme';
+
+cabinNew.__set__({
+  console: {
+    log: function () {}
+  }
+});
 
 describe('the cabin new command', function () {
 
