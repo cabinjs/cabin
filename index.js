@@ -5,6 +5,8 @@ var program = require('commander');
 module.exports = function (argv) {
   program
     .version(require('./package.json').version)
+    .option('-t, --templateLang [templateLang]',  'Use a local Cabin theme')
+    .option('-p, --preprocessor [preprocessor]',  'Specify a preprocessor')
     .option('-l, --local',  'Use a local Cabin theme');
 
   program
@@ -14,7 +16,9 @@ module.exports = function (argv) {
       require('./lib/new.js')({
         siteName: program.args[0],
         theme: program.args[1] || 'colinwren/Candy',
-        local: program.local
+        local: program.local,
+        templateLang: program.templateLang,
+        preprocessor: program.preprocessor
       });
     });
 

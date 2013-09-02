@@ -21,6 +21,7 @@ describe('the cabin new command', function () {
     }
   });
 
+  // Don't run tests with remote repos in development to speed up tests
   if (process.env.NODE_ENV !== 'dev') {
     describe('when using the default theme from its GitHub repo', function () {
 
@@ -53,11 +54,11 @@ describe('the cabin new command', function () {
       it('should only copy that template language\'s theme files to the site folder', function (done) {
         testOptions({
           theme: 'test/fixtures/candyTheme',
-          templateLang: 'jade',
+          templateLang: 'ejs',
           local: true
         }, function () {
-          fs.readFileSync(siteName + '/src/pages/index.jade').should.be.ok;
-          fs.existsSync(siteName + '/src/pages/index.ejs').should.not.be.ok;
+          fs.readFileSync(siteName + '/src/pages/index.ejs').should.be.ok;
+          fs.existsSync(siteName + '/src/pages/index.jade').should.not.be.ok;
           done();
         });
       });
@@ -72,7 +73,6 @@ describe('the cabin new command', function () {
           preprocessor: 'sass',
           local: true
         }, function () {
-
           fs.readFileSync(siteName + '/src/styles/main.scss').should.be.ok;
           fs.existsSync(siteName + '/src/styles/main.less').should.not.be.ok;
           done();
@@ -94,7 +94,7 @@ describe('the cabin new command', function () {
         testOptions({
           theme: 'test/fixtures/candyTheme',
           local: true,
-          preprocessor: 'compass'
+          preprocessor: 'sass'
         }, function () {
           fs.readFileSync(siteName + '/Gruntfile.js', 'utf8')
             .should.include('compass');
@@ -128,7 +128,7 @@ function testOptions(options, callback) {
     siteName: siteName,
     theme: 'colinwren/Candy',
     templateLang: 'jade',
-    preprocessor: 'compass',
+    preprocessor: 'sass',
     noInstall: true,
     local: false
   });
@@ -140,8 +140,8 @@ function testOptions(options, callback) {
 
 function checkGeneratedFiles(options) {
 
-  if (options.preprocessor === 'compass') {
-    options.preprocessor = 'scss';
+  if (options.preprocessorChoice === 'sass') {
+    options.preprocessorChoice = 'scss';
   }
 
   var expectedFiles = [
@@ -164,13 +164,13 @@ function checkGeneratedFiles(options) {
     'src/scripts/jquery.js',
     'src/scripts/main.js',
     'src/styles',
-    'src/styles/main.' + options.preprocessor,
-    'src/styles/_base.' + options.preprocessor,
-    'src/styles/_icons.' + options.preprocessor,
-    'src/styles/_nav.' + options.preprocessor,
-    'src/styles/_post.' + options.preprocessor,
-    'src/styles/solarized-dark.css',
-    'src/styles/normalize.css',
+    'src/styles/main.' + options.preprocessorChoice,
+    'src/styles/_base.' + options.preprocessorChoice,
+    'src/styles/_icons.' + options.preprocessorChoice,
+    'src/styles/_nav.' + options.preprocessorChoice,
+    'src/styles/_post.' + options.preprocessorChoice,
+    'src/styles/solarized-dark.scss',
+    'src/styles/normalize.scss',
     'src/styles/CandyIcoMoonSession.json',
     'src/styles/fonts',
     'src/styles/fonts/icomoon.dev.svg',
