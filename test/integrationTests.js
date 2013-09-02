@@ -157,9 +157,12 @@ function testOptions(options, callback) {
     noInstall: true,
     local: false
   });
+
+  // By default, prevent console.log from polluting test output
   if (!options.log) {
     sinon.stub(console, 'log');
   }
+
   cabinNew(options, function () {
     if (!options.log) {
       console.log.restore();
@@ -170,8 +173,8 @@ function testOptions(options, callback) {
 
 function checkGeneratedFiles(options) {
 
-  if (options.preprocessorChoice === 'sass') {
-    options.preprocessorChoice = 'scss';
+  if (options.preprocessor === 'sass') {
+    options.preprocessor = 'scss';
   }
 
   var expectedFiles = [
@@ -194,11 +197,11 @@ function checkGeneratedFiles(options) {
     'src/scripts/jquery.js',
     'src/scripts/main.js',
     'src/styles',
-    'src/styles/main.' + options.preprocessorChoice,
-    'src/styles/_base.' + options.preprocessorChoice,
-    'src/styles/_icons.' + options.preprocessorChoice,
-    'src/styles/_nav.' + options.preprocessorChoice,
-    'src/styles/_post.' + options.preprocessorChoice,
+    'src/styles/main.' + options.preprocessor,
+    'src/styles/_base.' + options.preprocessor,
+    'src/styles/_icons.' + options.preprocessor,
+    'src/styles/_nav.' + options.preprocessor,
+    'src/styles/_post.' + options.preprocessor,
     'src/styles/solarized-dark.scss',
     'src/styles/normalize.scss',
     'src/styles/CandyIcoMoonSession.json',
