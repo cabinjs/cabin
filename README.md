@@ -6,9 +6,38 @@
 [![Dependency Status](https://gemnasium.com/CabinJS/Cabin.png)](https://gemnasium.com/colinwren/Cabin)  
 [![Travis Status](https://travis-ci.org/CabinJS/Cabin.png)](https://travis-ci.org/colinwren/Cabin)  
 
-# Getting Started
+# Learning about Cabin
 
-To get started, check out the [Cabin website](http://cabinjs.com).
+To learn about Cabin, check out the [Cabin website](http://cabinjs.com).
+
+# Contributing To Cabin
+
+## Project Philosophy
+
+Cabin's goal is to be a static site generator that encourages designers and developers to make themes and share them with the open source community. We want to make it easy to create and install themes so that theme authors can focus on developing themes, and users can quickly get up and running with their static sites.
+
+Cabin should be usable by everyone who knows how to edit markdown, templates, and css. At the same time, we want to provide support for Grunt power users and evolve with the Grunt ecosystem. As such, we plan on having a minimal default Gruntfile and providing options for power users to scaffold a more advanced Gruntfile.
+
+## Workflow
+
+The recomended way to develop Cabin is to run `npm link` in the repo folder to create a symbolic global reference to `cabin`. You can then work on bugs/features using the latest code that you author in the repo.
+
+### Debugging
+
+We provide a `debug` grunt task to debug Cabin using [node-inspector](https://github.com/node-inspector/node-inspector). Once you have node-inspector launched in a separate terminal tab, 
+simply run `grunt debug` command and set breakpoints in your browser.
+
+## Tests
+
+We use the [mocha](http://visionmedia.github.io/mocha/) test framework to test Cabin. To run the test suite and lint the JavaScripts, enter the following command:
+
+```bash
+grunt test
+```
+
+There are integration tests located in [this](https://github.com/CabinJS/Cabin/blob/master/test/integrationTests.js) file which verify that the html files were created as expected, and unit tests in [this](https://github.com/CabinJS/Cabin/blob/master/test/unitTests.js) file which verify the logic implemented in methods is working as expected.
+
+The goal is to test any new features in the integration test file and test any changes to method logic in the unit test file.
 
 # Changelog
 
