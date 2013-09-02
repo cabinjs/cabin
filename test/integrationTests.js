@@ -23,7 +23,7 @@ describe('the cabin new command', function () {
 
   // Don't run tests with remote repos in development to speed up tests
   if (process.env.NODE_ENV !== 'dev') {
-    describe('when using the default theme from its GitHub repo', function () {
+    describe('when installing the default theme from its GitHub repo', function () {
 
       it('should create a new site generator in the site folder', function (done) {
         testOptions({}, function (result) {
@@ -34,7 +34,7 @@ describe('the cabin new command', function () {
     });
   }
 
-  describe('when using a theme from the local filesystem', function () {
+  describe('when installing a theme from the local filesystem', function () {
 
     it('should create a new site generator in the site folder', function (done) {
       testOptions({
@@ -47,7 +47,7 @@ describe('the cabin new command', function () {
     });
   });
 
-  describe('when using any theme', function () {
+  describe('when installing any theme', function () {
 
     describe('when selecting the Jade or EJS template language', function () {
 
