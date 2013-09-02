@@ -36,7 +36,7 @@ To get started, check out the [Cabin website](http://cabinjs.com).
 
 (The MIT License)
 
-Copyright (c) 2009-2012 Colin and Christopher Wren
+Copyright (c) 2013 Colin and Christopher Wren
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
