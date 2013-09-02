@@ -40,12 +40,19 @@ module.exports = function (grunt) {
           stdout: true
         },
         command: 'node --debug-brk $(which grunt) test'
+      },
+      debugtestdev: {
+        options: {
+          stdout: true
+        },
+        command: 'NODE_ENV=dev node --debug-brk $(which grunt) test'
       }
     }
   });
 
   grunt.registerTask('debug', ['nodemon']);
-  grunt.registerTask('debug-test', ['shell']);
+  grunt.registerTask('debug-test', ['shell:debugtest']);
+  grunt.registerTask('debug-test-dev', ['shell:debugtestdev']);
   grunt.registerTask('test', ['jshint', 'simplemocha']);
   grunt.registerTask('default', ['test']);
 
