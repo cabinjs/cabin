@@ -1,17 +1,7 @@
-# Project Philosophy
+When filing issues, please be sure that the problem is with Cabin and not a Grunt plugin.
 
-Cabin's goal is to be a static site generator that encourages designers and developers to make themes and share them with the open source community. We want to make it easy to create and install themes so that theme authors can focus on developing themes, and users can quickly get up and running with their static sites.
+If you have an issue scaffolding your site, submit it here.
 
-Cabin should be usable by everyone who knows how to edit markdown, templates, and css. At the same time, we want to provide support for Grunt power users and evolve with the Grunt ecosystem. As such, we plan on having a minimal default Gruntfile and provide options for power users to scaffold a more advanced Gruntfile.
+If the issue is with compiling your templates and markdown, submit it at [grunt-pages](https://github.com/CabinJS/grunt-pages/issues).
 
-# Tests
-
-We use the [mocha](http://visionmedia.github.io/mocha/) test framework to test Cabin. To run the test suite, enter the following command:
-
-```bash
-grunt
-```
-
-There are integration tests located in [this](https://github.com/colinwren/Cabin/blob/master/test/integrationTests.js) file which verify that the html files were created as expected, and unit tests in [this](https://github.com/colinwren/Cabin/blob/master/test/unitTests.js) file which verify the logic implemented in methods is working as expected.
-
-The goal is to test any new features in the integration test file and test any changes to method logic in the unit test file.
+If the issue is with compiling Sass files, submit it at [grunt-contrib-compass](https://github.com/gruntjs/grunt-contrib-compass/issues).
