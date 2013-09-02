@@ -14,6 +14,12 @@ var themeFolder = '.theme';
 
 describe('the cabin new command', function () {
 
+  beforeEach(function () {
+    if (fs.existsSync(siteName)) {
+      wrench.rmdirSyncRecursive(siteName);
+    }
+  });
+
   afterEach(function () {
     if (fs.existsSync(siteName)) {
       wrench.rmdirSyncRecursive(siteName);
