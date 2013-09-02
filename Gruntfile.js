@@ -1,6 +1,10 @@
 'use strict';
 module.exports = function (grunt) {
+
+  var globalConfig = {};
+
   grunt.initConfig({
+    globalConfig: globalConfig,
     simplemocha: {
       options: {
         globals: ['should'],
@@ -11,6 +15,9 @@ module.exports = function (grunt) {
       },
       all: {
         src: ['test/*.js']
+      },
+      spec: {
+        src: ['test/<%= globalConfig.file %>.js']
       }
     },
     jshint: {
@@ -50,10 +57,15 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.registerTask('spec', 'Runs a task on a specified file', function (fileName) {
+    globalConfig.file = fileName;
+    grunt.task.run('simplemocha:spec');
+  });
+
   grunt.registerTask('debug', ['nodemon']);
   grunt.registerTask('debug-test', ['shell:debugtest']);
   grunt.registerTask('debug-test-dev', ['shell:debugtestdev']);
-  grunt.registerTask('test', ['jshint', 'simplemocha']);
+  grunt.registerTask('test', ['jshint', 'simplemocha:all']);
   grunt.registerTask('default', ['test']);
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
