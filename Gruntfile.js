@@ -24,9 +24,19 @@ module.exports = function (grunt) {
           'test/*.js'
         ]
       }
+    },
+    nodemon: {
+      prod: {
+        options: {
+          file: 'bin/cabin',
+          args: ['new', 'testsite'],
+          nodeArgs: ['--debug-brk']
+        }
+      }
     }
   });
 
+  grunt.registerTask('debug', ['nodemon']);
   grunt.registerTask('default', ['jshint', 'simplemocha']);
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);

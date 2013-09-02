@@ -34,6 +34,7 @@
     "grunt-contrib-jshint": "~0.6.2",
     "grunt-simple-mocha": "~0.4.0",
     "matchdep": "~0.1.2",
-    "should": "~1.2.2"
+    "should": "~1.2.2",
+    "grunt-nodemon": "~0.1.0"
   }
 }
