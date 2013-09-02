@@ -27,6 +27,8 @@ The recomended way to develop Cabin is to run `npm link` in the repo folder to c
 We provide a `debug` grunt task to debug Cabin using [node-inspector](https://github.com/node-inspector/node-inspector). Once you have node-inspector launched in a separate terminal tab, 
 simply run `grunt debug` command and set breakpoints in your browser.
 
+You also debug integration and unit tests using the `grunt debug-test` command.
+
 ## Tests
 
 We use the [mocha](http://visionmedia.github.io/mocha/) test framework to test Cabin. To run the test suite and lint the JavaScripts, enter the following command:
