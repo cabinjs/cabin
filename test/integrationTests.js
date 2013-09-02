@@ -4,6 +4,8 @@ var fs = require('fs');
 var _ = require('lodash');
 var rewire = require('rewire');
 require('should');
+var rewire = require('rewire');
+var sinon = require('sinon');
 var wrench = require('wrench');
 
 var cabinNew = rewire('../lib/new.js');
@@ -37,6 +39,22 @@ describe('the cabin new command', function () {
           result.length.should.eql(0, result.toString());
           done();
         });
+      });
+    });
+
+    describe('when attemping to install a non-existant theme', function () {
+
+      it('should log an error that the theme doesn\'t exist', function (done) {
+        var consoleSpy = sinon.stub(console, 'log');
+        sinon.stub(process, 'exit', function () { processExitStub(); });
+        testOptions({ theme: 'bad/reponame32432423' });
+
+        function processExitStub() {
+          consoleSpy.lastCall.args[0].should.include('No theme found at https://github.com/');
+          console.log.restore();
+          process.exit.restore();
+          done();
+        }
       });
     });
   }
