@@ -8,16 +8,6 @@ var newCommand = rewire('../lib/new.js');
 
 describe('cabin new', function () {
 
-  describe('getExcludedExtensions', function () {
-
-    it('should return the excluded file extensions based on the user\'s selected options', function () {
-      newCommand.__get__('getExcludedExtensions')({
-        preprocessorChoice: 'sass',
-        templateLangChoice: 'jade'
-      }).should.eql(['.less', '.ejs']);
-    });
-  });
-
   describe('getThemeData', function () {
 
     describe('if the data in the cabin.json is formatted correctly', function () {
