@@ -1,4 +1,4 @@
-// TODO: Test setPreproccesor and setTemplateEngine with wrong inputs like stylus
+// TODO: Test setCSSPreproccesor and setTemplateEngine with wrong inputs like stylus
 //and haml
 
 var Config = require('../lib/config.js');
@@ -8,14 +8,14 @@ require('should');
 describe('Config', function () {
   'use strict';
 
-  describe('Config#setPreproccesor', function () {
+  describe('Config#setCSSPreproccesor', function () {
 
     describe('with Sass preprocessor', function () {
       var siteConfig;
 
       before(function () {
         siteConfig = new Config();
-        siteConfig.setPreproccesor('Sass');
+        siteConfig.setCSSPreproccesor('Sass');
       });
 
       it('should set the preprocessorTask to `compass`', function () {
@@ -37,7 +37,7 @@ describe('Config', function () {
 
       before(function () {
         siteConfig = new Config();
-        siteConfig.setPreproccesor('Less');
+        siteConfig.setCSSPreproccesor('Less');
       });
 
       it('should set the preprocessorTask to `less`', function () {
