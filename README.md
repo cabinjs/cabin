@@ -43,6 +43,8 @@ The goal is to test any new features in the integration test file and test any c
 
 # Changelog
 
+**0.1.7** - Added Windows support, preprocessor and template engine CLI flags, and support for additional theme location formats (GitHub URLs).
+
 **0.1.6** - Use themes' package.json file to determine the grunt-pages version rather than the gruntPagesVersion property in the cabin.json.
 
 **0.1.5** - Have `cabin new` download theme's master branch instead of default branch.
