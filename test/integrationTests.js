@@ -97,6 +97,16 @@ describe('the cabin new command', function () {
         });
       });
 
+      it('should render the grunt-pages config based on the selected template engine', function (done) {
+        testOptions({
+          theme: 'test/fixtures/integration/sampleTheme',
+          templateLang: 'ejs',
+          local: true
+        }, function () {
+          fs.readFileSync(siteName + '/Gruntfile.js', 'utf8').should.include('index.ejs');
+          done();
+        });
+      });
     });
 
     describe('when selecting the Sass or LESS style preprocessor', function () {
