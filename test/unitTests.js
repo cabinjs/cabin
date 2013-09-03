@@ -39,12 +39,12 @@ describe('cabin new', function () {
       newCommand.__set__('invalidThemePrompt', prompt.promptFunction);
 
       it('should prompt the user to file an issue on the theme\'s GitHub repo when the cabin.json doesn\'t specify a template language', function () {
-        newCommand.__get__('getThemeData')('testTheme', 'test/fixtures/unit/json/badData/missingSupportedTemplateLang');
+        newCommand.__get__('getThemeData')('testTheme', 'test/fixtures/unit/json/badData/missingSupportedTemplateEngine');
         promptSpy.lastCall.args.should.eql(['testTheme']);
       });
 
       it('should prompt the user to file an issue on the theme\'s GitHub repo when the cabin.json doesn\'t specify a preprocessor', function () {
-        newCommand.__get__('getThemeData')('testTheme', 'test/fixtures/unit/json/badData/missingSupportedPreprocessor');
+        newCommand.__get__('getThemeData')('testTheme', 'test/fixtures/unit/json/badData/missingSupportedCSSPreprocessor');
         promptSpy.lastCall.args.should.eql(['testTheme']);
       });
 
