@@ -5,7 +5,7 @@ var program = require('commander');
 module.exports = function (argv) {
   program
     .version(require('./package.json').version)
-    .option('-t, --templateLang [templateLang]',  'Use a local Cabin theme')
+    .option('-t, --templateLang [templateLang]',  'Specify a template engine')
     .option('-p, --preprocessor [preprocessor]',  'Specify a preprocessor')
     .option('-l, --local',  'Use a local Cabin theme');
 
