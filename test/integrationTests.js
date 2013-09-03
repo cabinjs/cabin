@@ -1,16 +1,15 @@
 'use strict';
 var fs = require('fs');
+var spawn = require('child_process').spawn;
 
 var _ = require('lodash');
 var rewire = require('rewire');
 require('should');
-var rewire = require('rewire');
 var sinon = require('sinon');
 var wrench = require('wrench');
 
 var cabinNew = rewire('../lib/new.js');
 var siteName = 'testSite';
-var themeFolder = '.theme';
 
 describe('the cabin new command', function () {
 
@@ -24,53 +23,63 @@ describe('the cabin new command', function () {
     if (fs.existsSync(siteName)) {
       wrench.rmdirSyncRecursive(siteName);
     }
-
-    if (fs.existsSync(themeFolder)) {
-      wrench.rmdirSyncRecursive(themeFolder);
-    }
   });
 
   // Don't run tests with remote repos in development to speed up tests
   if (process.env.NODE_ENV !== 'dev') {
-    describe('when installing the default theme from its GitHub repo', function () {
+    describe('when installing a theme from a GitHub repo', function () {
 
-      it('should create a new site generator in the site folder', function (done) {
-        testOptions({}, function (result) {
-          result.length.should.eql(0, result.toString());
+      it('should extract the expected folders into the site destination folder', function (done) {
+        testOptions({}, function () {
+          fs.existsSync(siteName + '/src').should.be.ok;
+          fs.existsSync(siteName + '/posts').should.be.ok;
           done();
         });
       });
     });
 
-    describe('when attemping to install a non-existant theme', function () {
+    describe('when attemping to install a theme from a non-existent repo', function () {
 
-      it('should log an error that the theme doesn\'t exist', function (done) {
+      it('should exit with a status code of 1 and log an error that the theme doesn\'t exist', function (done) {
         var consoleSpy = sinon.stub(console, 'log');
-        sinon.stub(process, 'exit', function () { processExitStub(); });
-        testOptions({ theme: 'bad/reponame32432423', log: true });
 
-        function processExitStub() {
+        sinon.stub(process, 'exit', function (exitCode) {
+          exitCode.should.eql(1);
           consoleSpy.lastCall.args[0].should.include('No theme found at https://github.com/');
           console.log.restore();
           process.exit.restore();
           done();
-        }
+        });
+
+        testOptions({
+          theme: 'bad/reponame32432423',
+          log: true
+        });
+      });
+    });
+
+    describe('when installing a theme from the local filesystem', function () {
+
+      it('should create a new site generator in the site folder and successfully build a site with the `grunt build` command', function (done) {
+        testOptions({
+          theme: 'test/fixtures/candyTheme',
+          local: true,
+          noInstall: false
+        }, function () {
+          var gruntBuildProcess = spawn('grunt', ['build'], {
+            cwd: siteName
+          });
+
+          gruntBuildProcess.on('close', function () {
+            fs.existsSync(siteName + '/dist/blog/posts/Candy-Theme.html').should.be.ok;
+            fs.existsSync(siteName + '/dist/styles/main.css').should.be.ok;
+            fs.existsSync(siteName + '/dist/index.html').should.be.ok;
+            done();
+          });
+        });
       });
     });
   }
-
-  describe('when installing a theme from the local filesystem', function () {
-
-    it('should create a new site generator in the site folder', function (done) {
-      testOptions({
-        theme: 'test/fixtures/candyTheme',
-        local: true
-      }, function (result) {
-        result.length.should.eql(0, result.toString());
-        done();
-      });
-    });
-  });
 
   describe('when installing any theme', function () {
 
@@ -127,7 +136,6 @@ describe('the cabin new command', function () {
         });
       });
     });
-
 
     it('should set the grunt-pages version to the version in the package.json', function (done) {
       testOptions({
