@@ -8,12 +8,12 @@ var newCommand = rewire('../lib/new.js');
 
 describe('cabin new', function () {
 
-  describe('getThemeData', function () {
+  describe('getThemeConfig', function () {
 
     describe('if the data in the cabin.json is formatted correctly', function () {
 
       it('should return the extracted theme data if the package.json lists grunt-pages as a dev dependency', function () {
-        newCommand.__get__('getThemeData')('testTheme', 'test/fixtures/unit/json/goodData/gruntPagesDevDep').should.eql({
+        newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/goodData/gruntPagesDevDep').should.eql({
           style: ['Sass'],
           template: ['Jade'],
           gruntPagesVersion: '0.5.0'
@@ -21,7 +21,7 @@ describe('cabin new', function () {
       });
 
       it('should return the extracted theme data if the package.json lists grunt-pages as a hard dependency', function () {
-        newCommand.__get__('getThemeData')('testTheme', 'test/fixtures/unit/json/goodData/gruntPagesHardDep').should.eql({
+        newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/goodData/gruntPagesHardDep').should.eql({
           style: ['Sass'],
           template: ['Jade'],
           gruntPagesVersion: '0.5.0'
@@ -39,17 +39,17 @@ describe('cabin new', function () {
       newCommand.__set__('invalidThemePrompt', prompt.promptFunction);
 
       it('should prompt the user to file an issue on the theme\'s GitHub repo when the cabin.json doesn\'t specify a template language', function () {
-        newCommand.__get__('getThemeData')('testTheme', 'test/fixtures/unit/json/badData/missingSupportedTemplateEngine');
+        newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/missingSupportedTemplateEngine');
         promptSpy.lastCall.args.should.eql(['testTheme']);
       });
 
       it('should prompt the user to file an issue on the theme\'s GitHub repo when the cabin.json doesn\'t specify a preprocessor', function () {
-        newCommand.__get__('getThemeData')('testTheme', 'test/fixtures/unit/json/badData/missingSupportedCSSPreprocessor');
+        newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/missingSupportedCSSPreprocessor');
         promptSpy.lastCall.args.should.eql(['testTheme']);
       });
 
       it('should prompt the user to file an issue on the theme\'s GitHub repo when the package.json doesn\'t have grunt-pages as a dependency', function () {
-        newCommand.__get__('getThemeData')('testTheme', 'test/fixtures/unit/json/badData/missingGruntPagesDependency');
+        newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/missingGruntPagesDependency');
         promptSpy.lastCall.args.should.eql(['testTheme']);
       });
     });

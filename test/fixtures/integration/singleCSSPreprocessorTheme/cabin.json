@@ -1,20 +1,20 @@
 {
-  "style": [
+  "CSSPreprocessor": [
     "Sass"
   ],
-  "template": [
+  "templateEngine": [
     "Jade",
     "EJS"
   ],
   "gruntPagesVersion": "~0.2.0",
-  "gruntPages": {
+  "gruntPagesConfig": {
     "options": {
       "pageSrc": "src/pages"
     },
     "posts": {
       "src": "posts",
       "dest": "dist",
-      "layout": "src/layouts/post.<%= templateLang %>",
+      "layout": "src/layouts/post.<%= templateEngine %>",
       "url": "blog/posts/:title"
     }
   }
