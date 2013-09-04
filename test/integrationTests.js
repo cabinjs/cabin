@@ -71,9 +71,8 @@ describe('the cabin new command', function () {
           });
 
           gruntBuildProcess.on('close', function () {
-            fs.existsSync(siteName + '/dist/blog/posts/Candy-Theme.html').should.be.ok;
+            fs.existsSync(siteName + '/dist/blog/posts/My-cool-blog-post.html').should.be.ok;
             fs.existsSync(siteName + '/dist/styles/main.css').should.be.ok;
-            fs.existsSync(siteName + '/dist/index.html').should.be.ok;
             done();
           });
         });
@@ -103,7 +102,7 @@ describe('the cabin new command', function () {
           templateLang: 'ejs',
           local: true
         }, function () {
-          fs.readFileSync(siteName + '/Gruntfile.js', 'utf8').should.include('index.ejs');
+          fs.readFileSync(siteName + '/Gruntfile.js', 'utf8').should.include('post.ejs');
           done();
         });
       });
@@ -199,55 +198,22 @@ function checkGeneratedFiles(options) {
     'Gruntfile.js',
     'package.json',
     'posts',
-    'src',
-    'posts/candyTheme.md',
     'posts/samplePost.md',
+    'src',
     'src/layouts',
     'src/pages',
     'src/images',
     'src/images/cabin.png',
+    'src/layouts/post.' + options.templateLang,
     'src/pages/blog',
     'src/pages/index.' + options.templateLang,
-    'src/pages/archives.' + options.templateLang,
-    'src/pages/about.' + options.templateLang,
-    'src/pages/projects.' + options.templateLang,
     'src/scripts',
-    'src/scripts/jquery.js',
     'src/scripts/main.js',
     'src/styles',
     'src/styles/main.' + options.preprocessor,
-    'src/styles/_base.' + options.preprocessor,
-    'src/styles/_icons.' + options.preprocessor,
-    'src/styles/_nav.' + options.preprocessor,
-    'src/styles/_post.' + options.preprocessor,
-    'src/styles/solarized-dark.scss',
-    'src/styles/normalize.scss',
-    'src/styles/CandyIcoMoonSession.json',
     'src/styles/fonts',
-    'src/styles/fonts/icomoon.dev.svg',
-    'src/styles/fonts/icomoon.eot',
-    'src/styles/fonts/icomoon.svg',
-    'src/styles/fonts/icomoon.ttf',
     'src/styles/fonts/icomoon.woff'
   ];
-
-  if (options.templateLang === 'jade') {
-    expectedFiles = expectedFiles.concat([
-      'src/layouts/base.jade',
-      'src/layouts/post.jade',
-      'src/layouts/_social.jade'
-    ]);
-  } else if (options.templateLang === 'ejs') {
-    expectedFiles = expectedFiles.concat([
-      'src/layouts/_header.ejs',
-      'src/layouts/_footer.ejs',
-      'src/layouts/_post.ejs',
-      'src/layouts/_social.ejs',
-      'src/layouts/_postHead.ejs',
-      'src/layouts/post.ejs'
-    ]);
-
-  }
 
   var files = _.filter(wrench.readdirSyncRecursive(siteName), function (filePath) {
     return filePath.indexOf('node_modules') === -1;

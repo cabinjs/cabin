@@ -1,4 +1,8 @@
-<% include _header %>
-<% include _post %>
-<% include _social%>
-<% include _footer %>
+<div class="post-head group">
+  <a href="<%= post.url %>">
+    <h1 class="post-title"><%= post.title %></h1>
+  </a>
+  <h2 class="post-date"><%= [post.date.getUTCFullYear(), post.date.getMonth() + 1, post.date.getDate()].join(' · ') %></h2>
+</div>
+<div class="post-body"><%- post.content %></div>
+

@@ -1,26 +1,6 @@
-extends ../layouts/base
-
-block content
-  each post in posts
-    mixin post(post)
-    h2
-      a(href="/#{post.url}#comments") View comments
-
-  ul.pagination.group
-    - if (pages.length > 1) {
-      - for (var i = 0; i < pages.length; i++) {
-      -   if (pages[i].currentPage) var currentIndex = i;
-      - }
-
-      - for (var j = currentIndex - 3; j < currentIndex + 3; j++) {
-        - var page = pages[j];
-        - if (page) {
-        li
-          - if (page.currentPage) {
-            a.active-page(href="#{page.url}")= j + 1
-          - } else {
-            a(href="#{page.url}")= j + 1
-          - }
-        - }
-      - }
-    - }
+each post in posts
+  .post-head.group
+      a(href="#{post.url}")
+        h1.post-title= post.title
+      h2.post-date!= [post.date.getUTCFullYear(), post.date.getUTCMonth() + 1, post.date.getUTCDate()].join(' &#183; ')
+  .post-body!= post.content

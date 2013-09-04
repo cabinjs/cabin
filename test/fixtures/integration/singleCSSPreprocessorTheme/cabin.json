@@ -1,7 +1,6 @@
 {
   "style": [
-    "Sass",
-    "LESS"
+    "Sass"
   ],
   "template": [
     "Jade",
