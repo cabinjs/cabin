@@ -62,7 +62,7 @@ describe('the cabin new command', function () {
 
       it('should create a new site generator in the site folder and successfully build a site with the `grunt build` command', function (done) {
         testOptions({
-          theme: 'test/fixtures/candyTheme',
+          theme: 'test/fixtures/integration/sampleTheme',
           local: true,
           noInstall: false
         }, function () {
@@ -71,9 +71,8 @@ describe('the cabin new command', function () {
           });
 
           gruntBuildProcess.on('close', function () {
-            fs.existsSync(siteName + '/dist/blog/posts/Candy-Theme.html').should.be.ok;
+            fs.existsSync(siteName + '/dist/blog/posts/My-cool-blog-post.html').should.be.ok;
             fs.existsSync(siteName + '/dist/styles/main.css').should.be.ok;
-            fs.existsSync(siteName + '/dist/index.html').should.be.ok;
             done();
           });
         });
@@ -83,11 +82,11 @@ describe('the cabin new command', function () {
 
   describe('when installing any theme', function () {
 
-    describe('when selecting the Jade or EJS template language', function () {
+    describe('when selecting the Jade or EJS template engine', function () {
 
-      it('should only copy that template language\'s theme files to the site folder', function (done) {
+      it('should only copy that template engine\'s theme files to the site folder', function (done) {
         testOptions({
-          theme: 'test/fixtures/candyTheme',
+          theme: 'test/fixtures/integration/sampleTheme',
           templateLang: 'ejs',
           local: true
         }, function () {
@@ -97,13 +96,23 @@ describe('the cabin new command', function () {
         });
       });
 
+      it('should render the grunt-pages config based on the selected template engine', function (done) {
+        testOptions({
+          theme: 'test/fixtures/integration/sampleTheme',
+          templateLang: 'ejs',
+          local: true
+        }, function () {
+          fs.readFileSync(siteName + '/Gruntfile.js', 'utf8').should.include('post.ejs');
+          done();
+        });
+      });
     });
 
     describe('when selecting the Sass or LESS style preprocessor', function () {
 
-      it('should only copy that preprocessor language\'s theme files to the site folder', function (done) {
+      it('should only copy that CSS preprocessor\'s theme files to the site folder', function (done) {
         testOptions({
-          theme: 'test/fixtures/candyTheme',
+          theme: 'test/fixtures/integration/sampleTheme',
           preprocessor: 'sass',
           local: true
         }, function () {
@@ -113,9 +122,9 @@ describe('the cabin new command', function () {
         });
       });
 
-      it('should have that preprocessor\'s grunt task listed as a devDependency', function (done) {
+      it('should have that CSS preprocessor\'s grunt task listed as a devDependency', function (done) {
         testOptions({
-          theme: 'test/fixtures/candyTheme',
+          theme: 'test/fixtures/integration/sampleTheme',
           local: true,
           preprocessor: 'sass'
         }, function () {
@@ -124,9 +133,9 @@ describe('the cabin new command', function () {
         });
       });
 
-      it('should configure that preprocessor\'s grunt task in the Gruntfile', function (done) {
+      it('should configure that CSS preprocessor\'s grunt task in the Gruntfile', function (done) {
         testOptions({
-          theme: 'test/fixtures/candyTheme',
+          theme: 'test/fixtures/integration/sampleTheme',
           local: true,
           preprocessor: 'sass'
         }, function () {
@@ -139,11 +148,11 @@ describe('the cabin new command', function () {
 
     it('should set the grunt-pages version to the version in the package.json', function (done) {
       testOptions({
-        theme: 'test/fixtures/candyTheme',
+        theme: 'test/fixtures/integration/sampleTheme',
         local: true
       }, function () {
         JSON.parse(fs.readFileSync(siteName + '/package.json', 'utf8')).devDependencies['grunt-pages'].should.eql(
-        JSON.parse(fs.readFileSync('test/fixtures/candyTheme/package.json', 'utf8')).devDependencies['grunt-pages']);
+        JSON.parse(fs.readFileSync('test/fixtures/integration/sampleTheme/package.json', 'utf8')).devDependencies['grunt-pages']);
         done();
       });
     });
@@ -189,55 +198,22 @@ function checkGeneratedFiles(options) {
     'Gruntfile.js',
     'package.json',
     'posts',
-    'src',
-    'posts/candyTheme.md',
     'posts/samplePost.md',
+    'src',
     'src/layouts',
     'src/pages',
     'src/images',
     'src/images/cabin.png',
+    'src/layouts/post.' + options.templateLang,
     'src/pages/blog',
     'src/pages/index.' + options.templateLang,
-    'src/pages/archives.' + options.templateLang,
-    'src/pages/about.' + options.templateLang,
-    'src/pages/projects.' + options.templateLang,
     'src/scripts',
-    'src/scripts/jquery.js',
     'src/scripts/main.js',
     'src/styles',
     'src/styles/main.' + options.preprocessor,
-    'src/styles/_base.' + options.preprocessor,
-    'src/styles/_icons.' + options.preprocessor,
-    'src/styles/_nav.' + options.preprocessor,
-    'src/styles/_post.' + options.preprocessor,
-    'src/styles/solarized-dark.scss',
-    'src/styles/normalize.scss',
-    'src/styles/CandyIcoMoonSession.json',
     'src/styles/fonts',
-    'src/styles/fonts/icomoon.dev.svg',
-    'src/styles/fonts/icomoon.eot',
-    'src/styles/fonts/icomoon.svg',
-    'src/styles/fonts/icomoon.ttf',
     'src/styles/fonts/icomoon.woff'
   ];
-
-  if (options.templateLang === 'jade') {
-    expectedFiles = expectedFiles.concat([
-      'src/layouts/base.jade',
-      'src/layouts/post.jade',
-      'src/layouts/_social.jade'
-    ]);
-  } else if (options.templateLang === 'ejs') {
-    expectedFiles = expectedFiles.concat([
-      'src/layouts/_header.ejs',
-      'src/layouts/_footer.ejs',
-      'src/layouts/_post.ejs',
-      'src/layouts/_social.ejs',
-      'src/layouts/_postHead.ejs',
-      'src/layouts/post.ejs'
-    ]);
-
-  }
 
   var files = _.filter(wrench.readdirSyncRecursive(siteName), function (filePath) {
     return filePath.indexOf('node_modules') === -1;
