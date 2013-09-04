@@ -1,0 +1,6 @@
+each post in posts
+  .post-head.group
+      a(href="#{post.url}")
+        h1.post-title= post.title
+      h2.post-date!= [post.date.getUTCFullYear(), post.date.getUTCMonth() + 1, post.date.getUTCDate()].join(' &#183; ')
+  .post-body!= post.content

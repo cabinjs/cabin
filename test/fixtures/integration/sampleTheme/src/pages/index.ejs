@@ -1,0 +1,10 @@
+<% posts.forEach(function(post){ %>
+  <% include ../layouts/_post %>
+  <div class="comments">
+    <a href="<%= data.baseUrl %><%= post.url %>#comments">
+      <span class="icon-bubbles"></span>
+      Comments
+    </a>
+  </div>
+  </h2>
+<% }) %>

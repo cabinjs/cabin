@@ -1,0 +1,12 @@
+doctype 5
+html
+  head
+    meta(charset="utf8")
+    meta(name="viewport", content="width=device-width")
+  body
+block content
+  .post-body!= post.content
+  .post-head.group
+    a(href="/#{post.url}")
+      h1.post-title= post.title
+    h2.post-date!= [post.date.getUTCFullYear(), post.date.getMonth() + 1, post.date.getDate()].join(' &#183; ')

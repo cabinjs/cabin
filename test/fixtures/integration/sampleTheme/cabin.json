@@ -1,0 +1,22 @@
+{
+  "style": [
+    "Sass",
+    "LESS"
+  ],
+  "template": [
+    "Jade",
+    "EJS"
+  ],
+  "gruntPagesVersion": "~0.2.0",
+  "gruntPages": {
+    "options": {
+      "pageSrc": "src/pages"
+    },
+    "posts": {
+      "src": "posts",
+      "dest": "dist",
+      "layout": "src/layouts/post.<%= templateLang %>",
+      "url": "blog/posts/:title"
+    }
+  }
+}
