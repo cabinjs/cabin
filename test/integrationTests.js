@@ -87,7 +87,7 @@ describe('the cabin new command', function () {
       it('should only copy that template engine\'s theme files to the site folder', function (done) {
         testOptions({
           theme: 'test/fixtures/integration/sampleTheme',
-          templateLang: 'ejs',
+          templateEngine: 'ejs',
           local: true
         }, function () {
           fs.readFileSync(siteName + '/src/pages/index.ejs').should.be.ok;
@@ -99,7 +99,7 @@ describe('the cabin new command', function () {
       it('should render the grunt-pages config based on the selected template engine', function (done) {
         testOptions({
           theme: 'test/fixtures/integration/sampleTheme',
-          templateLang: 'ejs',
+          templateEngine: 'ejs',
           local: true
         }, function () {
           fs.readFileSync(siteName + '/Gruntfile.js', 'utf8').should.include('post.ejs');
@@ -113,7 +113,7 @@ describe('the cabin new command', function () {
       it('should only copy that CSS preprocessor\'s theme files to the site folder', function (done) {
         testOptions({
           theme: 'test/fixtures/integration/sampleTheme',
-          preprocessor: 'sass',
+          CSSPreprocessor: 'sass',
           local: true
         }, function () {
           fs.readFileSync(siteName + '/src/styles/main.scss').should.be.ok;
@@ -126,7 +126,7 @@ describe('the cabin new command', function () {
         testOptions({
           theme: 'test/fixtures/integration/sampleTheme',
           local: true,
-          preprocessor: 'sass'
+          CSSPreprocessor: 'sass'
         }, function () {
           JSON.parse(fs.readFileSync(siteName + '/package.json', 'utf8')).devDependencies['grunt-contrib-compass'].should.be.ok;
           done();
@@ -137,7 +137,7 @@ describe('the cabin new command', function () {
         testOptions({
           theme: 'test/fixtures/integration/sampleTheme',
           local: true,
-          preprocessor: 'sass'
+          CSSPreprocessor: 'sass'
         }, function () {
           fs.readFileSync(siteName + '/Gruntfile.js', 'utf8')
             .should.include('compass');
@@ -169,8 +169,8 @@ function testOptions(options, callback) {
   options = _.defaults(options, {
     siteName: siteName,
     theme: 'colinwren/Candy',
-    templateLang: 'jade',
-    preprocessor: 'sass',
+    templateEngine: 'jade',
+    CSSPreprocessor: 'sass',
     noInstall: true,
     local: false
   });
@@ -190,8 +190,8 @@ function testOptions(options, callback) {
 
 function checkGeneratedFiles(options) {
 
-  if (options.preprocessor === 'sass') {
-    options.preprocessor = 'scss';
+  if (options.CSSPreprocessor === 'sass') {
+    options.CSSPreprocessor = 'scss';
   }
 
   var expectedFiles = [
@@ -204,13 +204,13 @@ function checkGeneratedFiles(options) {
     'src/pages',
     'src/images',
     'src/images/cabin.png',
-    'src/layouts/post.' + options.templateLang,
+    'src/layouts/post.' + options.templateEngine,
     'src/pages/blog',
-    'src/pages/index.' + options.templateLang,
+    'src/pages/index.' + options.templateEngine,
     'src/scripts',
     'src/scripts/main.js',
     'src/styles',
-    'src/styles/main.' + options.preprocessor,
+    'src/styles/main.' + options.CSSPreprocessor,
     'src/styles/fonts',
     'src/styles/fonts/icomoon.woff'
   ];
