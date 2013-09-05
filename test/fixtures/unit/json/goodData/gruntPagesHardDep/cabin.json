@@ -1,4 +1,5 @@
 {
-  "style": ["Sass"],
-  "template": ["Jade"]
+  "CSSPreprocessor": ["Sass"],
+  "templateEngine": ["Jade"],
+  "gruntPagesConfig": {}
 }
