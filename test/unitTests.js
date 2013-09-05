@@ -14,17 +14,19 @@ describe('cabin new', function () {
 
       it('should return the extracted theme data if the package.json lists grunt-pages as a dev dependency', function () {
         newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/goodData/gruntPagesDevDep').should.eql({
-          style: ['Sass'],
-          template: ['Jade'],
-          gruntPagesVersion: '0.5.0'
+          CSSPreprocessor: ['Sass'],
+          templateEngine: ['Jade'],
+          gruntPagesVersion: '0.5.0',
+          gruntPagesConfig: {}
         });
       });
 
       it('should return the extracted theme data if the package.json lists grunt-pages as a hard dependency', function () {
         newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/goodData/gruntPagesHardDep').should.eql({
-          style: ['Sass'],
-          template: ['Jade'],
-          gruntPagesVersion: '0.5.0'
+          CSSPreprocessor: ['Sass'],
+          templateEngine: ['Jade'],
+          gruntPagesVersion: '0.5.0',
+          gruntPagesConfig: {}
         });
       });
     });
@@ -38,19 +40,29 @@ describe('cabin new', function () {
       var promptSpy = sinon.stub(prompt, 'promptFunction');
       newCommand.__set__('invalidThemePrompt', prompt.promptFunction);
 
-      it('should prompt the user to file an issue on the theme\'s GitHub repo when the cabin.json doesn\'t specify a template language', function () {
-        newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/missingSupportedTemplateEngine');
-        promptSpy.lastCall.args.should.eql(['testTheme']);
+      it('should prompt the user to file an issue on the theme\'s GitHub repo when the cabin.json can\'t be parsed', function () {
+        newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/malformedCabinJSON');
+        promptSpy.lastCall.args.should.eql(['testTheme', 'Could not parse cabin.json or package.json.']);
       });
 
-      it('should prompt the user to file an issue on the theme\'s GitHub repo when the cabin.json doesn\'t specify a preprocessor', function () {
+      it('should prompt the user to file an issue on the theme\'s GitHub repo when the cabin.json doesn\'t specify a grunt-pages configuration', function () {
+        newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/missingGruntPagesConfig');
+        promptSpy.lastCall.args.should.eql(['testTheme', 'Missing gruntPagesConfig property in cabin.json.']);
+      });
+
+      it('should prompt the user to file an issue on the theme\'s GitHub repo when the cabin.json doesn\'t specify a template engine', function () {
+        newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/missingSupportedTemplateEngine');
+        promptSpy.lastCall.args.should.eql(['testTheme', 'Missing templateEngine property in cabin.json.']);
+      });
+
+      it('should prompt the user to file an issue on the theme\'s GitHub repo when the cabin.json doesn\'t specify a CSS preprocessor', function () {
         newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/missingSupportedCSSPreprocessor');
-        promptSpy.lastCall.args.should.eql(['testTheme']);
+        promptSpy.lastCall.args.should.eql(['testTheme', 'Missing CSSPreprocessor property in cabin.json.']);
       });
 
       it('should prompt the user to file an issue on the theme\'s GitHub repo when the package.json doesn\'t have grunt-pages as a dependency', function () {
         newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/missingGruntPagesDependency');
-        promptSpy.lastCall.args.should.eql(['testTheme']);
+        promptSpy.lastCall.args.should.eql(['testTheme', 'Missing grunt-pages dependency in package.json.']);
       });
     });
   });
