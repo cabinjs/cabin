@@ -43,6 +43,8 @@ The goal is to test any new features in the integration test file and test any c
 
 # Changelog
 
+**0.2.0** - Project wide naming convention standardization, added `--noInstall` CLI flag
+
 **0.1.8** - Corrected `templateLang` flag description, fixed bug with single template engine in cabin.json.
 
 **0.1.7** - Added Windows support, preprocessor and template engine CLI flags, and support for additional theme location formats (GitHub URLs).
