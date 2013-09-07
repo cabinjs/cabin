@@ -7,7 +7,8 @@ module.exports = function (argv) {
     .version(require('./package.json').version)
     .option('-t, --templateEngine [templateEngine]', 'Specify a template engine')
     .option('-p, --CSSPreprocessor [CSSPreprocessor]', 'Specify a CSS preprocessor')
-    .option('-l, --local',  'Use a local Cabin theme');
+    .option('-l, --local',  'Use a local Cabin theme')
+    .option('-n, --noInstall',  'Don\'t install npm modules after scaffolding');
 
   program
     .command('new <siteName> [theme]')
@@ -18,7 +19,8 @@ module.exports = function (argv) {
         theme: program.args[1] || 'colinwren/Candy',
         local: program.local,
         templateEngine: program.templateEngine,
-        CSSPreprocessor: program.CSSPreprocessor
+        CSSPreprocessor: program.CSSPreprocessor,
+        noInstall: program.noInstall
       });
     });
 
