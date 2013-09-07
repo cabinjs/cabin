@@ -6,6 +6,7 @@ var sinon = require('sinon');
 
 var newCommand = rewire('../lib/new.js');
 var utils = rewire('../lib/utils.js');
+var config = require('../lib/config.js');
 
 describe('cabin lib', function () {
 
@@ -100,6 +101,145 @@ describe('cabin lib', function () {
           choices: ['optionValue', 'optionValue2']
         });
         promptSpy.lastCall.args[0].choices.should.eql(['optionValue', 'optionValue2']);
+      });
+    });
+  });
+
+  describe('config', function () {
+
+    describe('setCSSPreproccesor', function () {
+
+      describe('with Sass CSS preprocessor', function () {
+        var siteConfig;
+
+        before(function () {
+          siteConfig = config();
+          siteConfig.setCSSPreproccesor('Sass');
+        });
+
+        it('should set the preprocessorTask to `compass`', function () {
+          siteConfig.CSSPreprocessorTask.should.equal('compass');
+        });
+
+        it('should not add sass file extensions to excludedFileExtensions', function () {
+          siteConfig.excludedFileExtensions.should.not.include('.sass');
+          siteConfig.excludedFileExtensions.should.not.include('.scss');
+        });
+
+        it('should add less file extensions to excludedFileExtensions', function () {
+          siteConfig.excludedFileExtensions.should.include('.less');
+        });
+      });
+
+      describe('with Less CSS preprocessor', function () {
+        var siteConfig;
+
+        before(function () {
+          siteConfig = config();
+          siteConfig.setCSSPreproccesor('Less');
+        });
+
+        it('should set the preprocessorTask to `less`', function () {
+          siteConfig.CSSPreprocessorTask.should.equal('less');
+        });
+
+        it('should not add less file extensions to excludedFileExtensions', function () {
+          siteConfig.excludedFileExtensions.should.not.include('.less');
+        });
+
+        it('should add sass file extensions to excludedFileExtensions', function () {
+          siteConfig.excludedFileExtensions.should.include('.sass');
+          siteConfig.excludedFileExtensions.should.include('.scss');
+        });
+      });
+
+      describe('with an unsupported preprocessor', function () {
+        var siteConfig;
+
+        before(function () {
+          siteConfig = config();
+        });
+
+        it('should tell the user that the preprocessor isn\'t supported and exit', function (done) {
+          var consoleSpy = sinon.stub(console, 'log');
+
+          sinon.stub(process, 'exit', function (exitCode) {
+            exitCode.should.eql(1);
+            consoleSpy.lastCall.args[0].should.include(' is not a supported CSS preprocessor, please let the theme author know');
+            console.log.restore();
+            process.exit.restore();
+            done();
+          });
+
+          siteConfig.setCSSPreproccesor('Stylus');
+        });
+      });
+    });
+
+    describe('setTemplateEngine', function () {
+
+      describe('with Jade template engine', function () {
+        var siteConfig;
+
+        before(function () {
+          siteConfig = config();
+          siteConfig.setTemplateEngine('Jade');
+        });
+
+        it('should set the templateEngine to `jade`', function () {
+          siteConfig.templateEngine.should.equal('jade');
+        });
+
+        it('should not add jade file extensions to excludedFileExtensions', function () {
+          siteConfig.excludedFileExtensions.should.not.include('.jade');
+        });
+
+        it('should add ejs file extensions to excludedFileExtensions', function () {
+          siteConfig.excludedFileExtensions.should.include('.ejs');
+        });
+      });
+
+      describe('with EJS template engine', function () {
+        var siteConfig;
+
+        before(function () {
+          siteConfig = config();
+          siteConfig.setTemplateEngine('EJS');
+        });
+
+        it('should set the templateEngine to `ejs`', function () {
+          siteConfig.templateEngine.should.equal('ejs');
+        });
+
+        it('should not add ejs file extensions to excludedFileExtensions', function () {
+          siteConfig.excludedFileExtensions.should.not.include('.ejs');
+        });
+
+        it('should add jade file extensions to excludedFileExtensions', function () {
+          siteConfig.excludedFileExtensions.should.include('.jade');
+        });
+      });
+
+      describe('with an unsupported template engine', function () {
+        var siteConfig;
+
+        before(function () {
+          siteConfig = config();
+        });
+
+        it('should tell the user that the template engine isn\'t supported and exit', function (done) {
+          var consoleSpy = sinon.stub(console, 'log');
+
+          sinon.stub(process, 'exit', function (exitCode) {
+            exitCode.should.eql(1);
+            consoleSpy.lastCall.args[0].should.include(' is not a supported template template engine, please let the theme author know');
+            console.log.restore();
+            process.exit.restore();
+            done();
+          });
+
+          siteConfig.setTemplateEngine('Haml');
+        });
       });
     });
   });
