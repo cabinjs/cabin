@@ -64,6 +64,29 @@ describe('cabin lib', function () {
           promptSpy.lastCall.args.should.eql(['testTheme', 'Missing CSSPreprocessor property in cabin.json.']);
         });
 
+        it('should prompt the user to file an issue on the theme\'s GitHub repo when the package.json doesn\'t specify cabin as a dependency', function () {
+          newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/missingCabinDependency');
+          promptSpy.lastCall.args.should.eql(['testTheme', 'Missing Cabin dependency in package.json.']);
+        });
+
+        it('should prompt the user to file an issue on the theme\'s GitHub repo when the package.json specifies an older minor cabin version as a dependency', function () {
+          newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/olderCabinVersion');
+          promptSpy.lastCall.args.should.eql(['testTheme', 'Theme compatible with older Cabin version.']);
+        });
+
+        it('should prompt the user to file an issue on the theme\'s GitHub repo when the package.json specifies a newer cabin minor version as a dependency', function (done) {
+          var consoleSpy = sinon.stub(console, 'log');
+          sinon.stub(process, 'exit', function (exitCode) {
+            exitCode.should.eql(1);
+            consoleSpy.lastCall.args[0].should.include('Theme compatible with newer Cabin version, please update Cabin with the following command:');
+            console.log.restore();
+            process.exit.restore();
+            done();
+          });
+
+          newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/newerCabinVersion');
+        });
+
         it('should prompt the user to file an issue on the theme\'s GitHub repo when the package.json doesn\'t have grunt-pages as a dependency', function () {
           newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/missingGruntPagesDependency');
           promptSpy.lastCall.args.should.eql(['testTheme', 'Missing grunt-pages dependency in package.json.']);
