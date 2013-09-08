@@ -6,6 +6,7 @@ var _ = require('lodash');
 var rewire = require('rewire');
 require('should');
 var sinon = require('sinon');
+var suppose = require('suppose');
 var wrench = require('wrench');
 
 var cabinNew = rewire('../lib/new.js');
@@ -85,15 +86,17 @@ describe('the cabin new command', function () {
     describe('when selecting the Jade or EJS template engine', function () {
 
       it('should only copy that template engine\'s theme files to the site folder', function (done) {
-        testOptions({
-          theme: 'test/fixtures/integration/sampleTheme',
-          templateEngine: 'ejs',
-          local: true
-        }, function () {
-          fs.readFileSync(siteName + '/src/pages/index.ejs').should.be.ok;
-          fs.existsSync(siteName + '/src/pages/index.jade').should.not.be.ok;
-          done();
-        });
+
+        suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-p', 'sass'])
+          .on(/template engine/).respond('\n')
+          .error(function (err) {
+            console.log(err.message);
+          })
+          .end(function () {
+            fs.readFileSync(siteName + '/src/pages/index.jade').should.be.ok;
+            fs.existsSync(siteName + '/src/pages/index.ejs').should.not.be.ok;
+            done();
+          });
       });
 
       it('should render the grunt-pages config based on the selected template engine', function (done) {
@@ -111,15 +114,16 @@ describe('the cabin new command', function () {
     describe('when selecting the Sass or LESS style preprocessor', function () {
 
       it('should only copy that CSS preprocessor\'s theme files to the site folder', function (done) {
-        testOptions({
-          theme: 'test/fixtures/integration/sampleTheme',
-          CSSPreprocessor: 'sass',
-          local: true
-        }, function () {
-          fs.readFileSync(siteName + '/src/styles/main.scss').should.be.ok;
-          fs.existsSync(siteName + '/src/styles/main.less').should.not.be.ok;
-          done();
-        });
+        suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-t', 'jade'])
+          .on(/CSS preprocessor/).respond('\n')
+          .error(function (err) {
+            console.log(err.message);
+          })
+          .end(function () {
+            fs.readFileSync(siteName + '/src/styles/main.scss').should.be.ok;
+            fs.existsSync(siteName + '/src/styles/main.less').should.not.be.ok;
+            done();
+          });
       });
 
       it('should have that CSS preprocessor\'s grunt task listed as a devDependency', function (done) {
