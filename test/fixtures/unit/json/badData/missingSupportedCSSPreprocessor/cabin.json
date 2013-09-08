@@ -1,3 +1,4 @@
 {
-  "templateEngine": ["Jade"]
+  "templateEngine": ["Jade"],
+  "gruntPagesConfig": {}
 }
