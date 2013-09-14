@@ -26,7 +26,7 @@
     "inquirer": "~0.3.0",
     "win-spawn": "~2.0.0",
     "request": "~2.27.0",
-    "unzip": "~0.1.9"
+    "adm-zip": "~0.4.3"
   },
   "devDependencies": {
     "mocha": "*",

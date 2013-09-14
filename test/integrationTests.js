@@ -39,25 +39,25 @@ describe('the cabin new command', function () {
       });
     });
 
-    describe('when attemping to install a theme from a non-existent repo', function () {
+    // describe('when attemping to install a theme from a non-existent repo', function () {
 
-      it('should exit with a status code of 1 and log an error that the theme doesn\'t exist', function (done) {
-        var consoleSpy = sinon.stub(console, 'log');
+    //   it('should exit with a status code of 1 and log an error that the theme doesn\'t exist', function (done) {
+    //     var consoleSpy = sinon.stub(console, 'log');
 
-        sinon.stub(process, 'exit', function (exitCode) {
-          exitCode.should.eql(1);
-          consoleSpy.lastCall.args[0].should.include('No theme found at https://github.com/');
-          console.log.restore();
-          process.exit.restore();
-          done();
-        });
+    //     sinon.stub(process, 'exit', function (exitCode) {
+    //       exitCode.should.eql(1);
+    //       consoleSpy.lastCall.args[0].should.include('No theme found at https://github.com/');
+    //       console.log.restore();
+    //       process.exit.restore();
+    //       done();
+    //     });
 
-        testOptions({
-          theme: 'bad/reponame32432423',
-          log: true
-        });
-      });
-    });
+    //     testOptions({
+    //       theme: 'bad/reponame32432423',
+    //       log: true
+    //     });
+    //   });
+    // });
 
     describe('when installing a theme from the local filesystem', function () {
 
