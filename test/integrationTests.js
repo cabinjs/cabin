@@ -172,7 +172,7 @@ function testOptions(options, callback) {
 
   options = _.defaults(options, {
     siteName: siteName,
-    theme: 'colinwren/Candy',
+    theme: 'CabinJS/Candy',
     templateEngine: 'jade',
     CSSPreprocessor: 'sass',
     noInstall: true,

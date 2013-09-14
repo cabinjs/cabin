@@ -16,7 +16,7 @@ module.exports = function (argv) {
     .action(function () {
       require('./lib/new.js')({
         siteName: program.args[0],
-        theme: program.args[1] || 'colinwren/Candy',
+        theme: program.args[1] || 'CabinJS/Candy',
         local: program.local,
         templateEngine: program.templateEngine,
         CSSPreprocessor: program.CSSPreprocessor,
