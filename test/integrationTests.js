@@ -18,11 +18,17 @@ describe('the cabin new command', function () {
     if (fs.existsSync(siteName)) {
       wrench.rmdirSyncRecursive(siteName);
     }
+    if (fs.existsSync('.theme')) {
+      wrench.rmdirSyncRecursive('.theme');
+    }
   });
 
   afterEach(function () {
     if (fs.existsSync(siteName)) {
       wrench.rmdirSyncRecursive(siteName);
+    }
+    if (fs.existsSync('.theme')) {
+      wrench.rmdirSyncRecursive('.theme');
     }
   });
 
@@ -159,6 +165,21 @@ describe('the cabin new command', function () {
         JSON.parse(fs.readFileSync('test/fixtures/integration/sampleTheme/package.json', 'utf8')).devDependencies['grunt-pages']);
         done();
       });
+    });
+  });
+
+  it('should log an error message if the user forgets to enter a site name', function (done) {
+    var cabinProcess = spawn('node', ['bin/cabin', 'new', 'colinwren/Candy']);
+    var processOutput = '';
+
+    cabinProcess.stdout.on('data', function (data) {
+      processOutput += data;
+    });
+
+    cabinProcess.on('close', function (exitCode) {
+      exitCode.should.eql(1);
+      processOutput.should.include('Error, forgot to specify site name.');
+      done();
     });
   });
 });
