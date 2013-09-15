@@ -40,6 +40,8 @@
     "should": "~1.2.2",
     "grunt-nodemon": "~0.1.0",
     "grunt-shell": "~0.3.1",
-    "suppose": "~0.2.0"
+    "suppose": "~0.2.0",
+    "grunt-node-inspector": "~0.1.0",
+    "grunt-concurrent": "~0.3.1"
   }
 }

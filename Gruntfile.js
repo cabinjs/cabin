@@ -54,6 +54,16 @@ module.exports = function (grunt) {
         },
         command: 'NODE_ENV=dev node --debug-brk $(which grunt) test'
       }
+    },
+    'node-inspector': {
+      default: {}
+    },
+    concurrent: {
+      test: ['node-inspector', 'shell:debugtest'],
+      testdev: ['node-inspector', 'shell:debugtestdev'],
+      options: {
+        logConcurrentOutput: true
+      }
     }
   });
 
@@ -63,8 +73,8 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('debug', ['nodemon']);
-  grunt.registerTask('debug-test', ['shell:debugtest']);
-  grunt.registerTask('debug-test-dev', ['shell:debugtestdev']);
+  grunt.registerTask('debug-test', ['concurrent:test']);
+  grunt.registerTask('debug-test-dev', ['concurrent:testdev']);
   grunt.registerTask('test', ['jshint', 'simplemocha:all']);
   grunt.registerTask('default', ['test']);
 
