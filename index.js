@@ -1,5 +1,6 @@
 'use strict';
 
+require('colors');
 var program = require('commander');
 
 module.exports = function (argv) {
@@ -13,10 +14,17 @@ module.exports = function (argv) {
   program
     .command('new <siteName> [theme]')
     .description('Scaffold out a static site generator')
-    .action(function () {
+    .action(function (siteName, theme) {
+      if (siteName.indexOf('/') !== -1) {
+        console.log('Error, forgot to specify site name. Please run cabin new with the following format:\n'.red +
+                    'cabin new ' + '<siteName> '.blue + siteName);
+        process.exit(1);
+        return;
+      }
+
       require('./lib/new.js')({
-        siteName: program.args[0],
-        theme: program.args[1] || 'CabinJS/Candy',
+        siteName: siteName,
+        theme: theme || 'CabinJS/Candy',
         local: program.local,
         templateEngine: program.templateEngine,
         CSSPreprocessor: program.CSSPreprocessor,
