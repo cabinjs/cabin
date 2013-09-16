@@ -43,7 +43,17 @@ The goal is to test any new features in the integration test file and test any c
 
 # Changelog
 
-**0.2.0** - Project wide naming convention standardization, added `--noInstall` CLI flag
+**0.3.0** - Themes now required to list cabin as a dependency in the package.json. Added error logging when users forget to specify the site name. Fixed node 0.8 bug with downloading zips.
+
+**Breaking changes**:
+
+Themes now required to list cabin as a dependency in the package.json.
+
+**0.2.0** - Project wide naming convention standardization, added `--noInstall` CLI flag. Themes must list grunt-pages as a dependency in the package.json.
+
+**Breaking changes**:
+
+Themes must list grunt-pages as a dependency in the package.json.
 
 **0.1.8** - Corrected `templateLang` flag description, fixed bug with single template engine in cabin.json.
 
