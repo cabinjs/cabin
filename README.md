@@ -43,6 +43,8 @@ The goal is to test any new features in the integration test file and test any c
 
 # Changelog
 
+**0.3.1** - Fixed bug with incorrect filepath to cabin's package.json file.
+
 **0.3.0** - Themes now required to list cabin as a dependency in the package.json. Added error logging when users forget to specify the site name. Fixed node 0.8 bug with downloading zips.
 
 **Breaking changes**:
