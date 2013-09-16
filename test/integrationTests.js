@@ -37,7 +37,9 @@ describe('the cabin new command', function () {
     describe('when installing a theme from a GitHub repo', function () {
 
       it('should extract the expected folders into the site destination folder', function (done) {
-        testOptions({}, function () {
+        testOptions({
+          theme: 'CabinJS/testTheme'
+        }, function () {
           fs.existsSync(siteName + '/src').should.be.ok;
           fs.existsSync(siteName + '/posts').should.be.ok;
           done();
@@ -193,7 +195,7 @@ function testOptions(options, callback) {
 
   options = _.defaults(options, {
     siteName: siteName,
-    theme: 'CabinJS/Candy',
+    theme: 'CabinJS/testTheme',
     templateEngine: 'jade',
     CSSPreprocessor: 'sass',
     noInstall: true,
