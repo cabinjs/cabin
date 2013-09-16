@@ -80,7 +80,7 @@ describe('the cabin new command', function () {
           });
 
           gruntBuildProcess.on('close', function () {
-            fs.existsSync(siteName + '/dist/blog/posts/My-cool-blog-post.html').should.be.ok;
+            fs.existsSync(siteName + '/dist/blog/posts/my-cool-blog-post.html').should.be.ok;
             fs.existsSync(siteName + '/dist/styles/main.css').should.be.ok;
             done();
           });
