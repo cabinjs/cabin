@@ -2,7 +2,7 @@
   "name": "theme",
   "version": "0.0.0",
   "devDependencies": {
-    "grunt-pages": "~0.2.0",
-    "cabin": "0.2.0"
+    "grunt-pages": "~0.3.0",
+    "cabin": "0.3.0"
   }
 }

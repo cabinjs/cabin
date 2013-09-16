@@ -1,6 +1,6 @@
 {
   "devDependencies": {
     "grunt-pages": "0.5.0",
-    "cabin": "0.2.0"
+    "cabin": "0.3.0"
   }
 }
