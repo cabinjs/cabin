@@ -6,11 +6,11 @@
 [![Dependency Status](https://gemnasium.com/CabinJS/Cabin.png)](https://gemnasium.com/CabinJS/Cabin)  
 [![Travis Status](https://travis-ci.org/CabinJS/Cabin.png?branch=master)](https://travis-ci.org/CabinJS/Cabin)  
 
-# Learning about Cabin
+# Getting started
 
-To learn about Cabin, check out the [Cabin website](http://cabinjs.com).
+Visit the getting started guide at [cabinjs.com](http://www.cabinjs.com/#getting-started).
 
-# Contributing To Cabin
+# Contributing to Cabin
 
 ## Project Philosophy
 
