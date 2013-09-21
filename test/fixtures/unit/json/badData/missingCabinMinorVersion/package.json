@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "cabin": "*",
+    "grunt-pages": "0.7.0"
+  }
+}

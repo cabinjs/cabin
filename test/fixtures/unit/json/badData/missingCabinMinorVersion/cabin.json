@@ -1,0 +1,5 @@
+{
+  "CSSPreprocessor": ["Sass"],
+  "templateEngine": ["Jade"],
+  "gruntPagesConfig": {}
+}
