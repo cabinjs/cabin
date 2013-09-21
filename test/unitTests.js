@@ -1,5 +1,9 @@
 'use strict';
 
+var fs = require('fs');
+var path = require('path');
+
+var _ = require('lodash');
 var rewire = require('rewire');
 require('should');
 var sinon = require('sinon');
@@ -38,11 +42,12 @@ describe('cabin lib', function () {
       describe('if there is an issue reading the theme data', function () {
 
         var prompt = {
-          promptFunction: function () {}
+          stubInvalidThemePrompt: function () {}
         };
 
-        var promptSpy = sinon.stub(prompt, 'promptFunction');
-        newCommand.__set__('invalidThemePrompt', prompt.promptFunction);
+        var promptSpy = sinon.stub(prompt, 'stubInvalidThemePrompt');
+
+        newCommand.__set__('utils', _.extend(newCommand.__get__('utils'), { reportInvalidTheme: prompt.stubInvalidThemePrompt }));
 
         it('should prompt the user to file an issue on the theme\'s GitHub repo when the cabin.json can\'t be parsed', function () {
           newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/malformedCabinJSON');
@@ -69,16 +74,21 @@ describe('cabin lib', function () {
           promptSpy.lastCall.args.should.eql(['testTheme', 'Missing Cabin dependency in package.json.']);
         });
 
+        it('should prompt the user to file an issue on the theme\'s GitHub repo when the package.json doesn\'t specify a cabin minor version as a dependency', function () {
+          newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/missingCabinMinorVersion');
+          promptSpy.lastCall.args.should.eql(['testTheme', 'Theme doesn\'t specify Cabin minor version.']);
+        });
+
         it('should prompt the user to file an issue on the theme\'s GitHub repo when the package.json specifies an older minor cabin version as a dependency', function () {
           newCommand.__get__('getThemeConfig')('testTheme', 'test/fixtures/unit/json/badData/olderCabinVersion');
-          promptSpy.lastCall.args.should.eql(['testTheme', 'Theme compatible with older Cabin version.']);
+          promptSpy.lastCall.args.should.eql(['testTheme', 'Theme not compatible with the following newer Cabin minor version: ' + JSON.parse(fs.readFileSync(path.normalize(__dirname + '/../package.json', 'utf8'))).version.split('.')[1] + '.']);
         });
 
         it('should prompt the user to file an issue on the theme\'s GitHub repo when the package.json specifies a newer cabin minor version as a dependency', function (done) {
           var consoleSpy = sinon.stub(console, 'log');
           sinon.stub(process, 'exit', function (exitCode) {
             exitCode.should.eql(1);
-            consoleSpy.lastCall.args[0].should.include('Theme compatible with newer Cabin version, please update Cabin with the following command:');
+            consoleSpy.lastCall.args[0].should.include('Theme compatible with newer Cabin minor version, please update Cabin with the following command:');
             console.log.restore();
             process.exit.restore();
             done();
@@ -137,7 +147,7 @@ describe('cabin lib', function () {
 
         before(function () {
           siteConfig = config();
-          siteConfig.setCSSPreproccesor('Sass');
+          siteConfig.setCSSPreproccesor('theme', 'Sass');
         });
 
         it('should set the preprocessorTask to `compass`', function () {
@@ -159,7 +169,7 @@ describe('cabin lib', function () {
 
         before(function () {
           siteConfig = config();
-          siteConfig.setCSSPreproccesor('Less');
+          siteConfig.setCSSPreproccesor('theme', 'Less');
         });
 
         it('should set the preprocessorTask to `less`', function () {
@@ -183,18 +193,18 @@ describe('cabin lib', function () {
           siteConfig = config();
         });
 
-        it('should tell the user that the preprocessor isn\'t supported and exit', function (done) {
-          var consoleSpy = sinon.stub(console, 'log');
+        it('should tell the user that the preprocessor isn\'t supported and exit', function () {
+          var prompt = {
+            stubInvalidThemePrompt: function () {}
+          };
 
-          sinon.stub(process, 'exit', function (exitCode) {
-            exitCode.should.eql(1);
-            consoleSpy.lastCall.args[0].should.include(' is not a supported CSS preprocessor, please let the theme author know');
-            console.log.restore();
-            process.exit.restore();
-            done();
-          });
+          var promptSpy = sinon.stub(prompt, 'stubInvalidThemePrompt');
 
-          siteConfig.setCSSPreproccesor('Stylus');
+          newCommand.__set__('utils', _.extend(newCommand.__get__('utils'), { reportInvalidTheme: prompt.stubInvalidThemePrompt }));
+
+          siteConfig.setCSSPreproccesor('theme', 'Stylus');
+
+          promptSpy.lastCall.args.should.eql(['theme', 'stylus is not a supported CSS preprocessor.']);
         });
       });
     });
@@ -206,7 +216,7 @@ describe('cabin lib', function () {
 
         before(function () {
           siteConfig = config();
-          siteConfig.setTemplateEngine('Jade');
+          siteConfig.setTemplateEngine('theme', 'Jade');
         });
 
         it('should set the templateEngine to `jade`', function () {
@@ -227,7 +237,7 @@ describe('cabin lib', function () {
 
         before(function () {
           siteConfig = config();
-          siteConfig.setTemplateEngine('EJS');
+          siteConfig.setTemplateEngine('theme', 'EJS');
         });
 
         it('should set the templateEngine to `ejs`', function () {
@@ -250,18 +260,18 @@ describe('cabin lib', function () {
           siteConfig = config();
         });
 
-        it('should tell the user that the template engine isn\'t supported and exit', function (done) {
-          var consoleSpy = sinon.stub(console, 'log');
+        it('should tell the user that the template engine isn\'t supported and exit', function () {
+          var prompt = {
+            stubInvalidThemePrompt: function () {}
+          };
 
-          sinon.stub(process, 'exit', function (exitCode) {
-            exitCode.should.eql(1);
-            consoleSpy.lastCall.args[0].should.include(' is not a supported template template engine, please let the theme author know');
-            console.log.restore();
-            process.exit.restore();
-            done();
-          });
+          var promptSpy = sinon.stub(prompt, 'stubInvalidThemePrompt');
 
-          siteConfig.setTemplateEngine('Haml');
+          newCommand.__set__('utils', _.extend(newCommand.__get__('utils'), { reportInvalidTheme: prompt.stubInvalidThemePrompt }));
+
+          siteConfig.setTemplateEngine('theme', 'Haml');
+
+          promptSpy.lastCall.args.should.eql(['theme', 'haml is not a supported template engine.']);
         });
       });
     });
