@@ -1,6 +1,6 @@
 # Cabin Beta
 > Simple and extensible static site generator powered by [Grunt](http://gruntjs.com/).
-<img align="right" height="150" src="https://raw.github.com/colinwren/Candy/master/src/images/cabin.png">
+<img align="right" height="150" src="https://raw.github.com/CabinJS/cabinjs.com/master/src/images/cabin.png">
 
 [![NPM version](https://badge.fury.io/js/cabin.png)](http://badge.fury.io/js/cabin)  [![Dependency Status](https://gemnasium.com/CabinJS/Cabin.png)](https://gemnasium.com/CabinJS/Cabin)  [![Travis Status](https://travis-ci.org/CabinJS/Cabin.png?branch=master)](https://travis-ci.org/CabinJS/Cabin)  
 
