@@ -1,4 +1,4 @@
-# Cabin Beta
+# Cabin
 > Simple and extensible static site generator powered by [Grunt](http://gruntjs.com/).
 <img align="right" height="150" src="https://raw.github.com/CabinJS/cabinjs.com/master/src/images/cabin.png">
 
