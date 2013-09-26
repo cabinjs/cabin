@@ -87,6 +87,12 @@ module.exports = function (grunt) {
     },
     clean: {
       dist: 'dist'
+    },
+    mkcouchdb: {
+      app: require('./couchapp.json')
+    },
+    couchapp: {
+      app: require('./couchapp.json')
     }
   });
 
@@ -95,6 +101,12 @@ module.exports = function (grunt) {
     'pages',
     <% if (CSSPreprocessorTask) %>'<%= CSSPreprocessorTask %>',
     'copy'
+  ]);
+
+  grunt.registerTask('deploy', [
+    'build',
+    'mkcouchdb',
+    'couchapp'
   ]);
 
   grunt.registerTask('server', [

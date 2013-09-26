@@ -1,0 +1,7 @@
+{
+  "app": "app.js",
+  "db": "http://localhost:5984/cabin",
+  "options": {
+    "okay_if_exists": true
+  }
+}

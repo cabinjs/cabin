@@ -13,7 +13,9 @@
     "grunt-contrib-livereload": "~0.1.2",
     "grunt-open": "~0.2.0",
     "grunt-contrib-watch": "~0.4.3",
-    "matchdep": "~0.1.1"
+    "matchdep": "~0.1.1",
+    "grunt-couchapp": "~0.2.0",
+    "couchapp": "~0.10.0"
   },
   "engines": {
     "node": ">=0.10.0"
