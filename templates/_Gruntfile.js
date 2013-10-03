@@ -38,16 +38,6 @@ module.exports = function (grunt) {
       }
     },
     watch: {
-      dist: {
-        files: ['dist/**'],
-        options: {
-          livereload: true
-        }
-      },<% if (CSSPreprocessorTask) { %>
-      <%= CSSPreprocessorTask %>: {
-        files: ['src/styles/**'],
-        tasks: ['<%= CSSPreprocessorTask %>']
-      },<% } %>
       pages: {
         files: [
           'posts/**',
@@ -56,6 +46,11 @@ module.exports = function (grunt) {
         ],
         tasks: ['pages']
       },
+      <% if (CSSPreprocessorTask) { %>
+      <%= CSSPreprocessorTask %>: {
+        files: ['src/styles/**'],
+        tasks: ['<%= CSSPreprocessorTask %>']
+      },<% } %>
       copy: {
         files: [
           'src/images/**',
@@ -64,13 +59,19 @@ module.exports = function (grunt) {
           'src/styles/fonts/**'
         ],
         tasks: ['copy']
+      },
+      dist: {
+        files: ['dist/**'],
+        options: {
+          livereload: true
+        }
       }
     },
     connect: {
       dist: {
         options: {
-        port: 5455,
-        hostname: '0.0.0.0',
+          port: 5455,
+          hostname: '0.0.0.0',
           middleware: function (connect) {
             return [
               require('grunt-contrib-livereload/lib/utils').livereloadSnippet,
