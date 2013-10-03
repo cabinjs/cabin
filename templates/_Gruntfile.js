@@ -20,7 +20,6 @@ module.exports = function (grunt) {
         }
       }
     },<% } %>
-    // Move files not handled by other tasks
     copy: {
       dist: {
         files: [{
@@ -45,8 +44,7 @@ module.exports = function (grunt) {
           'src/pages/**'
         ],
         tasks: ['pages']
-      },
-      <% if (CSSPreprocessorTask) { %>
+      },<% if (CSSPreprocessorTask) { %>
       <%= CSSPreprocessorTask %>: {
         files: ['src/styles/**'],
         tasks: ['<%= CSSPreprocessorTask %>']
@@ -107,5 +105,5 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', 'server');
 
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+  require('load-grunt-tasks')(grunt);
 };
