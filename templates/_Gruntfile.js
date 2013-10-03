@@ -74,7 +74,7 @@ module.exports = function (grunt) {
           hostname: '0.0.0.0',
           middleware: function (connect) {
             return [
-              require('grunt-contrib-livereload/lib/utils').livereloadSnippet,
+              require('connect-livereload')(),
               connect.static(require('path').resolve('dist'))
             ];
           }
