@@ -2,6 +2,7 @@
 
 require('colors');
 var program = require('commander');
+var updateNotifier = require('update-notifier');
 
 module.exports = function (argv) {
   program
@@ -37,3 +38,10 @@ module.exports = function (argv) {
 
   if (!program.args.length) program.help();
 };
+
+// Check if newer Cabin version is available and notify the user to update
+var notifier = updateNotifier();
+
+if (notifier.update) {
+  notifier.notify();
+}

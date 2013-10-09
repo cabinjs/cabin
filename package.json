@@ -42,6 +42,7 @@
     "grunt-shell": "~0.3.1",
     "suppose": "~0.2.0",
     "grunt-node-inspector": "~0.1.0",
-    "grunt-concurrent": "~0.3.1"
+    "grunt-concurrent": "~0.3.1",
+    "update-notifier": "~0.1.6"
   }
 }
