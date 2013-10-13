@@ -275,5 +275,48 @@ describe('cabin lib', function () {
         });
       });
     });
+
+    describe('setDeployTask', function () {
+
+      describe('with None as the selected deployment tool', function () {
+
+        it('should set the deployTask to false', function () {
+          var siteConfig;
+          siteConfig = config();
+          siteConfig.setDeployTask('None');
+          siteConfig.deployTask.should.not.be.ok;
+        });
+      });
+
+      describe('with GitHub Pages as the selected deployment tool', function () {
+
+        it('should set the deployTask to gh-pages', function () {
+          var siteConfig;
+          siteConfig = config();
+          siteConfig.setDeployTask('GitHub Pages');
+          siteConfig.deployTask.should.equal('gh-pages');
+        });
+      });
+
+      describe('with Amazon S3 as the selected deployment tool', function () {
+
+        it('should set the deployTask to s3', function () {
+          var siteConfig;
+          siteConfig = config();
+          siteConfig.setDeployTask('Amazon S3');
+          siteConfig.deployTask.should.equal('s3');
+        });
+      });
+
+      describe('with FTP as the selected deployment tool', function () {
+
+        it('should set the deployTask to ftpush', function () {
+          var siteConfig;
+          siteConfig = config();
+          siteConfig.setDeployTask('FTP');
+          siteConfig.deployTask.should.equal('ftpush');
+        });
+      });
+    });
   });
 });
