@@ -9,8 +9,9 @@ module.exports = function (argv) {
     .version(require('./package.json').version)
     .option('-t, --templateEngine [templateEngine]', 'Specify a template engine')
     .option('-p, --CSSPreprocessor [CSSPreprocessor]', 'Specify a CSS preprocessor')
-    .option('-l, --local',  'Use a local Cabin theme')
-    .option('-n, --noInstall',  'Don\'t install npm modules after scaffolding');
+    .option('-l, --local', 'Use a local Cabin theme')
+    .option('-n, --noInstall', 'Don\'t install npm modules after scaffolding')
+    .option('-d, --deployTask [deployTask]', 'Grunt task to use for deployment');
 
   program
     .command('new <siteName> [theme]')
@@ -23,12 +24,14 @@ module.exports = function (argv) {
         return;
       }
 
+      // Call the `new` module with the arguments received from the CLI
       require('./lib/new.js')({
         siteName: siteName,
         theme: theme || 'CabinJS/Candy',
         local: program.local,
         templateEngine: program.templateEngine,
         CSSPreprocessor: program.CSSPreprocessor,
+        deployTask: program.deployTask,
         noInstall: program.noInstall
       });
     });

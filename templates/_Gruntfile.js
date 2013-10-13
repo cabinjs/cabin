@@ -82,7 +82,45 @@ module.exports = function (grunt) {
     },
     clean: {
       dist: 'dist'
-    }
+    },<% if (deployTask === 'gh-pages') { %>
+    'gh-pages': {
+      options: {
+        base: 'dist'
+      },
+      src: ['**']
+    }<% } else if (deployTask === 's3') { %>
+    // Be sure to update the .grunt-aws.json file with your S3 credentials
+    aws: grunt.file.readJSON('./grunt-aws.json'),
+    s3: {
+      options: {
+        key: '<?= aws.key ?>',
+        secret: '<?= aws.secret ?>',
+        bucket: '<?= aws.bucket ?>',
+        access: 'public-read'
+      },
+      dev: {
+        upload: [{
+          src: 'dist/**',
+          rel: 'dist',
+          dest: '/'
+        }]
+      }
+    }<% } else if (deployTask === 'ftpush') { %>
+    // Be sure to update the auth.host property to your domain name and update
+    // the .ftpass file with your FTP credentials
+    ftpush: {
+      build: {
+        auth: {
+          host: 'your-name.com',
+          port: 21,
+          authKey: 'key'
+        },
+        src: 'dist',
+        dest: '/public_html',
+        simple: true,
+        exclusions: ['**.DS_Store']
+      }
+    }<% } %>
   });
 
   grunt.registerTask('build', [
@@ -91,6 +129,8 @@ module.exports = function (grunt) {
     <% if (CSSPreprocessorTask) %>'<%= CSSPreprocessorTask %>',
     'copy'
   ]);
+
+  <% if (deployTask) { %>grunt.registerTask('deploy', ['build', '<%= deployTask %>']);<% } %>
 
   grunt.registerTask('server', [
     'build',
