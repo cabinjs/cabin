@@ -70,12 +70,8 @@ module.exports = function (grunt) {
         options: {
           port: 5455,
           hostname: '0.0.0.0',
-          middleware: function (connect) {
-            return [
-              require('connect-livereload')(),
-              connect.static(require('path').resolve('dist'))
-            ];
-          }
+          base: 'dist',
+          livereload: true
         }
       }
     },
