@@ -89,7 +89,7 @@ module.exports = function (grunt) {
       },
       src: ['**']
     }<% } else if (deployTask === 's3') { %>
-    // Be sure to update the .grunt-aws.json file with your S3 credentials
+    // Be sure to update the grunt-aws.json file with your S3 credentials
     aws: grunt.file.readJSON('./grunt-aws.json'),
     s3: {
       options: {
@@ -106,7 +106,7 @@ module.exports = function (grunt) {
         }]
       }
     }<% } else if (deployTask === 'ftpush') { %>
-    // Be sure to update the auth.host property to your domain name and update
+    // Be sure to update the auth.host property to your hostname and update
     // the .ftpass file with your FTP credentials
     ftpush: {
       build: {
