@@ -259,7 +259,7 @@ describe('the cabin new command', function () {
             });
         });
 
-        it('should create a .ftpass file with sample values for the ftp credentials', function () {
+        it('should create a .ftppass file with sample values for the ftp credentials', function () {
           suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-d', 'FTP'])
             .on(/CSS preprocessor/).respond('\n')
             .on(/template engine/).respond('\n')
@@ -267,7 +267,7 @@ describe('the cabin new command', function () {
               console.log(err.message);
             })
             .end(function () {
-              JSON.parse(fs.readFileSync(siteName + '/.ftpass', 'utf8')).should.equal({
+              JSON.parse(fs.readFileSync(siteName + '/.ftppass', 'utf8')).should.equal({
                 key: {
                   username: 'your-ftp-username',
                   password: 'your-ftp-password'

@@ -107,7 +107,7 @@ module.exports = function (grunt) {
       }
     }<% } else if (deployTask === 'ftpush') { %>
     // Be sure to update the auth.host property to your hostname and update
-    // the .ftpass file with your FTP credentials
+    // the .ftppass file with your FTP credentials
     ftpush: {
       build: {
         auth: {
