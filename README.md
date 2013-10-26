@@ -42,6 +42,8 @@ The goal is to test any new features in the integration test file and test any c
 
 # Changelog
 
+**0.3.2** - Added deployment tool prompt during theme installation to allow users to easily setup automated deployment. Updated _Gruntfile.js template to be leaner and have a consitent ordering of tasks. Added [update-notifier](https://github.com/yeoman/update-notifier) to notify users of new Cabin versions.
+
 **0.3.1** - Fixed bug with incorrect filepath to cabin's package.json file.
 
 **0.3.0** - Themes now required to list cabin as a dependency in the package.json. Added error logging when users forget to specify the site name. Fixed node 0.8 bug with downloading zips.
