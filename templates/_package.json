@@ -1,18 +1,22 @@
-{
+ {
   "name": "blog",
   "version": "0.0.0",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-pages": "<%= gruntPagesVersion %>",
-    "grunt-contrib-copy": "~0.4.1",<% if (CSSPreprocessorTask = 'compass') { %>
+    "grunt-contrib-copy": "~0.4.1",<% if (CSSPreprocessorTask === 'compass') { %>
     "grunt-contrib-compass": "~0.2.0",
-    <% } else if (CSSPreprocessorTask = 'less') { %>
+    <% } else if (CSSPreprocessorTask === 'less') { %>
     "grunt-contrib-less": "~0.5.1",
     <% } %>"grunt-contrib-connect": "~0.5.0",
     "grunt-contrib-clean": "~0.4.0",
-    "grunt-open": "~0.2.0",
     "grunt-contrib-watch": "~0.4.3",
-    "load-grunt-tasks": "~0.1.0"
+    "load-grunt-tasks": "~0.1.0",
+    "grunt-open": "~0.2.0",
+    "grunt-contrib-watch": "~0.4.3"<% if (deployTask) { %>, <% if (deployTask === 'gh-pages') {%>
+    "grunt-gh-pages": "~0.8.0"<% } else if (deployTask === 's3') { %>
+    "grunt-s3": "~0.2.0-alpha.3"<% } else if (deployTask === 'ftpush') { %>
+    "grunt-ftpush": "~0.3.2"<% } } %>
   },
   "engines": {
     "node": ">=0.10.0"

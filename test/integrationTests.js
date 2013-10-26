@@ -14,7 +14,7 @@ var siteName = 'testSite';
 
 describe('the cabin new command', function () {
 
-  beforeEach(function () {
+  before(function () {
     if (fs.existsSync(siteName)) {
       wrench.rmdirSyncRecursive(siteName);
     }
@@ -95,7 +95,7 @@ describe('the cabin new command', function () {
 
       it('should only copy that template engine\'s theme files to the site folder', function (done) {
 
-        suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-p', 'sass'])
+        suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-p', 'sass', '-d', 'None'])
           .on(/template engine/).respond('\n')
           .error(function (err) {
             console.log(err.message);
@@ -122,7 +122,7 @@ describe('the cabin new command', function () {
     describe('when selecting the Sass or LESS style preprocessor', function () {
 
       it('should only copy that CSS preprocessor\'s theme files to the site folder', function (done) {
-        suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-t', 'jade'])
+        suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-t', 'jade', '-d', 'None'])
           .on(/CSS preprocessor/).respond('\n')
           .error(function (err) {
             console.log(err.message);
@@ -154,6 +154,138 @@ describe('the cabin new command', function () {
           fs.readFileSync(siteName + '/Gruntfile.js', 'utf8')
             .should.include('compass');
           done();
+        });
+      });
+    });
+
+    describe('when selecting a deployment task', function () {
+
+      describe('if no deployment task is selected', function () {
+
+        it('should not configure a deploy task in the Gruntfile', function () {
+          suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-d', 'None'])
+            .on(/CSS preprocessor/).respond('\n')
+            .on(/template engine/).respond('\n')
+            .error(function (err) {
+              console.log(err.message);
+            })
+            .end(function () {
+              fs.readFileSync(siteName + '/Gruntfile.js', 'utf8').should.not.include('deploy');
+            });
+        });
+      });
+
+      describe('if the deployment task is grunt-gh-pages', function () {
+
+        it('should configure the deploy task to use grunt-gh-pages in the Gruntfile', function () {
+          suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-d', 'GitHub Pages'])
+            .on(/CSS preprocessor/).respond('\n')
+            .on(/template engine/).respond('\n')
+            .error(function (err) {
+              console.log(err.message);
+            })
+            .end(function () {
+              fs.readFileSync(siteName + '/Gruntfile.js', 'utf8').should.include('grunt.registerTask(\'deploy\', [\'build\',\'gh-pages\']);');
+            });
+        });
+
+        it('should add grunt-gh-pages as a devDependency in the package.json file', function () {
+          suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-d', 'GitHub Pages'])
+            .on(/CSS preprocessor/).respond('\n')
+            .on(/template engine/).respond('\n')
+            .error(function (err) {
+              console.log(err.message);
+            })
+            .end(function () {
+              fs.readFileSync(siteName + '/package.json', 'utf8').should.include('"grunt-gh-pages": "*"');
+            });
+        });
+      });
+
+      describe('if the deployment task is grunt-s3', function () {
+
+        it('should configure the deploy task to use grunt-s3 in the Gruntfile', function () {
+          suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-d', 'Amazon S3'])
+            .on(/CSS preprocessor/).respond('\n')
+            .on(/template engine/).respond('\n')
+            .error(function (err) {
+              console.log(err.message);
+            })
+            .end(function () {
+              fs.readFileSync(siteName + '/Gruntfile.js', 'utf8').should.include('grunt.registerTask(\'deploy\', [\'build\',\'s3\']);');
+            });
+        });
+
+        it('should create a grunt-aws.json file with sample values for the S3 credentials', function () {
+          suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-d', 'Amazon S3'])
+            .on(/CSS preprocessor/).respond('\n')
+            .on(/template engine/).respond('\n')
+            .error(function (err) {
+              console.log(err.message);
+            })
+            .end(function () {
+              JSON.parse(fs.readFileSync(siteName + '/grunt-aws.json', 'utf8')).should.equal({
+                bucket: 'your-s3-bucket',
+                key: 'your-aws-key',
+                secret: 'your-aws-secret'
+              });
+            });
+        });
+
+        it('should add grunt-s3 tool as a devDependency in the package.json file', function () {
+          suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-d', 'Amazon S3'])
+            .on(/CSS preprocessor/).respond('\n')
+            .on(/template engine/).respond('\n')
+            .error(function (err) {
+              console.log(err.message);
+            })
+            .end(function () {
+              fs.readFileSync(siteName + '/package.json', 'utf8').should.include('"grunt-s3": "*",');
+            });
+        });
+      });
+
+      describe('if the deployment tool is grunt-ftpush', function () {
+
+        it('should configure the deploy task to use grunt-ftpush in the Gruntfile', function () {
+          suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-d', 'FTP'])
+            .on(/CSS preprocessor/).respond('\n')
+            .on(/template engine/).respond('\n')
+            .error(function (err) {
+              console.log(err.message);
+            })
+            .end(function () {
+              fs.readFileSync(siteName + '/Gruntfile.js', 'utf8').should.include('s3');
+            });
+        });
+
+        it('should create a .ftppass file with sample values for the ftp credentials', function () {
+          suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-d', 'FTP'])
+            .on(/CSS preprocessor/).respond('\n')
+            .on(/template engine/).respond('\n')
+            .error(function (err) {
+              console.log(err.message);
+            })
+            .end(function () {
+              JSON.parse(fs.readFileSync(siteName + '/.ftppass', 'utf8')).should.equal({
+                key: {
+                  username: 'your-ftp-username',
+                  password: 'your-ftp-password'
+                }
+              });
+            });
+        });
+
+        it('should add grunt-ftpush as a devDependency in the package.json file', function () {
+          suppose('node', ['bin/cabin', 'new', siteName, 'test/fixtures/integration/sampleTheme', '-l', '-n', '-d', 'FTP'])
+            .on(/CSS preprocessor/).respond('\n')
+            .on(/template engine/).respond('\n')
+            .error(function (err) {
+              console.log(err.message);
+            })
+            .end(function () {
+              fs.readFileSync(siteName + '/package.json', 'utf8').should.include('"grunt-ftp-deploy": "*",');
+            });
         });
       });
     });
@@ -198,6 +330,7 @@ function testOptions(options, callback) {
     theme: 'CabinJS/testTheme',
     templateEngine: 'jade',
     CSSPreprocessor: 'sass',
+    deployTask: 'None',
     noInstall: true,
     local: false
   });
