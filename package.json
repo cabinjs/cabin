@@ -26,7 +26,8 @@
     "inquirer": "~0.3.0",
     "win-spawn": "~2.0.0",
     "request": "~2.27.0",
-    "adm-zip": "~0.4.3"
+    "adm-zip": "~0.4.3",
+    "update-notifier": "~0.1.6"
   },
   "devDependencies": {
     "mocha": "*",
@@ -42,7 +43,6 @@
     "grunt-shell": "~0.3.1",
     "suppose": "~0.2.0",
     "grunt-node-inspector": "~0.1.0",
-    "grunt-concurrent": "~0.3.1",
-    "update-notifier": "~0.1.6"
+    "grunt-concurrent": "~0.3.1"
   }
 }
