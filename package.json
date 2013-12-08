@@ -2,6 +2,15 @@
   "name": "cabin",
   "version": "0.3.5",
   "description": "Simple and extensible static site generator powered by Grunt",
+  "keywords" : [
+    "blog",
+    "blogging",
+    "static site generator",
+    "markdown",
+    "jekyll",
+    "generator",
+    "static"
+  ],
   "main": "index.js",
   "bin": "./bin/cabin",
   "repository": {
