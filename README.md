@@ -42,6 +42,8 @@ The goal is to test any new features in the integration test file and test any c
 
 # Changelog
 
+**0.3.6** - Add npm keywords to package.json.
+
 **0.3.5** - Added `.sass-cache` to `.gitignore` thanks to [@rogeriopvl](https://github.com/rogeriopvl) and removed unnecessary `dot` property from `copy` task config.
 
 **0.3.4** - Fixed duplicate grunt-contrib-watch devDep and made generated package.json modules and generated Gruntfile task order match.
