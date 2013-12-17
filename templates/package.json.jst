@@ -11,7 +11,6 @@
     <% } %>"grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-watch": "~0.4.3",
     "grunt-contrib-connect": "~0.5.0",
-    "grunt-open": "~0.2.0",
     "grunt-contrib-clean": "~0.4.0"<% if (deployTask) { %>,<% if (deployTask === 'gh-pages') {%>
     "grunt-gh-pages": "~0.8.0"<% } else if (deployTask === 's3') { %>
     "grunt-s3": "~0.2.0-alpha.3"<% } else if (deployTask === 'ftpush') { %>

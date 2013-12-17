@@ -70,13 +70,9 @@ module.exports = function (grunt) {
           port: 5455,
           hostname: '0.0.0.0',
           base: 'dist',
-          livereload: true
+          livereload: true,
+          open: true
         }
-      }
-    },
-    open: {
-      dist: {
-        path: 'http://localhost:5455'
       }
     },
     clean: {
