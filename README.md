@@ -3,7 +3,7 @@
 ### Simple and extensible static site generator powered by [Grunt](http://gruntjs.com/).
 
 
-[![NPM version](https://badge.fury.io/js/cabin.png)](http://badge.fury.io/js/cabin)  [![Dependency Status](https://gemnasium.com/CabinJS/Cabin.png)](https://gemnasium.com/CabinJS/Cabin)  [![Travis Status](https://travis-ci.org/CabinJS/Cabin.png?branch=master)](https://travis-ci.org/CabinJS/Cabin)  
+[![NPM version](https://badge.fury.io/js/cabin.png)](http://badge.fury.io/js/cabin)  [![Dependency Status](https://gemnasium.com/CabinJS/Cabin.png)](https://gemnasium.com/CabinJS/Cabin)  [![Travis Status](https://travis-ci.org/CabinJS/Cabin.png?branch=master)](https://travis-ci.org/CabinJS/Cabin) 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 # Getting started
