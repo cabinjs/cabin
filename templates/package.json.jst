@@ -14,10 +14,10 @@
     "grunt-contrib-clean": "~0.4.0"<% if (deployTask) { %>,<% if (deployTask === 'gh-pages') {%>
     "grunt-gh-pages": "~0.8.0"<% } else if (deployTask === 's3') { %>
     "grunt-s3": "~0.2.0-alpha.3"<% } else if (deployTask === 'ftpush') { %>
-    "grunt-ftpush": "~0.3.2"<% } } %>
+    "grunt-ftpush": "~0.3.2"<% } else if (deployTask == 'bitballoon') { %>
+    "grunt-bitballoon": "~0.1.2"<% } } %>
   },
   "engines": {
     "node": ">=0.10.0"
   }
 }
-

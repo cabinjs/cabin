@@ -100,6 +100,19 @@ module.exports = function (grunt) {
           dest: '/'
         }]
       }
+    }<% } else if (deployTask === 'bitballoon') { %>
+    // Be sure to update the grunt-bitballoon.json file with your BitBalloon access token
+    // You can generate one at https://www.bitballoon.com/applications
+    bb: grunt.file.readJSON('./grunt-bitballoon.json'),
+    bitballoon: {
+      options: {
+        src: 'dist',
+        token: '<?= bb.token ?>'
+      },
+      dev: {
+        // Change this to your BitBalloon site
+        site: 'staging-site.bitballoon.com'
+      }
     }<% } else if (deployTask === 'ftpush') { %>
     // Be sure to update the auth.host property to your hostname and update
     // the .ftppass file with your FTP credentials
