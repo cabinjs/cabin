@@ -31,7 +31,7 @@ You also debug integration and unit tests using the `grunt debug-test` command o
 
 ## Tests
 
-We use the [mocha](http://visionmedia.github.io/mocha/) test framework to test Cabin. To run the test suite and lint the JavaScripts, enter the following command:
+We use the [mocha](http://mochajs.org/) test framework to test Cabin. To run the test suite and lint the JavaScripts, enter the following command:
 
 ```bash
 grunt test
