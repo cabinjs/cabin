@@ -86,7 +86,7 @@ app.get('/logout', ctx => {
   ctx.log.warn('Logged out');
   // you could also use aliases:
   // `ctx.log('warn', 'Logged out')`
-  // `ctx.logger.warn`
+  // `ctx.logger.warn('Logged out')`
   // `ctx.logger('warn', 'Logged out')`
 
   ctx.logout();
