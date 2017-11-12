@@ -8,7 +8,7 @@ docute.init({
     default: [
       {
         title:
-          'Logging/analytics service and middleware for Node.js, Lad, Koa, and Express',
+          'Logging/analytics service and middleware for Node.js, Lad, Koa, Express, and Passport',
         path: '/'
       }
     ]

@@ -12,7 +12,7 @@
 </div>
 <br />
 <div align="center">
-  Cabin is a logging/analytics service and middleware for <a href="https://nodejs.org">Node.js</a>, <a href="https://lad.js.org">Lad</a>, <a href="http://koajs.com/">Koa</a>, and <a href="https://expressjs.com/">Express</a>.
+  Cabin is a logging/analytics service and middleware for <a href="https://nodejs.org">Node.js</a>, <a href="https://lad.js.org">Lad</a>, <a href="http://koajs.com/">Koa</a>, <a href="https://expressjs.com/">Express</a>, and <a href="http://www.passportjs.org/">Passport</a>.
 </div>
 <div align="center">
   <sub>
@@ -57,11 +57,13 @@ yarn add cabin
 
 ## Usage
 
-> Simply include the middleware and then call `ctx.logger(level, message, meta)` anywhere in your app middleware functions.
->
-> You can also use shorthand method level calling, such as `ctx.logger.debug(msg, meta)`, `ctx.logger.info(msg, meta)`, `ctx.logger.warn(msg, meta)`, or `ctx.logger.error(msg, meta)`, which automatically populate the `level` argument with the respective level.
->
 > Don't want to configure this yourself? You can simply use [Lad][] which has this all built-in for you already!
+
+1. Simply include the middleware and pass [options](#options) if needed
+
+2. Use `ctx.log(level, message, meta)` (Koa) or `req.log(level, message, meta)` (Express) to log messages anywhere in your app middleware functions.
+
+3. You can also use shorthand method level calling, such as `ctx.log.debug(msg, meta)`, `ctx.log.info(msg, meta)`, `ctx.log.warn(msg, meta)`, or `ctx.log.error(msg, meta)` for Koa (and `req.log` equivalents for Express), which automatically populate the `level` argument with the respective level.
 
 ### Koa
 
@@ -70,12 +72,9 @@ const Koa = require('koa');
 const Cabin = require('cabin');
 
 const app = new Koa();
-const cabin = new Cabin({
-  logger: console,
-  usernameField: 'full_name'
-});
+const cabin = new Cabin();
 
-// use the cabin middleware which exposes `ctx.logger`
+// use the cabin middleware
 app.use(cabin.middleware);
 
 // add your user/session management middleware here (e.g. passport)
@@ -83,7 +82,13 @@ app.use(cabin.middleware);
 // this assumes that you are using passport which
 // exposes `ctx.logout` to log out the logged in user
 app.get('/logout', ctx => {
-  ctx.logger.warn('Logged out');
+
+  ctx.log.warn('Logged out');
+  // you could also use aliases:
+  // `ctx.log('warn', 'Logged out')`
+  // `ctx.logger.warn`
+  // `ctx.logger('warn', 'Logged out')`
+
   ctx.logout();
   ctx.redirect('/');
 });
@@ -99,9 +104,9 @@ const express = require('express');
 const Cabin = require('cabin');
 
 const app = express();
-const cabin = new Cabin({ logger: console });
+const cabin = new Cabin();
 
-// use the cabin middleware which exposes `req.logger`
+// use the cabin middleware
 app.use(cabin.middleware);
 
 // add your user/session management middleware here (e.g. passport)
@@ -109,7 +114,13 @@ app.use(cabin.middleware);
 // this assumes that you are using passport which
 // exposes `req.logout` to log out the logged in user
 app.get('/logout', (req, res) => {
-  req.logger.warn('Logged out');
+
+  req.log.warn('Logged out');
+  // you could also use aliases:
+  // `req.log('warn', 'Logged out')`
+  // `req.logger.warn('Logged out')`
+  // `req.logger('warn', 'Logged out')`
+
   req.logout();
   res.redirect('/');
 });
@@ -120,25 +131,25 @@ app.listen(3000);
 
 ## Options
 
-* `logger` (Object) - the default set to `console` (so if you're just using the `console` to log output, then you do not need to pass this option), however you might want to use something like [Lad's logger][lad-logger] or winston/bunyan
-* `idField` (String) - the default is set to `id`, this should match your user's ID field on your `ctx.state.user` (Koa) or `req.user` (Express) object (if user is logged in)
-* `emailField` (String) - the default is set to `email`, this should match your user's email address field on your `ctx.state.user` (Koa) or `req.user` (Express) object (if user is logged in)
-* `usernameField` (String) - the default is set to `full_name`, this should match your user's name field on your `ctx.state.user` (Koa) or `req.user` (Express) object (if user is logged in)
+* `logger` (Object) - defaults to `console` (you might want to use something like [Lad's logger][lad-logger])
+* `userFields` (Array) - defaults to `[ 'id', 'email', 'full_namel']` - these are the default fields to store from a parsed user object
 
 
 ## Metadata
 
-By default all users (even ones not logged in) will have a `user` object stored in the log metadata with their IP address.
+By default all users (even ones not logged in) will have a `user` object stored in the log metadata with their IP address stored as `user.ip_address`.
 
-> If a logged in user is detected (e.g. if you're using [Passport][]), then we add to the log metadata `user` object the properties and user's respective values for  `id`, `email`, and `username` fields.
+If a logged in user is detected (e.g. if you're using [Passport][]), then we add to the log metadata `user` object the properties and user's respective values (if any) for each value specified in the `userFields` option.
 
-Also we add to log metadata by default a `request` object with HTTP `method`, `query_string`, `headers`, `cookies`, `data` (request body), and `url` properties.
+Also we add to log metadata by default a `request` object with HTTP `method`, `query_string`, `headers`, `cookies`, `body` (request body safe stringified using [fast-safe-stringify][]), and `url` properties.
 
 Are we missing something? If so let us know by emailing <a href="mailto:niftylettuce@gmail.com">niftylettuce@gmail.com</a> or [filing an issue](https://github.com/cabinjs/cabin/issues/new) on GitHub.
 
 
 ## Related
 
+* [koa-better-error-handler][] - A better error-handler for Lad and Koa. Makes `ctx.throw` awesome!
+* [lad logger][lad-logger] - Logger for Lad
 * [lad][] - Scaffold a [Koa][] webapp and API framework for [Node.js][node]
 * [lass][] - Scaffold a modern boilerplate for [Node.js][node]
 
@@ -181,3 +192,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [koa]: http://koajs.com/
 
 [node]: https://nodejs.org
+
+[koa-better-error-handler]: https://github.com/ladjs/koa-better-error-handler
+
+[fast-safe-stringify]: https://github.com/davidmarkclements/fast-safe-stringify
