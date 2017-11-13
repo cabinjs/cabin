@@ -132,7 +132,7 @@ app.listen(3000);
 ## Options
 
 * `logger` (Object) - defaults to `console` (you might want to use something like [Lad's logger][lad-logger])
-* `userFields` (Array) - defaults to `[ 'id', 'email', 'full_namel']` - these are the default fields to store from a parsed user object
+* `userFields` (Array) - defaults to `[ 'id', 'email', 'full_name']` - these are the default fields to store from a parsed user object
 
 
 ## Metadata
