@@ -152,6 +152,7 @@ Are we missing something? If so let us know by emailing <a href="mailto:niftylet
 * [lad logger][lad-logger] - Logger for Lad
 * [lad][] - Scaffold a [Koa][] webapp and API framework for [Node.js][node]
 * [lass][] - Scaffold a modern boilerplate for [Node.js][node]
+* [lipo][] - Free image manipulation API service built on top of [Sharp][]
 
 
 ## Contributors
@@ -163,7 +164,7 @@ Are we missing something? If so let us know by emailing <a href="mailto:niftylet
 
 ## Trademark Notice
 
-Lad, Lass, Cabin, and their respective logos are trademarks of Niftylettuce LLC.
+Lad, Lass, Cabin, Lipo, and their respective logos are trademarks of Niftylettuce LLC.
 These trademarks may not be reproduced, distributed, transmitted, or otherwise used, except with the prior written permission of Niftylettuce LLC.
 If you are seeking permission to use these trademarks, then please [contact us](mailto:niftylettuce@gmail.com).
 
@@ -196,3 +197,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [koa-better-error-handler]: https://github.com/ladjs/koa-better-error-handler
 
 [fast-safe-stringify]: https://github.com/davidmarkclements/fast-safe-stringify
+
+[sharp]: http://sharp.dimens.io/
+
+[lipo]: https://lipo.io
