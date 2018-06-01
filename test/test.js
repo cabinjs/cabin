@@ -1,6 +1,6 @@
 const test = require('ava');
 
-const Cabin = require('../');
+const Cabin = require('..');
 
 test.beforeEach(t => {
   t.context.cabin = new Cabin();

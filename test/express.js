@@ -2,7 +2,7 @@ const test = require('ava');
 const express = require('express');
 const supertest = require('supertest');
 
-const Cabin = require('../');
+const Cabin = require('..');
 
 test.cb.beforeEach(t => {
   const app = express();

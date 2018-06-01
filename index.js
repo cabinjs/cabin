@@ -22,6 +22,7 @@ class Cabin {
     );
     autoBind(this);
   }
+
   // inspired by raven's parseRequest
   // eslint-disable-next-line complexity
   getMeta(req) {
@@ -68,21 +69,21 @@ class Cabin {
       user
     };
   }
+
   middleware(ctx, next) {
     const req = isObject(ctx) && isObject(ctx.request) ? ctx.request : ctx;
     const { logger } = this.config;
-    const getMeta = this.getMeta;
+    const { getMeta } = this;
     // level, message, meta
-    ctx.logger = function() {
-      if (isUndefined(arguments[3]) || isNull(arguments[3])) arguments[3] = {};
-      if (isObject(arguments[3])) Object.assign(arguments[3], getMeta(req));
-      logger[arguments[0]](...[].slice.call(arguments).slice(1));
+    ctx.logger = function(...args) {
+      if (isUndefined(args[3]) || isNull(args[3])) args[3] = {};
+      if (isObject(args[3])) Object.assign(args[3], getMeta(req));
+      logger[args[0]](...[].slice.call(args).slice(1));
     };
     // shorthand method
     ctx.log = ctx.logger;
     Object.keys(logger).forEach(key => {
-      ctx.logger[key] = function() {
-        const args = [].slice.call(arguments);
+      ctx.logger[key] = function(...args) {
         args.unshift(key);
         ctx.logger(...args);
       };

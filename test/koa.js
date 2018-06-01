@@ -2,7 +2,7 @@ const test = require('ava');
 const Koa = require('koa');
 const supertest = require('supertest');
 
-const Cabin = require('../');
+const Cabin = require('..');
 
 test.cb.beforeEach(t => {
   const app = new Koa();
