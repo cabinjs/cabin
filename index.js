@@ -70,10 +70,12 @@ class Cabin {
     };
   }
 
-  middleware(ctx, next) {
+  middleware(ctx, next, ...args) {
     const req = isObject(ctx) && isObject(ctx.request) ? ctx.request : ctx;
     const { logger } = this.config;
     const { getMeta } = this;
+    // express support
+    if (args[0] && isFunction(args[0])) next = args[0];
     // level, message, meta
     ctx.logger = function(...args) {
       if (isUndefined(args[3]) || isNull(args[3])) args[3] = {};
