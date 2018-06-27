@@ -348,7 +348,7 @@ We use the packages [parse-request][] and [parse-err][] to populate a metadata o
 
 The `request` and `user` objects contains parsed header, cookie, body, and user information (including IP) via [parse-request][].  The `err` object contains parsed error fields including non-enumerable properties (which are normally not visible) on Error objects (this uses [parse-err][] under the hood).
 
-If a logged in user is detected (e.g. if you're using [Passport][]), then a `meta.user` property is automatically created for you (depending on `userFields` option passed to Cabin, see [Options](#options) below).
+If a logged in user is detected (e.g. if you're using [Passport][]), then a `meta.user` property is automatically created for you (depending on `userFields` option passed to Cabin, see [Options](#options) above).
 
 
 ## Related
