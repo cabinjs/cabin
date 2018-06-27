@@ -369,7 +369,7 @@ If a logged in user is detected (e.g. if you're using [Passport][]), then a `met
 
 ## Trademark Notice
 
-Lad, Lass, Cabin, Lipo, and their respective logos are trademarks of Niftylettuce LLC.
+Axe, Lad, Lass, Cabin, Lipo, and their respective logos are trademarks of Niftylettuce LLC.
 These trademarks may not be reproduced, distributed, transmitted, or otherwise used, except with the prior written permission of Niftylettuce LLC.
 If you are seeking permission to use these trademarks, then please [contact us](mailto:niftylettuce@gmail.com).
 
