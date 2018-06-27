@@ -1,7 +1,7 @@
 {
   "name": "cabin",
   "description": "Cabin is a logging/analytics service and middleware for Node.js, Lad, Koa, Express, and Passport",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "author": "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)",
   "bugs": {
     "url": "https://github.com/cabinjs/cabin/issues",
