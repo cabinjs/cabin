@@ -78,7 +78,7 @@ class Cabin {
 
   parseArg(arg) {
     if (isUndefined(arg) || isNull(arg)) arg = {};
-    if (isError(arg)) arg = parseErr(arg, this.config.fields);
+    if (isError(arg)) arg = { err: parseErr(arg, this.config.fields) };
     if (isArray(arg)) arg = { value: arg };
     if (isString(arg)) arg = { value: arg };
     if (isNumber(arg)) arg = { value: arg };

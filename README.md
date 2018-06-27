@@ -30,6 +30,7 @@
 
 * [Install](#install)
 * [Usage](#usage)
+  * [Logging](#logging)
   * [Node](#node)
   * [Browser](#browser)
   * [Stack Traces and Error Handling](#stack-traces-and-error-handling)
@@ -59,6 +60,17 @@ yarn add cabin
 ## Usage
 
 > Don't want to configure this yourself? You can simply use [Lad][] which has this all built-in for you.
+
+### Logging
+
+Cabin exposes all log levels from the built-in logger ([Axe][]) or whichever custom `logger` you pass.
+
+Each log level should be invoked with two arguments `message` and `meta`.
+
+* `message` (String or Error) - this should be either a String or an Error object
+* `meta` (Object) - this is optional, and inherits properties from `config.meta`
+
+See either the [Node](#node) or [Browser](#browser) instructions below for further usage (e.g. route middleware).
 
 ### Node
 
