@@ -19,7 +19,7 @@
   <script src="https://unpkg.com/cabin"></script>
   <script type="text/javascript">
     (function() {
-      var cabin = new Cabin({ axe: { capture: false }});
+      var cabin = new Cabin({ axe: { capture: false, showMeta: true }});
       cabin.setUser({
         id: '1',
         email: 'niftylettuce@gmail.com',
@@ -27,6 +27,12 @@
       });
       cabin.info('viewed docs');
       cabin.error(new Error('oops!'));
+      xhook.before(function(req) {
+        cabin.info('request queued', cabin.parseRequest(req));
+      });
+      xhook.after(function(req, res) {
+        cabin.info('request complete', cabin.parseRequest(req));
+      });
     })();
   </script>
   <script src="https://unpkg.com/docute@3/dist/docute.js" type="text/javascript"></script>

@@ -176,10 +176,10 @@ If you want to log all client-side [XMLHttpRequest](https://developer.mozilla.or
       full_name: 'niftylettuce'
     });
     xhook.before(function(req) {
-      cabin.info('request queued', { req: req });
+      cabin.info('request queued', cabin.parseRequest(req));
     });
-    xhook.before(function(req, res) {
-      cabin.info('request complete', { req: req, res: res });
+    xhook.after(function(req, res) {
+      cabin.info('request complete', cabin.parseRequest(req));
     });
   })();
 </script>
@@ -212,11 +212,11 @@ cabin.setUser({
 });
 
 xhook.before(req => {
-  cabin.info('request queued', { req });
+  cabin.info('request queued', cabin.parseRequest(req));
 });
 
 xhook.after((req, res) => {
-  cabin.info('request complete', { req, res });
+  cabin.info('request complete', cabin.parseRequest(req));
 });
 ```
 
