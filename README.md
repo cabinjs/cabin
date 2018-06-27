@@ -233,6 +233,8 @@ However you can otherwise use a tool such as [uncaught][] to listen for errors, 
 ```js
 const Cabin = require('cabin');
 
+const cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
+
 process.on('uncaughtException', err => {
   cabin.error(err);
   process.exit(1);
@@ -377,7 +379,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
 
 
-## 
+##
 
 <a href="#"><img src="media/cabin-footer.png" alt="#" /></a>
 
