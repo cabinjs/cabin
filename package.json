@@ -11,35 +11,55 @@
     "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)"
   ],
   "dependencies": {
-    "auto-bind": "^1.2.0",
-    "cookie": "^0.3.1",
-    "fast-safe-stringify": "^2.0.4",
-    "lodash": "^4.17.10"
+    "axe": "^1.0.0",
+    "lodash": "^4.17.10",
+    "parse-err": "^0.0.2",
+    "parse-request": "^0.0.2"
   },
   "ava": {
     "failFast": true,
     "verbose": true
   },
   "devDependencies": {
-    "ava": "^0.25.0",
+    "@babel/cli": "^7.0.0-beta.51",
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "ava": "^1.0.0-beta.6",
+    "babelify": "^9.0.0",
+    "browserify": "^16.2.2",
+    "caniuse-lite": "^1.0.30000859",
     "codecov": "^3.0.2",
-    "cross-env": "^5.1.6",
-    "eslint": "^4.19.1",
+    "cross-env": "^5.2.0",
+    "eslint": "4.19.1",
     "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-compat": "^2.4.0",
+    "eslint-plugin-prettier": "^2.6.1",
     "express": "^4.16.3",
     "husky": "^0.14.3",
+    "jsdom": "^11.11.0",
     "koa": "^2.5.1",
-    "lint-staged": "^7.1.3",
-    "nyc": "^12.0.1",
-    "prettier": "^1.13.4",
+    "lint-staged": "^7.2.0",
+    "nyc": "^12.0.2",
+    "prettier": "^1.13.6",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.8",
+    "rimraf": "^2.6.2",
     "supertest": "^3.1.0",
+    "tinyify": "^2.4.3",
+    "uglify-js": "^3.4.2",
     "xo": "^0.21.1"
+  },
+  "engines": {
+    "node": ">=6.4"
   },
   "homepage": "https://github.com/cabinjs/cabin",
   "keywords": [
+    "console",
+    "signale",
+    "hackable",
+    "color",
+    "colored",
+    "chalk",
     "cabin",
     "lad",
     "lass",
@@ -75,7 +95,13 @@
     "sql",
     "app",
     "framework",
-    "boilerplate"
+    "boilerplate",
+    "loggly",
+    "analytics",
+    "logging",
+    "library",
+    "helper",
+    "utility"
   ],
   "license": "MIT",
   "lint-staged": {
@@ -88,7 +114,13 @@
       "git add"
     ]
   },
-  "main": "index.js",
+  "main": "lib/index.js",
+  "browser": "dist/cabin.js",
+  "unpkg": "dist/cabin.min.js",
+  "files": [
+    "lib",
+    "dist"
+  ],
   "remarkConfig": {
     "plugins": [
       "preset-github"
@@ -100,10 +132,18 @@
   },
   "scripts": {
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "lint": "xo && remark . -qfo",
+    "lint": "xo && remark . -qfo && eslint lib && eslint dist",
     "precommit": "lint-staged && npm test",
-    "test": "npm run lint && npm run test-coverage",
-    "test-coverage": "cross-env NODE_ENV=test nyc ava"
+    "test": "npm run build && npm run lint && npm run ava",
+    "test-coverage": "npm run build && npm run lint && npm run nyc",
+    "ava": "cross-env NODE_ENV=test ava",
+    "nyc": "cross-env NODE_ENV=test nyc ava",
+    "build": "npm run build:clean && npm run build:lib && npm run build:dist",
+    "build:clean": "rimraf lib dist",
+    "build:lib": "babel src --out-dir lib",
+    "build:dist": "npm run browserify && npm run minify",
+    "browserify": "browserify src/index.js -o dist/cabin.js -s Cabin -d -t babelify",
+    "minify": "cross-env NODE_ENV=production browserify src/index.js -o dist/cabin.min.js -s Cabin -d -t babelify -p tinyify"
   },
   "xo": {
     "extends": "prettier",
@@ -113,6 +153,9 @@
     "parserOptions": {
       "sourceType": "script"
     },
+    "env": [
+      "node"
+    ],
     "rules": {
       "prettier/prettier": [
         "error",

@@ -1,21 +1,21 @@
 const test = require('ava');
 
-const Cabin = require('..');
+const Cabin = require('../lib');
 
 test.beforeEach(t => {
-  t.context.cabin = new Cabin();
+  t.context.cabin = new Cabin({ axe: { capture: false } });
 });
 
 test('GET/HEAD empty String `request.body`', t => {
   t.is(
-    t.context.cabin.getMeta({
+    t.context.cabin.parseRequest({
       method: 'GET',
       body: 'hello world'
     }).request.body,
     ''
   );
   t.is(
-    t.context.cabin.getMeta({
+    t.context.cabin.parseRequest({
       method: 'HEAD',
       body: 'hello world'
     }).request.body,
@@ -25,7 +25,7 @@ test('GET/HEAD empty String `request.body`', t => {
 
 test('POST with Object is parsed to `request.body`', t => {
   t.is(
-    t.context.cabin.getMeta({
+    t.context.cabin.parseRequest({
       method: 'POST',
       body: { hello: 'world' }
     }).request.body,
@@ -35,7 +35,7 @@ test('POST with Object is parsed to `request.body`', t => {
 
 test('POST with Number is parsed to `request.body`', t => {
   t.is(
-    t.context.cabin.getMeta({
+    t.context.cabin.parseRequest({
       method: 'POST',
       body: 1
     }).request.body,
@@ -45,7 +45,7 @@ test('POST with Number is parsed to `request.body`', t => {
 
 test('POST with String is parsed to `request.body`', t => {
   t.is(
-    t.context.cabin.getMeta({
+    t.context.cabin.parseRequest({
       method: 'POST',
       body: 'hello world'
     }).request.body,
@@ -55,7 +55,7 @@ test('POST with String is parsed to `request.body`', t => {
 
 test('parses user object', t => {
   t.is(
-    t.context.cabin.getMeta({
+    t.context.cabin.parseRequest({
       method: 'GET',
       user: {
         id: '123'
@@ -67,7 +67,7 @@ test('parses user object', t => {
 
 test('parses ip address', t => {
   t.is(
-    t.context.cabin.getMeta({
+    t.context.cabin.parseRequest({
       method: 'GET',
       ip: '127.0.0.1'
     }).user.ip_address,

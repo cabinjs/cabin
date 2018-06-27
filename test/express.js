@@ -2,11 +2,11 @@ const test = require('ava');
 const express = require('express');
 const supertest = require('supertest');
 
-const Cabin = require('..');
+const Cabin = require('../lib');
 
-test.cb.beforeEach(t => {
+test.beforeEach.cb(t => {
   const app = express();
-  const cabin = new Cabin();
+  const cabin = new Cabin({ axe: { capture: false } });
   app.use(cabin.middleware);
   t.context.app = app;
   t.context.server = app.listen(() => {
@@ -14,10 +14,9 @@ test.cb.beforeEach(t => {
   });
 });
 
-test.cb('req.logger for express', t => {
+test.cb('req.logger.log for express', t => {
   t.context.app.use((req, res) => {
-    t.true(typeof req.logger === 'function');
-    req.logger('log', 'hello');
+    req.logger.log('hello');
     res.send('ok');
   });
   const request = supertest(t.context.server);
@@ -26,7 +25,6 @@ test.cb('req.logger for express', t => {
 
 test.cb('req.logger.warn for express', t => {
   t.context.app.use((req, res) => {
-    t.true(typeof req.logger.warn === 'function');
     req.logger.warn('hello');
     res.send('ok');
   });
