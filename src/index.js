@@ -45,11 +45,17 @@ class Cabin {
     // bind the logger
     this.logger = this.config.logger;
 
+    // parse arg helper
+    this.parseArg = this.parseArg.bind(this);
+
     // bind helper functions for each log level
     Object.keys(this.logger)
       .filter(key => isFunction(this.logger[key]))
       .forEach(level => {
-        this[level] = (...args) => this.logger[level](...[].slice.call(args));
+        this[level] = (...args) => {
+          args[1] = this.parseArg(args[1]);
+          this.logger[level](...[].slice.call(args));
+        };
       });
 
     // aliases
@@ -68,6 +74,18 @@ class Cabin {
     // expose parseRequest and parseErr
     this.parseRequest = parseRequest;
     this.parseErr = parseErr;
+  }
+
+  parseArg(arg) {
+    if (isUndefined(arg) || isNull(arg)) arg = {};
+    if (isError(arg)) arg = parseErr(arg, this.config.fields);
+    if (isArray(arg)) arg = { value: arg };
+    if (isString(arg)) arg = { value: arg };
+    if (isNumber(arg)) arg = { value: arg };
+    if (isFunction(arg)) arg = { value: arg.toString() };
+    if (!isObject(arg)) arg = {};
+    Object.assign(arg, this.config.meta);
+    return arg;
   }
 
   setMeta(meta = {}) {
@@ -89,19 +107,9 @@ class Cabin {
       .filter(key => isFunction(this.logger[key]))
       .forEach(key => {
         ctx.logger[key] = (...args) => {
-          if (isUndefined(args[1]) || isNull(args[1])) args[1] = {};
-          if (isError(args[1])) args[1] = parseErr(args[1], this.config.fields);
-          if (isArray(args[1])) args[1] = { value: args[1] };
-          if (isString(args[1])) args[1] = { value: args[1] };
-          if (isNumber(args[1])) args[1] = { value: args[1] };
-          if (isFunction(args[1])) args[1] = { value: args[1].toString() };
-          if (!isObject(args[1])) args[1] = {};
-          Object.assign(
-            args[1],
-            parseRequest(req, this.config.userFields),
-            this.config.meta
-          );
-          this.logger[key](...args);
+          args[1] = this.parseArg(args[1]);
+          Object.assign(args[1], parseRequest(req, this.config.userFields));
+          this.logger[key](...[].slice.call(args));
         };
       });
     ctx.log = ctx.logger;

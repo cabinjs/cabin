@@ -28,7 +28,7 @@
       cabin.info('viewed docs');
       cabin.error(new Error('oops!'));
       xhook.before(function(req) {
-        cabin.info('request queued', cabin.parseRequest(req));
+        cabin.info('request queued', req);
       });
       xhook.after(function(req, res) {
         cabin.info('request complete', cabin.parseRequest(req));
