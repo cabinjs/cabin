@@ -117,4 +117,8 @@ class Cabin {
   }
 }
 
+Cabin.Axe = Axe;
+Cabin.parseRequest = parseRequest;
+Cabin.parseErr = parseErr;
+
 module.exports = Cabin;
