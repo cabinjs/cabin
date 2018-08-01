@@ -25,6 +25,8 @@
 <div align="center"><strong>Cabin is in alpha development, join us in <a href="http://slack.crocodilejs.com">Slack</a></strong>.  Our web-based dashboard will be available soon!</div>
 <hr />
 
+> :heart: Love this project? Support <a href="https://github.com/niftylettuce" target="_blank">@niftylettuce's</a> [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software) on <a href="https://patreon.com/niftylettuce" target="_blank">Patreon</a> or <a href="https://paypal.me/niftylettuce">PayPal</a> :unicorn:
+
 
 ## Table of Contents
 
