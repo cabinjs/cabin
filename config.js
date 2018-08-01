@@ -12,5 +12,8 @@ docute.init({
         path: '/'
       }
     ]
-  }
+  },
+  plugins: [
+    docuteEmojify()
+  ]
 });
