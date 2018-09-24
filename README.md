@@ -27,6 +27,7 @@
 
 <div align="center">:heart: Love this project? Support <a href="https://github.com/niftylettuce" target="_blank">@niftylettuce's</a> <a href="https://en.wikipedia.org/wiki/Free_and_open-source_software" target="_blank">FOSS</a> on <a href="https://patreon.com/niftylettuce" target="_blank">Patreon</a> or <a href="https://paypal.me/niftylettuce">PayPal</a> :unicorn:</div>
 
+
 ## Table of Contents
 
 * [Install](#install)
@@ -35,8 +36,11 @@
   * [Node](#node)
   * [Browser](#browser)
   * [Stack Traces and Error Handling](#stack-traces-and-error-handling)
+* [Display Metadata and Stack Traces](#display-metadata-and-stack-traces)
+  * [Metadata](#metadata)
+  * [Stack Traces](#stack-traces)
 * [Options](#options)
-* [Metadata](#metadata)
+* [Metadata](#metadata-1)
 * [Related](#related)
 * [Contributors](#contributors)
 * [Trademark Notice](#trademark-notice)
@@ -84,7 +88,7 @@ const Cabin = require('cabin');
 const app = new Koa();
 const cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
 
-// use the cabin middleware
+// use the cabin middleware (adds request-based logging and helpers)
 app.use(cabin.middleware);
 
 // add your user/session management middleware here (e.g. passport)
@@ -113,7 +117,7 @@ const Cabin = require('cabin');
 const app = express();
 const cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
 
-// use the cabin middleware
+// use the cabin middleware (adds request-based logging and helpers)
 app.use(cabin.middleware);
 
 // add your user/session management middleware here (e.g. passport)
@@ -172,6 +176,8 @@ cabin.info('viewed docs');
 ```
 
 #### Log Requests/Responses
+
+For server-side logging of requests, the Cabin middleware `cabin.middleware` will automatically log requests for you upon completion.
 
 If you want to log all client-side [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) or [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) requests, then we recommend using [xhook][].  The examples provided below show you how to integrate this, but it is optional of course!
 
@@ -345,10 +351,35 @@ It is widely used by logging services and seems to be the most popular tool.
 ```
 
 
+## Display Metadata and Stack Traces
+
+Under the hood, Cabin uses [Axe][] which provides us with several options, including one to show metadata (e.g. request headers, body, and user) and another to show stack traces for errors.
+
+You can pass these options through the `axe` option (see [Options](#options) below) – or – you could pass environment flags when you need to.
+
+**By default, [Axe][] does not output any metadata and only outputs stack traces in non-production environments.**
+
+### Metadata
+
+To show metadata, pass a truthy value for the process environment variable `SHOW_META`.
+
+> (e.g. `SHOW_META=1` or `SHOW_META=true` before running your script – `SHOW_META=true node app`).
+
+Similarly if you pass a falsy value of `0` or `false` it will hide metadata.
+
+### Stack Traces
+
+To show stack traces, pass a truthy value for the process environment variable `SHOW_STACK`.
+
+> (e.g. `SHOW_STACK=1` or `SHOW_STACK=true` before running your script – `SHOW_STACK=true node app`).
+
+Similarly if you pass a falsy value of `0` or `false` it will hide stack traces.
+
+
 ## Options
 
 * `key` (String) - defaults to an empty string, **this is where you put your Cabin API key**, which you can get for free at [Cabin][]
-* `axe` (Object) - defaults to an empty Object `{}`, but you can pass options here for [Axe][], such as `{ key: 'YOUR-CABIN-API-KEY' }` or `{ capture: false }` to turn off log HTTP capture.  Note if you specify a `key` option (see the line above this one), then it will be used as your API key instead of one specified here.
+* `axe` (Object) - defaults to an empty Object `{}`, but you can pass options here for [Axe][]
 * `logger` (Object) - if you have a custom logger you wish to use instead of [Axe][], but note that Axe accepts a `logger` option, so you should use that instead, see [Axe][] docs for more info.
 * `meta` (Object) - defaults to an empty object - this will get passed as metadata (e.g. you could set a custom `meta.user` object here for every request).
 * `userFields` (Array) - defaults to `[ 'id', 'email', 'full_name']` - these are the default fields to store from a parsed user object, this is consumed by [parse-request][] (see [Metadata](#metadata) below).
@@ -392,7 +423,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
 
 
-##
+## 
 
 <a href="#"><img src="media/cabin-footer.png" alt="#" /></a>
 

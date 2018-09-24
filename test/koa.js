@@ -6,7 +6,7 @@ const Cabin = require('../lib');
 
 test.beforeEach.cb(t => {
   const app = new Koa();
-  const cabin = new Cabin({ axe: { capture: false } });
+  const cabin = new Cabin();
   app.use(cabin.middleware);
   t.context.app = app;
   t.context.server = app.listen(() => {

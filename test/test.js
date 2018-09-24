@@ -3,7 +3,7 @@ const test = require('ava');
 const Cabin = require('../lib');
 
 test.beforeEach(t => {
-  t.context.cabin = new Cabin({ axe: { capture: false } });
+  t.context.cabin = new Cabin();
 });
 
 test('GET/HEAD empty String `request.body`', t => {
