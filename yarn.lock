@@ -825,6 +825,13 @@
   dependencies:
     arrify "^1.0.1"
 
+"@ladjs/response-time@^2.3.3":
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@ladjs/response-time/-/response-time-2.3.3.tgz#c2381d327eb459ce12eaddaa34697623d19686ec"
+  dependencies:
+    depd "~1.1.2"
+    on-headers "~1.0.1"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -1728,7 +1735,7 @@ chalk@^1.0.0, chalk@^1.1.1, chalk@^1.1.3:
     strip-ansi "^3.0.0"
     supports-color "^2.0.0"
 
-chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.3.1, chalk@^2.4.1:
+chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.3.1, chalk@^2.3.2, chalk@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.1.tgz#18c49ab16a037b6eb0152cc83e3471338215b66e"
   dependencies:
@@ -2432,7 +2439,7 @@ depd@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.1.tgz#5783b4e1c459f06fa5ca27f991f3d06e7a310359"
 
-depd@^1.1.2, depd@~1.1.1, depd@~1.1.2:
+depd@^1.1.2, depd@~1.1.0, depd@~1.1.1, depd@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
 
@@ -2588,7 +2595,7 @@ encodeurl@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/encodeurl/-/encodeurl-1.0.2.tgz#ad3ff4c86ec2d029322f5a02c3a9a606c95b3f59"
 
-end-of-stream@^1.0.0:
+end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/end-of-stream/-/end-of-stream-1.4.1.tgz#ed29634d19baba463b6ce6b80a37213eab71ec43"
   dependencies:
@@ -3195,6 +3202,10 @@ fast-glob@^2.0.2:
     merge2 "^1.2.1"
     micromatch "^3.1.10"
 
+fast-json-parse@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/fast-json-parse/-/fast-json-parse-1.0.3.tgz#43e5c61ee4efa9265633046b770fb682a7577c4d"
+
 fast-json-stable-stringify@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/fast-json-stable-stringify/-/fast-json-stable-stringify-2.0.0.tgz#d5142c0caee6b1189f87d3a76111064f86c8bbf2"
@@ -3203,9 +3214,17 @@ fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
 
+fast-redact@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/fast-redact/-/fast-redact-1.2.0.tgz#356bdb968c23473cd4e460689c10785842f41529"
+
 fast-safe-stringify@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.0.4.tgz#4fe828718aa61dbcf9119c3c24e79cc4dea973b2"
+
+fast-safe-stringify@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.0.6.tgz#04b26106cc56681f51a044cfc0d76cf0008ac2c2"
 
 fault@^1.0.0:
   version "1.0.2"
@@ -3307,6 +3326,10 @@ flat-cache@^1.2.1:
     del "^2.0.2"
     graceful-fs "^4.1.2"
     write "^0.2.1"
+
+flatstr@^1.0.5:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/flatstr/-/flatstr-1.0.8.tgz#0e849229751f2b9f6a0919f8e81e1229e84ba901"
 
 fn-name@^2.0.1:
   version "2.0.1"
@@ -3711,7 +3734,7 @@ http-errors@1.6.2:
     setprototypeof "1.0.3"
     statuses ">= 1.3.1 < 2"
 
-http-errors@^1.6.3, http-errors@~1.7.1:
+http-errors@^1.3.1, http-errors@^1.6.3, http-errors@~1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.7.1.tgz#6a4ffe5d35188e1c39f872534690585852e1f027"
   dependencies:
@@ -4531,6 +4554,17 @@ koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/koa-is-json/-/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
 
+koa-router@^7.4.0:
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/koa-router/-/koa-router-7.4.0.tgz#aee1f7adc02d5cb31d7d67465c9eacc825e8c5e0"
+  dependencies:
+    debug "^3.1.0"
+    http-errors "^1.3.1"
+    koa-compose "^3.0.0"
+    methods "^1.0.1"
+    path-to-regexp "^1.1.1"
+    urijs "^1.19.0"
+
 koa@^2.5.3:
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/koa/-/koa-2.5.3.tgz#0b0c37eee3aac807a0a6ad36bc0b8660f12d83f1"
@@ -5022,7 +5056,7 @@ merge2@^1.2.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.2.2.tgz#03212e3da8d86c4d8523cebd6318193414f94e34"
 
-methods@^1.1.1, methods@^1.1.2, methods@~1.1.2:
+methods@^1.0.1, methods@^1.1.1, methods@^1.1.2, methods@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
 
@@ -5489,7 +5523,11 @@ on-finished@^2.3.0, on-finished@~2.3.0:
   dependencies:
     ee-first "1.1.1"
 
-once@^1.3.0, once@^1.4.0:
+on-headers@~1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/on-headers/-/on-headers-1.0.1.tgz#928f5d0f470d49342651ea6794b0857c100693f7"
+
+once@^1.3.0, once@^1.3.1, once@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/once/-/once-1.4.0.tgz#583b1aa775961d4b113ac17d9c50baef9dd76bd1"
   dependencies:
@@ -5803,6 +5841,12 @@ path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
 
+path-to-regexp@^1.1.1:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-1.7.0.tgz#59fde0f435badacba103a84e9d3bc64e96b9937d"
+  dependencies:
+    isarray "0.0.1"
+
 path-type@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-2.0.0.tgz#f012ccb8415b7096fc2daa1054c3d72389594c73"
@@ -5856,6 +5900,23 @@ pinkie@^1.0.0:
 pinkie@^2.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
+
+pino-std-serializers@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/pino-std-serializers/-/pino-std-serializers-2.2.1.tgz#ceb583374358c75949e9c4ddbdd690428c15958e"
+
+pino@^5.6.2:
+  version "5.6.2"
+  resolved "https://registry.yarnpkg.com/pino/-/pino-5.6.2.tgz#523b7926db828e765a944eef6460682722fa27e5"
+  dependencies:
+    fast-json-parse "^1.0.3"
+    fast-redact "^1.2.0"
+    fast-safe-stringify "^2.0.6"
+    flatstr "^1.0.5"
+    pino-std-serializers "^2.2.1"
+    pump "^3.0.0"
+    quick-format-unescaped "^3.0.0"
+    sonic-boom "^0.6.1"
 
 pkg-conf@^2.1.0:
   version "2.1.0"
@@ -6012,6 +6073,13 @@ public-encrypt@^4.0.0:
     parse-asn1 "^5.0.0"
     randombytes "^2.0.1"
 
+pump@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/pump/-/pump-3.0.0.tgz#b4a2116815bde2f4e1ea602354e8c75565107a64"
+  dependencies:
+    end-of-stream "^1.1.0"
+    once "^1.3.1"
+
 punycode@1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.3.2.tgz#9653a036fb7c1ee42342f2325cceefea3926c48d"
@@ -6043,6 +6111,10 @@ querystring@0.2.0:
 querystringify@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.0.0.tgz#fa3ed6e68eb15159457c89b37bc6472833195755"
+
+quick-format-unescaped@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/quick-format-unescaped/-/quick-format-unescaped-3.0.0.tgz#21e7fdc5b08b079ef71ed0728ed0725e58671e41"
 
 quick-lru@^1.0.0:
   version "1.1.0"
@@ -7027,6 +7099,13 @@ resolve@^1.1.4, resolve@^1.3.2, resolve@^1.4.0, resolve@^1.5.0, resolve@^1.6.0, 
   dependencies:
     path-parse "^1.0.5"
 
+response-time@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/response-time/-/response-time-2.3.2.tgz#ffa71bab952d62f7c1d49b7434355fbc68dffc5a"
+  dependencies:
+    depd "~1.1.0"
+    on-headers "~1.0.1"
+
 restore-cursor@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/restore-cursor/-/restore-cursor-1.0.1.tgz#34661f46886327fed2991479152252df92daa541"
@@ -7321,6 +7400,14 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
+signale@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/signale/-/signale-1.3.0.tgz#1b4917c2c7a8691550adca0ad1da750a662b4497"
+  dependencies:
+    chalk "^2.3.2"
+    figures "^2.0.0"
+    pkg-conf "^2.1.0"
+
 simple-concat@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/simple-concat/-/simple-concat-1.0.0.tgz#7344cbb8b6e26fb27d66b2fc86f9f6d5997521c6"
@@ -7377,6 +7464,12 @@ snapdragon@^0.8.1:
     source-map "^0.5.6"
     source-map-resolve "^0.5.0"
     use "^3.1.0"
+
+sonic-boom@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/sonic-boom/-/sonic-boom-0.6.1.tgz#da832af4ed7c477eb5317fe4c5132c75f7556245"
+  dependencies:
+    flatstr "^1.0.5"
 
 sort-keys@^2.0.0:
   version "2.0.0"
@@ -8219,6 +8312,10 @@ uri-js@^4.2.2:
   resolved "https://registry.yarnpkg.com/uri-js/-/uri-js-4.2.2.tgz#94c540e1ff772956e2299507c010aea6c8838eb0"
   dependencies:
     punycode "^2.1.0"
+
+urijs@^1.19.0:
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/urijs/-/urijs-1.19.1.tgz#5b0ff530c0cbde8386f6342235ba5ca6e995d25a"
 
 urix@^0.1.0:
   version "0.1.0"

@@ -16,7 +16,7 @@
 </div>
 <div align="center">
   <sub>
-    Frustrated with Sentry, Airbrake, Papertrail, or Bugsnag?  We were too!
+    Need an alternative to Sentry, Airbrake, Papertrail, or Bugsnag?  We did too!
     &bull; Built by <a href="https://github.com/niftylettuce">@niftylettuce</a>
     and <a href="#contributors">contributors</a>
   </sub>
@@ -79,62 +79,162 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
 
 ### Node
 
+> The examples below show how to use Cabin in combination with [Axe][], [Signale][] logging utility (for development), [Pino][] logging utility (for production), and how to add an accurate `X-Response-Time` response time metric to your logs and response headers automatically.
+
 #### Koa
+
+> Don't want to configure this yourself? We **highly recommend** to use [Lad][] instead of configuring this yourself as it has all of this pre-configured for you with best-practices.  However if you already have an existing [Koa][] based project the example below will sufficiently serve as a guide for implementation.
+
+1. Install required and recommended dependencies:
+
+```sh
+npm install koa cabin signale pino @ladjs/response-time
+```
+
+2. Implement the example code below ([also found here](examples/koa.js)):
 
 ```js
 const Koa = require('koa');
 const Cabin = require('cabin');
+const Router = require('koa-router');
+const responseTime = require('@ladjs/response-time');
+const { Signale } = require('signale');
+const pino = require('pino')({
+  customLevels: {
+    log: 30
+  }
+});
+
+const env = process.env.NODE_ENV || 'development';
 
 const app = new Koa();
-const cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
+const router = new Router();
+const cabin = new Cabin({
+  // (optional: your free API key from https://cabinjs.com)
+  // key: 'YOUR-CABIN-API-KEY',
+  axe: {
+    logger: env === 'production' ? pino : new Signale()
+  }
+});
+
+// adds `X-Response-Time` header to responses
+app.use(responseTime());
 
 // use the cabin middleware (adds request-based logging and helpers)
 app.use(cabin.middleware);
 
 // add your user/session management middleware here (e.g. passport)
+// ...
+
+// an example home page route
+router.get('/', ctx => {
+  ctx.logger.info('someone visited the home page');
+  ctx.body = 'hello world';
+});
 
 // this assumes that you are using passport which
 // exposes `ctx.logout` to log out the logged in user
-app.get('/logout', ctx => {
-
-  ctx.log.warn('Logged out');
-  ctx.logger.warn('Logged out'); // same thing
-
+router.get('/logout', ctx => {
+  ctx.logger.warn('Logged out');
   ctx.logout();
   ctx.redirect('/');
 });
 
-// you can also use it to log activity such as user checking out
-app.listen(3000);
+app.use(router.routes());
+app.use(router.allowedMethods());
+
+app.listen(3000, () => {
+  cabin.info('app started');
+});
 ```
 
+3. See [Koa convienience methods below](#koa-1) for helper utilities you can use while writing code.
+
 #### Express
+
+1. Install required and recommended dependencies:
+
+```sh
+npm install koa cabin signale pino response-time
+```
+
+2. Implement the example code below ([also found here](examples/express.js)):
 
 ```js
 const express = require('express');
 const Cabin = require('cabin');
+const responseTime = require('response-time');
+const { Signale } = require('signale');
+const pino = require('pino')({
+  customLevels: {
+    log: 30
+  }
+});
+
+const env = process.env.NODE_ENV || 'development';
 
 const app = express();
-const cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
+const cabin = new Cabin({
+  // (optional: your free API key from https://cabinjs.com)
+  // key: 'YOUR-CABIN-API-KEY',
+  axe: {
+    logger: env === 'production' ? pino : new Signale()
+  }
+});
+
+// adds `X-Response-Time` header to responses
+app.use(responseTime());
 
 // use the cabin middleware (adds request-based logging and helpers)
 app.use(cabin.middleware);
 
 // add your user/session management middleware here (e.g. passport)
+// ...
+
+// an example home page route
+app.get('/', (req, res) => {
+  req.logger.info('someone visited the home page');
+  res.send('hello world');
+});
 
 // this assumes that you are using passport which
 // exposes `req.logout` to log out the logged in user
 app.get('/logout', (req, res) => {
-
-  req.log.warn('Logged out');
-  req.logger.warn('Logged out'); // same thing
-
+  req.logger.warn('Logged out');
   req.logout();
   res.redirect('/');
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+  cabin.info('app started');
+});
 ```
+
+3. See [Express convienience methods below](#express-1) for helper utilities you can use while writing code.
+
+#### Convienience Methods
+
+In order to easily interact and use the `logger` utility function exposed by `app.use(cabin.middleware)`, we expose convienient helper methods in Express and Koa:
+
+##### Express
+
+* `req.log`
+* `req.logger`
+* `res.log`
+* `res.logger`
+
+##### Koa
+
+* `ctx.log`
+* `ctx.logger`
+* `ctx.req.log`
+* `ctx.req.logger`
+* `ctx.res.log`
+* `ctx.res.logger`
+* `ctx.request.log`
+* `ctx.request.logger`
+* `ctx.response.log`
+* `ctx.response.logger`
 
 ### Browser
 
@@ -384,6 +484,8 @@ Similarly if you pass a falsy value of `0` or `false` it will hide stack traces.
 * `meta` (Object) - defaults to an empty object - this will get passed as metadata (e.g. you could set a custom `meta.user` object here for every request).
 * `userFields` (Array) - defaults to `[ 'id', 'email', 'full_name']` - these are the default fields to store from a parsed user object, this is consumed by [parse-request][] (see [Metadata](#metadata) below).
 * `fields` (Array) - defaults to an empty Array `[]`  - these are the default fields to store from a parsed user object, this is consumed by [parse-err][] (see [Metadata](#metadata) below).
+* `message` (String) - defaults to a generic log output (see [src/index.js](src/index.js)'s `message` option) - this is used by `cabin.middleware` when requests finish, it will utilize `logger` to output an error, warn, or info level log based off the status code
+* `templateSettings` (Object) - defaults to variable interpolation with `{{ var }}` vs `<%= var %>` (see [Lodash template docs][lodash-template-docs])
 
 
 ## Metadata
@@ -423,7 +525,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
 
 
-## 
+##
 
 <a href="#"><img src="media/cabin-footer.png" alt="#" /></a>
 
@@ -472,3 +574,5 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [json]: https://caniuse.com/#feat=json
 
 [cabin]: https://cabinjs.com
+
+[lodash-template-docs]: https://lodash.com/docs/4.17.10#template
