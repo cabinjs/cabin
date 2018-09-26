@@ -57,7 +57,7 @@
     "xo": "^0.23.0"
   },
   "engines": {
-    "node": ">=6.4"
+    "node": ">=6.9.0"
   },
   "homepage": "https://github.com/cabinjs/cabin",
   "keywords": [
