@@ -525,7 +525,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
 
 
-##
+## 
 
 <a href="#"><img src="media/cabin-footer.png" alt="#" /></a>
 
@@ -576,3 +576,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [cabin]: https://cabinjs.com
 
 [lodash-template-docs]: https://lodash.com/docs/4.17.10#template
+
+[signale]: https://github.com/klauscfhq/signale
+
+[pino]: https://github.com/pinojs/pino
