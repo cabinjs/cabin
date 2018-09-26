@@ -87,66 +87,66 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
 
 1. Install required and recommended dependencies:
 
-```sh
-npm install koa cabin signale pino @ladjs/response-time
-```
+  ```sh
+  npm install koa cabin signale pino @ladjs/response-time
+  ```
 
 2. Implement the example code below ([also found here](examples/koa.js)):
 
-```js
-const Koa = require('koa');
-const Cabin = require('cabin');
-const Router = require('koa-router');
-const responseTime = require('@ladjs/response-time');
-const { Signale } = require('signale');
-const pino = require('pino')({
-  customLevels: {
-    log: 30
-  }
-});
+  ```js
+  const Koa = require('koa');
+  const Cabin = require('cabin');
+  const Router = require('koa-router');
+  const responseTime = require('@ladjs/response-time');
+  const { Signale } = require('signale');
+  const pino = require('pino')({
+    customLevels: {
+      log: 30
+    }
+  });
 
-const env = process.env.NODE_ENV || 'development';
+  const env = process.env.NODE_ENV || 'development';
 
-const app = new Koa();
-const router = new Router();
-const cabin = new Cabin({
-  // (optional: your free API key from https://cabinjs.com)
-  // key: 'YOUR-CABIN-API-KEY',
-  axe: {
-    logger: env === 'production' ? pino : new Signale()
-  }
-});
+  const app = new Koa();
+  const router = new Router();
+  const cabin = new Cabin({
+    // (optional: your free API key from https://cabinjs.com)
+    // key: 'YOUR-CABIN-API-KEY',
+    axe: {
+      logger: env === 'production' ? pino : new Signale()
+    }
+  });
 
-// adds `X-Response-Time` header to responses
-app.use(responseTime());
+  // adds `X-Response-Time` header to responses
+  app.use(responseTime());
 
-// use the cabin middleware (adds request-based logging and helpers)
-app.use(cabin.middleware);
+  // use the cabin middleware (adds request-based logging and helpers)
+  app.use(cabin.middleware);
 
-// add your user/session management middleware here (e.g. passport)
-// ...
+  // add your user/session management middleware here (e.g. passport)
+  // ...
 
-// an example home page route
-router.get('/', ctx => {
-  ctx.logger.info('someone visited the home page');
-  ctx.body = 'hello world';
-});
+  // an example home page route
+  router.get('/', ctx => {
+    ctx.logger.info('someone visited the home page');
+    ctx.body = 'hello world';
+  });
 
-// this assumes that you are using passport which
-// exposes `ctx.logout` to log out the logged in user
-router.get('/logout', ctx => {
-  ctx.logger.warn('Logged out');
-  ctx.logout();
-  ctx.redirect('/');
-});
+  // this assumes that you are using passport which
+  // exposes `ctx.logout` to log out the logged in user
+  router.get('/logout', ctx => {
+    ctx.logger.warn('Logged out');
+    ctx.logout();
+    ctx.redirect('/');
+  });
 
-app.use(router.routes());
-app.use(router.allowedMethods());
+  app.use(router.routes());
+  app.use(router.allowedMethods());
 
-app.listen(3000, () => {
-  cabin.info('app started');
-});
-```
+  app.listen(3000, () => {
+    cabin.info('app started');
+  });
+  ```
 
 3. See [Koa convienience methods below](#koa-1) for helper utilities you can use while writing code.
 
@@ -154,61 +154,61 @@ app.listen(3000, () => {
 
 1. Install required and recommended dependencies:
 
-```sh
-npm install koa cabin signale pino response-time
-```
+  ```sh
+  npm install koa cabin signale pino response-time
+  ```
 
 2. Implement the example code below ([also found here](examples/express.js)):
 
-```js
-const express = require('express');
-const Cabin = require('cabin');
-const responseTime = require('response-time');
-const { Signale } = require('signale');
-const pino = require('pino')({
-  customLevels: {
-    log: 30
-  }
-});
+  ```js
+  const express = require('express');
+  const Cabin = require('cabin');
+  const responseTime = require('response-time');
+  const { Signale } = require('signale');
+  const pino = require('pino')({
+    customLevels: {
+      log: 30
+    }
+  });
 
-const env = process.env.NODE_ENV || 'development';
+  const env = process.env.NODE_ENV || 'development';
 
-const app = express();
-const cabin = new Cabin({
-  // (optional: your free API key from https://cabinjs.com)
-  // key: 'YOUR-CABIN-API-KEY',
-  axe: {
-    logger: env === 'production' ? pino : new Signale()
-  }
-});
+  const app = express();
+  const cabin = new Cabin({
+    // (optional: your free API key from https://cabinjs.com)
+    // key: 'YOUR-CABIN-API-KEY',
+    axe: {
+      logger: env === 'production' ? pino : new Signale()
+    }
+  });
 
-// adds `X-Response-Time` header to responses
-app.use(responseTime());
+  // adds `X-Response-Time` header to responses
+  app.use(responseTime());
 
-// use the cabin middleware (adds request-based logging and helpers)
-app.use(cabin.middleware);
+  // use the cabin middleware (adds request-based logging and helpers)
+  app.use(cabin.middleware);
 
-// add your user/session management middleware here (e.g. passport)
-// ...
+  // add your user/session management middleware here (e.g. passport)
+  // ...
 
-// an example home page route
-app.get('/', (req, res) => {
-  req.logger.info('someone visited the home page');
-  res.send('hello world');
-});
+  // an example home page route
+  app.get('/', (req, res) => {
+    req.logger.info('someone visited the home page');
+    res.send('hello world');
+  });
 
-// this assumes that you are using passport which
-// exposes `req.logout` to log out the logged in user
-app.get('/logout', (req, res) => {
-  req.logger.warn('Logged out');
-  req.logout();
-  res.redirect('/');
-});
+  // this assumes that you are using passport which
+  // exposes `req.logout` to log out the logged in user
+  app.get('/logout', (req, res) => {
+    req.logger.warn('Logged out');
+    req.logout();
+    res.redirect('/');
+  });
 
-app.listen(3000, () => {
-  cabin.info('app started');
-});
-```
+  app.listen(3000, () => {
+    cabin.info('app started');
+  });
+  ```
 
 3. See [Express convienience methods below](#express-1) for helper utilities you can use while writing code.
 
@@ -525,7 +525,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
 
 
-## 
+##
 
 <a href="#"><img src="media/cabin-footer.png" alt="#" /></a>
 
