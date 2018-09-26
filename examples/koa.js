@@ -1,7 +1,8 @@
 const Koa = require('koa');
 const Cabin = require('..');
 const Router = require('koa-router');
-const responseTime = require('@ladjs/response-time');
+const koaConnect = require('koa-connect');
+const responseTime = require('response-time');
 const { Signale } = require('signale');
 const pino = require('pino')({
   customLevels: {
@@ -22,7 +23,7 @@ const cabin = new Cabin({
 });
 
 // adds `X-Response-Time` header to responses
-app.use(responseTime());
+app.use(koaConnect(responseTime));
 
 // use the cabin middleware (adds request-based logging and helpers)
 app.use(cabin.middleware);

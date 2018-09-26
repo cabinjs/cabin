@@ -825,13 +825,6 @@
   dependencies:
     arrify "^1.0.1"
 
-"@ladjs/response-time@^2.3.3":
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/@ladjs/response-time/-/response-time-2.3.3.tgz#c2381d327eb459ce12eaddaa34697623d19686ec"
-  dependencies:
-    depd "~1.1.2"
-    on-headers "~1.0.1"
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -4542,6 +4535,10 @@ koa-compose@^3.0.0:
 koa-compose@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/koa-compose/-/koa-compose-4.1.0.tgz#507306b9371901db41121c812e923d0d67d3e877"
+
+koa-connect@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/koa-connect/-/koa-connect-2.0.1.tgz#2acad159c33862de1d73aa4562a48de13f137c0f"
 
 koa-convert@^1.2.0:
   version "1.2.0"
