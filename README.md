@@ -3,7 +3,7 @@
 </h1>
 <div align="center">
   <a href="http://slack.crocodilejs.com"><img src="http://slack.crocodilejs.com/badge.svg" alt="chat" /></a>
-  <a href="https://semaphoreci.com/niftylettuce/cabin"><img src="https://semaphoreci.com/api/v1/niftylettuce/cabin/branches/master/shields_badge.svg" alt="build status"></a>
+  <a href="https://travis-ci.org/cabinjs/cabin"><img src="https://travis-ci.org/cabinjs/cabin.svg?branch=master" alt="build status" /></a>
   <a href="https://codecov.io/github/cabinjs/cabin"><img src="https://img.shields.io/codecov/c/github/cabinjs/cabin/master.svg" alt="code coverage" /></a>
   <a href="https://github.com/sindresorhus/xo"><img src="https://img.shields.io/badge/code_style-XO-5ed9c7.svg" alt="code style" /></a>
   <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="styled with prettier" /></a>
@@ -526,7 +526,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
 
 
-## 
+##
 
 <a href="#"><img src="media/cabin-footer.png" alt="#" /></a>
 
