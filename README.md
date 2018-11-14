@@ -153,7 +153,7 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
    });
    ```
 
-3. See [Koa convienience methods below](#koa-1) for helper utilities you can use while writing code.
+3. See [Koa convenience methods below](#koa-1) for helper utilities you can use while writing code.
 
 #### Express
 
@@ -219,11 +219,11 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
    });
    ```
 
-3. See [Express convienience methods below](#express-1) for helper utilities you can use while writing code.
+3. See [Express convenience methods below](#express-1) for helper utilities you can use while writing code.
 
-#### Convienience Methods
+#### Convenience Methods
 
-In order to easily interact and use the `logger` utility function exposed by `app.use(cabin.middleware)`, we expose convienient helper methods in Express and Koa:
+In order to easily interact and use the `logger` utility function exposed by `app.use(cabin.middleware)`, we expose convenient helper methods in Express and Koa:
 
 ##### Express
 
@@ -408,7 +408,7 @@ If you're curious why it won't work in IE11, please see this [great documentatio
       // to be consistently similar to Gecko and V8 stackframes
       StackTrace.fromError(err)
         .then(function(stackframes) {
-          // StackTrace has a convienient `report` method however
+          // StackTrace has a convenient `report` method however
           // we want to send along more information than just this
           // <https://github.com/stacktracejs/stacktrace.js#stacktracereportstackframes-url-message-requestoptions--promisestring>
           // StackTrace.report(stackframes, endpoint, err.message);
@@ -579,7 +579,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
 
 
-## 
+##
 
 <a href="#"><img src="media/cabin-footer.png" alt="#" /></a>
 
