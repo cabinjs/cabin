@@ -20,17 +20,16 @@ const { oneLineTrim } = require('common-tags');
 
 class Cabin {
   constructor(config) {
-    this.config = Object.assign(
-      {
-        key: '',
-        axe: {},
-        logger: null,
-        meta: {},
-        // <https://github.com/niftylettuce/parse-request>
-        userFields: ['id', 'email', 'full_name', 'ip_address'],
-        // <https://github.com/niftylettuce/parse-err>
-        fields: [],
-        message: oneLineTrim`
+    this.config = {
+      key: '',
+      axe: {},
+      logger: null,
+      meta: {},
+      // <https://github.com/niftylettuce/parse-request>
+      userFields: ['id', 'email', 'full_name', 'ip_address'],
+      // <https://github.com/niftylettuce/parse-err>
+      fields: [],
+      message: oneLineTrim`
           {{ req.ip }}\u00A0
           [{{ req.id ? req.id : new Date().toUTCString() }}]\u00A0
           "
@@ -41,13 +40,12 @@ class Cabin {
           {{ res.statusCode }}\u00A0
           {{ res.get('X-Response-Time') }}
         `,
-        // <https://lodash.com/docs#template>
-        templateSettings: {
-          interpolate: /{{([\s\S]+?)}}/g
-        }
+      // <https://lodash.com/docs#template>
+      templateSettings: {
+        interpolate: /{{([\s\S]+?)}}/g
       },
-      config
-    );
+      ...config
+    };
 
     // override key with root key in case user forgot
     if (!isEmpty(this.config.axe) && this.config.key)
