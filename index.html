@@ -17,6 +17,7 @@
   </div>
   <script src="https://unpkg.com/xhook"></script>
   <script src="https://unpkg.com/cabin"></script>
+  <script src="https://unpkg.com/cuid"></script>
   <script type="text/javascript">
     (function() {
       var cabin = new Cabin({ axe: { showMeta: true }});
@@ -28,10 +29,9 @@
       cabin.info('viewed docs');
       cabin.error(new Error('oops!'));
       xhook.before(function(req) {
-        cabin.info('request queued', cabin.parseRequest(req));
-      });
-      xhook.after(function(req, res) {
-        cabin.info('request complete', cabin.parseRequest(req));
+        if (!req.headers['X-Request-Id'])
+          req.headers['X-Request-Id'] = cuid();
+        cabin.info('xhr', cabin.parseRequest(req));
       });
     })();
   </script>
@@ -46,5 +46,33 @@
     ga('create', 'UA-40007865-6', 'auto');
     ga('send', 'pageview');
   </script>
+  <!-- Start of Async Drift Code -->
+  <script>
+  "use strict";
+
+  !function() {
+    var t = window.driftt = window.drift = window.driftt || [];
+    if (!t.init) {
+      if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+      t.invoked = !0, t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ],
+      t.factory = function(e) {
+        return function() {
+          var n = Array.prototype.slice.call(arguments);
+          return n.unshift(e), t.push(n), t;
+        };
+      }, t.methods.forEach(function(e) {
+        t[e] = t.factory(e);
+      }), t.load = function(t) {
+        var e = 3e5, n = Math.ceil(new Date() / e) * e, o = document.createElement("script");
+        o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+        var i = document.getElementsByTagName("script")[0];
+        i.parentNode.insertBefore(o, i);
+      };
+    }
+  }();
+  drift.SNIPPET_VERSION = '0.3.1';
+  drift.load('58ke4uu2gb49');
+  </script>
+  <!-- End of Async Drift Code -->
 </body>
 </html>

@@ -3,51 +3,62 @@
   "description": "Cabin is a logging/analytics service and middleware for Node.js, Lad, Koa, Express, and Passport",
   "version": "2.0.4",
   "author": "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)",
+  "ava": {
+    "failFast": true,
+    "verbose": true
+  },
+  "browser": "dist/cabin.js",
   "bugs": {
     "url": "https://github.com/cabinjs/cabin/issues",
     "email": "niftylettuce@gmail.com"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "contributors": [
     "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)"
   ],
   "dependencies": {
-    "axe": "^2.0.2",
+    "axe": "^3.0.0",
     "common-tags": "^1.8.0",
+    "fast-safe-stringify": "^2.0.6",
     "lodash": "^4.17.11",
     "on-finished": "^2.3.0",
-    "parse-err": "^0.0.2",
+    "parse-err": "^0.0.3",
     "parse-request": "^0.0.2"
   },
-  "ava": {
-    "failFast": true,
-    "verbose": true
-  },
   "devDependencies": {
-    "@babel/cli": "^7.1.0",
-    "@babel/core": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
-    "ava": "^1.0.0-beta.6",
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "@commitlint/cli": "^7.2.1",
+    "@commitlint/config-conventional": "^7.1.2",
+    "ava": "^1.0.0-rc.2",
     "babelify": "^10.0.0",
-    "browserify": "^16.2.2",
-    "caniuse-lite": "^1.0.30000887",
+    "browserify": "^16.2.3",
+    "caniuse-lite": "^1.0.30000907",
     "codecov": "^3.1.0",
     "cross-env": "^5.2.0",
-    "eslint": "5.6.0",
-    "eslint-config-prettier": "^3.1.0",
-    "eslint-plugin-compat": "^2.5.1",
-    "eslint-plugin-prettier": "^2.6.2",
-    "express": "^4.16.3",
-    "husky": "^1.0.0-rc.15",
-    "jsdom": "11.12.0",
-    "koa": "^2.5.3",
+    "eslint": "5.9.0",
+    "eslint-config-xo-lass": "^1.0.3",
+    "eslint-plugin-compat": "^2.6.3",
+    "eslint-plugin-node": "^8.0.0",
+    "express": "^4.16.4",
+    "express-request-id": "^1.4.1",
+    "fixpack": "^2.3.1",
+    "husky": "^1.1.4",
+    "jsdom": "13.0.0",
+    "koa": "^2.6.2",
     "koa-connect": "^2.0.1",
     "koa-router": "^7.4.0",
-    "lint-staged": "^7.3.0",
-    "nyc": "^13.0.1",
-    "pino": "^5.6.2",
-    "prettier": "^1.14.3",
-    "remark-cli": "^5.0.0",
-    "remark-preset-github": "^0.0.8",
+    "lint-staged": "^8.0.4",
+    "nyc": "^13.1.0",
+    "pino": "^5.8.1",
+    "prettier": "^1.15.2",
+    "remark-cli": "^6.0.0",
+    "remark-preset-github": "^0.0.13",
     "response-time": "^2.3.2",
     "rimraf": "^2.6.2",
     "signale": "^1.3.0",
@@ -59,75 +70,91 @@
   "engines": {
     "node": ">=6.9.0"
   },
-  "homepage": "https://github.com/cabinjs/cabin",
-  "keywords": [
-    "console",
-    "signale",
-    "hackable",
-    "color",
-    "colored",
-    "chalk",
-    "cabin",
-    "lad",
-    "lass",
-    "koa",
-    "express",
-    "middleware",
-    "logging",
-    "log",
-    "logs",
-    "transport",
-    "winston",
-    "bunyan",
-    "request",
-    "user",
-    "passport",
-    "passportjs",
-    "headers",
-    "object",
-    "sentry",
-    "timber",
-    "raven",
-    "airbrake",
-    "bugsnag",
-    "utility",
-    "tool",
-    "dashboard",
-    "gui",
-    "frontend",
-    "mongo",
-    "mongodb",
-    "postgres",
-    "postgresql",
-    "sql",
-    "app",
-    "framework",
-    "boilerplate",
-    "loggly",
-    "analytics",
-    "logging",
-    "library",
-    "helper",
-    "utility"
-  ],
-  "license": "MIT",
-  "lint-staged": {
-    "*.{js,jsx,mjs,ts,tsx,css,less,scss,json,graphql}": [
-      "prettier --write --single-quote --trailing-comma none",
-      "git add"
-    ],
-    "*.md": [
-      "remark . -qfo",
-      "git add"
-    ]
-  },
-  "main": "lib/index.js",
-  "browser": "dist/cabin.js",
-  "unpkg": "dist/cabin.min.js",
   "files": [
     "lib",
     "dist"
   ],
+  "homepage": "https://github.com/cabinjs/cabin",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "jsdelivr": "dist/cabin.min.js",
+  "keywords": [
+    "airbrake",
+    "analytics",
+    "app",
+    "boilerplate",
+    "bugsnag",
+    "bunyan",
+    "cabin",
+    "chalk",
+    "color",
+    "colored",
+    "console",
+    "dashboard",
+    "express",
+    "framework",
+    "frontend",
+    "gui",
+    "hackable",
+    "headers",
+    "helper",
+    "koa",
+    "lad",
+    "lass",
+    "library",
+    "log",
+    "logging",
+    "logging",
+    "loggly",
+    "logs",
+    "middleware",
+    "mongo",
+    "mongodb",
+    "object",
+    "passport",
+    "passportjs",
+    "postgres",
+    "postgresql",
+    "raven",
+    "request",
+    "sentry",
+    "signale",
+    "sql",
+    "timber",
+    "tool",
+    "transport",
+    "user",
+    "utility",
+    "utility",
+    "winston"
+  ],
+  "license": "MIT",
+  "lint-staged": {
+    "linters": {
+      "*.js": [
+        "xo --fix",
+        "git add"
+      ],
+      "*.md": [
+        "remark . -qfo",
+        "git add"
+      ],
+      "package.json": [
+        "fixpack",
+        "git add"
+      ]
+    }
+  },
+  "main": "lib/index.js",
+  "prettier": {
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "trailingComma": "none"
+  },
   "remarkConfig": {
     "plugins": [
       "preset-github"
@@ -138,52 +165,26 @@
     "url": "https://github.com/cabinjs/cabin"
   },
   "scripts": {
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "lint": "xo && remark . -qfo && eslint lib && eslint dist",
-    "precommit": "lint-staged && npm test",
-    "test": "npm run build && npm run lint && npm run ava",
-    "test-coverage": "npm run build && npm run lint && npm run nyc",
     "ava": "cross-env NODE_ENV=test ava",
-    "nyc": "cross-env NODE_ENV=test nyc ava",
+    "browserify": "browserify src/index.js -o dist/cabin.js -s Cabin -d -t babelify",
     "build": "npm run build:clean && npm run build:lib && npm run build:dist",
     "build:clean": "rimraf lib dist",
-    "build:lib": "babel src --out-dir lib",
     "build:dist": "npm run browserify && npm run minify",
-    "browserify": "browserify src/index.js -o dist/cabin.js -s Cabin -d -t babelify",
-    "minify": "cross-env NODE_ENV=production browserify src/index.js -o dist/cabin.min.js -s Cabin -d -t babelify -p tinyify"
+    "build:lib": "babel src --out-dir lib",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "lint": "xo && remark . -qfo && eslint lib && eslint dist",
+    "minify": "cross-env NODE_ENV=production browserify src/index.js -o dist/cabin.min.js -s Cabin -d -t babelify -p tinyify",
+    "nyc": "cross-env NODE_ENV=test nyc ava",
+    "test": "npm run build && npm run lint && npm run ava",
+    "test-coverage": "npm run build && npm run lint && npm run nyc"
   },
+  "unpkg": "dist/cabin.min.js",
   "xo": {
-    "extends": "prettier",
-    "plugins": [
-      "prettier"
-    ],
-    "parserOptions": {
-      "sourceType": "script"
-    },
-    "env": [
-      "node"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error",
-        {
-          "singleQuote": true,
-          "bracketSpacing": true,
-          "trailingComma": "none"
-        }
-      ],
-      "max-len": [
-        "error",
-        {
-          "code": 80,
-          "ignoreUrls": true
-        }
-      ],
-      "capitalized-comments": "off",
-      "camelcase": "off",
-      "no-warning-comments": "off"
-    },
+    "prettier": true,
     "space": true,
+    "extends": [
+      "xo-lass"
+    ],
     "ignore": [
       "config.js"
     ]

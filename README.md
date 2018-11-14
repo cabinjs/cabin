@@ -88,7 +88,7 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
 1. Install required and recommended dependencies:
 
    ```sh
-   npm install koa cabin signale pino response-time koa-connect
+   npm install koa cabin signale pino response-time koa-connect express-request-id
    ```
 
 2. Implement the example code below ([also found here](examples/koa.js)):
@@ -99,6 +99,7 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
    const Router = require('koa-router');
    const koaConnect = require('koa-connect');
    const responseTime = require('response-time');
+   const requestId = require('express-request-id');
    const { Signale } = require('signale');
    const pino = require('pino')({
      customLevels: {
@@ -120,6 +121,9 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
 
    // adds `X-Response-Time` header to responses
    app.use(koaConnect(responseTime));
+
+   // adds or re-uses `X-Request-Id` header
+   app.use(koaConnect(requestId()));
 
    // use the cabin middleware (adds request-based logging and helpers)
    app.use(cabin.middleware);
@@ -156,7 +160,7 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
 1. Install required and recommended dependencies:
 
    ```sh
-   npm install koa cabin signale pino response-time
+   npm install koa cabin signale pino response-time express-request-id
    ```
 
 2. Implement the example code below ([also found here](examples/express.js)):
@@ -165,6 +169,7 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
    const express = require('express');
    const Cabin = require('cabin');
    const responseTime = require('response-time');
+   const requestId = require('express-request-id');
    const { Signale } = require('signale');
    const pino = require('pino')({
      customLevels: {
@@ -185,6 +190,9 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
 
    // adds `X-Response-Time` header to responses
    app.use(responseTime());
+
+   // adds or re-uses `X-Request-Id` header
+   app.use(requestId());
 
    // use the cabin middleware (adds request-based logging and helpers)
    app.use(cabin.middleware);
@@ -276,18 +284,25 @@ cabin.setUser({
 cabin.info('viewed docs');
 ```
 
-#### Log Requests/Responses
+#### Automatic Request Logging
 
-For server-side logging of requests, the Cabin middleware `cabin.middleware` will automatically log requests for you upon completion.
+##### Server
 
-If you want to log all client-side [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) or [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) requests, then we recommend using [xhook][].  The examples provided below show you how to integrate this, but it is optional of course!
+For server-side logging of requests, the Cabin middleware `cabin.middleware` will automatically log requests for you upon completion.  Just make sure you are using `express-request-id` middleware like in the examples above in order for the `X-Request-Id` header to be set (and re-used if already exists, e.g. generated from client side as in below).  If you're using Koa make sure to wrap with `koaConnect` as shown in the examples above.
 
-##### VanillaJS
+##### Browser
 
-```html
-<script src="https://unpkg.com/xhook"></script>
-<script src="https://unpkg.com/cabin"></script>
-<script type="text/javascript">
+**We strongly recommend that you implement one of the following code snippets with [xhook][] (for either VanillaJS or Bundler approaches) so that all your XHR requests have a `X-Request-Id` automatically added (which in turn ensures both client and server have matching request ID's).  Imagine how awesome your logs will be when you can see the full trace starting with the client!**
+
+##### Pug
+
+> You can do a similar approach with React, EJS, or another templating language.
+
+```pug
+script(src='https://unpkg.com/xhook')
+script(src='https://unpkg.com/cabin')
+script(src='https://unpkg.com/cuid')
+script.
   (function() {
     var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
     cabin.setUser({
@@ -296,13 +311,11 @@ If you want to log all client-side [XMLHttpRequest](https://developer.mozilla.or
       full_name: 'niftylettuce'
     });
     xhook.before(function(req) {
-      cabin.info('request queued', cabin.parseRequest(req));
-    });
-    xhook.after(function(req, res) {
-      cabin.info('request complete', cabin.parseRequest(req));
+      if (!req.headers['X-Request-Id'])
+        req.headers['X-Request-Id'] = cuid();
+      cabin.info('xhr', cabin.parseRequest(req));
     });
   })();
-</script>
 ```
 
 ##### Bundler
@@ -310,18 +323,19 @@ If you want to log all client-side [XMLHttpRequest](https://developer.mozilla.or
 [npm][]:
 
 ```sh
-npm install xhook
+npm install cabin xhook cuid
 ```
 
 [yarn][]:
 
 ```sh
-yarn add xhook
+yarn add cabin xhook cuid
 ```
 
 ```js
 const Cabin = require('cabin');
 const xhook = require('xhook');
+const cuid = require('cuid');
 
 const cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
 
@@ -332,11 +346,9 @@ cabin.setUser({
 });
 
 xhook.before(req => {
-  cabin.info('request queued', cabin.parseRequest(req));
-});
-
-xhook.after((req, res) => {
-  cabin.info('request complete', cabin.parseRequest(req));
+  if (!req.headers['X-Request-Id'])
+    req.headers['X-Request-Id'] = cuid();
+  cabin.info('xhr', cabin.parseRequest(req));
 });
 ```
 
@@ -382,9 +394,7 @@ If you're curious why it won't work in IE11, please see this [great documentatio
 ```html
 <script src="https://unpkg.com/stacktrace-js"></script>
 <!-- Use this instead of the above if you need to polyfill for IE11 support -->
-<!--
-<script src="https://unpkg.com/stacktrace-js/dist/stacktrace-with-promises-and-json-polyfills.js"></script>
--->
+<!-- <script src="https://unpkg.com/stacktrace-js/dist/stacktrace-with-promises-and-json-polyfills.js"></script> -->
 
 <script src="https://unpkg.com/uncaught"></script>
 <script src="https://unpkg.com/cabin"></script>
@@ -421,7 +431,7 @@ If you're curious why it won't work in IE11, please see this [great documentatio
 
 This is a legacy stack trace package with support for very old browsers.  You can view [TraceKit's full documentation here][tracekit].
 
-It is widely used by logging services and seems to be the most popular tool.
+It is widely used by logging services and seems to be the most popular tool.  Note that in the example code below, you will notice a repetitive pattern you'll encounter of wrapping code with a `try` and `catch` block.  Don't worry, because if you're using `webpack` or `gulp`, you can easily wrap your bundled files with `try` and `catch` blocks!  See [Automatic Try Catch Wrapping](#automatic-try-catch-wrapping) below.
 
 ```html
 <script src="https://unpkg.com/tracekit"></script>
@@ -449,6 +459,49 @@ It is widely used by logging services and seems to be the most popular tool.
     }
   })();
 </script>
+```
+
+##### Automatic Try Catch Wrapping
+
+##### Gulp
+
+```sh
+npm install -D gulp-wrap
+```
+
+```js
+const wrap = require('gulp-wrap');
+
+gulp.src('./asset.js')
+  .pipe(wrap(`
+    try {
+      <%= contents %>
+    } catch (err) {
+      TraceKit.report(err);
+    }
+  `))
+  .pipe(gulp.dest('./dist'));
+```
+
+##### Webpack
+
+```sh
+npm install -D wrapper-webpack-plugin
+```
+
+```js
+const WrapperPlugin = require('wrapper-webpack-plugin');
+
+module.exports = {
+  // other webpack config here
+  plugins: [
+    new WrapperPlugin({
+      test: /\.js$/, // only wrap output of bundle files with '.js' extension
+      header: 'try {\n',
+      footer: '\n} catch (err) {\n  TraceKit.report(err);\n}'
+    })
+  ]
+};
 ```
 
 
@@ -526,7 +579,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
 
 
-##
+## 
 
 <a href="#"><img src="media/cabin-footer.png" alt="#" /></a>
 

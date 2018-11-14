@@ -2,6 +2,7 @@ const Axe = require('axe');
 const parseRequest = require('parse-request');
 const parseErr = require('parse-err');
 const onFinished = require('on-finished');
+const safeStringify = require('fast-safe-stringify');
 
 // <https://lacke.mn/reduce-your-bundle-js-file-size/>
 // <https://github.com/lodash/babel-plugin-lodash/issues/221>
@@ -31,7 +32,7 @@ class Cabin {
         fields: [],
         message: oneLineTrim`
           {{ req.ip }}\u00A0
-          [{{ new Date().toUTCString() }}]\u00A0
+          [{{ req.id ? req.id : new Date().toUTCString() }}]\u00A0
           "
           {{ req.method }}\u00A0
           {{ req.url }}\u00A0
@@ -128,6 +129,10 @@ class Cabin {
           this.logger[key](...[].slice.call(args));
         };
       });
+    // store a copy of the request body
+    // in case we modified it in our middleware
+    // (a common practice unfortunately)
+    const body = safeStringify(req.body);
     // upon completion of a response we need to log it
     onFinished(res, (err, res) => {
       if (err) return logger.error(err);
@@ -138,7 +143,10 @@ class Cabin {
         tmpl(this.config.message, {
           ...this.config.templateSettings
         })({
-          req,
+          req: {
+            ...req,
+            body
+          },
           res: isExpress ? res : args[0].response
         }).trim()
       );

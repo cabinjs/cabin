@@ -1,6 +1,20 @@
 {
+  "extends": ["eslint:recommended", "plugin:node/recommended"],
   "env": { "browser": true" },
   "plugins": ["compat"],
-  "rules": { "compat/compat": "error" },
-  "settings": { "polyfills": [ "promises", "url" ] }
+  "rules": {
+    "compat/compat": "error",
+    "no-unsafe-finally": "warn",
+    "no-cond-assign": "warn",
+    "no-console": "warn",
+    "no-control-regex": "warn",
+    "no-empty": "warn",
+    "no-extra-semi": "warn",
+    "no-func-assign": "warn",
+    "no-undef": "warn",
+    "no-unused-vars": "warn",
+    "no-useless-escape": "warn",
+    "node/no-deprecated-api": "warn"
+  },
+  "settings": { "polyfills": [ "promises" ] }
 }
