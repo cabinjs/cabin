@@ -21,7 +21,7 @@
     "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)"
   ],
   "dependencies": {
-    "axe": "^3.0.0",
+    "axe": "^3.0.1",
     "common-tags": "^1.8.0",
     "fast-safe-stringify": "^2.0.6",
     "lodash": "^4.17.11",
