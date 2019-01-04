@@ -536,7 +536,7 @@ Similarly if you pass a falsy value of `0` or `false` it will hide stack traces.
 * `axe` (Object) - defaults to an empty Object `{}`, but you can pass options here for [Axe][]
 * `logger` (Object) - if you have a custom logger you wish to use instead of [Axe][], but note that Axe accepts a `logger` option, so you should use that instead, see [Axe][] docs for more info.
 * `meta` (Object) - defaults to an empty object - this will get passed as metadata (e.g. you could set a custom `meta.user` object here for every request).
-* `userFields` (Array) - defaults to `[ 'id', 'email', 'full_name']` - these are the default fields to store from a parsed user object, this is consumed by [parse-request][] (see [Metadata](#metadata) below).
+* `userFields` (Array) - defaults to `[ 'id', 'email', 'full_name', 'ip_address']` - these are the default fields to store from a parsed user object from [parse-request][] (see [Metadata](#metadata) below).
 * `fields` (Array) - defaults to an empty Array `[]`  - these are the default fields to store from a parsed user object, this is consumed by [parse-err][] (see [Metadata](#metadata) below).
 * `message` (String) - defaults to a generic log output (see [src/index.js](src/index.js)'s `message` option) - this is used by `cabin.middleware` when requests finish, it will utilize `logger` to output an error, warn, or info level log based off the status code
 * `templateSettings` (Object) - defaults to variable interpolation with `{{ var }}` vs `<%= var %>` (see [Lodash template docs][lodash-template-docs])

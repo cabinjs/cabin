@@ -26,7 +26,7 @@ class Cabin {
       logger: null,
       meta: {},
       // <https://github.com/niftylettuce/parse-request>
-      userFields: ['id', 'email', 'full_name', 'ip_address'],
+      userFields: undefined,
       // <https://github.com/niftylettuce/parse-err>
       fields: [],
       message: oneLineTrim`
@@ -112,6 +112,10 @@ class Cabin {
     this.config.meta.user = user;
   }
 
+  // TODO: this should probably not be in the browser bundled version
+  // and we should do some `require('./middleware')` with a
+  // `"browser": { "./middleware": }` rewrite that includes
+  // something else that can be consumed by xhook or something
   middleware(...args) {
     const isExpress = !isUndefined(args[2]) && isFunction(args[2]);
     const req = isExpress ? args[0] : args[0].req;
