@@ -14,7 +14,9 @@
     "no-undef": "warn",
     "no-unused-vars": "warn",
     "no-useless-escape": "warn",
-    "node/no-deprecated-api": "warn"
+    "node/no-deprecated-api": "warn",
+    "no-fallthrough": "warn",
+    "no-constant-condition": "warn"
   },
   "settings": { "polyfills": [ "promises" ] }
 }

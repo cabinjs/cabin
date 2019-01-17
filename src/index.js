@@ -18,6 +18,8 @@ const isEmpty = require('lodash/isEmpty');
 const tmpl = require('lodash/template');
 const { oneLineTrim } = require('common-tags');
 
+const appInfo = require('./app-info');
+
 class Cabin {
   constructor(config) {
     this.config = {
@@ -127,6 +129,9 @@ class Cabin {
       .forEach(key => {
         logger[key] = (...args) => {
           args[1] = this.parseArg(args[1]);
+          // add `app` object to metadata
+          Object.assign(args[1], appInfo);
+          // add `request` object to metadata
           Object.assign(args[1], parseRequest(req, this.config.userFields));
           this.logger[key](...[].slice.call(args));
         };
@@ -160,6 +165,7 @@ class Cabin {
     // `ctx.res`
     // `ctx.request`
     // `ctx.response`
+    // <https://github.com/pinojs/koa-pino-logger/issues/14>
     // <https://github.com/pinojs/koa-pino-logger/blob/master/logger.js#L11>
     // <https://github.com/pinojs/pino-http/blob/master/logger.js#L55>
     req.log = logger;
@@ -175,6 +181,7 @@ class Cabin {
       ctx.response.log = logger;
       ctx.response.logger = logger;
     }
+
     return next();
   }
 }

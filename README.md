@@ -301,7 +301,9 @@ For server-side logging of requests, the Cabin middleware `cabin.middleware` wil
 ```pug
 script(src='https://unpkg.com/xhook')
 script(src='https://unpkg.com/cabin')
-script(src='https://unpkg.com/cuid')
+//- TODO: note this won't work until issue #123 is resolved
+//- <https://github.com/ericelliott/cuid/issues/123>
+//- script(src='https://unpkg.com/cuid/dist/cuid.min.js')
 script.
   (function() {
     var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
@@ -311,8 +313,9 @@ script.
       full_name: 'niftylettuce'
     });
     xhook.before(function(req) {
-      if (!req.headers['X-Request-Id'])
-        req.headers['X-Request-Id'] = cuid();
+      // once the above issue is fixed we can uncomment this
+      // if (!req.headers['X-Request-Id'])
+      //   req.headers['X-Request-Id'] = cuid();
       cabin.info('xhr', cabin.parseRequest(req));
     });
   })();

@@ -17,7 +17,7 @@
   </div>
   <script src="https://unpkg.com/xhook"></script>
   <script src="https://unpkg.com/cabin"></script>
-  <script src="https://unpkg.com/cuid"></script>
+  <!-- <script src="https://unpkg.com/cuid"></script> -->
   <script type="text/javascript">
     (function() {
       var cabin = new Cabin({ axe: { showMeta: true }});
@@ -29,8 +29,8 @@
       cabin.info('viewed docs');
       cabin.error(new Error('oops!'));
       xhook.before(function(req) {
-        if (!req.headers['X-Request-Id'])
-          req.headers['X-Request-Id'] = cuid();
+        // if (!req.headers['X-Request-Id'])
+        //  req.headers['X-Request-Id'] = cuid();
         cabin.info('xhr', cabin.parseRequest(req));
       });
     })();

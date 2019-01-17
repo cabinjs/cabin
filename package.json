@@ -7,7 +7,9 @@
     "failFast": true,
     "verbose": true
   },
-  "browser": "dist/cabin.js",
+  "browser": {
+    "./src/app-info.js": "./src/app-info.browser.js"
+  },
   "bugs": {
     "url": "https://github.com/cabinjs/cabin/issues",
     "email": "niftylettuce@gmail.com"
@@ -21,30 +23,31 @@
     "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)"
   ],
   "dependencies": {
-    "axe": "^3.0.2",
+    "axe": "^3.0.3",
     "common-tags": "^1.8.0",
     "fast-safe-stringify": "^2.0.6",
     "lodash": "^4.17.11",
     "on-finished": "^2.3.0",
+    "parse-app-info": "^1.0.3",
     "parse-err": "^0.0.5",
-    "parse-request": "^0.0.4"
+    "parse-request": "^0.0.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
-    "@commitlint/cli": "^7.2.1",
-    "@commitlint/config-conventional": "^7.1.2",
-    "ava": "^1.0.1",
+    "@commitlint/cli": "^7.3.2",
+    "@commitlint/config-conventional": "^7.3.1",
+    "ava": "^1.1.0",
     "babelify": "^10.0.0",
     "browserify": "^16.2.3",
-    "caniuse-lite": "^1.0.30000927",
+    "caniuse-lite": "^1.0.30000929",
     "codecov": "^3.1.0",
     "cross-env": "^5.2.0",
-    "eslint": "5.11.1",
+    "eslint": "5.12.0",
     "eslint-config-xo-lass": "^1.0.3",
     "eslint-plugin-compat": "^2.6.3",
-    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-node": "^8.0.1",
     "express": "^4.16.4",
     "express-request-id": "^1.4.1",
     "fixpack": "^2.3.1",
@@ -55,17 +58,17 @@
     "koa-router": "^7.4.0",
     "lint-staged": "^8.1.0",
     "nyc": "^13.1.0",
-    "pino": "^5.10.6",
+    "pino": "^5.10.7",
     "prettier": "^1.15.3",
     "remark-cli": "^6.0.1",
     "remark-preset-github": "^0.0.13",
     "response-time": "^2.3.2",
     "rimraf": "^2.6.3",
     "signale": "^1.3.0",
-    "supertest": "^3.3.0",
+    "supertest": "^3.4.1",
     "tinyify": "^2.5.0",
     "uglify-js": "^3.4.9",
-    "xo": "^0.23.0"
+    "xo": "^0.24.0"
   },
   "engines": {
     "node": ">=8.8.1"
@@ -172,8 +175,8 @@
     "build:dist": "npm run browserify && npm run minify",
     "build:lib": "babel src --out-dir lib",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "lint": "xo && remark . -qfo && eslint lib && eslint dist",
-    "minify": "cross-env NODE_ENV=production browserify src/index.js -o dist/cabin.min.js -s Cabin -d -t babelify -p tinyify",
+    "lint": "xo && remark . -qfo && eslint lib",
+    "minify": "cross-env NODE_ENV=production browserify src/index.js -o dist/cabin.min.js -s Cabin -t babelify -p tinyify",
     "nyc": "cross-env NODE_ENV=test nyc ava",
     "test": "npm run build && npm run lint && npm run ava",
     "test-coverage": "npm run build && npm run lint && npm run nyc"
@@ -184,6 +187,10 @@
     "space": true,
     "extends": [
       "xo-lass"
+    ],
+    "env": [
+      "node",
+      "browser"
     ],
     "ignore": [
       "config.js"
