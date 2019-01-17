@@ -18,8 +18,6 @@ const isEmpty = require('lodash/isEmpty');
 const tmpl = require('lodash/template');
 const { oneLineTrim } = require('common-tags');
 
-const appInfo = require('./app-info');
-
 class Cabin {
   constructor(config) {
     this.config = {
@@ -129,8 +127,6 @@ class Cabin {
       .forEach(key => {
         logger[key] = (...args) => {
           args[1] = this.parseArg(args[1]);
-          // add `app` object to metadata
-          Object.assign(args[1], appInfo);
           // add `request` object to metadata
           Object.assign(args[1], parseRequest(req, this.config.userFields));
           this.logger[key](...[].slice.call(args));

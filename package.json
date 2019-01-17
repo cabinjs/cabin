@@ -7,9 +7,6 @@
     "failFast": true,
     "verbose": true
   },
-  "browser": {
-    "./src/app-info.js": "./src/app-info.browser.js"
-  },
   "bugs": {
     "url": "https://github.com/cabinjs/cabin/issues",
     "email": "niftylettuce@gmail.com"
@@ -23,12 +20,11 @@
     "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)"
   ],
   "dependencies": {
-    "axe": "^3.0.3",
+    "axe": "^3.0.7",
     "common-tags": "^1.8.0",
     "fast-safe-stringify": "^2.0.6",
     "lodash": "^4.17.11",
     "on-finished": "^2.3.0",
-    "parse-app-info": "^1.0.3",
     "parse-err": "^0.0.5",
     "parse-request": "^0.0.5"
   },
