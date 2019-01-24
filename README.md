@@ -31,8 +31,11 @@
 ## Table of Contents
 
 * [Install](#install)
-* [Usage](#usage)
+* [Quick Start](#quick-start)
   * [Logging](#logging)
+  * [Route Middleware](#route-middleware)
+* [Usage](#usage)
+  * [Logging](#logging-1)
   * [Node](#node)
   * [Browser](#browser)
   * [Stack Traces and Error Handling](#stack-traces-and-error-handling)
@@ -59,6 +62,24 @@ npm install cabin
 
 ```sh
 yarn add cabin
+```
+
+
+## Quick Start
+
+### Logging
+
+```js
+const Cabin = require('cabin');
+const cabin = new Cabin();
+cabin.info('hello world');
+cabin.error(new Error('oops!'));
+```
+
+### Route Middleware
+
+```js
+app.use(cabin.middleware);
 ```
 
 
@@ -255,7 +276,7 @@ This is the solution for you if you're just using `<script>` tags everywhere!
 <script src="https://unpkg.com/cabin"></script>
 <script type="text/javascript">
   (function() {
-    var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
+    var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY', capture: true });
     cabin.setUser({
       id: '1',
       email: 'niftylettuce@gmail.com',
@@ -306,7 +327,7 @@ script(src='https://unpkg.com/cabin')
 //- script(src='https://unpkg.com/cuid/dist/cuid.min.js')
 script.
   (function() {
-    var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
+    var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY', capture: true });
     cabin.setUser({
       id: '1',
       email: 'niftylettuce@gmail.com',
@@ -340,7 +361,7 @@ const Cabin = require('cabin');
 const xhook = require('xhook');
 const cuid = require('cuid');
 
-const cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
+const cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY', capture: true });
 
 cabin.setUser({
   id: '1',
@@ -512,25 +533,25 @@ module.exports = {
 
 Under the hood, Cabin uses [Axe][] which provides us with several options, including one to show metadata (e.g. request headers, body, and user) and another to show stack traces for errors.
 
-You can pass these options through the `axe` option (see [Options](#options) below) – or – you could pass environment flags when you need to.
+You can pass these options through the `axe` option (see [Options](#options) below), or you could pass environment flags when you need to.
 
 **By default, [Axe][] does not output any metadata and only outputs stack traces in non-production environments.**
 
 ### Metadata
 
-To show metadata, pass a truthy value for the process environment variable `SHOW_META`.
+To hide metadata, pass a falsey value for the process environment variable `SHOW_META`.
 
-> (e.g. `SHOW_META=1` or `SHOW_META=true` before running your script – `SHOW_META=true node app`).
+> (e.g. `SHOW_META=0` or `SHOW_META=false` before running your script, such as `SHOW_META=false node app`).
 
-Similarly if you pass a falsy value of `0` or `false` it will hide metadata.
+Similarly if you pass a truthy value of `1` or `true` it will show metadata (which is the default behavior).
 
 ### Stack Traces
 
-To show stack traces, pass a truthy value for the process environment variable `SHOW_STACK`.
+To hide stack traces, pass a falsey value for the process environment variable `SHOW_STACK`.
 
-> (e.g. `SHOW_STACK=1` or `SHOW_STACK=true` before running your script – `SHOW_STACK=true node app`).
+> (e.g. `SHOW_STACK=0` or `SHOW_STACK=false` before running your script, such as `SHOW_STACK=false node app`).
 
-Similarly if you pass a falsy value of `0` or `false` it will hide stack traces.
+Similarly if you pass a truthy value of `1` or `true` it will show metadata (which is the default behavior).
 
 
 ## Options

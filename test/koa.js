@@ -1,4 +1,5 @@
 const test = require('ava');
+const _ = require('lodash');
 const Koa = require('koa');
 const supertest = require('supertest');
 const koaConnect = require('koa-connect');
@@ -17,6 +18,11 @@ test.beforeEach.cb(t => {
   t.context.server = app.listen(() => {
     t.end();
   });
+});
+
+test('should expose a middleware function', t => {
+  const cabin = new Cabin();
+  t.true(_.isFunction(cabin.middleware));
 });
 
 test.cb('ctx.logger.log for koa', t => {

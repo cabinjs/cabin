@@ -1,4 +1,5 @@
 const test = require('ava');
+const _ = require('lodash');
 const express = require('express');
 const supertest = require('supertest');
 const responseTime = require('response-time');
@@ -16,6 +17,11 @@ test.beforeEach.cb(t => {
   t.context.server = app.listen(() => {
     t.end();
   });
+});
+
+test('should expose a middleware function', t => {
+  const cabin = new Cabin();
+  t.true(_.isFunction(cabin.middleware));
 });
 
 test.cb('req.logger.log for express', t => {
