@@ -7,6 +7,9 @@
     "failFast": true,
     "verbose": true
   },
+  "browser": {
+    "./src/middleware": false
+  },
   "bugs": {
     "url": "https://github.com/cabinjs/cabin/issues",
     "email": "niftylettuce@gmail.com"
@@ -22,25 +25,21 @@
   "dependencies": {
     "axe": "^3.0.9",
     "common-tags": "^1.8.0",
-    "fast-safe-stringify": "^2.0.6",
     "lodash": "^4.17.11",
     "on-finished": "^2.3.0",
     "parse-err": "^0.0.5",
-    "parse-request": "^0.0.6"
-  },
-  "browser": {
-    "./src/middleware": false
+    "parse-request": "^0.0.9"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
-    "@commitlint/cli": "^7.3.2",
+    "@commitlint/cli": "^7.4.0",
     "@commitlint/config-conventional": "^7.3.1",
-    "ava": "^1.1.0",
+    "ava": "^1.2.0",
     "babelify": "^10.0.0",
     "browserify": "^16.2.3",
-    "caniuse-lite": "^1.0.30000930",
+    "caniuse-lite": "^1.0.30000932",
     "codecov": "^3.1.0",
     "cross-env": "^5.2.0",
     "eslint": "5.12.1",
@@ -52,13 +51,12 @@
     "fixpack": "^2.3.1",
     "husky": "^1.3.1",
     "jsdom": "13.2.0",
-    "koa": "^2.6.2",
+    "koa": "^2.7.0",
     "koa-connect": "^2.0.1",
     "koa-router": "^7.4.0",
-    "lint-staged": "^8.1.0",
+    "lint-staged": "^8.1.1",
     "nyc": "^13.1.0",
-    "pino": "^5.10.10",
-    "prettier": "^1.16.1",
+    "pino": "^5.11.1",
     "remark-cli": "^6.0.1",
     "remark-preset-github": "^0.0.13",
     "response-time": "^2.3.2",
