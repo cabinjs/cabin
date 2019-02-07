@@ -1,3 +1,4 @@
+const assign = require('lodash/assign');
 const isFunction = require('lodash/isFunction');
 const isUndefined = require('lodash/isUndefined');
 const onFinished = require('on-finished');
@@ -18,7 +19,7 @@ module.exports = function(...args) {
       logger[key] = (...args) => {
         args[1] = this.parseArg(args[1]);
         // add `request` object to metadata
-        Object.assign(args[1], parseRequest(request, this.config.userFields));
+        assign(args[1], parseRequest(request, this.config.userFields));
         this.logger[key](...[].slice.call(args));
       };
     });

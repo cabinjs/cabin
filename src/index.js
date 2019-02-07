@@ -1,6 +1,7 @@
 // <https://lacke.mn/reduce-your-bundle-js-file-size/>
 // <https://github.com/lodash/babel-plugin-lodash/issues/221>
 const Axe = require('axe');
+const assign = require('lodash/assign');
 const isArray = require('lodash/isArray');
 const isEmpty = require('lodash/isEmpty');
 const isError = require('lodash/isError');
@@ -90,15 +91,20 @@ class Cabin {
     this.parseErr = parseErr;
   }
 
-  parseArg(arg) {
+  parseArg(arg = {}) {
+    if (isObject(arg)) {
+      assign(arg, this.config.meta);
+      return arg;
+    }
+
     if (isUndefined(arg) || isNull(arg)) arg = {};
-    if (isError(arg)) arg = { err: parseErr(arg, this.config.fields) };
-    if (isArray(arg)) arg = { value: arg };
-    if (isString(arg)) arg = { value: arg };
-    if (isNumber(arg)) arg = { value: arg };
-    if (isFunction(arg)) arg = { value: arg.toString() };
-    if (!isObject(arg)) arg = {};
-    Object.assign(arg, this.config.meta);
+    else if (isError(arg)) arg = { err: parseErr(arg, this.config.fields) };
+    else if (isArray(arg)) arg = { value: arg };
+    else if (isString(arg)) arg = { value: arg };
+    else if (isNumber(arg)) arg = { value: arg };
+    else if (isFunction(arg)) arg = { value: arg.toString() };
+    else arg = {};
+    assign(arg, this.config.meta);
     return arg;
   }
 
