@@ -38,6 +38,7 @@
   * [Logging](#logging-1)
   * [Node](#node)
   * [Browser](#browser)
+  * [Automatic Request Logging](#automatic-request-logging)
   * [Stack Traces and Error Handling](#stack-traces-and-error-handling)
 * [Display Metadata and Stack Traces](#display-metadata-and-stack-traces)
   * [Metadata](#metadata)
@@ -305,15 +306,38 @@ cabin.setUser({
 cabin.info('viewed docs');
 ```
 
-#### Automatic Request Logging
+### Automatic Request Logging
 
-##### Server
+#### Server
 
 For server-side logging of requests, the Cabin middleware `cabin.middleware` will automatically log requests for you upon completion.  Just make sure you are using `express-request-id` middleware like in the examples above in order for the `X-Request-Id` header to be set (and re-used if already exists, e.g. generated from client side as in below).  If you're using Koa make sure to wrap with `koaConnect` as shown in the examples above.
 
-##### Browser
+#### Browser
 
 **We strongly recommend that you implement one of the following code snippets with [xhook][] (for either VanillaJS or Bundler approaches) so that all your XHR requests have a `X-Request-Id` automatically added (which in turn ensures both client and server have matching request ID's).  Imagine how awesome your logs will be when you can see the full trace starting with the client!**
+
+##### HTML
+
+```html
+<script src="https://unpkg.com/xhook"></script>
+<script src="https://unpkg.com/cabin"></script>
+<script src="https://unpkg.com/cuid"></script>
+<script>
+  (function() {
+    var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY', capture: true });
+    cabin.setUser({
+      id: '1',
+      email: 'niftylettuce@gmail.com',
+      full_name: 'niftylettuce'
+    });
+    xhook.before(function(req) {
+      if (!req.headers['X-Request-Id'])
+        req.headers['X-Request-Id'] = cuid();
+      cabin.info('xhr', cabin.parseRequest(req));
+    });
+  })();
+</script>
+```
 
 ##### Pug
 
@@ -322,9 +346,7 @@ For server-side logging of requests, the Cabin middleware `cabin.middleware` wil
 ```pug
 script(src='https://unpkg.com/xhook')
 script(src='https://unpkg.com/cabin')
-//- TODO: note this won't work until issue #123 is resolved
-//- <https://github.com/ericelliott/cuid/issues/123>
-//- script(src='https://unpkg.com/cuid/dist/cuid.min.js')
+script(src='https://unpkg.com/cuid')
 script.
   (function() {
     var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY', capture: true });
@@ -334,9 +356,8 @@ script.
       full_name: 'niftylettuce'
     });
     xhook.before(function(req) {
-      // once the above issue is fixed we can uncomment this
-      // if (!req.headers['X-Request-Id'])
-      //   req.headers['X-Request-Id'] = cuid();
+      if (!req.headers['X-Request-Id'])
+        req.headers['X-Request-Id'] = cuid();
       cabin.info('xhr', cabin.parseRequest(req));
     });
   })();
