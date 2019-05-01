@@ -3,9 +3,8 @@
     ["@babel/env", {
       "targets": {
         "node": "6.4.0",
-        "browsers": [ "> 1%", "last 2 versions", "ie >= 9" ]
+        "browsers": [ "> 1%", "last 2 versions" ]
       }
     }]
-  ],
-  "sourceMaps": false
+  ]
 }

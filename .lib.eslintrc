@@ -1,0 +1,19 @@
+{
+  "extends": ["eslint:recommended", "plugin:node/recommended"],
+  "env": { "browser": true" },
+  "plugins": ["compat"],
+  "rules": {
+    "compat/compat": "error",
+    "no-func-assign": "off"
+  },
+  "settings": {
+    "polyfills": [
+      "Array.from",
+      "Object.getOwnPropertySymbols",
+      "Symbol.iterator"
+    ]
+  }
+}
+
+
+

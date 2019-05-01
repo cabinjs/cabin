@@ -19,7 +19,10 @@ module.exports = function(...args) {
       logger[key] = (...args) => {
         args[1] = this.parseArg(args[1]);
         // add `request` object to metadata
-        assign(args[1], parseRequest(request, this.config.userFields));
+        assign(
+          args[1],
+          parseRequest({ req: request, userFields: this.config.userFields })
+        );
         this.logger[key](...[].slice.call(args));
       };
     });

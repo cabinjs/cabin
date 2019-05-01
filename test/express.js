@@ -5,7 +5,7 @@ const supertest = require('supertest');
 const responseTime = require('response-time');
 const requestId = require('express-request-id');
 
-const Cabin = require('../lib');
+const Cabin = require('..');
 
 test.beforeEach.cb(t => {
   const app = express();

@@ -274,6 +274,7 @@ In order to easily interact and use the `logger` utility function exposed by `ap
 This is the solution for you if you're just using `<script>` tags everywhere!
 
 ```html
+<script src="https://polyfill.io/v3/polyfill.min.js?features="Map%2CMap.prototype%2CMath.sign%2CPromise%2CReflect%2CSymbol%2CSymbol.iterator%2CSymbol.prototype%2CSymbol.toPrimitive%2CSymbol.toStringTag%2CUint32Array%2Cwindow.crypto"></script>
 <script src="https://unpkg.com/cabin"></script>
 <script type="text/javascript">
   (function() {
@@ -287,6 +288,27 @@ This is the solution for you if you're just using `<script>` tags everywhere!
   })();
 </script>
 ```
+
+##### Required Browser Features
+
+We recommend using <https://polyfill.io> (specifically with the bundle mentioned in [VanillaJS](#vanillajs) above):
+
+```html
+<script src="https://polyfill.io/v3/polyfill.min.js?features="Map%2CMap.prototype%2CMath.sign%2CPromise%2CReflect%2CSymbol%2CSymbol.iterator%2CSymbol.prototype%2CSymbol.toPrimitive%2CSymbol.toStringTag%2CUint32Array%2Cwindow.crypto"></script>
+```
+
+* Map is not supported in IE 10
+* Map.prototype() is not supported in IE 10
+* Math.sign() is not supported in IE 10
+* Promise is not supported in Opera Mobile 12.1, Opera Mini all, IE Mobile 10, IE 10, Blackberry Browser 7
+* Reflect is not supported in IE 10
+* Symbol is not supported in IE 10
+* Symbol.iterator() is not supported in IE 10
+* Symbol.prototype() is not supported in IE 10
+* Symbol.toPrimitive() is not supported in IE 10
+* Symbol.toStringTag() is not supported in IE 10
+* Uint32Array is not supported in IE Mobile 10, IE 10, Blackberry Browser 7
+* window.crypto() is not supported in IE 10
 
 #### Bundler
 
@@ -333,7 +355,7 @@ For server-side logging of requests, the Cabin middleware `cabin.middleware` wil
     xhook.before(function(req) {
       if (!req.headers['X-Request-Id'])
         req.headers['X-Request-Id'] = cuid();
-      cabin.info('xhr', cabin.parseRequest(req));
+      cabin.info('xhr', cabin.parseRequest({ req }));
     });
   })();
 </script>
@@ -358,7 +380,7 @@ script.
     xhook.before(function(req) {
       if (!req.headers['X-Request-Id'])
         req.headers['X-Request-Id'] = cuid();
-      cabin.info('xhr', cabin.parseRequest(req));
+      cabin.info('xhr', cabin.parseRequest({ req }));
     });
   })();
 ```
@@ -393,7 +415,7 @@ cabin.setUser({
 xhook.before(req => {
   if (!req.headers['X-Request-Id'])
     req.headers['X-Request-Id'] = cuid();
-  cabin.info('xhr', cabin.parseRequest(req));
+  cabin.info('xhr', cabin.parseRequest({ req }));
 });
 ```
 
