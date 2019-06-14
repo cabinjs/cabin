@@ -84,13 +84,13 @@ Cabin will automatically detect and mask the following list of extremely sensiti
 * [JSON Web Tokens ("JWT")][jwt-tokens]
 * API Keys, CSRF Tokens, and Stripe Tokens
 * Passwords, Salts, and Hashes
-* Bank Account Numbers, Bank Routing Numbers
+* Bank Account Numbers and Bank Routing Numbers
 
 > <small><sup>\*</sup>Credit card numbers from the following providers are automatically detected and masked: Visa, Mastercard, American Express, Diners Club, Discover, JCB, UnionPay, Maestro, Mir, Elo, Hiper, Hipercard</small>
 
 ### Reduce Disk Storage Costs
 
-Reduce your disk storage costs through Cabin's automatic conversion of Streams, Buffers, and ArrayBuffers to simplified, descriptive-only objects that otherwise would be unreadable, and pollute your log files and disk storage.
+Reduce your disk storage costs through Cabin's automatic conversion of Streams, Buffers, and ArrayBuffers to simplified, descriptive-only objects that otherwise would be unreadable (and obviously pollute your log files and disk storage).
 
 > Before:
 
@@ -147,7 +147,7 @@ Reduce your disk storage costs through Cabin's automatic conversion of Streams, 
 
 ### Cross-Platform and Cross-Browser Compatible
 
-Cabin works with the most popular HTTP frameworks (e.g. [Express][] and [Koa][]), request body handling packages (e.g. [multer][] and [body-parser][]), and the [passport][] authentication framework.
+Cabin works with the most popular Node.js HTTP frameworks (e.g. [Express][] and [Koa][]), request body handling packages (e.g. [multer][] and [body-parser][]), and the [passport][] authentication framework.
 
 It supports **Node v6.4+** and **IE 10+** out of the box, and its browser-ready bundle **is only 38 KB** (minified and gzipped).
 
@@ -194,13 +194,13 @@ samsung 8.2
 
 [Axe][] is the underlying logging add-on that allows you to record, store, back-up, and customize your log handling over HTTP or with your own custom logic.
 
-You will find an entire example for logging errors and more to your Slack channel under its documentation section titled [Send Logs To Slack](https://github.com/cabinjs/axe#send-logs-to-slack).
+You will find an entire example for logging errors (and more) to your Slack channel under its section [Send Logs To Slack](https://github.com/cabinjs/axe#send-logs-to-slack).
 
 ### Bring Your Own Logger ("BYOL")
 
 Cabin was built by an expert based off dozens of years of experience with logging and building applications – and most importantly from their agony with existing tools, services, packages, and platforms.
 
-It was made to be a **simple and quick, drop-in replacement** for existing services, and you can even bring your own logger!  Want to use [Axe][], [pino][], [signale][], [morgan][], [bunyan][], [winston][], or another logger?  No problem.
+It was made to be both a **simple and quick drop-in replacement** for existing services.  **You can even bring your own logger!**  Want to use [Axe][], [pino][], [signale][], [morgan][], [bunyan][], [winston][], or another logger?  No problem.
 
 ### Save Time With Easy Debugging
 
@@ -210,7 +210,7 @@ Rich metadata is automatically added to your logs, so that you can easily record
 
 > Example Application:
 
-```sh
+```js
 const express = require('express');
 const Cabin = require('cabin');
 const multer = require('multer');
