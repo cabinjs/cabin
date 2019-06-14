@@ -156,7 +156,6 @@ npx browserslist
 ```
 
 ```sh
-npx browserslist
 and_chr 74
 and_ff 66
 and_qq 1.2
@@ -970,7 +969,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
 
 
-## 
+##
 
 <a href="#"><img src="media/cabin-footer.png" alt="#" /></a>
 
