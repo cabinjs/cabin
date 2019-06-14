@@ -2,6 +2,7 @@ const Koa = require('koa');
 const Cabin = require('..');
 const Router = require('koa-router');
 const koaConnect = require('koa-connect');
+const requestReceived = require('request-received');
 const responseTime = require('response-time');
 const requestId = require('express-request-id');
 const { Signale } = require('signale');
@@ -23,8 +24,12 @@ const cabin = new Cabin({
   }
 });
 
+// adds request received hrtime and date symbols to request object
+// (which is used by Cabin internally to add `request.timestamp` to logs
+app.use(requestReceived);
+
 // adds `X-Response-Time` header to responses
-app.use(koaConnect(responseTime));
+app.use(koaConnect(responseTime()));
 
 // adds or re-uses `X-Request-Id` header
 app.use(koaConnect(requestId()));

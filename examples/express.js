@@ -1,5 +1,6 @@
 const express = require('express');
 const Cabin = require('..');
+const requestReceived = require('request-received');
 const responseTime = require('response-time');
 const requestId = require('express-request-id');
 const { Signale } = require('signale');
@@ -19,6 +20,10 @@ const cabin = new Cabin({
     logger: env === 'production' ? pino : new Signale()
   }
 });
+
+// adds request received hrtime and date symbols to request object
+// (which is used by Cabin internally to add `request.timestamp` to logs
+app.use(requestReceived);
 
 // adds `X-Response-Time` header to responses
 app.use(responseTime());

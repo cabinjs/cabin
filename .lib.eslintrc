@@ -10,10 +10,10 @@
     "polyfills": [
       "Array.from",
       "Object.getOwnPropertySymbols",
-      "Symbol.iterator"
+      "Symbol.iterator",
+      "Object.assign",
+      "Symbol.for",
+      "Symbol.prototype"
     ]
   }
 }
-
-
-

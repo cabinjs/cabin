@@ -2,6 +2,7 @@ const test = require('ava');
 const _ = require('lodash');
 const express = require('express');
 const supertest = require('supertest');
+const requestReceived = require('request-received');
 const responseTime = require('response-time');
 const requestId = require('express-request-id');
 
@@ -10,6 +11,7 @@ const Cabin = require('..');
 test.beforeEach.cb(t => {
   const app = express();
   const cabin = new Cabin();
+  app.use(requestReceived);
   app.use(responseTime());
   app.use(requestId());
   app.use(cabin.middleware);

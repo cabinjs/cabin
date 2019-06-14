@@ -7,8 +7,7 @@ docute.init({
   nav: {
     default: [
       {
-        title:
-          'Logging/analytics service and middleware for Node.js, Lad, Koa, Express, and Passport',
+        title: 'The best JavaScript and Node.js logging service and logging npm package',
         path: '/'
       }
     ]

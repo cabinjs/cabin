@@ -3,6 +3,7 @@ const _ = require('lodash');
 const Koa = require('koa');
 const supertest = require('supertest');
 const koaConnect = require('koa-connect');
+const requestReceived = require('request-received');
 const responseTime = require('response-time');
 const requestId = require('express-request-id');
 
@@ -11,7 +12,8 @@ const Cabin = require('..');
 test.beforeEach.cb(t => {
   const app = new Koa();
   const cabin = new Cabin();
-  app.use(koaConnect(responseTime));
+  app.use(requestReceived);
+  app.use(koaConnect(responseTime()));
   app.use(koaConnect(requestId()));
   app.use(cabin.middleware);
   t.context.app = app;

@@ -1,48 +1,33 @@
-// <https://lacke.mn/reduce-your-bundle-js-file-size/>
-// <https://github.com/lodash/babel-plugin-lodash/issues/221>
 const Axe = require('axe');
-const assign = require('lodash/assign');
-const isArray = require('lodash/isArray');
-const isEmpty = require('lodash/isEmpty');
-const isError = require('lodash/isError');
-const isFunction = require('lodash/isFunction');
-const isNull = require('lodash/isNull');
-const isNumber = require('lodash/isNumber');
-const isObject = require('lodash/isObject');
-const isString = require('lodash/isString');
-const isUndefined = require('lodash/isUndefined');
+const isError = require('iserror');
 const parseErr = require('parse-err');
-const parseRequest = require('parse-request');
-const { oneLineTrim } = require('common-tags');
 
+const {
+  isEmpty,
+  isNull,
+  isUndefined,
+  isObject,
+  isString,
+  isFunction
+} = require('./utils');
+const message = require('./message');
 const middleware = require('./middleware');
 
 class Cabin {
   constructor(config) {
     this.config = {
       key: '',
+      capture: null,
       axe: {},
       logger: null,
       meta: {},
       // <https://github.com/niftylettuce/parse-request>
-      userFields: undefined,
+      parseRequest: {},
       // <https://github.com/niftylettuce/parse-err>
-      fields: [],
-      message: oneLineTrim`
-          {{ req.ip }}\u00A0
-          [{{ req.id ? req.id : new Date().toUTCString() }}]\u00A0
-          "
-          {{ req.method }}\u00A0
-          {{ req.url }}\u00A0
-          HTTP/{{ req.httpVersionMajor }}.{{ req.httpVersionMinor }}
-          "\u00A0
-          {{ res.statusCode }}\u00A0
-          {{ res.get('X-Response-Time') }}
-        `,
-      // <https://lodash.com/docs#template>
-      templateSettings: {
-        interpolate: /{{([\s\S]+?)}}/g
-      },
+      errorProps: [],
+      // function that accepts (level, req, res) and returns a string
+      // (this is consumed by the cabin middleware and not available in browsers)
+      message,
       ...config
     };
 
@@ -50,12 +35,17 @@ class Cabin {
     if (!isEmpty(this.config.axe) && this.config.key)
       this.config.axe.key = this.config.key;
 
+    if (!isEmpty(this.config.axe) && typeof this.config.capture === 'boolean')
+      this.config.axe.capture = this.config.capture;
+
     if (!isEmpty(this.config.axe))
       this.config.logger = new Axe(this.config.axe);
-    else if (this.config.key)
-      this.config.logger = new Axe({ key: this.config.key });
-
-    if (!isObject(this.config.logger)) this.config.logger = new Axe();
+    else if (this.config.key || this.config.capture)
+      this.config.logger = new Axe({
+        ...(this.config.key ? { key: this.config.key } : {}),
+        ...(this.config.capture ? { capture: this.config.capture } : {})
+      });
+    else if (!isObject(this.config.logger)) this.config.logger = new Axe();
 
     // bind the logger
     this.logger = this.config.logger;
@@ -82,29 +72,22 @@ class Cabin {
     this.setMeta = this.setMeta.bind(this);
     this.setUser = this.setUser.bind(this);
     if (isFunction(middleware)) this.middleware = middleware.bind(this);
-
-    // backwards compatibility with older `getMeta` method
-    this.getMeta = parseRequest;
-
-    // expose parseRequest and parseErr
-    this.parseRequest = parseRequest;
-    this.parseErr = parseErr;
   }
 
   parseArg(arg = {}) {
     if (isObject(arg)) {
-      assign(arg, this.config.meta);
+      arg = { ...arg, ...this.config.meta };
       return arg;
     }
 
     if (isUndefined(arg) || isNull(arg)) arg = {};
-    else if (isError(arg)) arg = { err: parseErr(arg, this.config.fields) };
-    else if (isArray(arg)) arg = { value: arg };
+    else if (isError(arg)) arg = { err: parseErr(arg, this.config.errorProps) };
+    else if (Array.isArray(arg)) arg = { value: arg };
     else if (isString(arg)) arg = { value: arg };
-    else if (isNumber(arg)) arg = { value: arg };
+    else if (typeof arg === 'number') arg = { value: arg };
     else if (isFunction(arg)) arg = { value: arg.toString() };
     else arg = {};
-    assign(arg, this.config.meta);
+    arg = { ...arg, ...this.config.meta };
     return arg;
   }
 
@@ -116,9 +99,5 @@ class Cabin {
     this.config.meta.user = user;
   }
 }
-
-Cabin.Axe = Axe;
-Cabin.parseRequest = parseRequest;
-Cabin.parseErr = parseErr;
 
 module.exports = Cabin;

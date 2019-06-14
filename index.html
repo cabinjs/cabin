@@ -7,17 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-  <title>Logging/analytics service and middleware for Node.js, Lad, Koa, Express, and Passport</title>
+  <title>JavaScript and Node.js logging service and npm package</title>
   <link rel="stylesheet" href="https://unpkg.com/docute@3/dist/docute.css" type="text/css">
 </head>
 
 <body>
   <div id="app">
   </div>
-  <script src="https://unpkg.com/xhook"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Symbol.iterator,Symbol.prototype,Symbol.toPrimitive,Symbol.toStringTag,Uint32Array,window.crypto"></script>
   <script src="https://unpkg.com/cabin"></script>
-  <!-- <script src="https://unpkg.com/cuid"></script> -->
+  <script src="https://unpkg.com/xhook"></script>
+  <script src="https://unpkg.com/parse-request"></script>
+  <script src="https://unpkg.com/cuid"></script>
   <script type="text/javascript">
     (function() {
       var cabin = new Cabin({ axe: { showMeta: true }});
@@ -29,9 +30,10 @@
       cabin.info('viewed docs');
       cabin.error(new Error('oops!'));
       xhook.before(function(req) {
-        // if (!req.headers['X-Request-Id'])
-        //  req.headers['X-Request-Id'] = cuid();
-        cabin.info('xhr', cabin.parseRequest(req));
+        if (typeof req.headers !== 'object') req.headers = {};
+        if (!req.headers['X-Request-Id'])
+          req.headers['X-Request-Id'] = cuid();
+        cabin.info('xhr', parseRequest({ req: req }));
       });
     })();
   </script>
