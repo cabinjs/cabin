@@ -57,7 +57,7 @@ module.exports = (level, req, res) => {
       milliseconds >= 1000
         ? 'red'
         : milliseconds >= 500
-        ? 'pink'
+        ? 'magenta'
         : milliseconds >= 250
         ? 'yellow'
         : milliseconds >= 100
