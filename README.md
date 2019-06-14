@@ -197,7 +197,7 @@ You will find an entire example for logging errors (and more) to your Slack chan
 
 ### Bring Your Own Logger ("BYOL")
 
-Cabin was built by an expert based off dozens of years of experience with logging and building applications – and most importantly from their agony with existing tools, services, packages, and platforms.
+Cabin was built by an expert based off best practices; over a decade of experience in logging and application development &ndash; and most importantly from their agony with existing tools, services, packages, and platforms.
 
 It was made to be both a **simple and quick drop-in replacement** for existing services.  **You can even bring your own logger!**  Want to use [Axe][], [pino][], [signale][], [morgan][], [bunyan][], [winston][], or another logger?  No problem.
 
@@ -970,7 +970,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
 
 
-## 
+##
 
 <a href="#"><img src="media/cabin-footer.png" alt="#" /></a>
 
