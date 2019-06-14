@@ -7912,10 +7912,10 @@ parse-ms@^2.1.0:
   resolved "https://registry.yarnpkg.com/parse-ms/-/parse-ms-2.1.0.tgz#348565a753d4391fa524029956b172cb7753097d"
   integrity sha512-kHt7kzLoS9VBZfUsiKjv43mr91ea+U05EyKkEtqp7vNbHxmaVuEqN7XxeEVnGrMtYOAxGrDElSi96K7EgO1zCA==
 
-parse-request@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/parse-request/-/parse-request-1.0.7.tgz#1c8297197803679d4102362f1ac69f5bcb449e5c"
-  integrity sha512-ZhOJ/IaFCO7AhNfBLKucg1PF+9iaUhCkrbb4YO+2AY8xf+K/0W3+rdLb+lniyOO+OkMAVlSXkoAt+QKg7oM05w==
+parse-request@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/parse-request/-/parse-request-1.0.8.tgz#b1c5b9336329eb927a03403a9becf69b97bd9a84"
+  integrity sha512-KErP8f05TKeEcgujyoqOk6+E57FlioGCn/WvxBPhqfxbMgExoA7higYHew2m+5qe7XjWqagHIZi+LZXfdRru7g==
   dependencies:
     browser-process-hrtime "^1.0.0"
     bson-objectid "^1.2.5"
