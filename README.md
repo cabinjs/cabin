@@ -219,6 +219,7 @@ const requestId = require('express-request-id');
 
 const app = express();
 const cabin = new Cabin();
+const upload = multer();
 
 app.use(requestReceived);
 app.use(responseTime());
