@@ -625,7 +625,7 @@
     js-levenshtein "^1.1.3"
     semver "^5.5.0"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.4.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.4.5":
   version "7.4.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
   integrity sha512-TuI4qpWZP6lGOGIuGWtp9sPluqYICmbk8T/1vpSysqJxRPkudh/ofFWyqdcMsDf2s7KvDL4/YHgKyvcS3g9CJQ==
@@ -1568,10 +1568,10 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   integrity sha512-ReZxvNHIOv88FlT7rxcXIIC0fPt4KZqZbOlivyWtXLt8ESx84zd3kMC6iK5jVeS2qt+g7ftS7ye4fi06X5rtRQ==
 
-axe@^3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/axe/-/axe-3.1.4.tgz#1fc11a37713da8b17eb4325d46c36e6d41d3730a"
-  integrity sha512-eczy7OACZrRoSSN26IkV0fpkTQLS/lwuMG1s/G/TX6Ve96cVGZWr960+ms0MiqRFtvg7vRo3Kow438Q0/LRjaA==
+axe@^3.1.5:
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/axe/-/axe-3.1.5.tgz#c7eac7939cb1b50452f3758c7e6dbb265eee5c1d"
+  integrity sha512-cKaNUjYKISSEOo6jLjq+qSEYGHN9R7e5RYhobptF+yrdDoftZpVd/QrsHGY/3VV+nFbaQY6MSMBGBRrVnkm70Q==
   dependencies:
     boolean "^1.0.0"
     console-polyfill "^0.3.0"
@@ -1583,7 +1583,7 @@ axe@^3.1.4:
     object.omit "^3.0.0"
     parse-app-info "^2.0.3"
     parse-err "^0.0.9"
-    superagent "^5.0.8"
+    superagent "^5.1.0"
     util-format-x "^1.3.0"
 
 babel-plugin-espower@^3.0.1:
@@ -1957,7 +1957,7 @@ browserify@^16.2.3:
     vm-browserify "^1.0.0"
     xtend "^4.0.0"
 
-browserslist@^4.5.2, browserslist@^4.6.0:
+browserslist@^4.5.4, browserslist@^4.6.0:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.6.2.tgz#574c665950915c2ac73a4594b8537a9eba26203f"
   integrity sha512-2neU/V0giQy9h3XMPwLhEY3+Ao0uHSwHvU8Q1Ea6AgLVL1sXbX3dzPrJ8NWe5Hi4PoTkCYXOtVR9rfRLI0J/8Q==
@@ -2155,7 +2155,7 @@ camelcase@^5.0.0, camelcase@^5.3.1:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.3.1.tgz#e3c9b31569e106811df242f715725a1f4c494320"
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
-caniuse-db@^1.0.30000951:
+caniuse-db@^1.0.30000957:
   version "1.0.30000974"
   resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000974.tgz#ffc887e57e7db7067da203b102071a1d2477c5c8"
   integrity sha512-zeXkn1hbjMvXdadcyUELZnGu7OjlW3HK0956DWczM7ZJqGV4jFaPi8CidB8QiAj5xl5O9I+f7j9F0AFmXmGTpg==
@@ -3605,17 +3605,17 @@ eslint-plugin-ava@^5.1.0:
     multimatch "^2.1.0"
     pkg-up "^2.0.0"
 
-eslint-plugin-compat@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-compat/-/eslint-plugin-compat-3.1.1.tgz#5ec367dbaec422928894e6b4f708aa623f23a198"
-  integrity sha512-pqy5LBy4ZPhSVwb2p0+jUozdnoGX+qc1NRIcK+Yfg99149ncqZVc8gP5u637vwVC/nLQP6X6zTpnHwsZCdvluQ==
+eslint-plugin-compat@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-compat/-/eslint-plugin-compat-3.1.2.tgz#965de2f3e6d7947616e927ff4de2392084d8777a"
+  integrity sha512-10XuVdl1RG53EvXNep6VwVsIbXsJM/g+M2fCvMTuw5CSVeITAw108HjC79+NPwrBbYFpdOfeIR08CviBDZQDKg==
   dependencies:
-    "@babel/runtime" "^7.4.2"
+    "@babel/runtime" "^7.4.5"
     ast-metadata-inferer "^0.1.1"
-    browserslist "^4.5.2"
-    caniuse-db "^1.0.30000951"
-    mdn-browser-compat-data "^0.0.72"
-    semver "^5.6.0"
+    browserslist "^4.5.4"
+    caniuse-db "^1.0.30000957"
+    mdn-browser-compat-data "^0.0.74"
+    semver "^6.1.1"
 
 eslint-plugin-es@^1.3.1, eslint-plugin-es@^1.4.0:
   version "1.4.0"
@@ -6800,10 +6800,10 @@ mdast-util-toc@^3.0.0:
     unist-util-is "^2.1.2"
     unist-util-visit "^1.1.0"
 
-mdn-browser-compat-data@^0.0.72:
-  version "0.0.72"
-  resolved "https://registry.yarnpkg.com/mdn-browser-compat-data/-/mdn-browser-compat-data-0.0.72.tgz#b1d2026bfbf61c82e71c4157059b9d161c8791a9"
-  integrity sha512-vt3BxJRpV638ncYLigX91k0qP1VcpKxgExqPtX+QKFvV4/ZruZ31Sl35LsDDq5q+D7Lt7mfGWnCEuZ0d6bJW1g==
+mdn-browser-compat-data@^0.0.74:
+  version "0.0.74"
+  resolved "https://registry.yarnpkg.com/mdn-browser-compat-data/-/mdn-browser-compat-data-0.0.74.tgz#999a07ae810c6daefbf03c82ae209c8596c469fd"
+  integrity sha512-d/pTMwk3tMxdBb5ziOr3wHLFJRfYqSgGMt5aKLpCDBFYu6gk/uLGibkikv/HmMJyU3GEb9R1VvkVkCw75hVMvg==
   dependencies:
     extend "3.0.2"
 
@@ -7912,10 +7912,10 @@ parse-ms@^2.1.0:
   resolved "https://registry.yarnpkg.com/parse-ms/-/parse-ms-2.1.0.tgz#348565a753d4391fa524029956b172cb7753097d"
   integrity sha512-kHt7kzLoS9VBZfUsiKjv43mr91ea+U05EyKkEtqp7vNbHxmaVuEqN7XxeEVnGrMtYOAxGrDElSi96K7EgO1zCA==
 
-parse-request@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/parse-request/-/parse-request-1.0.8.tgz#b1c5b9336329eb927a03403a9becf69b97bd9a84"
-  integrity sha512-KErP8f05TKeEcgujyoqOk6+E57FlioGCn/WvxBPhqfxbMgExoA7higYHew2m+5qe7XjWqagHIZi+LZXfdRru7g==
+parse-request@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/parse-request/-/parse-request-1.0.9.tgz#94a70f940df4e4bf5b3ec3d0a08697d9ac94d3fc"
+  integrity sha512-fzhBpWloh/jMhmqORVGYO0yV30JXKFwgdoWYX6Olnp78qskyPVgWj3j+TCmFfk7Jb2jMX+UdXR+S49rv2eoBeQ==
   dependencies:
     browser-process-hrtime "^1.0.0"
     bson-objectid "^1.2.5"
@@ -10348,14 +10348,15 @@ superagent@^3.8.3:
     qs "^6.5.1"
     readable-stream "^2.3.5"
 
-superagent@^5.0.8:
-  version "5.0.8"
-  resolved "https://registry.yarnpkg.com/superagent/-/superagent-5.0.8.tgz#c9bd4af68858aefd3006182899b05aa7bf96cca7"
-  integrity sha512-iu2aHUIQmocf2QtN17y4gzE5WdDcGBt3V1wvaahGcR8AeA9F+LIThVTRSKtAYqnhQo2X+U1/zyqSQ/6jyFJ+Qw==
+superagent@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/superagent/-/superagent-5.1.0.tgz#9ce4f38bee64d65a56166423b573222fa1b8f041"
+  integrity sha512-7V6JVx5N+eTL1MMqRBX0v0bG04UjrjAvvZJTF/VDH/SH2GjSLqlrcYepFlpTrXpm37aSY6h3GGVWGxXl/98TKA==
   dependencies:
     component-emitter "^1.3.0"
     cookiejar "^2.1.2"
     debug "^4.1.1"
+    fast-safe-stringify "^2.0.6"
     form-data "^2.3.3"
     formidable "^1.2.1"
     methods "^1.1.2"
