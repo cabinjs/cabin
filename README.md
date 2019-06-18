@@ -149,7 +149,7 @@ Reduce your disk storage costs through Cabin's automatic conversion of Streams, 
 
 Cabin works with the most popular Node.js HTTP frameworks (e.g. [Express][] and [Koa][]), request body handling packages (e.g. [multer][] and [body-parser][]), and the [passport][] authentication framework.
 
-It supports **Node v6.4+** and **IE 10+** out of the box, and its browser-ready bundle **is only 38 KB** (minified and gzipped).
+It supports **Node v6.4+** and **IE 10+** out of the box, and its browser-ready bundle **is only 36 KB** (minified and gzipped).
 
 ```sh
 npx browserslist
