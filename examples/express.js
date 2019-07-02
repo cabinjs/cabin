@@ -1,5 +1,4 @@
 const express = require('express');
-const Cabin = require('..');
 const requestReceived = require('request-received');
 const responseTime = require('response-time');
 const requestId = require('express-request-id');
@@ -9,6 +8,7 @@ const pino = require('pino')({
     log: 30
   }
 });
+const Cabin = require('..');
 
 const env = process.env.NODE_ENV || 'development';
 

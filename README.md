@@ -77,7 +77,7 @@ app.listen(3000);
 
 Cabin will automatically detect and mask the following list of extremely sensitive types of data in your logs:
 
-* [1000+ Sensitive Field Names][sensitive-fields]
+* [1600+ Sensitive Field Names][sensitive-fields]
 * Credit Card Numbers<sup>\*</sup>
 * [BasicAuth Headers][basicauth-headers]
 * Social Security Numbers
@@ -247,81 +247,94 @@ app.post(
 app.listen(3000);
 ```
 
-> Example Console Output:
+> Example Console Output (using [Signale][]):
 
 ```sh
-visited home page { request:
+ℹ  info      visited home page { id: '5d1b9e484ebd2adcdfd29bf4',
+  timestamp: '2019-07-02T18:11:20.000Z',
+  request:
    { method: 'POST',
      query: { foo: 'bar', beep: 'boop' },
      headers:
-      { host: '127.0.0.1:50798',
+      { host: '127.0.0.1:55370',
         'accept-encoding': 'gzip, deflate',
         'user-agent': 'node-superagent/3.8.3',
         authorization: 'Basic ********************',
         accept: 'application/json',
         cookie: 'foo=bar;beep=boop',
         'content-type':
-         'multipart/form-data; boundary=--------------------------156777247159758869934029',
+         'multipart/form-data; boundary=--------------------------028474125060986605281677',
         'content-length': '1599',
         connection: 'close' },
      cookies: { foo: 'bar', beep: 'boop' },
-     body:
-      '{"product_id":"5d0350ef2ca74d11ee6e4f00","name":"nifty","surname":"lettuce","bank_account_number":"1234567890","card":{"number":"****-****-****-****"},"stripe_token":"***************","favorite_color":"green"}',
      url: '/?foo=bar&beep=boop',
-     timestamp: '2019-06-14T10:08:59.855Z',
-     id: '27d1bd96-972a-4095-a6e3-b5b2adbcd52f',
+     body:
+      '{"product_id":"5d0350ef2ca74d11ee6e4f00","name":"nifty","surname":"lettuce","bank_account_number":"**********","card":{"number":"****-****-****-****"},"stripe_token":"***************","favorite_color":"green"}',
+     timestamp: '2019-07-02T18:11:20.331Z',
+     id: '33afc3c5-1571-4249-b024-876b6f687b65',
      http_version: '1.1',
      files:
-      '{"avatar":[{"fieldname":"avatar","originalname":"avatar.png","encoding":"7bit","mimetype":"image/png","buffer":{"type":"Buffer","byteLength":216},"size":216}],"boop":[{"fieldname":"boop","originalname":"boop-1.txt","encoding":"7bit","mimetype":"text/plain","buffer":{"type":"Buffer","byteLength":7},"size":7},{"fieldname":"boop","originalname":"boop-2.txt","encoding":"7bit","mimetype":"text/plain","buffer":{"type":"Buffer","byteLength":7},"size":7}]}' },
+      '{"avatar":[{"fieldName":"avatar","originalName":"avatar.png","clientReportedMimeType":"image/png","clientReportedFileExtension":".png","path":"/var/folders/t_/4vd3m1h92zsc953ll8r_4s_h0000gn/T/N6NE8A8","size":216,"detectedMimeType":"image/png","detectedFileExtension":".png","stream":{"type":"Stream"}}],"boop":[{"fieldName":"boop","originalName":"boop-1.txt","clientReportedMimeType":"text/plain","clientReportedFileExtension":".txt","path":"/var/folders/t_/4vd3m1h92zsc953ll8r_4s_h0000gn/T/PCB8YTR","size":7,"detectedMimeType":{},"detectedFileExtension":"","stream":{"type":"Stream"}},{"fieldName":"boop","originalName":"boop-2.txt","clientReportedMimeType":"text/plain","clientReportedFileExtension":".txt","path":"/var/folders/t_/4vd3m1h92zsc953ll8r_4s_h0000gn/T/EKMAKXR","size":7,"detectedMimeType":{},"detectedFileExtension":"","stream":{"type":"Stream"}}]}' },
   user: { ip_address: '::ffff:127.0.0.1' },
-  id: '5d03723b749cb1466b2c6672',
-  timestamp: '2019-06-14T10:08:59.000Z',
-  duration: 3.342197,
+  duration: 1.741299,
   app:
    { name: 'parse-request',
-     version: '1.0.7',
+     version: '2.0.1',
      node: 'v10.15.3',
-     hash: '66e94a1c6e06052cd5f0aad7102d42334210f7cc',
-     tag: 'v1.0.7',
+     hash: '75783ef9d0a9c1c71f83ee352754a14ead0a3138',
+     tag: 'v2.0.1',
      environment: 'test',
      hostname: 'jacks-MacBook-Pro.local',
-     pid: 18027 } }
-::ffff:127.0.0.1 - POST /?foo=bar&beep=boop HTTP/1.1 200 2 - 30.572 ms { request:
+     pid: 56543 } }
+ℹ  info      ::ffff:127.0.0.1 user POST /?foo=bar&beep=boop HTTP/1.1 200 1951 - 67.819 ms { id: '5d1b9e484ebd2adcdfd29bf5',
+  timestamp: '2019-07-02T18:11:20.000Z',
+  request:
    { method: 'POST',
      query: { foo: 'bar', beep: 'boop' },
      headers:
-      { host: '127.0.0.1:50798',
+      { host: '127.0.0.1:55370',
         'accept-encoding': 'gzip, deflate',
         'user-agent': 'node-superagent/3.8.3',
         authorization: 'Basic ********************',
         accept: 'application/json',
         cookie: 'foo=bar;beep=boop',
         'content-type':
-         'multipart/form-data; boundary=--------------------------156777247159758869934029',
+         'multipart/form-data; boundary=--------------------------028474125060986605281677',
         'content-length': '1599',
         connection: 'close' },
      cookies: { foo: 'bar', beep: 'boop' },
-     body:
-      '{"product_id":"5d0350ef2ca74d11ee6e4f00","name":"nifty","surname":"lettuce","bank_account_number":"1234567890","card":{"number":"****-****-****-****"},"stripe_token":"***************","favorite_color":"green"}',
      url: '/?foo=bar&beep=boop',
-     timestamp: '2019-06-14T10:08:59.855Z',
-     id: '27d1bd96-972a-4095-a6e3-b5b2adbcd52f',
+     body:
+      '{"product_id":"5d0350ef2ca74d11ee6e4f00","name":"nifty","surname":"lettuce","bank_account_number":"**********","card":{"number":"****-****-****-****"},"stripe_token":"***************","favorite_color":"green"}',
+     timestamp: '2019-07-02T18:11:20.331Z',
+     id: '33afc3c5-1571-4249-b024-876b6f687b65',
      http_version: '1.1',
      files:
-      '{"avatar":[{"fieldname":"avatar","originalname":"avatar.png","encoding":"7bit","mimetype":"image/png","buffer":{"type":"Buffer","byteLength":216},"size":216}],"boop":[{"fieldname":"boop","originalname":"boop-1.txt","encoding":"7bit","mimetype":"text/plain","buffer":{"type":"Buffer","byteLength":7},"size":7},{"fieldname":"boop","originalname":"boop-2.txt","encoding":"7bit","mimetype":"text/plain","buffer":{"type":"Buffer","byteLength":7},"size":7}]}' },
+      '{"avatar":[{"fieldName":"avatar","originalName":"avatar.png","clientReportedMimeType":"image/png","clientReportedFileExtension":".png","path":"/var/folders/t_/4vd3m1h92zsc953ll8r_4s_h0000gn/T/N6NE8A8","size":216,"detectedMimeType":"image/png","detectedFileExtension":".png","stream":{"type":"Stream"}}],"boop":[{"fieldName":"boop","originalName":"boop-1.txt","clientReportedMimeType":"text/plain","clientReportedFileExtension":".txt","path":"/var/folders/t_/4vd3m1h92zsc953ll8r_4s_h0000gn/T/PCB8YTR","size":7,"detectedMimeType":{},"detectedFileExtension":"","stream":{"type":"Stream"}},{"fieldName":"boop","originalName":"boop-2.txt","clientReportedMimeType":"text/plain","clientReportedFileExtension":".txt","path":"/var/folders/t_/4vd3m1h92zsc953ll8r_4s_h0000gn/T/EKMAKXR","size":7,"detectedMimeType":{},"detectedFileExtension":"","stream":{"type":"Stream"}}]}' },
   user: { ip_address: '::ffff:127.0.0.1' },
-  id: '5d03723b749cb1466b2c6673',
-  timestamp: '2019-06-14T10:08:59.000Z',
-  duration: 1.011388,
+  response:
+   { headers:
+      { 'x-request-id': '33afc3c5-1571-4249-b024-876b6f687b65',
+        'content-type': 'application/json; charset=utf-8',
+        'content-length': '1951',
+        'x-response-time': '67.819ms',
+        date: 'Tue, 02 Jul 2019 18:11:20 GMT',
+        connection: 'close' },
+     http_version: '1.1',
+     status_code: 200,
+     reason_phrase: 'OK',
+     timestamp: '2019-07-02T18:11:20.000Z',
+     duration: 67.819 },
+  duration: 2.320237,
   app:
    { name: 'parse-request',
-     version: '1.0.7',
+     version: '2.0.1',
      node: 'v10.15.3',
-     hash: '66e94a1c6e06052cd5f0aad7102d42334210f7cc',
-     tag: 'v1.0.7',
+     hash: '75783ef9d0a9c1c71f83ee352754a14ead0a3138',
+     tag: 'v2.0.1',
      environment: 'test',
      hostname: 'jacks-MacBook-Pro.local',
-     pid: 18027 } }
+     pid: 56543 } }
 ```
 
 
@@ -535,10 +548,6 @@ In order to easily interact and use the `logger` utility function exposed by `ap
 
 * `ctx.log`
 * `ctx.logger`
-* `ctx.req.log`
-* `ctx.req.logger`
-* `ctx.res.log`
-* `ctx.res.logger`
 * `ctx.request.log`
 * `ctx.request.logger`
 * `ctx.response.log`
@@ -633,8 +642,19 @@ For server-side logging of requests, the Cabin middleware `cabin.middleware` wil
     });
     xhook.before(function(req) {
       if (typeof req.headers !== 'object') req.headers = {};
+
       if (!req.headers['X-Request-Id'])
         req.headers['X-Request-Id'] = cuid();
+
+      if (!req.headers['User-Agent'])
+        req.headers['User-Agent'] = window.navigator.userAgent;
+
+      if (!req.headers['Referer'])
+        req.headers['Referer'] = window.document.referrer;
+
+      if (!req.headers['Cookie'])
+        req.headers['Cookie'] = window.document.cookie;
+
       cabin.info('xhr', parseRequest({ req: req }));
     });
   })();
@@ -661,8 +681,22 @@ script.
     });
     xhook.before(function(req) {
       if (typeof req.headers !== 'object') req.headers = {};
+
       if (!req.headers['X-Request-Id'])
         req.headers['X-Request-Id'] = cuid();
+
+      if (!req.headers['X-Request-Id'])
+        req.headers['X-Request-Id'] = cuid();
+
+      if (!req.headers['User-Agent'])
+        req.headers['User-Agent'] = window.navigator.userAgent;
+
+      if (!req.headers['Referer'])
+        req.headers['Referer'] = window.document.referrer;
+
+      if (!req.headers['Cookie'])
+        req.headers['Cookie'] = window.document.cookie;
+
       cabin.info('xhr', parseRequest({ req: req }));
     });
   })();
@@ -698,8 +732,14 @@ cabin.setUser({
 
 xhook.before(req => {
   if (typeof req.headers !== 'object') req.headers = {};
+
   if (!req.headers['X-Request-Id'])
     req.headers['X-Request-Id'] = cuid();
+
+  //
+  // NOTE: you may want to add User-Agent, Referer, and Cookie (see above)
+  //
+
   cabin.info('xhr', parseRequest({ req: req }));
 });
 ```
@@ -892,7 +932,7 @@ Similarly if you pass a truthy value of `1` or `true` it will show metadata (whi
 * `meta` (Object) - defaults to an empty object - this will get passed as metadata (e.g. you could set a custom `meta.user` object here for every request)
 * `parseRequest` (Object) - defaults to an empty object, which means it will use the defaults from [parse-request][] (see [Metadata](#metadata) below)
 * `errorProps` (Array) - a list of properties to cherry-pick from the error object parsed out of err thanks to [parse-err][] (by default all properties are returned; even non-enumerable ones and ones on the prototype object) (see [Metadata](#metadata) below)
-* `message` (Function) - inspired by [morgan][], and defaults to a [dev-friendly format](https://github.com/expressjs/morgan#short) (or if in production mode, then it uses a [standard Apache common log format][apache-clf])). – when requests finish, it will utilize `logger` to output an error, warn, or info level log based off the status code, and this function is used to determine the string sent to the logger.  It accepts three arguments `level`, `req`, and `res`, and it is required that this function return a String.  See [src/message.js](src/message.js) for an example
+* `message` (Function) - inspired by [morgan][], and defaults to a [dev-friendly format](https://github.com/expressjs/morgan#short) (or if in production mode, then it uses a [standard Apache common log format][apache-clf])). – when requests finish, it will utilize `logger` to output an error, warn, or info level log based off the status code, and this function is used to determine the string sent to the logger.  It accepts one argument `options`, which is comprised of `options.level`, `options.req`, `options.res`, and optionally (if and only if Koa) `options.ctx`.  It is required that this function return a String.  See [src/message.js](src/message.js) for the default message function
 
 
 ## Metadata

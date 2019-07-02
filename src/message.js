@@ -20,24 +20,25 @@ function getStartTime(req) {
   return startTime;
 }
 
-// https://stackoverflow.com/questions/9234699/understanding-apaches-access-log
-module.exports = (level, req, res) => {
-  const startTime = getStartTime(req);
+function apacheCommonLogFormat(options) {
+  const { req, res, ctx } = options;
 
   const creds = auth(req);
 
-  // Apache Common Log Format
-  // <https://httpd.apache.org/docs/current/logs.html#common>
-  // :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length]
-  if (process.env.NODE_ENV === 'production')
-    return `${req.ip} - ${creds ? creds.name : '-'} ${clfDate(startTime)} "${
-      req.method
-    } ${req.url} HTTP/${req.httpVersionMajor}.${req.httpVersionMinor}" ${
-      res.statusCode
-    } ${res.get('Content-Length') || '-'}`;
+  const startTime = getStartTime(req);
 
-  // Dev-Friendly Log Format
-  // :remote-addr :remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms
+  return `${ctx ? ctx.ip : req.ip} - ${creds ? creds.name : '-'} ${clfDate(
+    startTime
+  )} "${req.method} ${req.url} HTTP/${req.httpVersionMajor}.${
+    req.httpVersionMinor
+  }" ${res.statusCode} ${res.getHeader('content-length') || '-'}`;
+}
+
+function devFriendlyLogFormat(options) {
+  const { req, res, ctx } = options;
+
+  const creds = auth(req);
+
   const statusColor =
     res.statusCode >= 500
       ? 'red'
@@ -51,8 +52,9 @@ module.exports = (level, req, res) => {
 
   let responseTime = '-';
 
-  if (res.get('X-Response-Time')) {
-    const milliseconds = ms(res.get('X-Response-Time'));
+  const responseTimeHeader = res.getHeader('x-response-time');
+  if (responseTimeHeader) {
+    const milliseconds = ms(responseTimeHeader);
     const responseColor =
       milliseconds >= 1000
         ? 'red'
@@ -67,14 +69,27 @@ module.exports = (level, req, res) => {
   }
 
   return [
-    req.ip,
+    ctx ? ctx.ip : req.ip,
     creds ? creds.name : '-',
     req.method,
     req.url,
     `HTTP/${req.httpVersionMajor}.${req.httpVersionMinor}`,
     c[statusColor](res.statusCode),
-    res.get('Content-Length') || '-',
+    res.getHeader('content-length') || '-',
     '-',
     responseTime
   ].join(' ');
+}
+
+// https://stackoverflow.com/questions/9234699/understanding-apaches-access-log
+module.exports = options => {
+  // Apache Common Log Format
+  // <https://httpd.apache.org/docs/current/logs.html#common>
+  // :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length]
+  if (process.env.NODE_ENV === 'production')
+    return apacheCommonLogFormat(options);
+
+  // Dev-Friendly Log Format
+  // :remote-addr :remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms
+  return devFriendlyLogFormat(options);
 };

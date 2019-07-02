@@ -1,5 +1,4 @@
 const Koa = require('koa');
-const Cabin = require('..');
 const Router = require('koa-router');
 const koaConnect = require('koa-connect');
 const requestReceived = require('request-received');
@@ -11,6 +10,7 @@ const pino = require('pino')({
     log: 30
   }
 });
+const Cabin = require('..');
 
 const env = process.env.NODE_ENV || 'development';
 

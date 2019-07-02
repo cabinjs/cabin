@@ -4,32 +4,66 @@ const { isFunction, isUndefined } = require('./utils');
 
 module.exports = function(...args) {
   const isExpress = !isUndefined(args[2]) && isFunction(args[2]);
-  const nodeReq = isExpress ? args[0] : args[0].req;
-  const nodeRes = isExpress ? args[1] : args[0].res;
-  const request = isExpress ? args[0] : args[0].request;
-  const response = isExpress ? args[1] : args[0].response;
+  const req = isExpress ? args[0] : args[0].req;
+  const res = isExpress ? args[1] : args[0].res;
+  // const request = isExpress ? args[0] : args[0].request;
+  // const response = isExpress ? args[1] : args[0].response;
+  const ctx = args[0];
   const next = isExpress ? args[2] : args[1];
   const logger = {};
+  //
+  // Note that `params` is not named `args` because ESLint doesn't warn:
+  // <https://github.com/eslint/eslint/issues/11915>
+  //
   Object.keys(this.logger)
     .filter(key => isFunction(this.logger[key]))
     .forEach(key => {
-      logger[key] = (...args) => {
-        args[1] = this.parseArg(args[1]);
+      logger[key] = (...params) => {
+        params[1] = this.parseArg(params[1]);
         // add `request` object to metadata
-        args[1] = {
-          ...args[1],
-          ...parseRequest({ req: request, ...this.config.parseRequest })
+        params[1] = {
+          ...params[1],
+          ...parseRequest({
+            ...(isExpress ? { req } : { ctx }),
+            //
+            // this symbol was not added until Node v7.7.0
+            // and we try to support Node v6.4+
+            // <https://github.com/nodejs/node/issues/17745>
+            //
+            // <https://github.com/nodejs/node/blob/v7.10.0/lib/_http_outgoing.js#L379-L380>
+            // <https://github.com/nodejs/node/blob/v7.7.0/lib/_http_outgoing.js#L379-L380>
+            // <https://github.com/nodejs/node/blob/v6.4.0/lib/_http_outgoing.js#L351-L352>
+            //
+            // Note that for the fallback `_headers` all the keys are lowercased
+            //
+            // But note that in node v12.4.0 for instance this prop is deprecated
+            // <https://github.com/nodejs/node/blob/v12.4.0/lib/_http_outgoing.js#L116>
+            // So we are left with either the Symbol or use of `getHeaders`
+            //
+            // HOWEVER automatic properties like Date header aren't
+            // set when you do `getHeaders`, they are only written to `_header`
+            // and so we need `parse-request` to parse the `responseHeaders`
+            // as a String using `http-headers`...
+            // <https://github.com/nodejs/node/issues/28302>
+            responseHeaders: res._header,
+            ...this.config.parseRequest
+          })
         };
-        this.logger[key](...[].slice.call(args));
+        this.logger[key](...[].slice.call(params));
       };
     });
   // upon completion of a response we need to log it
-  onFinished(nodeRes, (err, res) => {
+  onFinished(res, err => {
     if (err) logger.error(err);
     let level = 'info';
     if (res.statusCode >= 500) level = 'error';
     else if (res.statusCode >= 400) level = 'warn';
-    const message = this.config.message(level, request, response);
+    const message = this.config.message({
+      level,
+      req,
+      res,
+      ...(isExpress ? {} : { ctx: args[0] })
+    });
     if (err) logger[level](message, { err });
     else logger[level](message);
   });
@@ -43,11 +77,12 @@ module.exports = function(...args) {
   // <https://github.com/pinojs/koa-pino-logger/issues/14>
   // <https://github.com/pinojs/koa-pino-logger/blob/master/logger.js#L11>
   // <https://github.com/pinojs/pino-http/blob/master/logger.js#L55>
-  nodeReq.log = logger;
-  nodeRes.log = logger;
-  nodeReq.logger = logger;
-  nodeRes.logger = logger;
-  if (!isExpress) {
+  if (isExpress) {
+    req.log = logger;
+    res.log = logger;
+    req.logger = logger;
+    res.logger = logger;
+  } else {
     const ctx = args[0];
     ctx.log = logger;
     ctx.logger = logger;
