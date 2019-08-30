@@ -15,21 +15,23 @@ const middleware = require('./middleware');
 
 class Cabin {
   constructor(config) {
-    this.config = {
-      key: '',
-      capture: null,
-      axe: {},
-      logger: null,
-      meta: {},
-      // <https://github.com/niftylettuce/parse-request>
-      parseRequest: {},
-      // <https://github.com/niftylettuce/parse-err>
-      errorProps: [],
-      // function that accepts (level, req, res) and returns a string
-      // (this is consumed by the cabin middleware and not available in browsers)
-      message,
-      ...config
-    };
+    this.config = Object.assign(
+      {
+        key: '',
+        capture: null,
+        axe: {},
+        logger: null,
+        meta: {},
+        // <https://github.com/niftylettuce/parse-request>
+        parseRequest: {},
+        // <https://github.com/niftylettuce/parse-err>
+        errorProps: [],
+        // function that accepts (level, req, res) and returns a string
+        // (this is consumed by the cabin middleware and not available in browsers)
+        message
+      },
+      config
+    );
 
     // override key with root key in case user forgot
     if (!isEmpty(this.config.axe) && this.config.key)
@@ -41,10 +43,12 @@ class Cabin {
     if (!isEmpty(this.config.axe))
       this.config.logger = new Axe(this.config.axe);
     else if (this.config.key || this.config.capture)
-      this.config.logger = new Axe({
-        ...(this.config.key ? { key: this.config.key } : {}),
-        ...(this.config.capture ? { capture: this.config.capture } : {})
-      });
+      this.config.logger = new Axe(
+        Object.assign(
+          this.config.key ? { key: this.config.key } : {},
+          this.config.capture ? { capture: this.config.capture } : {}
+        )
+      );
     else if (!isObject(this.config.logger)) this.config.logger = new Axe();
 
     // bind the logger
@@ -76,7 +80,7 @@ class Cabin {
 
   parseArg(arg = {}) {
     if (isObject(arg)) {
-      arg = { ...arg, ...this.config.meta };
+      arg = Object.assign(arg, this.config.meta);
       return arg;
     }
 
@@ -87,7 +91,7 @@ class Cabin {
     else if (typeof arg === 'number') arg = { value: arg };
     else if (isFunction(arg)) arg = { value: arg.toString() };
     else arg = {};
-    arg = { ...arg, ...this.config.meta };
+    arg = Object.assign(arg, this.config.meta);
     return arg;
   }
 

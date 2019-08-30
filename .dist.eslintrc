@@ -22,7 +22,9 @@
     "no-constant-condition": "off",
     "no-useless-escape": "off",
     "no-console": "off",
-    "no-empty": "off"
+    "no-empty": "off",
+    "no-undef": "off",
+    "no-prototype-builtins": "off"
   },
   "globals": {
     "ActiveXObject": "readonly"
@@ -40,7 +42,10 @@
       "Symbol.toPrimitive",
       "Symbol.toStringTag",
       "Uint32Array",
-      "window.crypto"
+      "window.crypto",
+      "Array.from",
+      "Object.getOwnPropertySymbols",
+      "Object.assign"
     ]
   }
 }

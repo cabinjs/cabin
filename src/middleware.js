@@ -21,34 +21,36 @@ module.exports = function(...args) {
       logger[key] = (...params) => {
         params[1] = this.parseArg(params[1]);
         // add `request` object to metadata
-        params[1] = {
-          ...params[1],
-          ...parseRequest({
-            ...(isExpress ? { req } : { ctx }),
-            //
-            // this symbol was not added until Node v7.7.0
-            // and we try to support Node v6.4+
-            // <https://github.com/nodejs/node/issues/17745>
-            //
-            // <https://github.com/nodejs/node/blob/v7.10.0/lib/_http_outgoing.js#L379-L380>
-            // <https://github.com/nodejs/node/blob/v7.7.0/lib/_http_outgoing.js#L379-L380>
-            // <https://github.com/nodejs/node/blob/v6.4.0/lib/_http_outgoing.js#L351-L352>
-            //
-            // Note that for the fallback `_headers` all the keys are lowercased
-            //
-            // But note that in node v12.4.0 for instance this prop is deprecated
-            // <https://github.com/nodejs/node/blob/v12.4.0/lib/_http_outgoing.js#L116>
-            // So we are left with either the Symbol or use of `getHeaders`
-            //
-            // HOWEVER automatic properties like Date header aren't
-            // set when you do `getHeaders`, they are only written to `_header`
-            // and so we need `parse-request` to parse the `responseHeaders`
-            // as a String using `http-headers`...
-            // <https://github.com/nodejs/node/issues/28302>
-            responseHeaders: res._header,
-            ...this.config.parseRequest
-          })
-        };
+        params[1] = Object.assign(
+          params[1],
+          parseRequest(
+            Object.assign(
+              isExpress ? { req } : { ctx },
+              //
+              // this symbol was not added until Node v7.7.0
+              // and we try to support Node v6.4+
+              // <https://github.com/nodejs/node/issues/17745>
+              //
+              // <https://github.com/nodejs/node/blob/v7.10.0/lib/_http_outgoing.js#L379-L380>
+              // <https://github.com/nodejs/node/blob/v7.7.0/lib/_http_outgoing.js#L379-L380>
+              // <https://github.com/nodejs/node/blob/v6.4.0/lib/_http_outgoing.js#L351-L352>
+              //
+              // Note that for the fallback `_headers` all the keys are lowercased
+              //
+              // But note that in node v12.4.0 for instance this prop is deprecated
+              // <https://github.com/nodejs/node/blob/v12.4.0/lib/_http_outgoing.js#L116>
+              // So we are left with either the Symbol or use of `getHeaders`
+              //
+              // HOWEVER automatic properties like Date header aren't
+              // set when you do `getHeaders`, they are only written to `_header`
+              // and so we need `parse-request` to parse the `responseHeaders`
+              // as a String using `http-headers`...
+              // <https://github.com/nodejs/node/issues/28302>
+              { responseHeaders: res._header },
+              this.config.parseRequest
+            )
+          )
+        );
         this.logger[key](...[].slice.call(params));
       };
     });
@@ -58,12 +60,9 @@ module.exports = function(...args) {
     let level = 'info';
     if (res.statusCode >= 500) level = 'error';
     else if (res.statusCode >= 400) level = 'warn';
-    const message = this.config.message({
-      level,
-      req,
-      res,
-      ...(isExpress ? {} : { ctx: args[0] })
-    });
+    const message = this.config.message(
+      Object.assign({ level, req, res }, isExpress ? {} : { ctx: args[0] })
+    );
     if (err) logger[level](message, { err });
     else logger[level](message);
   });
