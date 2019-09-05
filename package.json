@@ -85,7 +85,7 @@
   "homepage": "https://github.com/cabinjs/cabin",
   "husky": {
     "hooks": {
-      "pre-commit": "npm test",
+      "pre-commit": "lint-staged && npm test",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
@@ -148,20 +148,18 @@
   ],
   "license": "MIT",
   "lint-staged": {
-    "linters": {
-      "*.js": [
-        "xo --fix",
-        "git add"
-      ],
-      "*.md": [
-        "remark . -qfo",
-        "git add"
-      ],
-      "package.json": [
-        "fixpack",
-        "git add"
-      ]
-    }
+    "*.js": [
+      "xo --fix",
+      "git add"
+    ],
+    "*.md": [
+      "remark . -qfo",
+      "git add"
+    ],
+    "package.json": [
+      "fixpack",
+      "git add"
+    ]
   },
   "main": "lib/index.js",
   "prettier": {
