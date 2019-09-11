@@ -809,7 +809,9 @@ If you're curious why it won't work in IE11, please see this [great documentatio
           // StackTrace.report(stackframes, endpoint, err.message);
           // however we want to leave it up to the logger to
           // report and record the error
-          err.stack = stackframes;
+          err.stack = stackframes.map(function(frame) {
+            return frame.toString();
+          }).join('\n');
           cabin.error(err);
         })
         .catch(function(_err) {
