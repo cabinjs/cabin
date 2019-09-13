@@ -831,16 +831,10 @@ If you're curious why it won't work in IE11, please see this [great documentatio
       // to be consistently similar to Gecko and V8 stackframes
       StackTrace.fromError(err)
         .then(function(stackframes) {
-          try {
-            err.stack = prepareStackTrace(err, stackframes);
-            logger.error(err);
-          } catch (err2) {
-            logger.error(err2);
-            logger.error(err);
-          }
+          err.stack = prepareStackTrace(err, stackframes);
+          logger.error(err);
         })
         .catch(function(err2) {
-          // log both original and new error
           logger.error(err);
           logger.error(err2);
         });
