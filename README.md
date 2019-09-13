@@ -788,14 +788,19 @@ If you're curious why it won't work in IE11, please see this [great documentatio
 
 ```html
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Symbol.iterator,Symbol.prototype,Symbol.toPrimitive,Symbol.toStringTag,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign"></script>
-<script src="https://unpkg.com/stacktrace-js"></script>
+<script src="https://unpkg.com/@ladjs/stacktrace-js"></script>
 <!-- Use this instead of the above if you need to polyfill for IE11 support -->
-<!-- <script src="https://unpkg.com/stacktrace-js/dist/stacktrace-with-promises-and-json-polyfills.js"></script> -->
+<!-- <script src="https://unpkg.com/@ladjs/stacktrace-js/dist/stacktrace-with-promises-and-json-polyfills.js"></script> -->
 <script src="https://unpkg.com/uncaught"></script>
 <script src="https://unpkg.com/cabin"></script>
+<script src="https://unpkg.com/prepare-stack-trace"></script>
 
 <script type="text/javascript">
   (function() {
+    //
+    // Sourced from the StackTrace example from CabinJS docs
+    // <https://github.com/cabinjs/cabin#stacktrace>
+    //
     var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
     uncaught.start();
     uncaught.addListener(function(err) {
@@ -803,21 +808,18 @@ If you're curious why it won't work in IE11, please see this [great documentatio
       // to be consistently similar to Gecko and V8 stackframes
       StackTrace.fromError(err)
         .then(function(stackframes) {
-          // StackTrace has a convenient `report` method however
-          // we want to send along more information than just this
-          // <https://github.com/stacktracejs/stacktrace.js#stacktracereportstackframes-url-message-requestoptions--promisestring>
-          // StackTrace.report(stackframes, endpoint, err.message);
-          // however we want to leave it up to the logger to
-          // report and record the error
-          err.stack = stackframes.map(function(frame) {
-            return frame.toString();
-          }).join('\n');
-          cabin.error(err);
+          try {
+            err.stack = prepareStackTrace(err, stackframes);
+            logger.error(err);
+          } catch (err2) {
+            logger.error(err2);
+            logger.error(err);
+          }
         })
-        .catch(function(_err) {
+        .catch(function(err2) {
           // log both original and new error
-          cabin.error(err);
-          cabin.error(_err);
+          logger.error(err);
+          logger.error(err2);
         });
     });
   })();
