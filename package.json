@@ -28,7 +28,7 @@
   ],
   "dependencies": {
     "ansi-colors": "^4.1.1",
-    "axe": "^4.0.3",
+    "axe": "^4.0.4",
     "basic-auth": "^2.0.1",
     "clf-date": "^0.1.0",
     "iserror": "^0.0.2",
@@ -63,7 +63,7 @@
     "lint-staged": "^9.2.5",
     "lodash": "^4.17.15",
     "nyc": "^14.1.1",
-    "pino": "^5.13.2",
+    "pino": "^5.13.3",
     "remark-cli": "^7.0.0",
     "remark-preset-github": "^0.0.16",
     "request-received": "^0.0.2",
