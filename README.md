@@ -788,9 +788,9 @@ If you're curious why it won't work in IE11, please see this [great documentatio
 
 ```html
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Symbol.iterator,Symbol.prototype,Symbol.toPrimitive,Symbol.toStringTag,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign"></script>
-<script src="https://unpkg.com/@ladjs/stacktrace-js"></script>
+<script src="https://unpkg.com/stacktrace-js"></script>
 <!-- Use this instead of the above if you need to polyfill for IE11 support -->
-<!-- <script src="https://unpkg.com/@ladjs/stacktrace-js/dist/stacktrace-with-promises-and-json-polyfills.js"></script> -->
+<!-- <script src="https://unpkg.com/stacktrace-js/dist/stacktrace-with-promises-and-json-polyfills.js"></script> -->
 <script src="https://unpkg.com/uncaught"></script>
 <script src="https://unpkg.com/cabin"></script>
 <script src="https://unpkg.com/prepare-stack-trace"></script>
@@ -801,6 +801,28 @@ If you're curious why it won't work in IE11, please see this [great documentatio
     // Sourced from the StackTrace example from CabinJS docs
     // <https://github.com/cabinjs/cabin#stacktrace>
     //
+
+    //
+    // The following override is required until this PR is merged
+    // <https://github.com/stacktracejs/stackframe/pull/23>
+    //
+    StackFrame.prototype.toString = function() {
+      var fileName = this.getFileName() || '';
+      var lineNumber = this.getLineNumber() || '';
+      var columnNumber = this.getColumnNumber() || '';
+      var functionName = this.getFunctionName() || '';
+      if (this.getIsEval()) {
+        if (fileName) {
+          return '[eval] (' + fileName + ':' + lineNumber + ':' + columnNumber + ')';
+        }
+        return '[eval]:' + lineNumber + ':' + columnNumber;
+      }
+      if (functionName) {
+        return functionName + ' (' + fileName + ':' + lineNumber + ':' + columnNumber + ')';
+      }
+      return fileName + ':' + lineNumber + ':' + columnNumber;
+    }
+
     var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
     uncaught.start();
     uncaught.addListener(function(err) {
