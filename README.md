@@ -788,6 +788,7 @@ If you're curious why it won't work in IE11, please see this [great documentatio
 
 ```html
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Symbol.iterator,Symbol.prototype,Symbol.toPrimitive,Symbol.toStringTag,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign"></script>
+<script src="https://unpkg.com/stackframe"></script>
 <script src="https://unpkg.com/stacktrace-js"></script>
 <!-- Use this instead of the above if you need to polyfill for IE11 support -->
 <!-- <script src="https://unpkg.com/stacktrace-js/dist/stacktrace-with-promises-and-json-polyfills.js"></script> -->
