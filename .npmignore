@@ -4,5 +4,3 @@ config.js
 index.html
 CNAME
 examples
-.nyc_output
-coverage
