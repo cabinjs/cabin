@@ -802,28 +802,6 @@ If you're curious why it won't work in IE11, please see this [great documentatio
     // Sourced from the StackTrace example from CabinJS docs
     // <https://github.com/cabinjs/cabin#stacktrace>
     //
-
-    //
-    // The following override is required until this PR is merged
-    // <https://github.com/stacktracejs/stackframe/pull/23>
-    //
-    StackFrame.prototype.toString = function() {
-      var fileName = this.getFileName() || '';
-      var lineNumber = this.getLineNumber() || '';
-      var columnNumber = this.getColumnNumber() || '';
-      var functionName = this.getFunctionName() || '';
-      if (this.getIsEval()) {
-        if (fileName) {
-          return '[eval] (' + fileName + ':' + lineNumber + ':' + columnNumber + ')';
-        }
-        return '[eval]:' + lineNumber + ':' + columnNumber;
-      }
-      if (functionName) {
-        return functionName + ' (' + fileName + ':' + lineNumber + ':' + columnNumber + ')';
-      }
-      return fileName + ':' + lineNumber + ':' + columnNumber;
-    }
-
     var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
     uncaught.start();
     uncaught.addListener(function(err) {
