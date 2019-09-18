@@ -810,11 +810,11 @@ If you're curious why it won't work in IE11, please see this [great documentatio
       StackTrace.fromError(err)
         .then(function(stackframes) {
           err.stack = prepareStackTrace(err, stackframes);
-          logger.error(err);
+          cabin.error(err);
         })
         .catch(function(err2) {
-          logger.error(err);
-          logger.error(err2);
+          cabin.error(err);
+          cabin.error(err2);
         });
     });
   })();
