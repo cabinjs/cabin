@@ -28,14 +28,14 @@
   ],
   "dependencies": {
     "ansi-colors": "^4.1.1",
-    "axe": "^4.0.4",
+    "axe": "^4.0.5",
     "basic-auth": "^2.0.1",
     "clf-date": "^0.1.0",
     "iserror": "^0.0.2",
     "ms": "^2.1.2",
     "on-finished": "^2.3.0",
     "parse-err": "^0.0.12",
-    "parse-request": "^2.0.4"
+    "parse-request": "^2.0.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.4",

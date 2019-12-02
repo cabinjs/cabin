@@ -1440,12 +1440,12 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.9.0.tgz#24390e6ad61386b0a747265754d2a17219de862c"
   integrity sha512-Uvq6hVe90D0B2WEnUqtdgY1bATGz3mw33nH9Y+dmA+w5DHvUmBgkr5rM/KCHpCsiFNRUfokW/szpPPgMK2hm4A==
 
-axe@^4.0.4:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/axe/-/axe-4.0.4.tgz#cd3ae1182d8d3cad45f63daa3eac6697a21a75fd"
-  integrity sha512-mB0O+0h6R7/s3KHh+ai6e7ZvSERHXkxcQlqEZRZAy4mYtumkBsnG/eOWcMSa3vgEIj5rQVGb9coEKIL+L6OH3Q==
+axe@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/axe/-/axe-4.0.5.tgz#a012203805d98e205fe4482864fe3f3960138165"
+  integrity sha512-OrTG6syhGpNTto7kZdrerVMN3WLHo8j1wU2h4wtSG2V9NA4TKs2DMsqyuTLJg+akJuR9WbY+wYYhoxXX7O2PTA==
   dependencies:
-    boolean "^1.0.0"
+    boolean "^3.0.0"
     console-polyfill "^0.3.0"
     cuid "^2.1.6"
     fast-safe-stringify "^2.0.7"
@@ -1453,9 +1453,9 @@ axe@^4.0.4:
     format-util "^1.0.3"
     iserror "^0.0.2"
     omit.js "^1.0.2"
-    parse-app-info "^2.0.4"
-    parse-err "^0.0.10"
-    superagent "^5.1.0"
+    parse-app-info "^2.0.5"
+    parse-err "^0.0.12"
+    superagent "^5.1.2"
 
 babel-plugin-dynamic-import-node@^2.3.0:
   version "2.3.0"
@@ -1582,10 +1582,10 @@ body-parser@1.19.0:
     raw-body "2.4.0"
     type-is "~1.6.17"
 
-boolean@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/boolean/-/boolean-1.0.0.tgz#45764b4aac187a050995b0a33d7579b6759f0dfd"
-  integrity sha512-IB1lgIywn37N9Aff8CciCblVpMUflgL42vyxPUH0IvaDdIi/QwBHKv1lq/HOkATHCfa7c4MbMYJ7Bo7hGuoI+w==
+boolean@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/boolean/-/boolean-3.0.0.tgz#fab78d5907dbae6216ab46d32733bb7b76b99e76"
+  integrity sha512-OElxJ1lUSinuoUnkpOgLmxp0DC4ytEhODEL6QJU0NpxE/mI4rUSh8h1P1Wkvfi3xQEBcxXR2gBIPNYNuaFcAbQ==
 
 boxen@^3.0.0:
   version "3.2.0"
@@ -7091,7 +7091,7 @@ parents@^1.0.0, parents@^1.0.1:
   dependencies:
     path-platform "~0.11.15"
 
-parse-app-info@^2.0.4:
+parse-app-info@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/parse-app-info/-/parse-app-info-2.0.5.tgz#642d3532e06121bbef27ba278ff3a44fbd470785"
   integrity sha512-WFk+Wdnp9J/stFYb0xgBKLX/38PMlyOndOpwGqoHPYpzYRuTJoh7N1BzRkt4xtcIY9wTTJvx8VmPBkR1UUHttg==
@@ -7141,13 +7141,6 @@ parse-entities@^1.0.2, parse-entities@^1.1.0:
     is-decimal "^1.0.0"
     is-hexadecimal "^1.0.0"
 
-parse-err@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/parse-err/-/parse-err-0.0.10.tgz#0d91d7f1bce4b75d9ad02a936609d5084c903bd4"
-  integrity sha512-dnmPd+lC0ahq4djH3HvxPHX6FDGIdcNf0tUyqAzKCvQ7O6HcInS8TYJPSW/KPReNc132qfaejCoKH0PG2NZUWw==
-  dependencies:
-    iserror "^0.0.2"
-
 parse-err@^0.0.12:
   version "0.0.12"
   resolved "https://registry.yarnpkg.com/parse-err/-/parse-err-0.0.12.tgz#5e6f98b183dd4151fb6e1d2ca7e15d931b6658cb"
@@ -7194,10 +7187,10 @@ parse-ms@^2.1.0:
   resolved "https://registry.yarnpkg.com/parse-ms/-/parse-ms-2.1.0.tgz#348565a753d4391fa524029956b172cb7753097d"
   integrity sha512-kHt7kzLoS9VBZfUsiKjv43mr91ea+U05EyKkEtqp7vNbHxmaVuEqN7XxeEVnGrMtYOAxGrDElSi96K7EgO1zCA==
 
-parse-request@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/parse-request/-/parse-request-2.0.4.tgz#4dfdfd2a72a9b4ed1882b0fd7d72e31c9a7bc9a0"
-  integrity sha512-EdJGe9uNmDy3m7cWYjIf7SSO7FSx12cLPfppT5QurdIMoJYiqoc/3BAxfphABrS7abUoHCHn7i7Idm0v75dCtA==
+parse-request@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/parse-request/-/parse-request-2.0.5.tgz#8d83bd5e9e31ecf3c9d369dd57f71ab754237b53"
+  integrity sha512-k5qwKEcJ9CkHaT7C8dPJziE3ou6dQBLZhRcpCItNeXvpxDl4oQd/zEINOBtEFW0bIU1RzRzYFcdVC4tKVK57kA==
   dependencies:
     browser-process-hrtime "^1.0.0"
     bson-objectid "^1.3.0"
@@ -9604,7 +9597,7 @@ superagent@^3.8.3:
     qs "^6.5.1"
     readable-stream "^2.3.5"
 
-superagent@^5.1.0:
+superagent@^5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/superagent/-/superagent-5.1.2.tgz#b122f3a62b14c4d638612667033a7eb43c4f4d83"
   integrity sha512-VwPCbi9H02qDtTbdY+e3+cK5XR0YHsJy9hmeCOXLQ8ezjq8+S1Bs4MdNRmpmf2QjDBetD7drG7/nEta7E3E6Sg==
