@@ -62,7 +62,7 @@ class Cabin {
       .filter(key => isFunction(this.logger[key]))
       .forEach(level => {
         this[level] = (...args) => {
-          args[1] = this.parseArg(args[1]);
+          if (args[1]) args[1] = this.parseArg(args[1]);
           this.logger[level](...[].slice.call(args));
         };
       });
