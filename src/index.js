@@ -80,7 +80,7 @@ class Cabin {
 
   parseArg(arg = {}) {
     if (isObject(arg)) {
-      arg = Object.assign(arg, this.config.meta);
+      Object.assign(arg, this.config.meta);
       return arg;
     }
 
@@ -91,7 +91,7 @@ class Cabin {
     else if (typeof arg === 'number') arg = { value: arg };
     else if (isFunction(arg)) arg = { value: arg.toString() };
     else arg = {};
-    arg = Object.assign(arg, this.config.meta);
+    Object.assign(arg, this.config.meta);
     return arg;
   }
 
