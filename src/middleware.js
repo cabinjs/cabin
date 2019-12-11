@@ -47,7 +47,19 @@ module.exports = function(...args) {
               // and so we need `parse-request` to parse the `responseHeaders`
               // as a String using `http-headers`...
               // <https://github.com/nodejs/node/issues/28302>
-              { responseHeaders: res._header },
+              //
+              // note that HTTP2 responses do not have a String value
+              // for `res._header`, and instad is a Boolean value
+              // <https://github.com/nodejs/node/issues/30894>
+              // <https://github.com/cabinjs/cabin/issues/133>
+              {
+                responseHeaders:
+                  typeof res._header === 'string'
+                    ? res._header
+                    : typeof res.getHeaders === 'function'
+                    ? res.getHeaders()
+                    : null
+              },
               this.config.parseRequest
             )
           )
