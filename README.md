@@ -861,20 +861,23 @@ It is widely used by logging services and seems to be the most popular tool.  No
 ##### Gulp
 
 ```sh
-npm install -D gulp-wrap
+npm install -D gulp-wrap-js gulp-sourcemaps
 ```
 
 ```js
-const wrap = require('gulp-wrap');
+const wrap = require('gulp-wrap-js');
+const sourcemaps = require('gulp-sourcemaps');
 
 gulp.src('./asset.js')
+  .pipe(sourcemaps.init())
   .pipe(wrap(`
     try {
-      <%= contents %>
+      %= body %
     } catch (err) {
       TraceKit.report(err);
     }
   `))
+  .pipe(sourcemaps.write())
   .pipe(gulp.dest('./dist'));
 ```
 
