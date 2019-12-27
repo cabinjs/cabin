@@ -774,15 +774,15 @@ process.on('unhandledRejection', err => {
 
 #### Browser
 
-Since cross-browser support is very limited and unstandardized for errors and stack traces, we highly recommend to use either [StackTrace](#stacktrace) or [TraceKit](#tracekit) as documented below.
+Since cross-browser support is very limited and unstandardized for errors and stack traces, we highly recommend to use [StackTrace](#stacktrace).
 
 ##### StackTrace
 
-We recommend to use [StackTrace][] instead of [TraceKit](#tracekit) as it is a more modern alternative and provides much similarity between your Browser and your Node errors (stackframes are basically similar to representations in Gecko and V8, aka the ones you get with Node).
+We recommend to use [StackTrace][] instead of [TraceKit][tracekit] as it is a more modern alternative and provides much similarity between your Browser and your Node errors (stackframes are basically similar to representations in Gecko and V8, aka the ones you get with Node).
 
 It does require you to have a polyfill if you're using it in the browser (only if you're supporting browsers that don't support standardized Promises/JSON).  You'll basically need `es6-promise` and `json3` polyfills for browsers you wish to support that don't have them.  The example below shows you how to polyfill, don't worry!  You can reference Caniuse data on [Promises][] and [JSON][] respectively if you need.
 
-The example below demonstrates using StackTrace with [uncaught][] to catch global errors below, but note that [uncaught][] only supports IE11+, so if you need &lt; IE11 support you probably should use [TraceKit](#tracekit) instead.
+The example below demonstrates using StackTrace with [uncaught][] to catch global errors below, but note that [uncaught][] only supports IE11+.
 
 If you're curious why it won't work in IE11, please see this [great documentation on JavaScript errors cross-browser here](https://github.com/mknichel/javascript-errors#windowonerror) - in particular the section on "No Error object provided".
 
@@ -819,87 +819,6 @@ If you're curious why it won't work in IE11, please see this [great documentatio
     });
   })();
 </script>
-```
-
-##### TraceKit
-
-This is a legacy stack trace package with support for very old browsers.  You can view [TraceKit's full documentation here][tracekit].
-
-It is widely used by logging services and seems to be the most popular tool.  Note that in the example code below, you will notice a repetitive pattern you'll encounter of wrapping code with a `try` and `catch` block.  Don't worry, because if you're using `webpack` or `gulp`, you can easily wrap your bundled files with `try` and `catch` blocks!  See [Automatic Try Catch Wrapping](#automatic-try-catch-wrapping) below.
-
-```html
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Symbol.iterator,Symbol.prototype,Symbol.toPrimitive,Symbol.toStringTag,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign"></script>
-<script src="https://unpkg.com/tracekit"></script>
-<script src="https://unpkg.com/cabin"></script>
-
-<script type="text/javascript">
-  (function() {
-    var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
-
-    // when `TraceKit.report` gets called
-    // this subscribe function will be invoked
-    TraceKit.report.subscribe(function(err) {
-      cabin.error(err);
-    });
-
-    try {
-      // put all your application code in a global try/catch block
-      //
-      // ...
-      //
-      // maybe you throw an error in here by accident? it'll get caught!
-      // throw new Error('oops');
-    } catch (err) {
-      TraceKit.report(err);
-    }
-  })();
-</script>
-```
-
-##### Automatic Try Catch Wrapping
-
-##### Gulp
-
-```sh
-npm install -D gulp-wrap-js gulp-sourcemaps
-```
-
-```js
-const wrap = require('gulp-wrap-js');
-const sourcemaps = require('gulp-sourcemaps');
-
-gulp.src('./asset.js')
-  .pipe(sourcemaps.init())
-  .pipe(wrap(`
-    try {
-      %= body %
-    } catch (err) {
-      TraceKit.report(err);
-    }
-  `))
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest('./dist'));
-```
-
-##### Webpack
-
-```sh
-npm install -D wrapper-webpack-plugin
-```
-
-```js
-const WrapperPlugin = require('wrapper-webpack-plugin');
-
-module.exports = {
-  // other webpack config here
-  plugins: [
-    new WrapperPlugin({
-      test: /\.js$/, // only wrap output of bundle files with '.js' extension
-      header: 'try {\n',
-      footer: '\n} catch (err) {\n  TraceKit.report(err);\n}'
-    })
-  ]
-};
 ```
 
 
