@@ -55,7 +55,7 @@
     "express": "^4.17.1",
     "express-request-id": "^1.4.1",
     "fixpack": "^2.3.1",
-    "husky": "^4.0.0",
+    "husky": "3.x",
     "jsdom": "15.2.1",
     "koa": "^2.11.0",
     "koa-connect": "^2.0.1",
