@@ -18,7 +18,7 @@
 </div>
 <hr />
 <div align="center">
-  Cabin is a drop-in replacement for <a href="https://sentry.io" target="_blank">Sentry</a>, <a href="https://timber.io/" target="_blank">Timber</a>, <a href="https://airbrake.io/" target="_blank">Airbrake</a>, <a href="https://papertrailapp.com/" target="_blank">Papertrail</a>, <a href="https://www.loggly.com/" target="_blank">Loggly</a>, <a href="https://www.bugsnag.com/" target="_blank">Bugsnag</a>, or <code>&lt;service&gt;</code>
+  Cabin is a drop-in replacement and the best alternative to <a href="https://sentry.io" target="_blank">Sentry</a>, <a href="https://timber.io/" target="_blank">Timber</a>, <a href="https://airbrake.io/" target="_blank">Airbrake</a>, <a href="https://papertrailapp.com/" target="_blank">Papertrail</a>, <a href="https://www.loggly.com/" target="_blank">Loggly</a>, <a href="https://www.bugsnag.com/" target="_blank">Bugsnag</a>, or <code>&lt;service&gt;</code>
 </div>
 <hr />
 <div align="center">:heart: Love this project? Support <a href="https://github.com/niftylettuce" target="_blank">@niftylettuce's</a> <a href="https://en.wikipedia.org/wiki/Free_and_open-source_software" target="_blank">FOSS</a> on <a href="https://patreon.com/niftylettuce" target="_blank">Patreon</a> or <a href="https://paypal.me/niftylettuce">PayPal</a> :unicorn:</div>
@@ -33,6 +33,7 @@
   * [Cross-Platform and Cross-Browser Compatible](#cross-platform-and-cross-browser-compatible)
   * [Integrate with Slack Using Custom Logging Hooks](#integrate-with-slack-using-custom-logging-hooks)
   * [Bring Your Own Logger ("BYOL")](#bring-your-own-logger-byol)
+  * [Drop-in Replacement and Alternative to Bunyan](#drop-in-replacement-and-alternative-to-bunyan)
   * [Save Time With Easy Debugging](#save-time-with-easy-debugging)
 * [Install](#install)
 * [Usage](#usage)
@@ -200,6 +201,10 @@ You will find an entire example for logging errors (and more) to your Slack chan
 Cabin was built by an expert based off best practices; over a decade of experience in logging and application development – and most importantly from their agony with existing tools, services, packages, and platforms.
 
 It was made to be both a **simple and quick drop-in replacement** for existing services.  **You can even bring your own logger!**  Want to use [Axe][], [pino][], [signale][], [morgan][], [bunyan][], [winston][], or another logger?  No problem.
+
+### Drop-in Replacement and Alternative to Bunyan
+
+We built this with Bunyan-style compatibility – this means you won't have to change your logging argument style from `log(meta, message)` to `log(message, meta)`; we automatically detect Bunyan style (Metadata first, message second) and flip the order for you.
 
 ### Save Time With Easy Debugging
 

@@ -1,6 +1,6 @@
 {
   "name": "cabin",
-  "description": "Cabin is the best JavaScript and Node.js logging service and logging npm package",
+  "description": "Cabin is the best JavaScript and Node.js logging service and logging npm package.  Cabin is a drop-in replacement and the best alternative to Sentry, Timber, Airbrake, Papertrail, Loggly, Bugsnag, or <service>",
   "version": "5.0.15",
   "author": "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)",
   "ava": {
@@ -28,7 +28,7 @@
   ],
   "dependencies": {
     "ansi-colors": "^4.1.1",
-    "axe": "^4.0.6",
+    "axe": "^5.0.0",
     "basic-auth": "^2.0.1",
     "clf-date": "^0.1.0",
     "iserror": "^0.0.2",
@@ -41,8 +41,8 @@
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
+    "@commitlint/cli": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4",
     "ava": "^2.4.0",
     "babelify": "^10.0.0",
     "browserify": "^16.5.0",
@@ -55,7 +55,7 @@
     "express": "^4.17.1",
     "express-request-id": "^1.4.1",
     "fixpack": "^2.3.1",
-    "husky": "^3.1.0",
+    "husky": "^4.0.0",
     "jsdom": "15.2.1",
     "koa": "^2.11.0",
     "koa-connect": "^2.0.1",
@@ -72,7 +72,7 @@
     "signale": "^1.4.0",
     "supertest": "^4.0.2",
     "tinyify": "^2.5.2",
-    "uglify-js": "^3.7.3",
+    "uglify-js": "^3.7.4",
     "xo": "^0.25.3"
   },
   "engines": {
