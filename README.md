@@ -809,7 +809,13 @@ If you're curious why it won't work in IE11, please see this [great documentatio
     //
     var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
     uncaught.start();
-    uncaught.addListener(function(err) {
+    uncaught.addListener(function(err, event) {
+      if (!err) {
+        if (typeof ErrorEvent === 'function' && event instanceof ErrorEvent)
+          return logger.error(event.message, { event: event });
+        logger.error({ event: event });
+        return;
+      }
       // this will transform the error's `stack` property
       // to be consistently similar to Gecko and V8 stackframes
       StackTrace.fromError(err)
