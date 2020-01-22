@@ -808,12 +808,17 @@ If you're curious why it won't work in IE11, please see this [great documentatio
     // <https://github.com/cabinjs/cabin#stacktrace>
     //
     var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
+
+    // Use cabin globally in your app (instead of `console`)
+    window.cabin = cabin;
+
+    // Bind event listeners
     uncaught.start();
     uncaught.addListener(function(err, event) {
       if (!err) {
         if (typeof ErrorEvent === 'function' && event instanceof ErrorEvent)
-          return logger.error(event.message, { event: event });
-        logger.error({ event: event });
+          return cabin.error(event.message, { event: event });
+        cabin.error({ event: event });
         return;
       }
       // this will transform the error's `stack` property
