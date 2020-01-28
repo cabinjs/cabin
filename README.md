@@ -472,7 +472,7 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
 1. Install required and recommended dependencies:
 
    ```sh
-   npm install koa cabin signale pino request-received response-time express-request-id
+   npm install express cabin signale pino request-received response-time express-request-id
    ```
 
 2. Implement the example code below ([also found here](examples/express.js)):
