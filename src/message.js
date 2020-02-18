@@ -1,4 +1,3 @@
-const auth = require('basic-auth');
 const c = require('ansi-colors');
 const clfDate = require('clf-date');
 const ms = require('ms');
@@ -23,21 +22,17 @@ function getStartTime(req) {
 function apacheCommonLogFormat(options) {
   const { req, res, ctx } = options;
 
-  const creds = auth(req);
-
   const startTime = getStartTime(req);
 
-  return `${ctx ? ctx.ip : req.ip} - ${creds ? creds.name : '-'} ${clfDate(
-    startTime
-  )} "${req.method} ${req.url} HTTP/${req.httpVersionMajor}.${
-    req.httpVersionMinor
-  }" ${res.statusCode} ${res.getHeader('content-length') || '-'}`;
+  return `${ctx ? ctx.ip : req.ip} - ${clfDate(startTime)} "${req.method} ${
+    req.url
+  } HTTP/${req.httpVersionMajor}.${req.httpVersionMinor}" ${
+    res.statusCode
+  } ${res.getHeader('content-length') || '-'}`;
 }
 
 function devFriendlyLogFormat(options) {
   const { req, res, ctx } = options;
-
-  const creds = auth(req);
 
   const statusColor =
     res.statusCode >= 500
@@ -70,7 +65,6 @@ function devFriendlyLogFormat(options) {
 
   return [
     ctx ? ctx.ip : req.ip,
-    creds ? creds.name : '-',
     req.method,
     req.url,
     `HTTP/${req.httpVersionMajor}.${req.httpVersionMinor}`,
