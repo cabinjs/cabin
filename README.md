@@ -206,6 +206,8 @@ It was made to be both a **simple and quick drop-in replacement** for existing s
 
 We built this with Bunyan-style compatibility – this means you won't have to change your logging argument style from `log(meta, message)` to `log(message, meta)`; we automatically detect Bunyan style (Metadata first, message second) and flip the order for you.
 
+As of v6.1.1 we have added support for Bunyan style `(meta, message, [, ...args])` usage (e.g. `logger.info({ some: 'obj' }, 'message with format specifiers %s and %d', 'foobar', 100)`), prior to v6.1.1 we only supported `(meta, message)` usage.
+
 ### Save Time With Easy Debugging
 
 No need for rubber duck debugging – Cabin makes everything transparent at a glance.
