@@ -5,10 +5,7 @@
   "author": "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)",
   "ava": {
     "failFast": true,
-    "verbose": true,
-    "helpers": [
-      "test/helpers/**/*"
-    ]
+    "verbose": true
   },
   "browser": {
     "./src/middleware": false,
@@ -28,8 +25,8 @@
   ],
   "dependencies": {
     "ansi-colors": "^4.1.1",
-    "axe": "^5.0.1",
-    "clf-date": "^0.1.0",
+    "axe": "^5.1.0",
+    "clf-date": "^0.2.0",
     "iserror": "^0.0.2",
     "ms": "^2.1.2",
     "on-finished": "^2.3.0",
@@ -37,41 +34,41 @@
     "parse-request": "^2.0.6"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
+    "@babel/cli": "^7.10.0",
+    "@babel/core": "^7.10.0",
+    "@babel/preset-env": "^7.10.0",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "ava": "2.x",
+    "ava": "^3.8.2",
     "babelify": "^10.0.0",
     "browserify": "^16.5.1",
-    "codecov": "^3.6.5",
-    "cross-env": "6.x",
-    "eslint": "^6.8.0",
+    "codecov": "^3.7.0",
+    "cross-env": "^7.0.2",
+    "eslint": "6.x",
     "eslint-config-xo-lass": "^1.0.3",
-    "eslint-plugin-compat": "^3.5.1",
+    "eslint-plugin-compat": "^3.7.0",
     "eslint-plugin-node": "^11.1.0",
     "express": "^4.17.1",
     "express-request-id": "^1.4.1",
     "fixpack": "^3.0.6",
-    "husky": "3.x",
-    "jsdom": "15.2.1",
-    "koa": "^2.11.0",
+    "husky": "^4.2.5",
+    "jsdom": "15.x",
+    "koa": "^2.12.0",
     "koa-connect": "^2.0.1",
     "koa-router": "^8.0.8",
-    "lint-staged": "^10.1.5",
+    "lint-staged": "^10.2.6",
     "lodash": "^4.17.15",
     "nyc": "^15.0.1",
-    "pino": "^6.2.0",
+    "pino": "^6.3.0",
     "remark-cli": "^8.0.0",
-    "remark-preset-github": "^1.0.0",
+    "remark-preset-github": "^1.0.1",
     "request-received": "^0.0.3",
     "response-time": "^2.3.2",
     "rimraf": "^3.0.2",
     "signale": "^1.4.0",
     "supertest": "^4.0.2",
     "tinyify": "^2.5.2",
-    "uglify-js": "^3.9.1",
+    "uglify-js": "^3.9.3",
     "xo": "0.25"
   },
   "engines": {
@@ -146,20 +143,6 @@
     "winston"
   ],
   "license": "MIT",
-  "lint-staged": {
-    "*.js": [
-      "xo --fix",
-      "git add"
-    ],
-    "*.md": [
-      "remark . -qfo",
-      "git add"
-    ],
-    "package.json": [
-      "fixpack",
-      "git add"
-    ]
-  },
   "main": "lib/index.js",
   "prettier": {
     "singleQuote": true,

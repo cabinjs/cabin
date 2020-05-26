@@ -18,7 +18,8 @@ module.exports = function(...args) {
   Object.keys(this.logger)
     .filter(key => isFunction(this.logger[key]))
     .forEach(key => {
-      logger[key] = (...params) => {
+      const _logger = this.logger[key];
+      this.logger[key] = (...params) => {
         if (isUndefined(params[1])) params[1] = {};
         else params[1] = this.parseArg(params[1]);
         // add `request` object to metadata
@@ -49,7 +50,7 @@ module.exports = function(...args) {
               // <https://github.com/nodejs/node/issues/28302>
               //
               // note that HTTP2 responses do not have a String value
-              // for `res._header`, and instad is a Boolean value
+              // for `res._header`, and instead is a Boolean value
               // <https://github.com/nodejs/node/issues/30894>
               // <https://github.com/cabinjs/cabin/issues/133>
               {
@@ -65,8 +66,10 @@ module.exports = function(...args) {
           )
         );
 
-        this.logger[key](...[].slice.call(params));
+        return _logger(...[].slice.call(params));
       };
+
+      logger[key] = this.logger[key];
     });
   // upon completion of a response we need to log it
   onFinished(res, err => {
