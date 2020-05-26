@@ -18,8 +18,7 @@ module.exports = function(...args) {
   Object.keys(this.logger)
     .filter(key => isFunction(this.logger[key]))
     .forEach(key => {
-      const _logger = this.logger[key];
-      this.logger[key] = (...params) => {
+      logger[key] = (...params) => {
         if (isUndefined(params[1])) params[1] = {};
         else params[1] = this.parseArg(params[1]);
         // add `request` object to metadata
@@ -66,7 +65,7 @@ module.exports = function(...args) {
           )
         );
 
-        return _logger(...[].slice.call(params));
+        return this.logger[key](...[].slice.call(params));
       };
 
       logger[key] = this.logger[key];
