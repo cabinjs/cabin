@@ -67,8 +67,6 @@ module.exports = function(...args) {
 
         return this.logger[key](...[].slice.call(params));
       };
-
-      logger[key] = this.logger[key];
     });
   // upon completion of a response we need to log it
   onFinished(res, err => {
