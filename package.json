@@ -34,9 +34,9 @@
     "parse-request": "^2.0.6"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.0",
-    "@babel/core": "^7.10.0",
-    "@babel/preset-env": "^7.10.0",
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "ava": "^3.8.2",
@@ -55,11 +55,11 @@
     "jsdom": "15.x",
     "koa": "^2.12.0",
     "koa-connect": "^2.0.1",
-    "koa-router": "^8.0.8",
-    "lint-staged": "^10.2.6",
+    "koa-router": "^9.0.1",
+    "lint-staged": "^10.2.7",
     "lodash": "^4.17.15",
     "nyc": "^15.0.1",
-    "pino": "^6.3.0",
+    "pino": "^6.3.1",
     "remark-cli": "^8.0.0",
     "remark-preset-github": "^1.0.1",
     "request-received": "^0.0.3",
@@ -68,7 +68,7 @@
     "signale": "^1.4.0",
     "supertest": "^4.0.2",
     "tinyify": "^2.5.2",
-    "uglify-js": "^3.9.3",
+    "uglify-js": "^3.9.4",
     "xo": "0.25"
   },
   "engines": {
