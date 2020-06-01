@@ -25,13 +25,13 @@
   ],
   "dependencies": {
     "ansi-colors": "^4.1.1",
-    "axe": "^5.1.0",
+    "axe": "^5.1.1",
     "clf-date": "^0.2.0",
     "iserror": "^0.0.2",
     "ms": "^2.1.2",
     "on-finished": "^2.3.0",
     "parse-err": "^0.0.12",
-    "parse-request": "^2.0.6"
+    "parse-request": "^2.0.8"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
@@ -58,7 +58,7 @@
     "koa-router": "^9.0.1",
     "lint-staged": "^10.2.7",
     "lodash": "^4.17.15",
-    "nyc": "^15.0.1",
+    "nyc": "^15.1.0",
     "pino": "^6.3.1",
     "remark-cli": "^8.0.0",
     "remark-preset-github": "^1.0.1",
