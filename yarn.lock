@@ -7376,10 +7376,10 @@ parse-ms@^2.1.0:
   resolved "https://registry.yarnpkg.com/parse-ms/-/parse-ms-2.1.0.tgz#348565a753d4391fa524029956b172cb7753097d"
   integrity sha512-kHt7kzLoS9VBZfUsiKjv43mr91ea+U05EyKkEtqp7vNbHxmaVuEqN7XxeEVnGrMtYOAxGrDElSi96K7EgO1zCA==
 
-parse-request@^2.0.8:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/parse-request/-/parse-request-2.0.8.tgz#ed5496a9a9d7010f256093c1b008d0d44afffa7c"
-  integrity sha512-UXR7hkTwvFP5ciV8thoHpAVfHTVWB+Zz1H/GSkpl/eajIM8WE1TRISE3Kmr5itn9GG3ixBJzJb9HCPWF/J9Vrw==
+parse-request@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/parse-request/-/parse-request-3.0.0.tgz#5998d7f4e24ceffd55e2946bd25820a17172c8cf"
+  integrity sha512-4VBkDFRe7tQw9eivz2AOwTkz8zPImP9pcf4JOJsmU1VWMXvnseQNeLuJK9Dm9GTraSX4AM800NcjFrCDFRHzdQ==
   dependencies:
     browser-process-hrtime "^1.0.0"
     bson-objectid "^1.3.0"
@@ -7395,8 +7395,9 @@ parse-request@^2.0.8:
     is-uuid "^1.0.2"
     ms "^2.1.2"
     no-case "2.3.2"
+    qs "^6.9.4"
     rfdc "^1.1.4"
-    sensitive-fields "^0.0.8"
+    sensitive-fields "^0.0.9"
     url-parse "^1.4.7"
 
 parse5@5.1.0:
@@ -7534,10 +7535,10 @@ pino-std-serializers@^2.4.2:
   resolved "https://registry.yarnpkg.com/pino-std-serializers/-/pino-std-serializers-2.4.2.tgz#cb5e3e58c358b26f88969d7e619ae54bdfcc1ae1"
   integrity sha512-WaL504dO8eGs+vrK+j4BuQQq6GLKeCCcHaMB2ItygzVURcL1CycwNEUHTD/lHFHs/NL5qAz2UKrjYWXKSf4aMQ==
 
-pino@^6.3.1:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/pino/-/pino-6.3.1.tgz#c58ea36d66a7f0631dbc7472652e9b05988abd24"
-  integrity sha512-RgT010a5FfnxJ2AwB0TqcEuM+gNsnd08PZnCob98JSTLldLF0GMFJ/Z1VE/rdl5yJCqcoLwftmZSwSFY4/Hc2g==
+pino@^6.3.2:
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/pino/-/pino-6.3.2.tgz#55f73aa61584774ca5984068ffb78e8d519ce19e"
+  integrity sha512-EiP3L1hoFw19KPocWimjnfXeysld0ne89ZRQ+bf8nAeA2TyuLoggNlibAi+Kla67GvQBopLdIZOsh1z/Lruo5Q==
   dependencies:
     fast-redact "^2.0.0"
     fast-safe-stringify "^2.0.7"
@@ -7762,7 +7763,7 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-qs@^6.5.1, qs@^6.9.1:
+qs@^6.5.1, qs@^6.9.1, qs@^6.9.4:
   version "6.9.4"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.4.tgz#9090b290d1f91728d3c22e54843ca44aea5ab687"
   integrity sha512-A1kFqHekCTM7cz0udomYUoYNWjBebHm/5wzU/XqrBRBNWectVH0QIiN+NEcZ0Dte5hvzHwbr8+XQmguPhJ6WdQ==
@@ -9191,10 +9192,10 @@ send@0.17.1:
     range-parser "~1.2.1"
     statuses "~1.5.0"
 
-sensitive-fields@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/sensitive-fields/-/sensitive-fields-0.0.8.tgz#e9a86106e7c8333bb78f346350d745ba4de1220f"
-  integrity sha512-QlPeI+mE+UngLkSfFYzJL49FX7RbEjl3YB/eIOWzF0yFJmbf0Qa6C5vOfJjreICvoXqPMXsyvg4/oyfKCTYKAg==
+sensitive-fields@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/sensitive-fields/-/sensitive-fields-0.0.9.tgz#bfbdbb00bdccfd645d529fdc22dd80e57c9427e4"
+  integrity sha512-6oGOAj9wPBKEuzJxqrN1sxMHJKbWOg7D2zNYOXaKrDC4lP6FpAw2MVuZd4okp/KqtRxkgLMweEd6HM1+c4m8Yg==
 
 serialize-error@^2.1.0:
   version "2.1.0"

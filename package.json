@@ -31,7 +31,7 @@
     "ms": "^2.1.2",
     "on-finished": "^2.3.0",
     "parse-err": "^0.0.12",
-    "parse-request": "^2.0.8"
+    "parse-request": "^3.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
@@ -59,7 +59,7 @@
     "lint-staged": "^10.2.7",
     "lodash": "^4.17.15",
     "nyc": "^15.1.0",
-    "pino": "^6.3.1",
+    "pino": "^6.3.2",
     "remark-cli": "^8.0.0",
     "remark-preset-github": "^1.0.1",
     "request-received": "^0.0.3",
