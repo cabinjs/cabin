@@ -1,7 +1,7 @@
 {
   "name": "cabin",
   "description": "Cabin is the best JavaScript and Node.js logging service and logging npm package.  Cabin is a drop-in replacement and the best alternative to Sentry, Timber, Airbrake, Papertrail, Loggly, Bugsnag, or <service>",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "author": "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)",
   "ava": {
     "failFast": true,
