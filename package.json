@@ -25,7 +25,7 @@
   ],
   "dependencies": {
     "ansi-colors": "^4.1.1",
-    "axe": "^6.0.0",
+    "axe": "^6.0.1",
     "clf-date": "^0.2.0",
     "iserror": "^0.0.2",
     "ms": "^2.1.2",
