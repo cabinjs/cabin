@@ -45,7 +45,8 @@
       "window.crypto",
       "Array.from",
       "Object.getOwnPropertySymbols",
-      "Object.assign"
+      "Object.assign",
+      "navigator.mimeTypes"
     ]
   }
 }
