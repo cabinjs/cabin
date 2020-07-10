@@ -2,7 +2,7 @@
   <a href="http://cabinjs.com"><img src="https://d1i8ikybhfrv4r.cloudfront.net/cabin-animated.gif" alt="cabin" /></a>
 </h1>
 <div align="center">
-  <a href="https://slack.crocodilejs.com"><img src="https://slack.crocodilejs.com/badge.svg" alt="chat" /></a>
+  <a href="https://join.slack.com/t/ladjs/shared_invite/zt-fqei6z11-Bq2trhwHQxVc5x~ifiZG0g"><img src="https://img.shields.io/badge/chat-join%20slack-brightgreen" alt="chat" /></a>
   <a href="https://travis-ci.org/cabinjs/cabin"><img src="https://travis-ci.org/cabinjs/cabin.svg?branch=master" alt="build status" /></a>
   <a href="https://codecov.io/github/cabinjs/cabin"><img src="https://img.shields.io/codecov/c/github/cabinjs/cabin/master.svg" alt="code coverage" /></a>
   <a href="https://github.com/sindresorhus/xo"><img src="https://img.shields.io/badge/code_style-XO-5ed9c7.svg" alt="code style" /></a>
@@ -948,7 +948,8 @@ Here's an example of a parsed metadata object:
 
 ## Related
 
-* [forwardemail][] - Free, encrypted, and open-source email forwarding service for custom domains
+* [Forward Email][forward-email] - Free, encrypted, and open-source email forwarding service for custom domains
+* [bree][] - The best job scheduler for [Node.js][node]
 * [lad][] - Scaffold a [Koa][] webapp and API framework for [Node.js][node]
 * [koa-better-error-handler][] - A better error-handler for Lad and Koa. Makes `ctx.throw` awesome!
 * [axe][] - Logging utility for Node and Browser environments. Chop up your logs!
@@ -975,9 +976,11 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
 
 
-## 
+##
 
 <a href="#"><img src="media/cabin-footer.png" alt="#" /></a>
+
+[bree]: https://jobscheduler.net
 
 [npm]: https://www.npmjs.com/
 
@@ -1047,6 +1050,6 @@ If you are seeking permission to use these trademarks, then please [contact us](
 
 [winston]: https://github.com/winstonjs/winston
 
-[forwardemail]: https://forwardemail.net
+[forward-email]: https://forwardemail.net
 
 [apache-clf]: https://github.com/expressjs/morgan#common
