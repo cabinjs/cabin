@@ -54,7 +54,8 @@
     "husky": "^4.2.5",
     "jsdom": "15.x",
     "koa": "^2.13.0",
-    "koa-connect": "^2.1.0",
+    "koa-better-request-id": "^1.0.0",
+    "koa-better-response-time": "^1.0.0",
     "koa-router": "^9.1.0",
     "lint-staged": "^10.2.11",
     "lodash": "^4.17.19",
@@ -159,7 +160,7 @@
     "url": "https://github.com/cabinjs/cabin"
   },
   "scripts": {
-    "ava": "cross-env NODE_ENV=test ava",
+    "ava": "cross-env NODE_ENV=test ava --timeout=20s",
     "browserify": "browserify src/index.js -o dist/cabin.js -s Cabin -g [ babelify --configFile ./.dist.babelrc ]",
     "build": "npm run build:clean && npm run build:lib && npm run build:dist",
     "build:clean": "rimraf lib dist",
