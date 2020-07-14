@@ -15,23 +15,21 @@ const middleware = require('./middleware');
 
 class Cabin {
   constructor(config) {
-    this.config = Object.assign(
-      {
-        key: '',
-        capture: null,
-        axe: {},
-        logger: null,
-        meta: {},
-        // <https://github.com/niftylettuce/parse-request>
-        parseRequest: {},
-        // <https://github.com/niftylettuce/parse-err>
-        errorProps: [],
-        // function that accepts (level, req, res) and returns a string
-        // (this is consumed by the cabin middleware and not available in browsers)
-        message
-      },
-      config
-    );
+    this.config = {
+      key: '',
+      capture: null,
+      axe: {},
+      logger: null,
+      meta: {},
+      // <https://github.com/niftylettuce/parse-request>
+      parseRequest: {},
+      // <https://github.com/niftylettuce/parse-err>
+      errorProps: [],
+      // function that accepts (level, req, res) and returns a string
+      // (this is consumed by the cabin middleware and not available in browsers)
+      message,
+      ...config
+    };
 
     // override key with root key in case user forgot
     if (!isEmpty(this.config.axe) && this.config.key)
