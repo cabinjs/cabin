@@ -25,7 +25,7 @@
   ],
   "dependencies": {
     "ansi-colors": "^4.1.1",
-    "axe": "^6.0.4",
+    "axe": "^6.0.5",
     "clf-date": "^0.2.0",
     "iserror": "^0.0.2",
     "ms": "^2.1.2",
@@ -35,16 +35,16 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.11.0",
+    "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
     "@commitlint/cli": "^9.1.1",
     "@commitlint/config-conventional": "^9.1.1",
-    "ava": "^3.11.0",
+    "ava": "^3.11.1",
     "babelify": "^10.0.0",
-    "browserify": "^16.5.1",
+    "browserify": "^16.5.2",
     "codecov": "^3.7.2",
     "cross-env": "^7.0.2",
-    "eslint": "6.x",
+    "eslint": "^7.6.0",
     "eslint-config-xo-lass": "^1.0.3",
     "eslint-plugin-compat": "^3.8.0",
     "eslint-plugin-node": "^11.1.0",
@@ -68,8 +68,8 @@
     "signale": "^1.4.0",
     "supertest": "^4.0.2",
     "tinyify": "^3.0.0",
-    "uglify-js": "^3.10.0",
-    "xo": "0.25"
+    "uglify-js": "^3.10.1",
+    "xo": "^0.32.1"
   },
   "engines": {
     "node": ">=6.4.0"
@@ -185,6 +185,9 @@
     ],
     "ignore": [
       "config.js"
-    ]
+    ],
+    "rules": {
+      "unicorn/prevent-abbreviations": "off"
+    }
   }
 }

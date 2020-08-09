@@ -59,8 +59,8 @@ class Cabin {
 
     // bind helper functions for each log level
     Object.keys(this.logger)
-      .filter(key => isFunction(this.logger[key]))
-      .forEach(level => {
+      .filter((key) => isFunction(this.logger[key]))
+      .forEach((level) => {
         this[level] = (...args) => {
           if (args[1]) args[1] = this.parseArg(args[1]);
           this.logger[level](...[].slice.call(args));

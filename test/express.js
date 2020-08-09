@@ -8,7 +8,7 @@ const requestId = require('express-request-id');
 
 const Cabin = require('..');
 
-test.beforeEach.cb(t => {
+test.beforeEach.cb((t) => {
   const app = express();
   const cabin = new Cabin();
   app.use(requestReceived);
@@ -21,23 +21,23 @@ test.beforeEach.cb(t => {
   });
 });
 
-test('should expose a middleware function', t => {
+test('should expose a middleware function', (t) => {
   const cabin = new Cabin();
   t.true(_.isFunction(cabin.middleware));
 });
 
-test.cb('req.logger.log for express', t => {
-  t.context.app.use((req, res) => {
-    req.logger.log('hello');
+test.cb('req.logger.log for express', (t) => {
+  t.context.app.use((request_, res) => {
+    request_.logger.log('hello');
     res.send('ok');
   });
   const request = supertest(t.context.server);
   request.get('/').end(() => t.end());
 });
 
-test.cb('req.logger.warn for express', t => {
-  t.context.app.use((req, res) => {
-    req.logger.warn('hello');
+test.cb('req.logger.warn for express', (t) => {
+  t.context.app.use((request_, res) => {
+    request_.logger.warn('hello');
     res.send('ok');
   });
   const request = supertest(t.context.server);

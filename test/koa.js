@@ -9,7 +9,7 @@ const requestId = require('express-request-id');
 
 const Cabin = require('..');
 
-test.beforeEach.cb(t => {
+test.beforeEach.cb((t) => {
   const app = new Koa();
   const cabin = new Cabin();
   app.use(requestReceived);
@@ -22,13 +22,13 @@ test.beforeEach.cb(t => {
   });
 });
 
-test('should expose a middleware function', t => {
+test('should expose a middleware function', (t) => {
   const cabin = new Cabin();
   t.true(_.isFunction(cabin.middleware));
 });
 
-test.cb('ctx.logger.log for koa', t => {
-  t.context.app.use(ctx => {
+test.cb('ctx.logger.log for koa', (t) => {
+  t.context.app.use((ctx) => {
     ctx.logger.log('hello');
     ctx.body = 'ok';
   });
@@ -36,8 +36,8 @@ test.cb('ctx.logger.log for koa', t => {
   request.get('/').end(() => t.end());
 });
 
-test.cb('ctx.logger.warn for koa', t => {
-  t.context.app.use(ctx => {
+test.cb('ctx.logger.warn for koa', (t) => {
+  t.context.app.use((ctx) => {
     ctx.logger.warn('hello');
     ctx.body = 'ok';
   });

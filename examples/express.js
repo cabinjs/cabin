@@ -49,16 +49,16 @@ app.use(cabin.middleware);
 // ...
 
 // an example home page route
-app.get('/', (req, res) => {
-  req.logger.info('someone visited the home page');
+app.get('/', (request, res) => {
+  request.logger.info('someone visited the home page');
   res.send('hello world');
 });
 
 // this assumes that you are using passport which
 // exposes `req.logout` to log out the logged in user
-app.get('/logout', (req, res) => {
-  req.logger.warn('Logged out');
-  req.logout();
+app.get('/logout', (request, res) => {
+  request.logger.warn('Logged out');
+  request.logout();
   res.redirect('/');
 });
 
