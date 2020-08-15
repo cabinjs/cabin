@@ -25,7 +25,7 @@
   ],
   "dependencies": {
     "ansi-colors": "^4.1.1",
-    "axe": "^6.0.5",
+    "axe": "^6.0.7",
     "clf-date": "^0.2.0",
     "iserror": "^0.0.2",
     "ms": "^2.1.2",
@@ -44,7 +44,7 @@
     "browserify": "^16.5.2",
     "codecov": "^3.7.2",
     "cross-env": "^7.0.2",
-    "eslint": "^7.6.0",
+    "eslint": "^7.7.0",
     "eslint-config-xo-lass": "^1.0.3",
     "eslint-plugin-compat": "^3.8.0",
     "eslint-plugin-node": "^11.1.0",
@@ -55,11 +55,11 @@
     "jsdom": "15.x",
     "koa": "^2.13.0",
     "koa-connect": "^2.1.0",
-    "koa-router": "^9.1.0",
+    "koa-router": "^9.4.0",
     "lint-staged": "^10.2.11",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.20",
     "nyc": "^15.1.0",
-    "pino": "^6.5.0",
+    "pino": "^6.5.1",
     "remark-cli": "^8.0.1",
     "remark-preset-github": "^3.0.0",
     "request-received": "^0.0.3",
@@ -68,8 +68,7 @@
     "signale": "^1.4.0",
     "supertest": "^4.0.2",
     "tinyify": "^3.0.0",
-    "uglify-js": "^3.10.1",
-    "xo": "^0.32.1"
+    "xo": "^0.33.0"
   },
   "engines": {
     "node": ">=6.4.0"
@@ -81,7 +80,7 @@
   "homepage": "https://github.com/cabinjs/cabin",
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm test",
+      "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
