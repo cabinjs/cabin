@@ -46,7 +46,8 @@
       "Array.from",
       "Object.getOwnPropertySymbols",
       "Object.assign",
-      "navigator.mimeTypes"
+      "navigator.mimeTypes",
+      "Set"
     ]
   }
 }

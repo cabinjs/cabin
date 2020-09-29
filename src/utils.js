@@ -8,24 +8,24 @@ function isEmpty(value) {
   );
 }
 
-function isNull(val) {
-  return val === null;
+function isNull(value) {
+  return value === null;
 }
 
-function isUndefined(val) {
-  return typeof val === 'undefined';
+function isUndefined(value) {
+  return typeof value === 'undefined';
 }
 
-function isObject(val) {
-  return typeof val === 'object' && val !== null && !Array.isArray(val);
+function isObject(value) {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-function isString(val) {
-  return typeof val === 'string';
+function isString(value) {
+  return typeof value === 'string';
 }
 
-function isFunction(val) {
-  return typeof val === 'function';
+function isFunction(value) {
+  return typeof value === 'function';
 }
 
 module.exports = {

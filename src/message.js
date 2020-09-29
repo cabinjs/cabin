@@ -6,16 +6,17 @@ const ms = require('ms');
 const requestReceivedStartTime = Symbol.for('request-received.startTime');
 const pinoHttpStartTime = Symbol.for('pino-http.startTime');
 
-function getStartTime(req) {
+function getStartTime(request) {
   let startTime = new Date();
-  if (req[requestReceivedStartTime] instanceof Date)
-    startTime = req[requestReceivedStartTime];
-  else if (typeof req[requestReceivedStartTime] === 'number')
-    startTime = new Date(req[requestReceivedStartTime]);
-  else if (req[pinoHttpStartTime]) startTime = new Date(req[pinoHttpStartTime]);
-  else if (req._startTime instanceof Date) startTime = req._startTime;
-  else if (typeof req._startTime === 'number')
-    startTime = new Date(req._startTime);
+  if (request[requestReceivedStartTime] instanceof Date)
+    startTime = request[requestReceivedStartTime];
+  else if (typeof request[requestReceivedStartTime] === 'number')
+    startTime = new Date(request[requestReceivedStartTime]);
+  else if (request[pinoHttpStartTime])
+    startTime = new Date(request[pinoHttpStartTime]);
+  else if (request._startTime instanceof Date) startTime = request._startTime;
+  else if (typeof request._startTime === 'number')
+    startTime = new Date(request._startTime);
   return startTime;
 }
 
@@ -26,9 +27,9 @@ function apacheCommonLogFormat(options) {
 
   return `${ctx ? ctx.ip : req.ip} - ${clfDate(startTime)} "${req.method} ${
     req.url
-  } HTTP/${req.httpVersionMajor}.${req.httpVersionMinor}" ${
-    res.statusCode
-  } ${res.getHeader('content-length') || '-'}`;
+  } HTTP/${req.httpVersionMajor}.${req.httpVersionMinor}" ${res.statusCode} ${
+    res.getHeader('content-length') || '-'
+  }`;
 }
 
 function devFriendlyLogFormat(options) {
@@ -76,7 +77,7 @@ function devFriendlyLogFormat(options) {
 }
 
 // https://stackoverflow.com/questions/9234699/understanding-apaches-access-log
-module.exports = options => {
+module.exports = (options) => {
   // Apache Common Log Format
   // <https://httpd.apache.org/docs/current/logs.html#common>
   // :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length]
