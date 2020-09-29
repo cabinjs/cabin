@@ -51,14 +51,14 @@ app.use(cabin.middleware);
 // ...
 
 // an example home page route
-router.get('/', ctx => {
+router.get('/', (ctx) => {
   ctx.logger.info('someone visited the home page');
   ctx.body = 'hello world';
 });
 
 // this assumes that you are using passport which
 // exposes `ctx.logout` to log out the logged in user
-router.get('/logout', ctx => {
+router.get('/logout', (ctx) => {
   ctx.logger.warn('Logged out');
   ctx.logout();
   ctx.redirect('/');

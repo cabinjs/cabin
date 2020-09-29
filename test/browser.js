@@ -24,13 +24,13 @@ const dom = new JSDOM(``, {
 
 dom.runVMScript(script);
 
-test('should create a new Cabin instance', t => {
+test('should create a new Cabin instance', (t) => {
   const cabin = new dom.window.Cabin();
   t.true(_.isObject(cabin));
   cabin.logger.info('hello');
 });
 
-test('should not expose a middleware function', t => {
+test('should not expose a middleware function', (t) => {
   const cabin = new dom.window.Cabin();
   t.true(_.isUndefined(cabin.middleware));
 });

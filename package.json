@@ -1,7 +1,7 @@
 {
   "name": "cabin",
   "description": "Cabin is the best JavaScript and Node.js logging service and logging npm package.  Cabin is a drop-in replacement and the best alternative to Sentry, Timber, Airbrake, Papertrail, Loggly, Bugsnag, or <service>",
-  "version": "8.0.4",
+  "version": "8.0.7",
   "author": "Nick Baugh <niftylettuce@gmail.com> (http://niftylettuce.com/)",
   "ava": {
     "failFast": true,
@@ -25,7 +25,7 @@
   ],
   "dependencies": {
     "ansi-colors": "^4.1.1",
-    "axe": "^6.0.3",
+    "axe": "^6.0.7",
     "clf-date": "^0.2.0",
     "iserror": "^0.0.2",
     "ms": "^2.1.2",
@@ -34,17 +34,17 @@
     "parse-request": "^4.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.4",
-    "@babel/core": "^7.10.4",
-    "@babel/preset-env": "^7.10.4",
-    "@commitlint/cli": "^9.0.1",
-    "@commitlint/config-conventional": "^9.0.1",
-    "ava": "^3.10.1",
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "@commitlint/cli": "^9.1.1",
+    "@commitlint/config-conventional": "^9.1.1",
+    "ava": "^3.11.1",
     "babelify": "^10.0.0",
-    "browserify": "^16.5.1",
-    "codecov": "^3.7.0",
+    "browserify": "^16.5.2",
+    "codecov": "^3.7.2",
     "cross-env": "^7.0.2",
-    "eslint": "6.x",
+    "eslint": "^7.7.0",
     "eslint-config-xo-lass": "^1.0.3",
     "eslint-plugin-compat": "^3.8.0",
     "eslint-plugin-node": "^11.1.0",
@@ -58,19 +58,18 @@
     "koa-better-response-time": "^1.0.0",
     "koa-router": "^9.1.0",
     "lint-staged": "^10.2.11",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.20",
     "nyc": "^15.1.0",
-    "pino": "^6.3.2",
-    "remark-cli": "^8.0.0",
-    "remark-preset-github": "^2.0.2",
+    "pino": "^6.5.1",
+    "remark-cli": "^8.0.1",
+    "remark-preset-github": "^3.0.0",
     "request-received": "^0.0.3",
     "response-time": "^2.3.2",
     "rimraf": "^3.0.2",
     "signale": "^1.4.0",
     "supertest": "^4.0.2",
-    "tinyify": "^2.5.2",
-    "uglify-js": "^3.10.0",
-    "xo": "0.25"
+    "tinyify": "^3.0.0",
+    "xo": "^0.33.0"
   },
   "engines": {
     "node": ">=6.4.0"
@@ -82,7 +81,7 @@
   "homepage": "https://github.com/cabinjs/cabin",
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm test",
+      "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
@@ -186,6 +185,9 @@
     ],
     "ignore": [
       "config.js"
-    ]
+    ],
+    "rules": {
+      "unicorn/prevent-abbreviations": "off"
+    }
   }
 }
