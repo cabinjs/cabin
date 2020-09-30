@@ -397,7 +397,7 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
 1. Install required and recommended dependencies:
 
    ```sh
-   npm install koa cabin signale pino request-received response-time koa-connect express-request-id
+   npm install koa cabin signale pino request-received koa-better-response-time koa-better-request-id
    ```
 
 2. Implement the example code below ([also found here](examples/koa.js)):
@@ -406,10 +406,9 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
    const Koa = require('koa');
    const Cabin = require('cabin');
    const Router = require('koa-router');
-   const koaConnect = require('koa-connect');
    const requestReceived = require('request-received');
-   const responseTime = require('response-time');
-   const requestId = require('express-request-id');
+   const responseTime = require('koa-better-response-time');
+   const requestId = require('koa-better-request-id');
    const { Signale } = require('signale');
    const pino = require('pino')({
      customLevels: {
@@ -445,10 +444,10 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
    app.use(requestReceived);
 
    // adds `X-Response-Time` header to responses
-   app.use(koaConnect(responseTime()));
+   app.use(responseTime());
 
    // adds or re-uses `X-Request-Id` header
-   app.use(koaConnect(requestId()));
+   app.use(requestId());
 
    // use the cabin middleware (adds request-based logging and helpers)
    app.use(cabin.middleware);
@@ -652,7 +651,7 @@ cabin.info('viewed docs');
 
 #### Server
 
-For server-side logging of requests, the Cabin middleware `cabin.middleware` will automatically log requests for you upon completion.  Just make sure you are using `express-request-id` middleware like in the examples above in order for the `X-Request-Id` header to be set (and re-used if already exists, e.g. generated from client side as in below).  If you're using Koa make sure to wrap with `koaConnect` as shown in the examples above.
+For server-side logging of requests, the Cabin middleware `cabin.middleware` will automatically log requests for you upon completion.  Just make sure you are using `express-request-id` middleware like in the examples above in order for the `X-Request-Id` header to be set (and re-used if already exists, e.g. generated from client side as in below).  If you're using Koa make sure to use `koa-better-request-id` as shown in the examples above.
 
 #### Browser
 

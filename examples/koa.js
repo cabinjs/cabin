@@ -1,9 +1,8 @@
 const Koa = require('koa');
 const Router = require('koa-router');
-const koaConnect = require('koa-connect');
 const requestReceived = require('request-received');
-const responseTime = require('response-time');
-const requestId = require('express-request-id');
+const responseTime = require('koa-better-response-time');
+const requestId = require('koa-better-request-id');
 const { Signale } = require('signale');
 const pino = require('pino')({
   customLevels: {
@@ -40,10 +39,10 @@ const cabin = new Cabin({
 app.use(requestReceived);
 
 // adds `X-Response-Time` header to responses
-app.use(koaConnect(responseTime()));
+app.use(responseTime());
 
 // adds or re-uses `X-Request-Id` header
-app.use(koaConnect(requestId()));
+app.use(requestId());
 
 // use the cabin middleware (adds request-based logging and helpers)
 app.use(cabin.middleware);
