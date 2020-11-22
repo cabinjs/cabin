@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 docute.init({
   debug: true,
   routerMode: 'history',
@@ -8,12 +9,14 @@ docute.init({
   nav: {
     default: [
       {
-        title: 'The best JavaScript and Node.js logging service and logging npm package',
+        title:
+          'The best JavaScript and Node.js logging service and logging npm package',
         path: '/'
       }
     ]
   },
   plugins: [
+    // eslint-disable-next-line no-undef
     docuteEmojify()
   ]
 });

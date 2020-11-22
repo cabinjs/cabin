@@ -622,7 +622,7 @@ We recommend using <https://polyfill.io> (specifically with the bundle mentioned
 * Symbol.toPrimitive() is not supported in IE 10
 * Symbol.toStringTag() is not supported in IE 10
 * Uint32Array is not supported in IE Mobile 10, IE 10, Blackberry Browser 7
-* window.crypto() is not supported in IE 10
+* window\.crypto() is not supported in IE 10
 * Array.from() is not supported in IE 10
 * Object.getOwnPropertySymbols() is not supported in IE 10
 * Object.assign() is not supported in IE 10
@@ -976,7 +976,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
 
 
-## 
+##
 
 <a href="#"><img src="media/cabin-footer.png" alt="#" /></a>
 
