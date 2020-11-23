@@ -1726,10 +1726,10 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.11.0.tgz#d61f46d83b2519250e2784daf5b09479a8b41c59"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
 
-axe@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/axe/-/axe-7.0.0.tgz#5fd4bbaf204374659761720853efecbe400164a6"
-  integrity sha512-BqqFj3q59RJb2ACK4CSkdorZhrrjvRUlmDYca9njm2CeIOtUFgeBPC2Lc2PxMeOIBnlgd4ddRoryRwlB1CgRAw==
+axe@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/axe/-/axe-7.0.1.tgz#eda433b9d1a5c5d3faad0dd1373d8f11d40301de"
+  integrity sha512-Lp13JjzeUSIlzhhqQwVATgAZkESrh1sF/YDaJjWr6IilVMihnk0qFwrupf1NGl0SYRjcM9UJDfwqj7tcfeDbMA==
   dependencies:
     "@ladjs/format-util" "^1.0.4"
     boolean "^3.0.2"
@@ -1739,7 +1739,7 @@ axe@^7.0.0:
     format-specifiers "^1.0.0"
     iserror "^0.0.2"
     lodash.omit "^4.5.0"
-    parse-app-info "^4.0.0"
+    parse-app-info "^4.0.1"
     parse-err "^0.0.12"
     superagent "^6.1.0"
 
@@ -7045,10 +7045,10 @@ parents@^1.0.0, parents@^1.0.1:
   dependencies:
     path-platform "~0.11.15"
 
-parse-app-info@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/parse-app-info/-/parse-app-info-4.0.0.tgz#a421e8beb07056c80a1c6ea0e15a4137802e4dd4"
-  integrity sha512-D3sQQ/JHzLBCtgZ3VsLBauYNQX8CtCvu025ezpgPZojdsc1/VzBCJL4m35gXop7g5MwReVz6PM/KGdob8SHxDA==
+parse-app-info@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/parse-app-info/-/parse-app-info-4.0.1.tgz#de104a3170995e0dac46fad61493a4b6d9f4196b"
+  integrity sha512-8IBPGC6SMdm6KLlG26V7vSJYHT4J73yqYWeS5NJqXme8vp81nZTBiMrC8e3bNuduuJgymFlWm7TNq8xfsw1VbQ==
   dependencies:
     debug "^4.3.1"
     last-commit-log "^3.0.4"
