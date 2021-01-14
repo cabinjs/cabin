@@ -9,7 +9,9 @@
   },
   "browser": {
     "./src/middleware": false,
-    "./src/message": false
+    "./src/message": false,
+    "./lib/middleware": false,
+    "./lib/message": false
   },
   "bugs": {
     "url": "https://github.com/cabinjs/cabin/issues",
