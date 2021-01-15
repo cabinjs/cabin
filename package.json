@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "ansi-colors": "^4.1.1",
-    "axe": "^7.0.2",
+    "axe": "^8.0.0",
     "clf-date": "^0.2.0",
     "iserror": "^0.0.2",
     "ms": "^2.1.3",
@@ -69,7 +69,7 @@
     "response-time": "^2.3.2",
     "rimraf": "^3.0.2",
     "signale": "^1.4.0",
-    "supertest": "^6.0.1",
+    "supertest": "^6.1.0",
     "tinyify": "^3.0.0",
     "xo": "^0.37.1"
   },
