@@ -1,6 +1,10 @@
-media
-favicon.ico
-config.js
-index.html
-CNAME
+.github
 examples
+media
+test
+.*
+CNAME
+config.js
+favicon.ico
+index.html
+yarn.lock
