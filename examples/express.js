@@ -1,3 +1,5 @@
+const process = require('process');
+
 const express = require('express');
 const requestReceived = require('request-received');
 const responseTime = require('response-time');

@@ -4,16 +4,15 @@
   "plugins": ["compat"],
   "rules": {
     "compat/compat": "error",
-    "no-func-assign": "off"
+    "no-func-assign": "off",
+    "no-unsafe-finally": "off"
   },
   "settings": {
     "polyfills": [
       "Array.from",
       "Object.getOwnPropertySymbols",
-      "Symbol.iterator",
       "Object.assign",
-      "Symbol.for",
-      "Symbol.prototype"
+      "Symbol"
     ]
   }
 }

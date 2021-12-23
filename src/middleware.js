@@ -15,59 +15,61 @@ module.exports = function (...args) {
   // Note that `params` is not named `args` because ESLint doesn't warn:
   // <https://github.com/eslint/eslint/issues/11915>
   //
-  Object.keys(this.logger)
-    .filter((key) => isFunction(this.logger[key]))
-    .forEach((key) => {
-      logger[key] = (...parameters) => {
-        if (isUndefined(parameters[1])) parameters[1] = {};
-        else parameters[1] = this.parseArg(parameters[1]);
-        // add `request` object to metadata
-        Object.assign(
-          parameters[1],
-          parseRequest(
-            Object.assign(
-              isExpress ? { req: request } : { ctx },
-              //
-              // this symbol was not added until Node v7.7.0
-              // and we try to support Node v6.4+
-              // <https://github.com/nodejs/node/issues/17745>
-              //
-              // <https://github.com/nodejs/node/blob/v7.10.0/lib/_http_outgoing.js#L379-L380>
-              // <https://github.com/nodejs/node/blob/v7.7.0/lib/_http_outgoing.js#L379-L380>
-              // <https://github.com/nodejs/node/blob/v6.4.0/lib/_http_outgoing.js#L351-L352>
-              //
-              // Note that for the fallback `_headers` all the keys are lowercased
-              //
-              // But note that in node v12.4.0 for instance this prop is deprecated
-              // <https://github.com/nodejs/node/blob/v12.4.0/lib/_http_outgoing.js#L116>
-              // So we are left with either the Symbol or use of `getHeaders`
-              //
-              // HOWEVER automatic properties like Date header aren't
-              // set when you do `getHeaders`, they are only written to `_header`
-              // and so we need `parse-request` to parse the `responseHeaders`
-              // as a String using `http-headers`...
-              // <https://github.com/nodejs/node/issues/28302>
-              //
-              // note that HTTP2 responses do not have a String value
-              // for `res._header`, and instead is a Boolean value
-              // <https://github.com/nodejs/node/issues/30894>
-              // <https://github.com/cabinjs/cabin/issues/133>
-              {
-                responseHeaders:
-                  typeof res._header === 'string'
-                    ? res._header
-                    : typeof res.getHeaders === 'function'
-                    ? res.getHeaders()
-                    : null
-              },
-              this.config.parseRequest
-            )
+  for (const key of Object.keys(this.logger).filter((key) =>
+    isFunction(this.logger[key])
+  )) {
+    logger[key] = (...parameters) => {
+      parameters[1] = isUndefined(parameters[1])
+        ? {}
+        : this.parseArg(parameters[1]);
+      // add `request` object to metadata
+      Object.assign(
+        parameters[1],
+        parseRequest(
+          Object.assign(
+            isExpress ? { req: request } : { ctx },
+            //
+            // this symbol was not added until Node v7.7.0
+            // and we try to support Node v6.4+
+            // <https://github.com/nodejs/node/issues/17745>
+            //
+            // <https://github.com/nodejs/node/blob/v7.10.0/lib/_http_outgoing.js#L379-L380>
+            // <https://github.com/nodejs/node/blob/v7.7.0/lib/_http_outgoing.js#L379-L380>
+            // <https://github.com/nodejs/node/blob/v6.4.0/lib/_http_outgoing.js#L351-L352>
+            //
+            // Note that for the fallback `_headers` all the keys are lowercased
+            //
+            // But note that in node v12.4.0 for instance this prop is deprecated
+            // <https://github.com/nodejs/node/blob/v12.4.0/lib/_http_outgoing.js#L116>
+            // So we are left with either the Symbol or use of `getHeaders`
+            //
+            // HOWEVER automatic properties like Date header aren't
+            // set when you do `getHeaders`, they are only written to `_header`
+            // and so we need `parse-request` to parse the `responseHeaders`
+            // as a String using `http-headers`...
+            // <https://github.com/nodejs/node/issues/28302>
+            //
+            // note that HTTP2 responses do not have a String value
+            // for `res._header`, and instead is a Boolean value
+            // <https://github.com/nodejs/node/issues/30894>
+            // <https://github.com/cabinjs/cabin/issues/133>
+            {
+              responseHeaders:
+                typeof res._header === 'string'
+                  ? res._header
+                  : typeof res.getHeaders === 'function'
+                  ? res.getHeaders()
+                  : null
+            },
+            this.config.parseRequest
           )
-        );
+        )
+      );
 
-        return this.logger[key](...[].slice.call(parameters));
-      };
-    });
+      return this.logger[key](...Array.prototype.slice.call(parameters));
+    };
+  }
+
   // upon completion of a response we need to log it
   onFinished(res, (err) => {
     if (err) logger.error(err);

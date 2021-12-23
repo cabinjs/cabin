@@ -588,7 +588,7 @@ In order to easily interact and use the `logger` utility function exposed by `ap
 This is the solution for you if you're just using `<script>` tags everywhere!
 
 ```html
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Symbol.iterator,Symbol.prototype,Symbol.toPrimitive,Symbol.toStringTag,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set"></script>
 <script src="https://unpkg.com/cabin"></script>
 <script type="text/javascript">
   (function() {
@@ -608,7 +608,7 @@ This is the solution for you if you're just using `<script>` tags everywhere!
 We recommend using <https://polyfill.io> (specifically with the bundle mentioned in [VanillaJS](#vanillajs) above):
 
 ```html
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Symbol.iterator,Symbol.prototype,Symbol.toPrimitive,Symbol.toStringTag,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set"></script>
 ```
 
 * Map is not supported in IE 10
@@ -617,10 +617,6 @@ We recommend using <https://polyfill.io> (specifically with the bundle mentioned
 * Promise is not supported in Opera Mobile 12.1, Opera Mini all, IE Mobile 10, IE 10, Blackberry Browser 7
 * Reflect is not supported in IE 10
 * Symbol is not supported in IE 10
-* Symbol.iterator() is not supported in IE 10
-* Symbol.prototype() is not supported in IE 10
-* Symbol.toPrimitive() is not supported in IE 10
-* Symbol.toStringTag() is not supported in IE 10
 * Uint32Array is not supported in IE Mobile 10, IE 10, Blackberry Browser 7
 * window\.crypto() is not supported in IE 10
 * Array.from() is not supported in IE 10
@@ -660,7 +656,7 @@ For server-side logging of requests, the Cabin middleware `cabin.middleware` wil
 ##### HTML
 
 ```html
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Symbol.iterator,Symbol.prototype,Symbol.toPrimitive,Symbol.toStringTag,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set"></script>
 <script src="https://unpkg.com/xhook"></script>
 <script src="https://unpkg.com/cabin"></script>
 <script src="https://unpkg.com/parse-request"></script>
@@ -699,7 +695,7 @@ For server-side logging of requests, the Cabin middleware `cabin.middleware` wil
 > You can do a similar approach with React, EJS, or another templating language.
 
 ```pug
-script(src='https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Symbol.iterator,Symbol.prototype,Symbol.toPrimitive,Symbol.toStringTag,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set')
 script(src='https://unpkg.com/xhook')
 script(src='https://unpkg.com/cabin')
 script(src='https://unpkg.com/parse-request')
@@ -817,7 +813,7 @@ The example below demonstrates using StackTrace with [uncaught][] to catch globa
 If you're curious why it won't work in IE11, please see this [great documentation on JavaScript errors cross-browser here](https://github.com/mknichel/javascript-errors#windowonerror) - in particular the section on "No Error object provided".
 
 ```html
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Symbol.iterator,Symbol.prototype,Symbol.toPrimitive,Symbol.toStringTag,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set"></script>
 <script src="https://unpkg.com/stackframe"></script>
 <script src="https://unpkg.com/stacktrace-js"></script>
 <!-- Use this instead of the above if you need to polyfill for IE11 support -->
