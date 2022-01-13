@@ -47,7 +47,11 @@
       "Object.getOwnPropertySymbols",
       "Object.assign",
       "navigator.mimeTypes",
-      "Set"
+      "Set",
+      "BigInt",
+      "WeakMap",
+      "WeakRef",
+      "WeakSet"
     ]
   }
 }
