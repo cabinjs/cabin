@@ -873,7 +873,9 @@ You can pass these options through the `axe` option (see [Options](#options) bel
 
 ### Show/Hide Metadata
 
-To hide metadata, pass a falsey value for the process environment variable `SHOW_META`.
+To show or hide metadata, pass a true or false value for the process environment variables `SHOW_META` (defaults to `true`), `SHOW_META_APP` (defaults to `false`), or specify a comma separated list of fields to selectively omit via `OMIT_META_FIELDS` (e.g. `OMIT_META_FIELDS=user` to omit `meta.user` from output).
+
+We have configured default metadata output in console logs to be sensible defaults as to not pollute your debugging experience.  We welcome suggestions for how to improve this as well.
 
 > (e.g. `SHOW_META=0` or `SHOW_META=false` before running your script, such as `SHOW_META=false node app`).
 
