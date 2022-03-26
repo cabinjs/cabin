@@ -957,7 +957,7 @@ Here's an example of a parsed metadata object:
 * [axe][] - Logging utility for Node and Browser environments. Chop up your logs!
 * [lass][] - Scaffold a modern boilerplate for [Node.js][node]
 * [lipo][] - Free image manipulation API service built on top of [Sharp][]
-
+* [Mutant Mail][mutant-mail] - Free, encrypted, and solution to manage all email ids from one mailbox.
 
 ## Contributors
 
@@ -1053,5 +1053,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [winston]: https://github.com/winstonjs/winston
 
 [forward-email]: https://forwardemail.net
+
+[mutant-mail]: https://www.mutantmail.com
 
 [apache-clf]: https://github.com/expressjs/morgan#common
