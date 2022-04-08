@@ -31,7 +31,7 @@
     "clf-date": "^0.2.0",
     "iserror": "^0.0.2",
     "ms": "^2.1.3",
-    "on-finished": "^2.3.0",
+    "on-finished": "^2.4.1",
     "parse-err": "^0.0.12",
     "parse-request": "^4.0.0"
   },
