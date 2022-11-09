@@ -1,10 +1,7 @@
-.github
-examples
 media
-test
-.*
-CNAME
-config.js
 favicon.ico
+config.js
 index.html
-yarn.lock
+CNAME
+.nyc_output
+coverage

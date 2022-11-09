@@ -1,0 +1,10 @@
+{
+  "presets": [
+    ["@babel/env", {
+      "targets": {
+        "browsers": [ "defaults, not ie 11" ]
+      }
+    }]
+  ],
+  "sourceType": "script"
+}

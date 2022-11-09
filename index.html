@@ -7,11 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <title>The best JavaScript and Node.js logging service and logging npm package - Cabin</title>
+  <title>Cabin - The best JavaScript and Node.js logging service</title>
   <link rel="stylesheet" href="https://unpkg.com/docute@3/dist/docute.css" type="text/css">
 
-  <meta property="og:title" content="The Best JavaScript and Node.js logging service and package">
-  <meta property="og:description" content="Cabin is a drop-in replacement and alternative to Sentry, Timber, Airbrake, Papertrail, Loggly, Bugsnag, or <service>.  Built by @niftylettuce.">
+  <meta property="og:title" content="The best JavaScript and Node.js logging service">
+  <meta property="og:description" content="Cabin is the best alternative to and compatible with Sentry, Timber, Airbrake, Papertrail, Loggly, and Bugsnag.">
   <meta property="og:site_name" content="Cabin">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://raw.githubusercontent.com/cabinjs/cabin/master/media/cabin.png">
@@ -20,7 +20,7 @@
 <body>
   <div id="app">
   </div>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set,BigInt,WeakMap,WeakRef,WeakSet"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=Promise"></script>
   <script src="https://unpkg.com/cabin"></script>
   <script src="https://unpkg.com/xhook"></script>
   <script src="https://unpkg.com/parse-request"></script>
@@ -30,8 +30,8 @@
       var cabin = new Cabin({ axe: { showMeta: true }});
       cabin.setUser({
         id: '1',
-        email: 'niftylettuce@gmail.com',
-        full_name: 'niftylettuce'
+        email: 'test@example.com',
+        full_name: 'test'
       });
       cabin.info('viewed docs');
       cabin.error(new Error('oops!'));

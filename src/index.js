@@ -1,9 +1,9 @@
 const Axe = require('axe');
 const isError = require('iserror');
 const parseErr = require('parse-err');
+const mergeOptions = require('merge-options');
 
 const {
-  isEmpty,
   isNull,
   isUndefined,
   isObject,
@@ -15,16 +15,13 @@ const middleware = require('./middleware');
 
 class Cabin {
   constructor(config) {
-    this.config = Object.assign(
+    this.config = mergeOptions(
       {
-        key: '',
-        capture: null,
-        axe: {},
-        logger: null,
+        logger: console,
         meta: {},
-        // <https://github.com/niftylettuce/parse-request>
+        // <https://github.com/cabinjs/parse-request>
         parseRequest: {},
-        // <https://github.com/niftylettuce/parse-err>
+        // <https://github.com/cabinjs/parse-err>
         errorProps: [],
         // function that accepts (level, req, res) and returns a string
         // (this is consumed by the cabin middleware and not available in browsers)
@@ -33,37 +30,24 @@ class Cabin {
       config
     );
 
-    // override key with root key in case user forgot
-    if (!isEmpty(this.config.axe) && this.config.key)
-      this.config.axe.key = this.config.key;
-
-    if (!isEmpty(this.config.axe) && typeof this.config.capture === 'boolean')
-      this.config.axe.capture = this.config.capture;
-
-    if (!isEmpty(this.config.axe))
-      this.config.logger = new Axe(this.config.axe);
-    else if (this.config.key || this.config.capture)
-      this.config.logger = new Axe(
-        Object.assign(
-          this.config.key ? { key: this.config.key } : {},
-          this.config.capture ? { capture: this.config.capture } : {}
-        )
+    if (!isObject(this.config.logger))
+      throw new Error(
+        'Logger option must be a logger object such as `console` or an instance of Axe'
       );
-    else if (!isObject(this.config.logger)) this.config.logger = new Axe();
 
-    // bind the logger
-    this.logger = this.config.logger;
+    if (!(this.config.logger instanceof Axe))
+      this.config.logger = new Axe({ logger: this.config.logger });
 
     // parse arg helper
     this.parseArg = this.parseArg.bind(this);
 
     // bind helper functions for each log level
-    for (const level of Object.keys(this.logger).filter((key) =>
-      isFunction(this.logger[key])
+    for (const level of Object.keys(this.config.logger).filter((key) =>
+      isFunction(this.config.logger[key])
     )) {
       this[level] = (...args) => {
         if (args[1]) args[1] = this.parseArg(args[1]);
-        this.logger[level](...Array.prototype.slice.call(args));
+        this.config.logger[level](...Array.prototype.slice.call(args));
       };
     }
 

@@ -1,0 +1,39 @@
+{
+  "extends": ["eslint:recommended", "plugin:compat/recommended"],
+  "env": {
+    "node": false,
+    "browser": true,
+    "amd": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "2017"
+  },
+  "plugins": ["compat"],
+  "rules": {
+    "compat/compat": "error",
+    "no-func-assign": "off",
+    "no-unused-vars": "off",
+    "no-redeclare": "off",
+    "no-empty": "off",
+    "no-fallthrough": "off",
+    "no-cond-assign": "off",
+    "no-constant-condition": "off",
+    "no-control-regex": "off",
+    "no-useless-escape": "off",
+    "no-extra-semi": "off",
+    "no-console": "off",
+    "no-sparse-arrays": "off",
+    "no-undef": "off",
+    "no-prototype-builtins": "off",
+    "no-unsafe-finally": "off",
+    "no-inner-declarations": "off"
+  },
+  "globals": {
+  },
+  "settings": {
+    "polyfills": [
+      "Promise"
+    ]
+  }
+}

@@ -5,7 +5,6 @@ docute.init({
   title: 'Cabin',
   repo: 'cabinjs/cabin',
   'edit-link': 'https://github.com/cabinjs/cabin/tree/master/',
-  twitter: 'niftylettuce',
   nav: {
     default: [
       {

@@ -76,12 +76,12 @@ module.exports = function (...args) {
     let level = 'info';
     if (res.statusCode >= 500) level = 'error';
     else if (res.statusCode >= 400) level = 'warn';
-    const message = this.config.message(
-      Object.assign(
-        { level, req: request, res },
-        isExpress ? {} : { ctx: args[0] }
-      )
-    );
+    const message = this.config.message({
+      level,
+      req: request,
+      res,
+      ...(isExpress ? {} : { ctx: args[0] })
+    });
     if (err) logger[level](message, { err });
     else logger[level](message);
   });

@@ -1,39 +1,15 @@
-const process = require('process');
-
 const Koa = require('koa');
 const Router = require('koa-router');
 const requestReceived = require('request-received');
 const responseTime = require('koa-better-response-time');
 const requestId = require('koa-better-request-id');
 const { Signale } = require('signale');
-const pino = require('pino')({
-  customLevels: {
-    log: 30
-  },
-  hooks: {
-    // <https://github.com/pinojs/pino/blob/master/docs/api.md#logmethod>
-    logMethod(inputArgs, method) {
-      return method.call(this, {
-        // <https://github.com/pinojs/pino/issues/854>
-        // message: inputArgs[0],
-        msg: inputArgs[0],
-        meta: inputArgs[1]
-      });
-    }
-  }
-});
 const Cabin = require('..');
-
-const env = process.env.NODE_ENV || 'development';
 
 const app = new Koa();
 const router = new Router();
 const cabin = new Cabin({
-  // (optional: your free API key from https://cabinjs.com)
-  // key: 'YOUR-CABIN-API-KEY',
-  axe: {
-    logger: env === 'production' ? pino : new Signale()
-  }
+  logger: new Signale()
 });
 
 // adds request received hrtime and date symbols to request object

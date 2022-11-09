@@ -27,7 +27,7 @@ dom.runVMScript(script);
 test('should create a new Cabin instance', (t) => {
   const cabin = new dom.window.Cabin();
   t.true(_.isObject(cabin));
-  cabin.logger.info('hello');
+  cabin.info('hello');
 });
 
 test('should not expose a middleware function', (t) => {

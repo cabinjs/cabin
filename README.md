@@ -2,74 +2,108 @@
   <a href="http://cabinjs.com"><img src="https://d1i8ikybhfrv4r.cloudfront.net/cabin-animated.gif" alt="cabin" /></a>
 </h1>
 <div align="center">
-  <a href="https://join.slack.com/t/ladjs/shared_invite/zt-fqei6z11-Bq2trhwHQxVc5x~ifiZG0g"><img src="https://img.shields.io/badge/chat-join%20slack-brightgreen" alt="chat" /></a>
-  <a href="https://travis-ci.org/cabinjs/cabin"><img src="https://travis-ci.org/cabinjs/cabin.svg?branch=master" alt="build status" /></a>
-  <a href="https://codecov.io/github/cabinjs/cabin"><img src="https://img.shields.io/codecov/c/github/cabinjs/cabin/master.svg" alt="code coverage" /></a>
+  <a href="https://github.com/cabinjs/cabin/actions/workflows/ci.yml"><img src="https://github.com/cabinjs/cabin/actions/workflows/ci.yml/badge.svg" alt="build status" /></a>
   <a href="https://github.com/sindresorhus/xo"><img src="https://img.shields.io/badge/code_style-XO-5ed9c7.svg" alt="code style" /></a>
   <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="styled with prettier" /></a>
   <a href="https://lass.js.org"><img src="https://img.shields.io/badge/made_with-lass-95CC28.svg" alt="made with lass" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/cabinjs/cabin.svg" alt="license" /></a>
+  <a href="https://npm.im/cabin"><img src="https://img.shields.io/npm/dt/cabin.svg" alt="npm downloads" /></a>
 </div>
 <br />
 <div align="center">
-  Cabin is the best <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> and <a href="https://nodejs.org" target="_blank">Node.js</a> <a href="https://en.wikipedia.org/wiki/Logging_as_a_service" target="_blank">logging service</a> and logging <a href="https://www.npmjs.com/package/cabin" target="_blank">npm package</a>
+  Cabin is the best self-hosted <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> and <a href="https://nodejs.org" target="_blank">Node.js</a> <a href="https://en.wikipedia.org/wiki/Logging_as_a_service" target="_blank">logging service</a>.
   <br />
-  <small>Supports Node v6.4+, Browsers (IE 10+), <a href="https://expressjs.com" target="_blank">Express</a>, <a href="https://koajs.com" target="_blank">Koa</a>, and <a href="https://lad.js.org" target="_blank">Lad</a></small>
+  <small>Supports Node v14+, Browser Environments, <a href="https://expressjs.com" target="_blank">Express</a>, <a href="https://koajs.com" target="_blank">Koa</a>, and <a href="https://lad.js.org" target="_blank">Lad</a></small>
 </div>
 <hr />
 <div align="center">
-  Cabin is a drop-in replacement and the best alternative to <a href="https://sentry.io" target="_blank">Sentry</a>, <a href="https://timber.io/" target="_blank">Timber</a>, <a href="https://airbrake.io/" target="_blank">Airbrake</a>, <a href="https://papertrailapp.com/" target="_blank">Papertrail</a>, <a href="https://www.loggly.com/" target="_blank">Loggly</a>, <a href="https://www.bugsnag.com/" target="_blank">Bugsnag</a>, or <code>&lt;service&gt;</code>
+  Cabin is compatible with <a href="https://sentry.io" target="_blank">Sentry</a>, <a href="https://airbrake.io/" target="_blank">Airbrake</a>, <a href="https://papertrailapp.com/" target="_blank">Papertrail</a>, <a href="https://www.loggly.com/" target="_blank">Loggly</a>, and <a href="https://www.bugsnag.com/" target="_blank">Bugsnag</a>.
 </div>
 <hr />
-<div align="center">:heart: Love this project? Support <a href="https://github.com/niftylettuce" target="_blank">@niftylettuce's</a> <a href="https://en.wikipedia.org/wiki/Free_and_open-source_software" target="_blank">FOSS</a> on <a href="https://patreon.com/niftylettuce" target="_blank">Patreon</a> or <a href="https://paypal.me/niftylettuce">PayPal</a> :unicorn:</div>
 
 
 ## Table of Contents
 
+* [Foreword](#foreword)
 * [Quick Start](#quick-start)
 * [Features](#features)
   * [Security, Privacy, and Business Focused](#security-privacy-and-business-focused)
   * [Reduce Disk Storage Costs](#reduce-disk-storage-costs)
   * [Cross-Platform and Cross-Browser Compatible](#cross-platform-and-cross-browser-compatible)
-  * [Integrate with Slack Using Custom Logging Hooks](#integrate-with-slack-using-custom-logging-hooks)
-  * [Bring Your Own Logger ("BYOL")](#bring-your-own-logger-byol)
-  * [Drop-in Replacement and Alternative to Bunyan](#drop-in-replacement-and-alternative-to-bunyan)
-  * [Save Time With Easy Debugging](#save-time-with-easy-debugging)
+* [Send Logs to an HTTP endpoint](#send-logs-to-an-http-endpoint)
+* [Send Logs to Slack](#send-logs-to-slack)
+* [Send Logs to Sentry](#send-logs-to-sentry)
+* [Suppress Logger Data](#suppress-logger-data)
 * [Install](#install)
 * [Usage](#usage)
   * [Logging](#logging)
-  * [Route Middleware](#route-middleware)
+  * [Route Logging Middleware](#route-logging-middleware)
   * [Node](#node)
   * [Browser](#browser)
   * [Automatic Request Logging](#automatic-request-logging)
   * [Stack Traces and Error Handling](#stack-traces-and-error-handling)
-* [Display Metadata and Stack Traces](#display-metadata-and-stack-traces)
-  * [Show/Hide Metadata](#showhide-metadata)
-  * [Show/Hide Stack Traces](#showhide-stack-traces)
 * [Options](#options)
-* [Metadata](#metadata)
+* [Display Metadata and Stack Traces](#display-metadata-and-stack-traces)
 * [Related](#related)
-* [Contributors](#contributors)
-* [Trademark Notice](#trademark-notice)
 * [License](#license)
+
+
+## Foreword
+
+Please defer to Axe's [Foreword](https://github.com/cabinjs/axe/#foreword) for more insight.
+
+Cabin is a layer on top of Axe that provides automatic logging for route middleware requests and errors.
 
 
 ## Quick Start
 
 ```sh
-npm install cabin
+npm install express axe cabin signale
 ```
 
 ```js
 const express = require('express');
-const Cabin = require('cabin');     // <-- step 1
+const Axe = require('axe');
+const Cabin = require('cabin');
 const app = express();
-const cabin = new Cabin();          // <-- step 2
-app.use(cabin.middleware);          // <-- step 3
+const { Signale } = require('signale');
+
+// initialize a new instance of Axe (see below TODO's that appeal to you)
+const logger = new Axe({
+  logger: new Signale()
+});
+
+// TODO: if you want to send logs to an HTTP endpoint then follow this guide:
+// https://github.com/cabinjs/axe/#send-logs-to-http-endpoint
+
+// TODO: if you want to send logs to Slack then follow this guide:
+// https://github.com/cabinjs/axe/#send-logs-to-slack
+
+// TODO: if you want to send logs to Sentry then follow this guide:
+// https://github.com/cabinjs/axe/#send-logs-to-sentry
+
+// TODO: if you want to suppress specific log metadata then follow this guide:
+// https://github.com/cabinjs/axe/#suppress-logger-data
+
+// initialize a new instance of Cabin with an Axe logger instance
+const cabin = new Cabin({ logger });
+
+//
+// initialize route logging middleware
+//
+// NOTE: this will automatically log route middleware requests and errors
+//
+app.use(cabin.middleware);
+
+app.get('/', (req, res, next) => res.send('OK'));
+
+// start the server
 app.listen(3000);
 ```
 
-> <small>See our **[Usage section below](#usage)** for a much more detailed and feature-rich example setup.</small>
+```sh
+curl http://localhost:3000
+```
 
 
 ## Features
@@ -150,199 +184,63 @@ Reduce your disk storage costs through Cabin's automatic conversion of Streams, 
 
 Cabin works with the most popular Node.js HTTP frameworks (e.g. [Express][] and [Koa][]), request body handling packages (e.g. [multer][] and [body-parser][]), and the [passport][] authentication framework.
 
-It supports **Node v6.4+** and **IE 10+** out of the box, and its browser-ready bundle **is only 39 KB** (minified and gzipped).
+It supports **Node v14+** and modern browsers out of the box (its browser-ready bundle **is only 20 KB**).
 
 ```sh
 npx browserslist
 ```
 
 ```sh
-and_chr 74
-and_ff 66
-and_qq 1.2
-and_uc 11.8
-android 67
-baidu 7.12
-bb 10
-bb 7
-chrome 74
-chrome 73
-chrome 72
-edge 18
-edge 17
-firefox 66
-firefox 65
-ie 11
-ie 10
-ie_mob 11
-ie_mob 10
-ios_saf 12.2
-ios_saf 12.0-12.1
+and_chr 107
+and_ff 106
+and_qq 13.1
+and_uc 13.4
+android 107
+chrome 107
+chrome 106
+chrome 105
+edge 107
+edge 106
+edge 105
+firefox 106
+firefox 105
+firefox 102
+ios_saf 16.1
+ios_saf 16.0
+ios_saf 15.6
+ios_saf 15.5
+ios_saf 14.5-14.8
 kaios 2.5
 op_mini all
-op_mob 46
-op_mob 12.1
-opera 58
-opera 57
-safari 12.1
-safari 12
-samsung 9.2
-samsung 8.2
+op_mob 64
+opera 91
+opera 90
+safari 16.1
+safari 16.0
+safari 15.6
+samsung 18.0
+samsung 17.0
 ```
 
-### Integrate with Slack Using Custom Logging Hooks
 
-[Axe][] is the underlying logging add-on that allows you to record, store, back-up, and customize your log handling over HTTP or with your own custom logic.
+## Send Logs to an HTTP endpoint
 
-You will find an entire example for logging errors (and more) to your Slack channel under its section [Send Logs To Slack](https://github.com/cabinjs/axe#send-logs-to-slack).
+See the [Quick Start](#quick-start) section above and our guide at <https://github.com/cabinjs/axe/#send-logs-to-http-endpoint>.
 
-### Bring Your Own Logger ("BYOL")
 
-Cabin was built by an expert based off best practices; over a decade of experience in logging and application development – and most importantly from their agony with existing tools, services, packages, and platforms.
+## Send Logs to Slack
 
-It was made to be both a **simple and quick drop-in replacement** for existing services.  **You can even bring your own logger!**  Want to use [Axe][], [pino][], [signale][], [morgan][], [bunyan][], [winston][], or another logger?  No problem.
+See the [Quick Start](#quick-start) section above and our guide at <https://github.com/cabinjs/axe/#send-logs-to-slack>.
 
-### Drop-in Replacement and Alternative to Bunyan
 
-We built this with Bunyan-style compatibility – this means you won't have to change your logging argument style from `log(meta, message)` to `log(message, meta)`; we automatically detect Bunyan style (Metadata first, message second) and flip the order for you.
+## Send Logs to Sentry
 
-As of v6.1.1 we have added support for Bunyan style `(meta, message, [, ...args])` usage (e.g. `logger.info({ some: 'obj' }, 'message with format specifiers %s and %d', 'foobar', 100)`), prior to v6.1.1 we only supported `(meta, message)` usage.
+See the [Quick Start](#quick-start) section above and our guide at <https://github.com/cabinjs/axe/#send-logs-to-sentry>.
 
-### Save Time With Easy Debugging
 
-No need for rubber duck debugging – Cabin makes everything transparent at a glance.
+## Suppress Logger Data
 
-Rich metadata is automatically added to your logs, so that you can easily record, analyze, and detect user behavior and application events, errors, and more:
-
-> Example Application:
-
-```js
-const express = require('express');
-const Cabin = require('cabin');
-const multer = require('multer');
-const requestReceived = require('request-received');
-const responseTime = require('response-time');
-const requestId = require('express-request-id');
-
-const app = express();
-const cabin = new Cabin();
-const upload = multer();
-
-app.use(requestReceived);
-app.use(responseTime());
-app.use(requestId());
-app.use(cabin.middleware);
-
-app.post(
-  '/',
-  upload.fields([
-    {
-      name: 'avatar',
-      maxCount: 1
-    },
-    {
-      name: 'boop',
-      maxCount: 2
-    }
-  ]),
-  (req, res) => {
-    req.logger.info('visited home page');
-    res.send('hello world');
-  }
-});
-
-app.listen(3000);
-```
-
-> Example Console Output (using [Signale][]):
-
-```sh
-ℹ  info      visited home page { id: '5d1b9e484ebd2adcdfd29bf4',
-  timestamp: '2019-07-02T18:11:20.000Z',
-  request:
-   { method: 'POST',
-     query: { foo: 'bar', beep: 'boop' },
-     headers:
-      { host: '127.0.0.1:55370',
-        'accept-encoding': 'gzip, deflate',
-        'user-agent': 'node-superagent/3.8.3',
-        authorization: 'Basic ********************',
-        accept: 'application/json',
-        cookie: 'foo=bar;beep=boop',
-        'content-type':
-         'multipart/form-data; boundary=--------------------------028474125060986605281677',
-        'content-length': '1599',
-        connection: 'close' },
-     cookies: { foo: 'bar', beep: 'boop' },
-     url: '/?foo=bar&beep=boop',
-     body:
-      '{"product_id":"5d0350ef2ca74d11ee6e4f00","name":"nifty","surname":"lettuce","bank_account_number":"**********","card":{"number":"****-****-****-****"},"stripe_token":"***************","favorite_color":"green"}',
-     timestamp: '2019-07-02T18:11:20.331Z',
-     id: '33afc3c5-1571-4249-b024-876b6f687b65',
-     http_version: '1.1',
-     files:
-      '{"avatar":[{"fieldName":"avatar","originalName":"avatar.png","clientReportedMimeType":"image/png","clientReportedFileExtension":".png","path":"/var/folders/t_/4vd3m1h92zsc953ll8r_4s_h0000gn/T/N6NE8A8","size":216,"detectedMimeType":"image/png","detectedFileExtension":".png","stream":{"type":"Stream"}}],"boop":[{"fieldName":"boop","originalName":"boop-1.txt","clientReportedMimeType":"text/plain","clientReportedFileExtension":".txt","path":"/var/folders/t_/4vd3m1h92zsc953ll8r_4s_h0000gn/T/PCB8YTR","size":7,"detectedMimeType":{},"detectedFileExtension":"","stream":{"type":"Stream"}},{"fieldName":"boop","originalName":"boop-2.txt","clientReportedMimeType":"text/plain","clientReportedFileExtension":".txt","path":"/var/folders/t_/4vd3m1h92zsc953ll8r_4s_h0000gn/T/EKMAKXR","size":7,"detectedMimeType":{},"detectedFileExtension":"","stream":{"type":"Stream"}}]}' },
-  user: { ip_address: '::ffff:127.0.0.1' },
-  duration: 1.741299,
-  app:
-   { name: 'parse-request',
-     version: '2.0.1',
-     node: 'v10.15.3',
-     hash: '75783ef9d0a9c1c71f83ee352754a14ead0a3138',
-     tag: 'v2.0.1',
-     environment: 'test',
-     hostname: 'jacks-MacBook-Pro.local',
-     pid: 56543 } }
-ℹ  info      ::ffff:127.0.0.1 user POST /?foo=bar&beep=boop HTTP/1.1 200 1951 - 67.819 ms { id: '5d1b9e484ebd2adcdfd29bf5',
-  timestamp: '2019-07-02T18:11:20.000Z',
-  request:
-   { method: 'POST',
-     query: { foo: 'bar', beep: 'boop' },
-     headers:
-      { host: '127.0.0.1:55370',
-        'accept-encoding': 'gzip, deflate',
-        'user-agent': 'node-superagent/3.8.3',
-        authorization: 'Basic ********************',
-        accept: 'application/json',
-        cookie: 'foo=bar;beep=boop',
-        'content-type':
-         'multipart/form-data; boundary=--------------------------028474125060986605281677',
-        'content-length': '1599',
-        connection: 'close' },
-     cookies: { foo: 'bar', beep: 'boop' },
-     url: '/?foo=bar&beep=boop',
-     body:
-      '{"product_id":"5d0350ef2ca74d11ee6e4f00","name":"nifty","surname":"lettuce","bank_account_number":"**********","card":{"number":"****-****-****-****"},"stripe_token":"***************","favorite_color":"green"}',
-     timestamp: '2019-07-02T18:11:20.331Z',
-     id: '33afc3c5-1571-4249-b024-876b6f687b65',
-     http_version: '1.1',
-     files:
-      '{"avatar":[{"fieldName":"avatar","originalName":"avatar.png","clientReportedMimeType":"image/png","clientReportedFileExtension":".png","path":"/var/folders/t_/4vd3m1h92zsc953ll8r_4s_h0000gn/T/N6NE8A8","size":216,"detectedMimeType":"image/png","detectedFileExtension":".png","stream":{"type":"Stream"}}],"boop":[{"fieldName":"boop","originalName":"boop-1.txt","clientReportedMimeType":"text/plain","clientReportedFileExtension":".txt","path":"/var/folders/t_/4vd3m1h92zsc953ll8r_4s_h0000gn/T/PCB8YTR","size":7,"detectedMimeType":{},"detectedFileExtension":"","stream":{"type":"Stream"}},{"fieldName":"boop","originalName":"boop-2.txt","clientReportedMimeType":"text/plain","clientReportedFileExtension":".txt","path":"/var/folders/t_/4vd3m1h92zsc953ll8r_4s_h0000gn/T/EKMAKXR","size":7,"detectedMimeType":{},"detectedFileExtension":"","stream":{"type":"Stream"}}]}' },
-  user: { ip_address: '::ffff:127.0.0.1' },
-  response:
-   { headers:
-      { 'x-request-id': '33afc3c5-1571-4249-b024-876b6f687b65',
-        'content-type': 'application/json; charset=utf-8',
-        'content-length': '1951',
-        'x-response-time': '67.819ms',
-        date: 'Tue, 02 Jul 2019 18:11:20 GMT',
-        connection: 'close' },
-     http_version: '1.1',
-     status_code: 200,
-     reason_phrase: 'OK',
-     timestamp: '2019-07-02T18:11:20.000Z',
-     duration: 67.819 },
-  duration: 2.320237,
-  app:
-   { name: 'parse-request',
-     version: '2.0.1',
-     node: 'v10.15.3',
-     hash: '75783ef9d0a9c1c71f83ee352754a14ead0a3138',
-     tag: 'v2.0.1',
-     environment: 'test',
-     hostname: 'jacks-MacBook-Pro.local',
-     pid: 56543 } }
-```
+See the [Quick Start](#quick-start) section above and our guide at <https://github.com/cabinjs/axe/#suppress-logger-data>.
 
 
 ## Install
@@ -353,32 +251,22 @@ app.listen(3000);
 npm install cabin
 ```
 
-[yarn][]:
-
-```sh
-yarn add cabin
-```
-
 
 ## Usage
-
-> Don't want to configure this yourself? You can simply use [Lad][] which has this all built-in for you.
 
 ### Logging
 
 ```js
 const Cabin = require('cabin');
-const cabin = new Cabin();
+const cabin = new Cabin({
+  // ... see the Quick Start and Options sections
+});
+
 cabin.info('hello world');
 cabin.error(new Error('oops!'));
 ```
 
-Each log level should be invoked with two arguments `message` and `meta`.
-
-* `message` (String or Error) - this should be either a String or an Error object
-* `meta` (Object or Error) - this is optional and will automatically be set to an object that inherits properties from `config.meta` and requests parsed.  If this is an Error object, then this error will be automatically added and transformed to the `meta` object's `meta.err` property (e.g. `{ err: <Error>, ... }`)
-
-### Route Middleware
+### Route Logging Middleware
 
 ```js
 app.use(cabin.middleware);
@@ -388,16 +276,14 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
 
 ### Node
 
-> The examples below show how to use Cabin in combination with [Axe][], [Signale][] logging utility (for development), [Pino][] logging utility (for production), and how to add an accurate `X-Response-Time` response time metric to your logs and response headers automatically.
+> The examples below show how to use Cabin in combination with [Axe][], [Signale][] (instead of `console`), and how to add an accurate `X-Response-Time` response time metric to your logs and response headers automatically.
 
 #### Koa
-
-> Don't want to configure this yourself? We **highly recommend** to use [Lad][] instead of configuring this yourself as it has all of this pre-configured for you with best-practices.  However if you already have an existing [Koa][] based project the example below will sufficiently serve as a guide for implementation.
 
 1. Install required and recommended dependencies:
 
    ```sh
-   npm install koa cabin signale pino request-received koa-better-response-time koa-better-request-id
+   npm install koa cabin signale request-received koa-better-response-time koa-better-request-id
    ```
 
 2. Implement the example code below ([also found here](examples/koa.js)):
@@ -410,33 +296,11 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
    const responseTime = require('koa-better-response-time');
    const requestId = require('koa-better-request-id');
    const { Signale } = require('signale');
-   const pino = require('pino')({
-     customLevels: {
-       log: 30
-     },
-     hooks: {
-       // <https://github.com/pinojs/pino/blob/master/docs/api.md#logmethod>
-       logMethod(inputArgs, method) {
-         return method.call(this, {
-           // <https://github.com/pinojs/pino/issues/854>
-           // message: inputArgs[0],
-           msg: inputArgs[0],
-           meta: inputArgs[1]
-         });
-       }
-     }
-   });
-
-   const env = process.env.NODE_ENV || 'development';
 
    const app = new Koa();
    const router = new Router();
    const cabin = new Cabin({
-     // (optional: your free API key from https://cabinjs.com)
-     // key: 'YOUR-CABIN-API-KEY',
-     axe: {
-       logger: env === 'production' ? pino : new Signale()
-     }
+     logger: new Signale()
    });
 
    // adds request received hrtime and date symbols to request object
@@ -484,7 +348,7 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
 1. Install required and recommended dependencies:
 
    ```sh
-   npm install express cabin signale pino request-received response-time express-request-id
+   npm install express cabin signale request-received response-time express-request-id
    ```
 
 2. Implement the example code below ([also found here](examples/express.js)):
@@ -496,32 +360,10 @@ See either the [Node](#node) or [Browser](#browser) instructions below for furth
    const responseTime = require('response-time');
    const requestId = require('express-request-id');
    const { Signale } = require('signale');
-   const pino = require('pino')({
-     customLevels: {
-       log: 30
-     },
-     hooks: {
-       // <https://github.com/pinojs/pino/blob/master/docs/api.md#logmethod>
-       logMethod(inputArgs, method) {
-         return method.call(this, {
-           // <https://github.com/pinojs/pino/issues/854>
-           // message: inputArgs[0],
-           msg: inputArgs[0],
-           meta: inputArgs[1]
-         });
-       }
-     }
-   });
-
-   const env = process.env.NODE_ENV || 'development';
 
    const app = express();
    const cabin = new Cabin({
-     // (optional: your free API key from https://cabinjs.com)
-     // key: 'YOUR-CABIN-API-KEY',
-     axe: {
-       logger: env === 'production' ? pino : new Signale()
-     }
+     logger: new Signale()
    });
 
    // adds request received hrtime and date symbols to request object
@@ -583,51 +425,39 @@ In order to easily interact and use the `logger` utility function exposed by `ap
 
 ### Browser
 
+This package requires Promise support, therefore you will need to polyfill if you are using an unsupported browser (namely Opera mini).
+
+**We no longer support IE as of Cabin v10.0.0+.**
+
 #### VanillaJS
 
 This is the solution for you if you're just using `<script>` tags everywhere!
 
 ```html
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set,BigInt,WeakMap,WeakRef,WeakSet"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise"></script>
 <script src="https://unpkg.com/cabin"></script>
 <script type="text/javascript">
   (function() {
-    var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY', capture: true });
+    var cabin = new Cabin();
     cabin.setUser({
       id: '1',
-      email: 'niftylettuce@gmail.com',
-      full_name: 'niftylettuce'
+      email: 'test@example.com',
+      full_name: 'Test'
     });
     cabin.info('viewed docs');
   })();
 </script>
 ```
 
-##### Required Browser Features
+#### Required Browser Features
 
 We recommend using <https://polyfill.io> (specifically with the bundle mentioned in [VanillaJS](#vanillajs) above):
 
 ```html
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set,BigInt,WeakMap,WeakRef,WeakSet"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise"></script>
 ```
 
-* Map is not supported in IE 10
-* Map.prototype() is not supported in IE 10
-* Math.sign() is not supported in IE 10
-* Promise is not supported in Opera Mobile 12.1, Opera Mini all, IE Mobile 10, IE 10, Blackberry Browser 7
-* Reflect is not supported in IE 10
-* Symbol is not supported in IE 10
-* Uint32Array is not supported in IE Mobile 10, IE 10, Blackberry Browser 7
-* window\.crypto() is not supported in IE 10
-* Array.from() is not supported in IE 10
-* Object.getOwnPropertySymbols() is not supported in IE 10
-* Object.assign() is not supported in IE 10
-* navigator.mimeTypes() is not supported in Edge 18
-* Set is not supported in IE 10
-* BigInt is not supported in IE 10
-* WeakMap is not supported in IE 10
-* WeakRef is not supported in Opera 81, IE 10
-* WeakSet is not supported in IE 10
+* Promise is not supported in op\_mini all
 
 #### Bundler
 
@@ -636,12 +466,12 @@ This assumes you are using [browserify][], [webpack][], [rollup][], or another b
 ```js
 const Cabin = require('cabin');
 
-const cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
+const cabin = new Cabin();
 
 cabin.setUser({
   id: '1',
-  email: 'niftylettuce@gmail.com',
-  full_name: 'niftylettuce'
+  email: 'test@example.com',
+  full_name: 'Test'
 });
 
 cabin.info('viewed docs');
@@ -655,23 +485,23 @@ For server-side logging of requests, the Cabin middleware `cabin.middleware` wil
 
 #### Browser
 
-**We strongly recommend that you implement one of the following code snippets with [xhook][] (for either VanillaJS or Bundler approaches) so that all your XHR requests have a `X-Request-Id` automatically added (which in turn ensures both client and server have matching request ID's).  Imagine how awesome your logs will be when you can see the full trace starting with the client!**
+We strongly recommend that you implement one of the following code snippets with [xhook][] (for either VanillaJS or Bundler approaches) so that all your XHR requests have a `X-Request-Id` automatically added (which in turn ensures both client and server have matching request ID's).  Imagine how awesome your logs will be when you can see the full trace starting with the client!
 
 ##### HTML
 
 ```html
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set,BigInt,WeakMap,WeakRef,WeakSet"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise"></script>
 <script src="https://unpkg.com/xhook"></script>
 <script src="https://unpkg.com/cabin"></script>
 <script src="https://unpkg.com/parse-request"></script>
 <script src="https://unpkg.com/cuid"></script>
 <script>
   (function() {
-    var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY', capture: true });
+    var cabin = new Cabin();
     cabin.setUser({
       id: '1',
-      email: 'niftylettuce@gmail.com',
-      full_name: 'niftylettuce'
+      email: 'test@example.com',
+      full_name: 'Test'
     });
     xhook.before(function(req) {
       if (typeof req.headers !== 'object') req.headers = {};
@@ -699,18 +529,18 @@ For server-side logging of requests, the Cabin middleware `cabin.middleware` wil
 > You can do a similar approach with React, EJS, or another templating language.
 
 ```pug
-script(src='https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set,BigInt,WeakMap,WeakRef,WeakSet')
+script(src='https://polyfill.io/v3/polyfill.min.js?features=Promise"></script>
 script(src='https://unpkg.com/xhook')
 script(src='https://unpkg.com/cabin')
 script(src='https://unpkg.com/parse-request')
 script(src='https://unpkg.com/cuid')
 script.
   (function() {
-    var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY', capture: true });
+    var cabin = new Cabin();
     cabin.setUser({
       id: '1',
-      email: 'niftylettuce@gmail.com',
-      full_name: 'niftylettuce'
+      email: 'test@example.com',
+      full_name: 'Test'
     });
     xhook.before(function(req) {
       if (typeof req.headers !== 'object') req.headers = {};
@@ -743,24 +573,18 @@ script.
 npm install cabin xhook cuid
 ```
 
-[yarn][]:
-
-```sh
-yarn add cabin xhook cuid
-```
-
 ```js
 const Cabin = require('cabin');
 const xhook = require('xhook');
 const parseRequest = require('parse-request');
 const cuid = require('cuid');
 
-const cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY', capture: true });
+const cabin = new Cabin();
 
 cabin.setUser({
   id: '1',
-  email: 'niftylettuce@gmail.com',
-  full_name: 'niftylettuce'
+  email: 'test@example.com',
+  full_name: 'Test'
 });
 
 xhook.before(req => {
@@ -772,7 +596,6 @@ xhook.before(req => {
   //
   // NOTE: you may want to add User-Agent, Referer, and Cookie (see above)
   //
-
   cabin.info('xhr', parseRequest({ req: req }));
 });
 ```
@@ -790,7 +613,7 @@ However you can otherwise use a tool such as [uncaught][] to listen for errors, 
 ```js
 const Cabin = require('cabin');
 
-const cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
+const cabin = new Cabin();
 
 process.on('uncaughtException', err => {
   cabin.error(err);
@@ -804,7 +627,7 @@ process.on('unhandledRejection', err => {
 
 #### Browser
 
-Since cross-browser support is very limited and unstandardized for errors and stack traces, we highly recommend to use [StackTrace](#stacktrace).
+Since cross-browser support is very limited and non-standardized for errors and stack traces, we highly recommend to use [StackTrace](#stacktrace).
 
 ##### StackTrace
 
@@ -812,16 +635,12 @@ We recommend to use [StackTrace][] instead of [TraceKit][tracekit] as it is a mo
 
 It does require you to have a polyfill if you're using it in the browser (only if you're supporting browsers that don't support standardized Promises/JSON).  You'll basically need `es6-promise` and `json3` polyfills for browsers you wish to support that don't have them.  The example below shows you how to polyfill, don't worry!  You can reference Caniuse data on [Promises][] and [JSON][] respectively if you need.
 
-The example below demonstrates using StackTrace with [uncaught][] to catch global errors below, but note that [uncaught][] only supports IE11+.
-
-If you're curious why it won't work in IE11, please see this [great documentation on JavaScript errors cross-browser here](https://github.com/mknichel/javascript-errors#windowonerror) - in particular the section on "No Error object provided".
+The example below demonstrates using StackTrace with [uncaught][] to catch global errors below.
 
 ```html
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7,Map,Map.prototype,Math.sign,Promise,Reflect,Symbol,Uint32Array,window.crypto,Array.from,Object.getOwnPropertySymbols,Object.assign,navigator.mimeTypes,Set,BigInt,WeakMap,WeakRef,WeakSet"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise"></script>
 <script src="https://unpkg.com/stackframe"></script>
 <script src="https://unpkg.com/stacktrace-js"></script>
-<!-- Use this instead of the above if you need to polyfill for IE11 support -->
-<!-- <script src="https://unpkg.com/stacktrace-js/dist/stacktrace-with-promises-and-json-polyfills.js"></script> -->
 <script src="https://unpkg.com/uncaught"></script>
 <script src="https://unpkg.com/cabin"></script>
 <script src="https://unpkg.com/prepare-stack-trace"></script>
@@ -832,7 +651,7 @@ If you're curious why it won't work in IE11, please see this [great documentatio
     // Sourced from the StackTrace example from CabinJS docs
     // <https://github.com/cabinjs/cabin#stacktrace>
     //
-    var cabin = new Cabin({ key: 'YOUR-CABIN-API-KEY' });
+    var cabin = new Cabin();
 
     // Use cabin globally in your app (instead of `console`)
     window.cabin = cabin;
@@ -863,48 +682,22 @@ If you're curious why it won't work in IE11, please see this [great documentatio
 ```
 
 
-## Display Metadata and Stack Traces
-
-Under the hood, Cabin uses [Axe][] which provides us with several options, including one to show metadata (e.g. request headers, body, and user) and another to show stack traces for errors.
-
-You can pass these options through the `axe` option (see [Options](#options) below), or you could pass environment flags when you need to.
-
-**By default, [Axe][] does not output any metadata and only outputs stack traces in non-production environments.**
-
-### Show/Hide Metadata
-
-To show or hide metadata, pass a true or false value for the process environment variables `SHOW_META` (defaults to `true`), `SHOW_META_APP` (defaults to `false`), or specify a comma separated list of fields to selectively omit via `OMIT_META_FIELDS` (e.g. `OMIT_META_FIELDS=user` to omit `meta.user` from output).
-
-We have configured default metadata output in console logs to be sensible defaults as to not pollute your debugging experience.  We welcome suggestions for how to improve this as well.
-
-> (e.g. `SHOW_META=0` or `SHOW_META=false` before running your script, such as `SHOW_META=false node app`).
-
-Similarly if you pass a truthy value of `1` or `true` it will show metadata (which is the default behavior).
-
-### Show/Hide Stack Traces
-
-To hide stack traces, pass a falsey value for the process environment variable `SHOW_STACK`.
-
-> (e.g. `SHOW_STACK=0` or `SHOW_STACK=false` before running your script, such as `SHOW_STACK=false node app`).
-
-Similarly if you pass a truthy value of `1` or `true` it will show metadata (which is the default behavior).
-
-
 ## Options
 
-* `key` (String) - defaults to an empty string, **this is where you put your Cabin API key**, which you can get for free at [Cabin][]
-* `capture` (Boolean) - defaults to `false` in browser (all environments) and server-side (non-production only) environments, whether or not to `POST` logs to the endpoint (see [Axe][] docs for more info)
-* `axe` (Object) - defaults to an empty Object `{}`, but you can pass options here for [Axe][]
-* `logger` (Object) - if you have a custom logger you wish to use instead of [Axe][], but note that Axe accepts a `logger` option, so you should use that instead, see [Axe][] docs for more info
+* `logger` (Object or [Axe][] instance) - if you have a custom logger you wish to use or an existing [Axe][] instance – defaults to an instance of [Axe][] which uses `console` as the logger – if you do not pass an instance of Axe, then an instance will be created and the `logger` option will be passed down
 * `meta` (Object) - defaults to an empty object - this will get passed as metadata (e.g. you could set a custom `meta.user` object here for every request)
 * `parseRequest` (Object) - defaults to an empty object, which means it will use the defaults from [parse-request][] (see [Metadata](#metadata) below)
 * `errorProps` (Array) - a list of properties to cherry-pick from the error object parsed out of err thanks to [parse-err][] (by default all properties are returned; even non-enumerable ones and ones on the prototype object) (see [Metadata](#metadata) below)
 * `message` (Function) - inspired by [morgan][], and defaults to a [dev-friendly format](https://github.com/expressjs/morgan#short) (or if in production mode, then it uses a [standard Apache common log format][apache-clf])). – when requests finish, it will utilize `logger` to output an error, warn, or info level log based off the status code, and this function is used to determine the string sent to the logger.  It accepts one argument `options`, which is comprised of `options.level`, `options.req`, `options.res`, and optionally (if and only if Koa) `options.ctx`.  It is required that this function return a String.  See [src/message.js](src/message.js) for the default message function.  Note that both dev-friendly and Apache common log formats are stripped of basic auth lines for obvious security reasons.
 
 
-## Metadata
+## Display Metadata and Stack Traces
 
-We use the package [parse-request][] to parse the request metadata for you autoamaticaly.
+Under the hood, Cabin uses [Axe][] which provides us with several options, including one to show metadata (e.g. request headers, body, and user) and another to show stack traces for errors.
+
+To show/hide application metadata and/or stack traces, see the [Axe options documentation](https://github.com/cabinjs/axe#options).
+
+Cabin uses the package [parse-request][] to parse the request metadata for you automatically in your Express and Koa applications.
 
 Here's an example of a parsed metadata object:
 
@@ -947,35 +740,22 @@ Here's an example of a parsed metadata object:
 }
 ```
 
+As you can see, sensitive data is masked and contextual user information metadata is automatically populated.
+
 
 ## Related
 
 * [Forward Email][forward-email] - Free, encrypted, and open-source email forwarding service for custom domains
-* [bree][] - The best job scheduler for [Node.js][node]
-* [lad][] - Scaffold a [Koa][] webapp and API framework for [Node.js][node]
+* [Axe][] - Logging utility for Node and Browser environments. Chop up your logs!
+* [Bree][] - The best job scheduler for [Node.js][node]
+* [Lad][] - Scaffold a [Koa][] webapp and API framework for [Node.js][node]
+* [Lass][] - Scaffold a modern boilerplate for [Node.js][node]
 * [koa-better-error-handler][] - A better error-handler for Lad and Koa. Makes `ctx.throw` awesome!
-* [axe][] - Logging utility for Node and Browser environments. Chop up your logs!
-* [lass][] - Scaffold a modern boilerplate for [Node.js][node]
-* [lipo][] - Free image manipulation API service built on top of [Sharp][]
-
-
-## Contributors
-
-| Name           | Website                    |
-| -------------- | -------------------------- |
-| **Nick Baugh** | <http://niftylettuce.com/> |
-
-
-## Trademark Notice
-
-Axe, Lad, Lass, Cabin, Lipo, and their respective logos are trademarks of Niftylettuce LLC.
-These trademarks may not be reproduced, distributed, transmitted, or otherwise used, except with the prior written permission of Niftylettuce LLC.
-If you are seeking permission to use these trademarks, then please [contact us](mailto:niftylettuce@gmail.com).
 
 
 ## License
 
-[MIT](LICENSE) © [Nick Baugh](http://niftylettuce.com/)
+[MIT](LICENSE) © Titanism
 
 
 ##
@@ -985,8 +765,6 @@ If you are seeking permission to use these trademarks, then please [contact us](
 [bree]: https://jobscheduler.net
 
 [npm]: https://www.npmjs.com/
-
-[yarn]: https://yarnpkg.com/
 
 [passport]: http://www.passportjs.org/
 
@@ -1002,12 +780,6 @@ If you are seeking permission to use these trademarks, then please [contact us](
 
 [koa-better-error-handler]: https://github.com/ladjs/koa-better-error-handler
 
-[sharp]: http://sharp.dimens.io/
-
-[lipo]: https://lipo.io
-
-[browserify]: https://github.com/browserify/browserify
-
 [webpack]: https://github.com/webpack/webpack
 
 [rollup]: https://github.com/rollup/rollup
@@ -1016,9 +788,9 @@ If you are seeking permission to use these trademarks, then please [contact us](
 
 [xhook]: https://github.com/jpillora/xhook
 
-[parse-request]: https://github.com/niftylettuce/parse-request
+[parse-request]: https://github.com/cabinjs/parse-request
 
-[parse-err]: https://github.com/niftylettuce/parse-err
+[parse-err]: https://github.com/cabinjs/parse-err
 
 [stacktrace]: https://www.stacktracejs.com/
 
@@ -1028,11 +800,7 @@ If you are seeking permission to use these trademarks, then please [contact us](
 
 [json]: https://caniuse.com/#feat=json
 
-[cabin]: https://cabinjs.com
-
 [signale]: https://github.com/klauscfhq/signale
-
-[pino]: https://github.com/pinojs/pino
 
 [sensitive-fields]: https://github.com/cabinjs/sensitive-fields/blob/master/index.json
 
@@ -1048,10 +816,8 @@ If you are seeking permission to use these trademarks, then please [contact us](
 
 [morgan]: https://github.com/expressjs/morgan
 
-[bunyan]: https://github.com/trentm/node-bunyan
-
-[winston]: https://github.com/winstonjs/winston
-
 [forward-email]: https://forwardemail.net
 
 [apache-clf]: https://github.com/expressjs/morgan#common
+
+[browserify]: https://github.com/browserify/browserify
