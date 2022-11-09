@@ -3,6 +3,7 @@ const isError = require('iserror');
 const parseErr = require('parse-err');
 const mergeOptions = require('merge-options');
 
+const pkg = require('../package.json');
 const {
   isNull,
   isUndefined,
@@ -25,7 +26,9 @@ class Cabin {
         errorProps: [],
         // function that accepts (level, req, res) and returns a string
         // (this is consumed by the cabin middleware and not available in browsers)
-        message
+        message,
+        // expose a version for user agent
+        version: pkg.version
       },
       config
     );
