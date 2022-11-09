@@ -529,7 +529,7 @@ We strongly recommend that you implement one of the following code snippets with
 > You can do a similar approach with React, EJS, or another templating language.
 
 ```pug
-script(src='https://polyfill.io/v3/polyfill.min.js?features=Promise"></script>
+script(src='https://polyfill.io/v3/polyfill.min.js?features=Promise')
 script(src='https://unpkg.com/xhook')
 script(src='https://unpkg.com/cabin')
 script(src='https://unpkg.com/parse-request')
