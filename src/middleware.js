@@ -15,8 +15,8 @@ module.exports = function (...args) {
   // Note that `params` is not named `args` because ESLint doesn't warn:
   // <https://github.com/eslint/eslint/issues/11915>
   //
-  for (const key of Object.keys(this.logger).filter((key) =>
-    isFunction(this.logger[key])
+  for (const key of Object.keys(this.config.logger).filter((key) =>
+    isFunction(this.config.logger[key])
   )) {
     logger[key] = (...parameters) => {
       parameters[1] = isUndefined(parameters[1])
@@ -66,7 +66,7 @@ module.exports = function (...args) {
         )
       );
 
-      return this.logger[key](...Array.prototype.slice.call(parameters));
+      return this.config.logger[key](...Array.prototype.slice.call(parameters));
     };
   }
 
@@ -82,8 +82,11 @@ module.exports = function (...args) {
       res,
       ...(isExpress ? {} : { ctx: args[0] })
     });
-    if (err) logger[level](message, { err });
-    else logger[level](message);
+    if (err) {
+      logger[level](message ? message : err.message, { err });
+    } else if (message) {
+      logger[level](message);
+    }
   });
   // add `log` (shorthand) and `logger` methods
   // `req.log`
