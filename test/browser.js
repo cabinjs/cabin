@@ -1,6 +1,6 @@
-const path = require('path');
-const { readFileSync } = require('fs');
-const { Script } = require('vm');
+const path = require('node:path');
+const { readFileSync } = require('node:fs');
+const { Script } = require('node:vm');
 const test = require('ava');
 const _ = require('lodash');
 const { JSDOM, VirtualConsole } = require('jsdom');

@@ -83,7 +83,7 @@ module.exports = function (...args) {
       ...(isExpress ? {} : { ctx: args[0] })
     });
     if (err) {
-      logger[level](message ? message : err.message, { err });
+      logger[level](message || err.message, { err });
     } else if (message) {
       logger[level](message);
     }
