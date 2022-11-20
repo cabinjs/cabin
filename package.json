@@ -17,7 +17,7 @@
   ],
   "dependencies": {
     "ansi-colors": "^4.1.3",
-    "axe": "^10.2.1",
+    "axe": "^10.2.2",
     "clf-date": "^0.2.1",
     "iserror": "^0.0.2",
     "merge-options": "^3.0.4",
@@ -36,7 +36,7 @@
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.27.0",
+    "eslint": "^8.28.0",
     "eslint-config-xo-lass": "^2.0.1",
     "eslint-plugin-compat": "^4.0.2",
     "eslint-plugin-node": "^11.1.0",
@@ -60,7 +60,7 @@
     "signale": "^1.4.0",
     "supertest": "^6.3.1",
     "tinyify": "3.0.0",
-    "xo": "^0.53.0"
+    "xo": "^0.53.1"
   },
   "engines": {
     "node": ">=14"
