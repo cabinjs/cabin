@@ -245,10 +245,12 @@ See the [Quick Start](#quick-start) section above and our guide at <https://gith
 
 ## Install
 
+**Note that as of v11.0.0 Cabin requires a peer dependency of [Axe][] to be installed.**
+
 [npm][]:
 
 ```sh
-npm install cabin
+npm install cabin axe
 ```
 
 
