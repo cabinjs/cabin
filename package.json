@@ -1,7 +1,7 @@
 {
   "name": "cabin",
   "description": "Cabin is the best self-hosted JavaScript and Node.js logging service.",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "author": "Titanism",
   "browser": {
     "./src/middleware": false,
