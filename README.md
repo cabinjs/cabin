@@ -33,6 +33,8 @@
 * [Send Logs to an HTTP endpoint](#send-logs-to-an-http-endpoint)
 * [Send Logs to Slack](#send-logs-to-slack)
 * [Send Logs to Sentry](#send-logs-to-sentry)
+* [Send Logs to Datadog](#send-logs-to-datadog)
+* [Send Logs to Papertrail](#send-logs-to-papertrail)
 * [Suppress Logger Data](#suppress-logger-data)
 * [Install](#install)
 * [Usage](#usage)
@@ -81,6 +83,12 @@ const logger = new Axe({
 
 // TODO: if you want to send logs to Sentry then follow this guide:
 // https://github.com/cabinjs/axe/#send-logs-to-sentry
+
+// TODO: if you want to send logs to Datadog then follow this guide:
+// https://github.com/cabinjs/axe/#send-logs-to-datadog
+
+// TODO: if you want to send logs to Papertrail then follow this guide:
+// https://github.com/cabinjs/axe/#send-logs-to-papertrail
 
 // TODO: if you want to suppress specific log metadata then follow this guide:
 // https://github.com/cabinjs/axe/#suppress-logger-data
@@ -236,6 +244,16 @@ See the [Quick Start](#quick-start) section above and our guide at <https://gith
 ## Send Logs to Sentry
 
 See the [Quick Start](#quick-start) section above and our guide at <https://github.com/cabinjs/axe/#send-logs-to-sentry>.
+
+
+## Send Logs to Datadog
+
+See the [Quick Start](#quick-start) section above and our guide at <https://github.com/cabinjs/axe/#send-logs-to-datadog>.
+
+
+## Send Logs to Papertrail
+
+See the [Quick Start](#quick-start) section above and our guide at <https://github.com/cabinjs/axe/#send-logs-to-papertrail>.
 
 
 ## Suppress Logger Data
