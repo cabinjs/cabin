@@ -23,7 +23,7 @@
     "ms": "^2.1.3",
     "on-finished": "^2.4.1",
     "parse-err": "^0.0.12",
-    "parse-request": "^5.1.1"
+    "parse-request": "^5.1.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.20.7",
