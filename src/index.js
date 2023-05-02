@@ -2,7 +2,6 @@ const Axe = require('axe');
 const isError = require('iserror');
 const parseErr = require('parse-err');
 const mergeOptions = require('merge-options');
-
 const pkg = require('../package.json');
 const {
   isNull,

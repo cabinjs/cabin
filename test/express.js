@@ -5,7 +5,6 @@ const supertest = require('supertest');
 const requestReceived = require('request-received');
 const responseTime = require('response-time');
 const requestId = require('express-request-id');
-
 const Cabin = require('..');
 
 test.beforeEach((t) => {

@@ -3,7 +3,7 @@ function isNull(value) {
 }
 
 function isUndefined(value) {
-  return typeof value === 'undefined';
+  return value === undefined;
 }
 
 function isObject(value) {

@@ -1,5 +1,4 @@
 const process = require('node:process');
-
 const c = require('ansi-colors');
 const clfDate = require('clf-date');
 const ms = require('ms');

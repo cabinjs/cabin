@@ -5,7 +5,6 @@ const supertest = require('supertest');
 const requestReceived = require('request-received');
 const responseTime = require('koa-better-response-time');
 const requestId = require('koa-better-request-id');
-
 const Cabin = require('..');
 
 test.beforeEach((t) => {
