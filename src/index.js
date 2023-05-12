@@ -49,7 +49,7 @@ class Cabin {
     )) {
       this[level] = (...args) => {
         if (args[1]) args[1] = this.parseArg(args[1]);
-        this.config.logger[level](...Array.prototype.slice.call(args));
+        return this.config.logger[level](...Array.prototype.slice.call(args));
       };
     }
 
