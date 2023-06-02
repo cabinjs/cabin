@@ -1,3 +1,5 @@
+const format = require('@ladjs/format-util');
+const formatSpecifiers = require('format-specifiers');
 const onFinished = require('on-finished');
 const parseRequest = require('parse-request');
 const { isFunction, isUndefined } = require('./utils');
@@ -19,6 +21,16 @@ module.exports = function (...args) {
     isFunction(this.config.logger[key])
   )) {
     logger[key] = (...parameters) => {
+      // support format specifiers
+      if (
+        typeof parameters[0] === 'string' &&
+        formatSpecifiers.some((t) => parameters[0].includes(t)) &&
+        parameters[1]
+      ) {
+        parameters[0] = format(parameters[0], parameters[1]);
+        parameters[1] = undefined;
+      }
+
       parameters[1] = isUndefined(parameters[1])
         ? {}
         : this.parseArg(parameters[1]);

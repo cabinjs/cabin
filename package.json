@@ -16,8 +16,10 @@
     "Titanism"
   ],
   "dependencies": {
+    "@ladjs/format-util": "^1.0.4",
     "ansi-colors": "^4.1.3",
     "clf-date": "^0.2.1",
+    "format-specifiers": "^1.0.0",
     "iserror": "^0.0.2",
     "merge-options": "^3.0.4",
     "ms": "^2.1.3",

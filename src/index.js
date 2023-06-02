@@ -1,7 +1,9 @@
 const Axe = require('axe');
+const format = require('@ladjs/format-util');
+const formatSpecifiers = require('format-specifiers');
 const isError = require('iserror');
-const parseErr = require('parse-err');
 const mergeOptions = require('merge-options');
+const parseErr = require('parse-err');
 const pkg = require('../package.json');
 const {
   isNull,
@@ -48,7 +50,15 @@ class Cabin {
       isFunction(this.config.logger[key])
     )) {
       this[level] = (...args) => {
-        if (args[1]) args[1] = this.parseArg(args[1]);
+        // support format specifiers
+        if (
+          typeof args[0] === 'string' &&
+          formatSpecifiers.some((t) => args[0].includes(t)) &&
+          args[1]
+        ) {
+          args[0] = format(args[0], args[1]);
+          delete args[1];
+        } else if (args[1]) args[1] = this.parseArg(args[1]);
         return this.config.logger[level](...Array.prototype.slice.call(args));
       };
     }
