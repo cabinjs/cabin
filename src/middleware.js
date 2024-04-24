@@ -70,8 +70,8 @@ module.exports = function (...args) {
                 typeof res._header === 'string'
                   ? res._header
                   : typeof res.getHeaders === 'function'
-                  ? res.getHeaders()
-                  : null
+                    ? res.getHeaders()
+                    : null
             },
             this.config.parseRequest
           )

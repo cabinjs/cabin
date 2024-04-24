@@ -40,12 +40,12 @@ function devFriendlyLogFormat(options) {
     res.statusCode >= 500
       ? 'red'
       : res.statusCode >= 400
-      ? 'yellow'
-      : res.statusCode >= 300
-      ? 'cyan'
-      : res.statusCode >= 200
-      ? 'green'
-      : 'white';
+        ? 'yellow'
+        : res.statusCode >= 300
+          ? 'cyan'
+          : res.statusCode >= 200
+            ? 'green'
+            : 'white';
 
   let responseTime = '-';
 
@@ -56,12 +56,12 @@ function devFriendlyLogFormat(options) {
       milliseconds >= 1000
         ? 'red'
         : milliseconds >= 500
-        ? 'magenta'
-        : milliseconds >= 250
-        ? 'yellow'
-        : milliseconds >= 100
-        ? 'cyan'
-        : 'green';
+          ? 'magenta'
+          : milliseconds >= 250
+            ? 'yellow'
+            : milliseconds >= 100
+              ? 'cyan'
+              : 'green';
     responseTime = c[responseColor](`${milliseconds} ms`);
   }
 
