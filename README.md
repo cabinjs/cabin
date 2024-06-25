@@ -454,7 +454,7 @@ This package requires Promise support, therefore you will need to polyfill if yo
 This is the solution for you if you're just using `<script>` tags everywhere!
 
 ```html
-<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise"></script>
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=Promise"></script>
 <script src="https://unpkg.com/cabin"></script>
 <script type="text/javascript">
   (function() {
@@ -471,10 +471,10 @@ This is the solution for you if you're just using `<script>` tags everywhere!
 
 #### Required Browser Features
 
-We recommend using <https://polyfill.io> (specifically with the bundle mentioned in [VanillaJS](#vanillajs) above):
+We recommend using <https://cdnjs.cloudflare.com/polyfill> (specifically with the bundle mentioned in [VanillaJS](#vanillajs) above):
 
 ```html
-<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise"></script>
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=Promise"></script>
 ```
 
 * Promise is not supported in op\_mini all
@@ -510,7 +510,7 @@ We strongly recommend that you implement one of the following code snippets with
 ##### HTML
 
 ```html
-<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise"></script>
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=Promise"></script>
 <script src="https://unpkg.com/xhook"></script>
 <script src="https://unpkg.com/cabin"></script>
 <script src="https://unpkg.com/parse-request"></script>
@@ -549,7 +549,7 @@ We strongly recommend that you implement one of the following code snippets with
 > You can do a similar approach with React, EJS, or another templating language.
 
 ```pug
-script(src='https://polyfill.io/v3/polyfill.min.js?features=Promise')
+script(src='https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=Promise')
 script(src='https://unpkg.com/xhook')
 script(src='https://unpkg.com/cabin')
 script(src='https://unpkg.com/parse-request')
@@ -658,7 +658,7 @@ It does require you to have a polyfill if you're using it in the browser (only i
 The example below demonstrates using StackTrace with [uncaught][] to catch global errors below.
 
 ```html
-<script src="https://polyfill.io/v3/polyfill.min.js?features=Promise"></script>
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=Promise"></script>
 <script src="https://unpkg.com/stackframe"></script>
 <script src="https://unpkg.com/stacktrace-js"></script>
 <script src="https://unpkg.com/uncaught"></script>
