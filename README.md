@@ -13,7 +13,7 @@
 <div align="center">
   Cabin is the best self-hosted <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> and <a href="https://nodejs.org" target="_blank">Node.js</a> <a href="https://en.wikipedia.org/wiki/Logging_as_a_service" target="_blank">logging service</a>.
   <br />
-  <small>Supports Node v14+, Browser Environments, <a href="https://expressjs.com" target="_blank">Express</a>, <a href="https://koajs.com" target="_blank">Koa</a>, and <a href="https://lad.js.org" target="_blank">Lad</a></small>
+  <small>Supports Node v18+, Browser Environments, <a href="https://expressjs.com" target="_blank">Express</a>, <a href="https://koajs.com" target="_blank">Koa</a>, and <a href="https://lad.js.org" target="_blank">Lad</a></small>
 </div>
 <hr />
 <div align="center">
@@ -192,7 +192,7 @@ Reduce your disk storage costs through Cabin's automatic conversion of Streams, 
 
 Cabin works with the most popular Node.js HTTP frameworks (e.g. [Express][] and [Koa][]), request body handling packages (e.g. [multer][] and [body-parser][]), and the [passport][] authentication framework.
 
-It supports **Node v14+** and modern browsers out of the box (its browser-ready bundle **is only 20 KB**).
+It supports **Node v18+** and modern browsers out of the box (its browser-ready bundle **is only 20 KB**).
 
 ```sh
 npx browserslist

@@ -28,13 +28,13 @@
     "parse-request": "^6.0.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.24.7",
-    "@babel/core": "^7.24.7",
-    "@babel/preset-env": "^7.24.7",
-    "@commitlint/cli": "^19.3.0",
-    "@commitlint/config-conventional": "^19.2.2",
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
     "ava": "^5.3.1",
-    "axe": "^12.2.9",
+    "axe": "^13.0.0",
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
     "cross-env": "^7.0.3",
@@ -42,7 +42,7 @@
     "eslint-config-xo-lass": "^2.0.1",
     "eslint-plugin-compat": "^4.2.0",
     "eslint-plugin-node": "^11.1.0",
-    "express": "^4.19.2",
+    "express": "^4.21.1",
     "express-request-id": "1",
     "fixpack": "^4.0.0",
     "husky": "^9.0.11",
@@ -51,13 +51,13 @@
     "koa-better-request-id": "^1.2.0",
     "koa-better-response-time": "^1.2.0",
     "koa-router": "^12.0.1",
-    "lint-staged": "^15.2.7",
+    "lint-staged": "^15.2.10",
     "lodash": "^4.17.21",
-    "nyc": "^17.0.0",
+    "nyc": "^17.1.0",
     "remark-cli": "11.0.0",
     "remark-preset-github": "^4.0.4",
     "request-received": "^0.0.3",
-    "response-time": "^2.3.2",
+    "response-time": "^2.3.3",
     "rimraf": "^5.0.7",
     "signale": "^1.4.0",
     "supertest": "^7.0.0",
@@ -65,7 +65,7 @@
     "xo": "^0.56.0"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "files": [
     "lib",
